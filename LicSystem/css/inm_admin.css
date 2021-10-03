@@ -1,0 +1,14 @@
+﻿table.dataTable tbody th, table.dataTable tbody td {
+    padding: 6px 8px;
+}
+
+tr.bordered {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.custom-file-input ~ .custom-file-label::after {
+    content: "Button Text";
+}
+
+option.select-hr { 
+    border-bottom: 1px dotted #000; }

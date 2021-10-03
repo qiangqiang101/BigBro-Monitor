@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("ResMon")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("ResMon")>
-<Assembly: AssemblyCopyright("Copyright ©  2021")>
+<Assembly: AssemblyTitle("BigBro Monitor")>
+<Assembly: AssemblyDescription("A Resource Monitor to monitoring System Load, Temperature, Usage and more.")>
+<Assembly: AssemblyCompany("Zettabyte Technology")>
+<Assembly: AssemblyProduct("BigBro Monitor")>
+<Assembly: AssemblyCopyright("Copyright © 2021 Zettabyte Technology")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("0.5.926.0")>
+<Assembly: AssemblyFileVersion("0.5.926.0")>

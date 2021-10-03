@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,199 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cc_sun_clouds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_sun_clouds.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cc_moon_rain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_moon_rain.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cc_NA_rain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_NA_rain.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cc_moon_lighting" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_moon_lighting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="diagnostic_chart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\diagnostic_chart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cc_sun_lighting" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_sun_lighting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="youtube" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\youtube.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cc_moon_clouds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_moon_clouds.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="progressbar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\progressbar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cc_NA_lighting" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_NA_lighting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="text" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cc_NA_clouds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_NA_clouds.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="http_status_ok_success" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\http_status_ok_success.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="images_flickr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images_flickr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="text_list_bullets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\text_list_bullets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cc_sun" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_sun.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cc_sun_rain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_sun_rain.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cc_moon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_moon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="weather_sun" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\weather_sun.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_cloudy_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-cloudy_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_cloud_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-cloud_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_cloud_moon_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-cloud-moon_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_cloud_moon_rain_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-cloud-moon-rain_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_cloud_rain_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-cloud-rain_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_cloud_sun_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-cloud-sun_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_cloud_wind_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-cloud-wind_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_moon_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-moon_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_sun_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-sun_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_sun_windy_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-sun-windy_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_thunderstorm_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-thunderstorm_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_thunderstorm_rain_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-thunderstorm-rain_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_thunder_wind_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-thunder-wind_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_wind_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-wind_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_wind_moon_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-wind-moon_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kk_wind_rain_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-wind-rain_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ThirdParty" xml:space="preserve">
+    <value>This application uses some parts which provided by third party.
+
+Microsoft Edge WebView2
+© Microsoft Corporation
+
+Network Monitor
+© Chen Pang "Echevil"
+
+Json.NET
+© Newtonsoft
+
+Open Hardware Monitor
+© Michael Möller
+
+Dynamically Resize and Reposition All Controls
+© Member 10974085
+
+Simple Performance Chart
+© eclipse2k1
+
+Weather API
+© Malaysian Meteorological Department
+
+Net Seal Theme
+© Nimoru Software
+
+ThemeContainer154
+© aeonhack</value>
+  </data>
+  <data name="dial0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial15.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dial9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dial9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

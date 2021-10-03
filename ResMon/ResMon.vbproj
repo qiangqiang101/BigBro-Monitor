@@ -8,11 +8,30 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>ResMon.My.MyApplication</StartupObject>
     <RootNamespace>ResMon</RootNamespace>
-    <AssemblyName>ResMon</AssemblyName>
+    <AssemblyName>BigBroMonitor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,7 +40,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>ResMon.xml</DocumentationFile>
+    <DocumentationFile>BigBroMonitor.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -31,7 +50,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>ResMon.xml</DocumentationFile>
+    <DocumentationFile>BigBroMonitor.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -46,11 +65,57 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>monitor.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E353B2EA57A7B774228CF36A83822A4EBE589A6B</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ResMon_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.902.49, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.902.49\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.902.49, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.902.49\lib\net45\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.902.49, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.902.49\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NetworkMonitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NetworkMonitor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenHardwareMonitorLib, Version=0.9.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenHardwareMonitor.0.9.6\lib\net45\OpenHardwareMonitorLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -72,11 +137,58 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.vb">
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Class\FancyStringEditor.vb" />
+    <Compile Include="Class\HardwareID.vb" />
+    <Compile Include="Class\HttpServer.vb" />
+    <Compile Include="Class\LanguageData.vb" />
+    <Compile Include="Class\Logger.vb" />
+    <Compile Include="Class\Resizer.vb" />
+    <Compile Include="Class\RoundRectCorners.vb" />
+    <Compile Include="Class\UserPresetData.vb" />
+    <Compile Include="Class\WeatherInfo.vb" />
+    <Compile Include="frmAbout.Designer.vb">
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAbout.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="frmActivateLicense.Designer.vb">
+      <DependentUpon>frmActivateLicense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmActivateLicense.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSandbox.Designer.vb">
+      <DependentUpon>frmSandbox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSandbox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorControls\PlotChartStyle.vb" />
+    <Compile Include="Class\ResizeableControl.vb" />
+    <Compile Include="Class\Sensors.vb" />
+    <Compile Include="Class\ThemeConfig.vb" />
+    <Compile Include="Class\ThemeData.vb" />
+    <Compile Include="Class\UserSettingData.vb" />
+    <Compile Include="frmMonitor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMonitor.Designer.vb">
+      <DependentUpon>frmMonitor.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Class\Helper.vb" />
+    <Compile Include="frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSetting.Designer.vb">
+      <DependentUpon>frmSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSetting.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -94,16 +206,99 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Class\SensorItem.vb" />
+    <Compile Include="frmThemeEditor.Designer.vb">
+      <DependentUpon>frmThemeEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemeEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorControls\CircularStatusBar.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SensorControls\DetailSensor.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SensorControls\ImageControl.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SensorControls\PlotChart.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SensorControls\StatusBar.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SensorControls\TextLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SensorControls\WeatherWidget.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SensorControls\Youtube.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Theme\DBFlowLayoutPanel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Theme\NetSeal.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Theme\NSThemeItem.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Theme\NSUserDefineItem.Designer.vb">
+      <DependentUpon>NSUserDefineItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Theme\NSUserDefineItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Theme\TagsLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Theme\ThemeBase154.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Theme\FillPicturebox.vb">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmAbout.resx">
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmActivateLicense.resx">
+      <DependentUpon>frmActivateLicense.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMonitor.resx">
+      <DependentUpon>frmMonitor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSandbox.resx">
+      <DependentUpon>frmSandbox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetting.resx">
+      <DependentUpon>frmSetting.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmThemeEditor.resx">
+      <DependentUpon>frmThemeEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Theme\NSUserDefineItem.resx">
+      <DependentUpon>NSUserDefineItem.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -114,8 +309,117 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\razer_theme.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\landscape_razer_theme.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images_flickr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\progressbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\http_status_ok_success.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diagnostic_chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_list_bullets.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\youtube.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="monitor.ico" />
+    <None Include="Resources\dial15.png" />
+    <None Include="Resources\dial3.png" />
+    <None Include="Resources\dial2.png" />
+    <None Include="Resources\dial1.png" />
+    <None Include="Resources\dial0.png" />
+    <None Include="Resources\dial16.png" />
+    <None Include="Resources\dial14.png" />
+    <None Include="Resources\dial13.png" />
+    <None Include="Resources\dial12.png" />
+    <None Include="Resources\dial11.png" />
+    <None Include="Resources\dial10.png" />
+    <None Include="Resources\dial9.png" />
+    <None Include="Resources\dial8.png" />
+    <None Include="Resources\dial7.png" />
+    <None Include="Resources\dial6.png" />
+    <None Include="Resources\dial5.png" />
+    <None Include="Resources\dial4.png" />
+    <None Include="Resources\kk-wind-rain_512.png" />
+    <None Include="Resources\kk-wind-moon_512.png" />
+    <None Include="Resources\kk-wind_512.png" />
+    <None Include="Resources\kk-thunder-wind_512.png" />
+    <None Include="Resources\kk-thunderstorm-rain_512.png" />
+    <None Include="Resources\kk-thunderstorm_512.png" />
+    <None Include="Resources\kk-sun-windy_512.png" />
+    <None Include="Resources\kk-sun_512.png" />
+    <None Include="Resources\kk-snow-rain_512.png" />
+    <None Include="Resources\kk-snowflake-sun_512.png" />
+    <None Include="Resources\kk-snowflake_512.png" />
+    <None Include="Resources\kk-snow_512.png" />
+    <None Include="Resources\kk-rain-snow_512.png" />
+    <None Include="Resources\kk-rainbow_512.png" />
+    <None Include="Resources\kk-moon_512.png" />
+    <None Include="Resources\kk-cloudy_512.png" />
+    <None Include="Resources\kk-cloud-wind_512.png" />
+    <None Include="Resources\kk-cloud-sun_512.png" />
+    <None Include="Resources\kk-cloud-rain_512.png" />
+    <None Include="Resources\kk-cloud-moon-rain_512.png" />
+    <None Include="Resources\kk-cloud-moon_512.png" />
+    <None Include="Resources\kk-cloud_512.png" />
+    <None Include="Resources\weather_sun.png" />
+    <None Include="Resources\cc_sun_rain_snow.png" />
+    <None Include="Resources\cc_sun_rain.png" />
+    <None Include="Resources\cc_sun_lighting.png" />
+    <None Include="Resources\cc_sun_fog.png" />
+    <None Include="Resources\cc_sun_clouds.png" />
+    <None Include="Resources\cc_sun_blizzard.png" />
+    <None Include="Resources\cc_sun.png" />
+    <None Include="Resources\cc_NA_rain_snow.png" />
+    <None Include="Resources\cc_NA_rain.png" />
+    <None Include="Resources\cc_NA_lighting.png" />
+    <None Include="Resources\cc_NA_fog.png" />
+    <None Include="Resources\cc_NA_clouds.png" />
+    <None Include="Resources\cc_NA_blizzard.png" />
+    <None Include="Resources\cc_moon_rain_snow.png" />
+    <None Include="Resources\cc_moon_rain.png" />
+    <None Include="Resources\cc_moon_lighting.png" />
+    <None Include="Resources\cc_moon_fog.png" />
+    <None Include="Resources\cc_moon_clouds.png" />
+    <None Include="Resources\cc_moon_blizzard.png" />
+    <None Include="Resources\cc_moon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.902.49\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.902.49\build\Microsoft.Web.WebView2.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.902.49\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.902.49\build\Microsoft.Web.WebView2.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
