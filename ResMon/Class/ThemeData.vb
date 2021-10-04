@@ -710,9 +710,7 @@ Public Structure MyDynamicImageCollection
     Public Function ToDynamicImages() As DynamicImageCollection
         Dim il As New DynamicImageCollection()
 
-        'List = New List(Of MySImage) <<<this cause the gauge failed to read damm
-
-        If List.Count <> 0 Then
+        If List IsNot Nothing Then
             For Each msi In List
                 il.Add(New SImage() With {.DisplayIndex = msi.DisplayIndex, .Image = msi.Image.Base64ToImage, .Name = msi.Name})
             Next
