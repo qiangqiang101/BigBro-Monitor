@@ -1,0 +1,25 @@
+Informations about the Easy License System API
+
+Check if your hwid is connectd to a license:
+#url#?a=canuse&hwid=<hwid>&product=<product>
+
+Returns:
+TRUE    - HWID is registered
+FALSE   - HWID is not registered
+
+Check if the license is still valid (date):
+#url#?a=checkdate&hwid=<hwid>
+
+Returns:
+<product>Date:<product>
+
+Register and link your hwid to a key:
+#url#?a=register&key=<key>&hwid=<hwid>&product=<product>
+
+Returns:
+error: wrong hwid              - HWID is missing
+error: wrong key               - Key is missing or don't exist
+error: key is already in use   - Key has been already used
+FALSE                          - Registration complete, the key is now 'already in use'
+
+As you can see it's including all necessary functions.

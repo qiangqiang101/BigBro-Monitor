@@ -14,7 +14,9 @@ Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DoubleBuffered = True
 
-        IsActivated = ActivateLicense(UserSettings.LicenseKey, HWID, MachineName)
+        Dim activationTuple = CheckActivation(HWID, MachineName)
+        IsActivated = activationTuple.Item1
+        RemainingDays = activationTuple.Item2
 
         If Not Directory.Exists(ThemesDir) Then Directory.CreateDirectory(ThemesDir)
         If Not Directory.Exists(PresetDataDir) Then Directory.CreateDirectory(PresetDataDir)

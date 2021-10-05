@@ -33,6 +33,8 @@ Public Structure LanguageData
     Public gbLicense As String
     Public Unregistered As String
     Public Registered As String
+    Public DaysRemain As String
+    Public DayRemain As String
     Public btnCredits As String
     Public PortInvalid As String
     Public btnSearch As String

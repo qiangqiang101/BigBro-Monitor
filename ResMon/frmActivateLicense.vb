@@ -4,7 +4,7 @@
     End Sub
 
     Private Sub btnActivate_Click(sender As Object, e As EventArgs) Handles btnActivate.Click
-        Dim success = ActivateLicense(txtKey.Text, HWID, MachineName, shhhhh:=False)
+        Dim success = ELSActivateLicense(txtKey.Text, HWID, MachineName)
         If success Then
             Dim newUserSettings As New UserSettingData(UserSettingFile)
             With newUserSettings
@@ -25,7 +25,7 @@
             UserSettings = New UserSettingData(UserSettingFile).Instance
             If frmSetting.Visible Then frmSetting.ReloadInfo()
             IsActivated = True
-            MsgBox("Activation successful, thanks for your support.", MsgBoxStyle.Information, "Activation")
+            'MsgBox("Activation successful, thanks for your support.", MsgBoxStyle.Information, "Activation")
             Close()
         End If
     End Sub

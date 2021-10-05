@@ -35,7 +35,7 @@ Public Class frmSetting
         cbTopMost.Checked = UserSettings.TopMost
         If IsActivated Then
             btnActivate.Hide()
-            lblLicense.Text = ProgramLanguage.Registered
+            lblLicense.Text = $"{ProgramLanguage.Registered} ({If(RemainingDays = 1, ProgramLanguage.DayRemain.Replace("%dr%", RemainingDays), ProgramLanguage.DaysRemain.Replace("%dr%", RemainingDays))})"
             lblKey.Text = UserSettings.LicenseKey
         Else
             lblLicense.Text = ProgramLanguage.Unregistered
@@ -76,7 +76,7 @@ Public Class frmSetting
             lblKey.Text = Nothing
         Else
             btnActivate.Hide()
-            lblLicense.Text = ProgramLanguage.Registered
+            lblLicense.Text = $"{ProgramLanguage.Registered} ({If(RemainingDays = 1, ProgramLanguage.DayRemain.Replace("%dr%", RemainingDays), ProgramLanguage.DaysRemain.Replace("%dr%", RemainingDays))})"
             lblKey.Text = UserSettings.LicenseKey
         End If
         lblName.Text = MachineName

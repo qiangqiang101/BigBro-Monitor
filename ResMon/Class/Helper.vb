@@ -27,6 +27,7 @@ Module Helper
     Public PrivateFonts As New PrivateFontCollection()
     Public HWID As String = New HardwareID().Generate
     Public IsActivated As Boolean = False
+    Public RemainingDays As Integer = 0
 
     Public snapshots As String
 
@@ -228,47 +229,80 @@ Module Helper
         g.InterpolationMode = iMode
     End Sub
 
-    Public Function ActivateLicense(key As String, hwid As String, name As String, Optional timeout As Integer = 5000, Optional retry As Integer = 0, Optional shhhhh As Boolean = True) As Boolean
-        Dim query As String = $"http://resmonlicsys-env.eba-tbidmnuw.ap-southeast-1.elasticbeanstalk.com/Api.aspx?lic={key}&hwid={hwid}&name={name}"
+    Public Function CheckActivation(hwid As String, product As String, Optional retry As Integer = 0) As Tuple(Of Boolean, Integer)
+        Dim result As Boolean = False
+        Dim [date] As Date = Now
+        Dim date2 As Date = Now
+        Dim remainDays As Integer = 0
+        Dim canLogin As Boolean = False
 
-        'skip activation if hwid remains unchanged
+        Dim query As String = $"https://the.bigbromonitor.com/index.php?a=canuse&hwid={hwid}&product={product}"
+        Dim query2 As String = $"https://the.bigbromonitor.com/index.php?a=checkdate&hwid={hwid}"
 
-        If UserSettings.HWID = hwid Then
-            Return True
+        If retry > 4 Then
+            MsgBox("Unable to connect to License Server after 5 attempts.", MsgBoxStyle.Critical, "Error")
+            result = False
         Else
-            If retry > 4 Then
-                MsgBox("Unable to connect to License Server after 5 attempts.", MsgBoxStyle.Critical, "Error")
-                Return False
-            Else
-                Try
-                    Dim req As HttpWebRequest = WebRequest.Create(query)
-                    With req
-                        .Timeout = timeout
-                        .Credentials = CredentialCache.DefaultCredentials
-                        .Method = "GET"
-                        .Host = "resmonlicsys-env.eba-tbidmnuw.ap-southeast-1.elasticbeanstalk.com"
-                        .ContentType = "application/json"
-                        Dim noCache As HttpRequestCachePolicy = New HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore)
-                        .CachePolicy = noCache
-                    End With
-                    Dim res As HttpWebResponse = req.GetResponse()
-                    Dim reader As New StreamReader(res.GetResponseStream)
-                    Dim json As String = reader.ReadToEnd
-                    Dim obj As JObject = JObject.Parse(json)
+            Try
+                Dim wc As New WebClient
+                Dim strSource As String = wc.DownloadString(query)
+                If strSource.Contains("TRUE") Then
+                    strSource = wc.DownloadString(query2)
 
-                    Dim Status As String = obj("Status")
-                    Dim Message As String = obj("Message")
+                    If strSource.Contains(MachineName) Then
+                        ' Check the date
+                        Dim start As Integer = strSource.IndexOf(MachineName) + MachineName.Length
+                        Dim [end] As Integer = strSource.IndexOf(":" + MachineName)
+                        Dim datestring = strSource.Substring(start, [end] - start)
+                        [date] = DateTime.ParseExact(datestring, "yyyy-MM-dd", Nothing)
+                        strSource = wc.DownloadString("http://weltzeit4u.com/Datum/index.php")
 
-                    If Status.ToLower = "false" AndAlso shhhhh = False Then
-                        MsgBox(Message, MsgBoxStyle.Critical, "Error")
-                        Logger.Log(Message)
+                        Dim start2 As Integer = strSource.IndexOf("<span id='gross_fett_blau'>") + 27
+                        Dim end2 As Integer = strSource.IndexOf("</span> (arabische")
+                        Dim dateToday As String = strSource.Substring(start2, end2 - start2)
+                        date2 = DateTime.ParseExact(dateToday, "dd.MM.yyyy", Nothing)
+                        If [date] < date2 Then result = True Else canLogin = True
+                        If canLogin Then result = True
+                        remainDays = [date].Subtract(date2).Days
                     End If
+                Else
+                    result = False
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message.Replace("the.bigbromonitor.com", "llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.co.uk"), MsgBoxStyle.Critical, "Error")
+                Logger.Log(ex)
+            End Try
+        End If
 
-                    Return If(Status.ToLower = "true", True, False)
-                Catch ex As Exception
-                    ActivateLicense(key, hwid, name, timeout, retry + 1, shhhhh)
-                End Try
-            End If
+        Return New Tuple(Of Boolean, Integer)(result, remainDays)
+    End Function
+
+    Public Function ELSActivateLicense(key As String, hwid As String, product As String, Optional retry As Integer = 0) As Boolean
+        Dim query As String = $"https://the.bigbromonitor.com/index.php?a=register&key={key}&hwid={hwid}&product={product}"
+
+        If retry > 4 Then
+            MsgBox("Unable to connect to License Server after 5 attempts.", MsgBoxStyle.Critical, "Error")
+            Return False
+        Else
+            Try
+                Dim wc As New WebClient
+                Dim strSource As String = wc.DownloadString(query)
+                If strSource.Contains("wrong key") Then
+                    MsgBox("The product key you entered is invalid or not exists, please try again or contact our support team.", MsgBoxStyle.Exclamation, "Invalid")
+                    Return False
+                ElseIf strSource.Contains("wrong hwid") Then
+                    MsgBox("Your HWID is invalid, please try again or contact our support team.", MsgBoxStyle.Exclamation, "Invalid")
+                    Return False
+                ElseIf strSource.Contains("key is already in use") Then
+                    MsgBox("The product key you entered is already in use, please try again or contact our support team.", MsgBoxStyle.Exclamation, "Invalid")
+                    Return False
+                Else
+                    MsgBox("Product registration was successful!, Thank you for using our product, We will be happy if you spread the word and tell your friends about this product.", MsgBoxStyle.Information, "Successful")
+                    Return True
+                End If
+            Catch ex As Exception
+                ELSActivateLicense(key, hwid, product, retry + 1)
+            End Try
         End If
 
         Return False
