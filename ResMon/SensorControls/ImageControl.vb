@@ -336,19 +336,24 @@ Public Class ImageControl
                     End If
                 Case eSensorType.HDDUsage
                     If String.IsNullOrEmpty(_sensorParam) Then
-                        _val = CInt(Math.Round((_max * myParentForm.hddsensor.RawDiskUsage) / 100))
+                        _val = CInt(Math.Round((_max * (100 * myParentForm.hddsensor.RawDiskUsage / myParentForm.hddsensor.RawDiskTotalSize) / 100)))
                     Else
-                        _val = CInt(Math.Round((_max * myParentForm.hddsensor.RawDiskUsage(CStr(_sensorParam))) / 100))
+                        _val = CInt(Math.Round((_max * (100 * myParentForm.hddsensor.RawDiskUsage(CStr(_sensorParam)) / myParentForm.hddsensor.RawDiskTotalSize(CStr(_sensorParam))) / 100)))
                     End If
                 Case eSensorType.HDDTotalFreeSpace
                     If String.IsNullOrEmpty(_sensorParam) Then
-                        _val = CInt(Math.Round((_max * myParentForm.hddsensor.RawDiskTotalFreeSpace) / 100))
+                        _val = CInt(Math.Round((_max * (100 * myParentForm.hddsensor.RawDiskTotalFreeSpace / myParentForm.hddsensor.RawDiskTotalSize) / 100)))
                     Else
-                        _val = CInt(Math.Round((_max * myParentForm.hddsensor.RawDiskTotalFreeSpace(CStr(_sensorParam))) / 100))
+                        _val = CInt(Math.Round((_max * (100 * myParentForm.hddsensor.RawDiskTotalFreeSpace(CStr(_sensorParam)) / myParentForm.hddsensor.RawDiskTotalSize(CStr(_sensorParam))) / 100)))
                     End If
             End Select
 
-            Image = DynamicImages.Find(_val).Image
+            Try
+                Image = DynamicImages.Find(_val).Image
+            Catch ex As Exception
+                Image = My.Resources.Blank
+            End Try
+
             'Invalidate()
         End If
     End Sub
