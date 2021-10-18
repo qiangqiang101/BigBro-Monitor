@@ -10,7 +10,7 @@ Public Class frmMonitor
     Private backgroundImageIsGif As Boolean = False, currentAnimating As Boolean = False, animatedGif As Image
     Private ReadOnly computer As New Computer() With {.CPUEnabled = True, .GPUEnabled = True, .HDDEnabled = True, .FanControllerEnabled = True, .MainboardEnabled = True, .RAMEnabled = True}
     Dim running As Boolean = False
-    Public cpuSensor As New CPUSensors(computer), gpuSensor As New GPUSensors(computer), ramSensor As New RAMSensors(computer), hddsensor As New HDDSensors(computer)
+    Public cpuSensor As New CPUSensors(computer), gpuSensor As New GPUSensors(computer), ramSensor As New RAMSensors(computer), hddSensor As New HDDSensors(computer), moboSensor As New MainboardSensor(computer)
     Private ReadOnly netMonitor As New NetworkMonitor
     Public netSensor As New NetworkSensor
 
@@ -55,6 +55,8 @@ Public Class frmMonitor
     End Property
 
     Private Sub Monitor()
+        Dim lastError As String = Nothing
+
         Try
             computer.Open()
             running = True
@@ -73,6 +75,22 @@ Public Class frmMonitor
                                     cpuSensor.Load.Add(sensor)
                                 Case SensorType.Power
                                     cpuSensor.Power.Add(sensor)
+                            End Select
+                        Next
+                    Case HardwareType.Mainboard
+                        hardware.Update()
+                        hardware.SubHardware.FirstOrDefault.Update()
+
+                        For Each sensor In hardware.SubHardware.FirstOrDefault.Sensors
+                            Select Case sensor.SensorType
+                                Case SensorType.Temperature
+                                    moboSensor.Temperature.Add(sensor)
+                                Case SensorType.Fan
+                                    moboSensor.Fans.Add(sensor)
+                                Case SensorType.Voltage
+                                    moboSensor.Voltages.Add(sensor)
+                                Case SensorType.Control
+                                    moboSensor.Controls.Add(sensor)
                             End Select
                         Next
                     Case HardwareType.GpuNvidia, HardwareType.GpuAti
@@ -125,8 +143,11 @@ Public Class frmMonitor
 
             netSensor.Adapter = netMonitor.Adapters(UserSettings.NetworkAdapterIndex)
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
-            Logger.Log(ex)
+            If lastError <> ex.Message Then
+                MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+                Logger.Log(ex)
+            End If
+            lastError = ex.Message
         End Try
     End Sub
 
@@ -156,6 +177,7 @@ Public Class frmMonitor
             netMonitor.StopMonitoring()
             If UserSettings.EnableBroadcast Then httpServer.Stop()
             running = False
+            Updater.Stop()
         End If
     End Sub
 

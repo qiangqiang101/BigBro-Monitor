@@ -26,7 +26,7 @@ Public Class CPUSensors
 
     Public Function Name() As String
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).First.Name
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Name
         Catch ex As Exception
             Return Nothing
         End Try
@@ -34,7 +34,7 @@ Public Class CPUSensors
 
     Public Function CoreCount() As Integer
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).First.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name.Contains("Core")).Count
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name.Contains("Core")).Count
         Catch ex As Exception
             Return 0
         End Try
@@ -42,7 +42,7 @@ Public Class CPUSensors
 
     Public Function ClockSpeed() As String
         Try
-            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).First.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*CPU Core*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*CPU Core*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
         Catch ex As Exception
             Return "0 MHz"
         End Try
@@ -50,7 +50,7 @@ Public Class CPUSensors
 
     Public Function TemperatureLevel() As Single
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).First.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*CPU Package*").FirstOrDefault.Value.GetValueOrDefault
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*CPU Package*").FirstOrDefault.Value.GetValueOrDefault
         Catch ex As Exception
             Return 0F
         End Try
@@ -74,7 +74,7 @@ Public Class CPUSensors
 
     Public Function LoadPercent() As String
         Try
-            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).First.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*CPU Total*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*CPU Total*").FirstOrDefault.Value.GetValueOrDefault)} %"
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -82,7 +82,7 @@ Public Class CPUSensors
 
     Public Function PowerWattage() As String
         Try
-            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).First.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Package*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
+            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Package*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
         Catch ex As Exception
             Return "0 W"
         End Try
@@ -106,7 +106,7 @@ Public Class CPUSensors
 
     Public Function RawLoadPercent() As Integer
         Try
-            Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).First.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*CPU Total*").FirstOrDefault.Value.GetValueOrDefault))
+            Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*CPU Total*").FirstOrDefault.Value.GetValueOrDefault))
         Catch ex As Exception
             Return 0
         End Try
@@ -240,6 +240,18 @@ Public Class GPUSensors
         End Try
     End Function
 
+    Public Function FanSpeed(Optional GPUNo As Integer = 0) As String
+        Try
+            Try
+                Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
+            Catch ex As Exception
+                Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
+            End Try
+        Catch ex As Exception
+            Return "0 RPM"
+        End Try
+    End Function
+
     Public Function RawTemperatureC(Optional GPUNo As Integer = 0) As Integer
         Try
             Return CInt(TemperatureLevel(GPUNo))
@@ -304,6 +316,18 @@ Public Class GPUSensors
         End Try
     End Function
 
+    Public Function RawFanSpeed(Optional GPUNo As Integer = 0) As Integer
+        Try
+            Try
+                Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault))
+            Catch ex As Exception
+                Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault))
+            End Try
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
 End Class
 
 Public Class RAMSensors
@@ -322,7 +346,7 @@ Public Class RAMSensors
 
     Public Function Name() As String
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).First.Name
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Name
         Catch ex As Exception
             Return Nothing
         End Try
@@ -330,15 +354,15 @@ Public Class RAMSensors
 
     Public Function LoadPercent() As String
         Try
-            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).First.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*Memory*").FirstOrDefault.Value.GetValueOrDefault)} %"
-        Catch ex As Exception
-            Return "0 %"
-        End Try
+            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like" * Memory * ").FirstOrDefault.Value.GetValueOrDefault)} %"
+            Catch ex As Exception
+                Return "0 %"
+            End Try
     End Function
 
     Public Function RAMUsage() As String
         Try
-            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).First.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Used Memory*").FirstOrDefault.Value.GetValueOrDefault)} GB"
+            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Used Memory*").FirstOrDefault.Value.GetValueOrDefault)} GB"
         Catch ex As Exception
             Return "0 GB"
         End Try
@@ -346,7 +370,7 @@ Public Class RAMSensors
 
     Public Function RAMAvailable() As String
         Try
-            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).First.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Available Memory*").FirstOrDefault.Value.GetValueOrDefault)} GB"
+            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Available Memory*").FirstOrDefault.Value.GetValueOrDefault)} GB"
         Catch ex As Exception
             Return "0 GB"
         End Try
@@ -362,7 +386,7 @@ Public Class RAMSensors
 
     Public Function RawLoadPercent() As Integer
         Try
-            Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).First.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*Memory*").FirstOrDefault.Value.GetValueOrDefault))
+            Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*Memory*").FirstOrDefault.Value.GetValueOrDefault))
         Catch ex As Exception
             Return 0
         End Try
@@ -370,7 +394,7 @@ Public Class RAMSensors
 
     Public Function RawRAMUsage() As Integer
         Try
-            Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).First.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Used Memory*").FirstOrDefault.Value.GetValueOrDefault))
+            Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Used Memory*").FirstOrDefault.Value.GetValueOrDefault))
         Catch ex As Exception
             Return 0
         End Try
@@ -386,7 +410,7 @@ Public Class RAMSensors
 
     Public Function RawRAMAvailable() As Integer
         Try
-            Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).First.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Available Memory*").FirstOrDefault.Value.GetValueOrDefault))
+            Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Available Memory*").FirstOrDefault.Value.GetValueOrDefault))
         Catch ex As Exception
             Return 0
         End Try
@@ -527,6 +551,95 @@ Public Class HDDSensors
         Try
             Dim drives As DriveInfo = DriveInfo.GetDrives.SingleOrDefault(Function(x) x.DriveType = DriveType.Fixed AndAlso x.Name = driveLetter)
             Return ByteToGiga(drives.TotalSize - drives.TotalFreeSpace)
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
+End Class
+
+Public Class MainboardSensor
+    Public Temperature As SensorGroup
+    Public Fans As SensorGroup
+    Public Voltages As SensorGroup
+    Public Controls As SensorGroup
+
+    Public Computer As Computer
+
+    Public Sub New(computer As Computer)
+        Temperature = New SensorGroup("Temperatures", " °C")
+        Fans = New SensorGroup("Fan", "  RPM")
+
+        Me.Computer = computer
+    End Sub
+
+    Public Function Name() As String
+        Try
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.Name
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
+    Public Function Name2() As String
+        Try
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Name
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
+    Public Function TemperatureLevel() As Single
+        Try
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature AndAlso x.Name Like "*CPU Core*").FirstOrDefault.Value.GetValueOrDefault
+        Catch ex As Exception
+            Return 0F
+        End Try
+    End Function
+
+    Public Function TemperatureC() As String
+        Try
+            Return $"{TemperatureLevel()} °C"
+        Catch ex As Exception
+            Return "0 °C"
+        End Try
+    End Function
+
+    Public Function TemperatureF() As String
+        Try
+            Return $"{(TemperatureLevel() * 1.8) + 32} °F"
+        Catch ex As Exception
+            Return "0 °F"
+        End Try
+    End Function
+
+    Public Function FanSpeed(Optional fan As Integer = 1) As String
+        Try
+            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Fan AndAlso x.Name = $"*Fan #{fan}*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
+        Catch ex As Exception
+            Return "0 RPM"
+        End Try
+    End Function
+
+    Public Function RawTemperatureC() As Integer
+        Try
+            Return CInt(TemperatureLevel())
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
+    Public Function RawTemperatureF() As Integer
+        Try
+            Return CInt((TemperatureLevel() * 1.8) + 32)
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
+    Public Function RawFanSpeed(Optional fan As Integer = 1) As Integer
+        Try
+            Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Fan AndAlso x.Name = $"*Fan #{fan}*").FirstOrDefault.Value.GetValueOrDefault))
         Catch ex As Exception
             Return 0
         End Try

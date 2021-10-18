@@ -344,6 +344,11 @@ Public Enum eSensorType
     HDDUsage
     Ping
     CustomDateTime
+
+    GPUFan
+    MoboTemperatureC
+    MoboTemperatureF
+    MoboFan
 End Enum
 
 Public Enum eCompleteSensor
@@ -355,6 +360,9 @@ Public Enum eCompleteSensor
     GPUClockSpeed
     GPUTemperature
     GPULoadPercent
+
+    MoboTemperature
+    MoboFan
 End Enum
 
 Public Enum eTextMode

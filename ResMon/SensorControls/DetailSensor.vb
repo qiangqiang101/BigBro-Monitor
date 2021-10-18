@@ -269,6 +269,15 @@ Public Class DetailSensor
                 Dim result = myParentForm.gpuSensor.Load.ToLeftRight
                 _left = result.Item1
                 _right = result.Item2
+
+            Case eCompleteSensor.MoboFan
+                Dim result = myParentForm.moboSensor.Fans.ToLeftRight
+                _left = result.Item1
+                _right = result.Item2
+            Case eCompleteSensor.MoboTemperature
+                Dim result = myParentForm.moboSensor.Temperature.ToLeftRight
+                _left = result.Item1
+                _right = result.Item2
         End Select
         Invalidate()
     End Sub

@@ -23,91 +23,76 @@ Partial Class frmSandbox
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.PerformanceCounter1 = New System.Diagnostics.PerformanceCounter()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.PerformanceCounter2 = New System.Diagnostics.PerformanceCounter()
-        Me.PerformanceCounter3 = New System.Diagnostics.PerformanceCounter()
-        CType(Me.PerformanceCounter1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PerformanceCounter2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PerformanceCounter3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ListView1 = New System.Windows.Forms.ListView()
+        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.SuspendLayout()
-        '
-        'PerformanceCounter1
-        '
-        Me.PerformanceCounter1.CategoryName = "PhysicalDisk"
-        Me.PerformanceCounter1.CounterName = "Disk Write Bytes/sec"
-        Me.PerformanceCounter1.InstanceName = "_Total"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 77)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Label1"
         '
         'Timer1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Label2
+        'ListView1
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 117)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(39, 13)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Label2"
+        Me.ListView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6})
+        Me.ListView1.Location = New System.Drawing.Point(12, 12)
+        Me.ListView1.MultiSelect = False
+        Me.ListView1.Name = "ListView1"
+        Me.ListView1.Size = New System.Drawing.Size(810, 457)
+        Me.ListView1.TabIndex = 3
+        Me.ListView1.UseCompatibleStateImageBehavior = False
+        Me.ListView1.View = System.Windows.Forms.View.Details
         '
-        'Label3
+        'ColumnHeader1
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 157)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(39, 13)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Label3"
+        Me.ColumnHeader1.Width = 100
         '
-        'PerformanceCounter2
+        'ColumnHeader2
         '
-        Me.PerformanceCounter2.CategoryName = "Processor Information"
-        Me.PerformanceCounter2.CounterName = "% Processor Performance"
-        Me.PerformanceCounter2.InstanceName = "_Total"
+        Me.ColumnHeader2.Width = 100
         '
-        'PerformanceCounter3
+        'ColumnHeader3
         '
-        Me.PerformanceCounter3.CategoryName = "Processor Information"
-        Me.PerformanceCounter3.CounterName = "% Processor Utility"
-        Me.PerformanceCounter3.InstanceName = "_Total"
+        Me.ColumnHeader3.Width = 100
+        '
+        'ColumnHeader4
+        '
+        Me.ColumnHeader4.Width = 100
+        '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Width = 100
+        '
+        'ColumnHeader6
+        '
+        Me.ColumnHeader6.Width = 100
         '
         'frmSandbox
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 261)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.ClientSize = New System.Drawing.Size(834, 481)
+        Me.Controls.Add(Me.ListView1)
         Me.Name = "frmSandbox"
         Me.Text = "frmSandbox"
-        CType(Me.PerformanceCounter1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PerformanceCounter2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PerformanceCounter3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents PerformanceCounter1 As PerformanceCounter
-    Friend WithEvents Label1 As Label
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents PerformanceCounter2 As PerformanceCounter
-    Friend WithEvents PerformanceCounter3 As PerformanceCounter
+    Friend WithEvents ListView1 As ListView
+    Friend WithEvents ColumnHeader1 As ColumnHeader
+    Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents ColumnHeader3 As ColumnHeader
+    Friend WithEvents ColumnHeader4 As ColumnHeader
+    Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents ColumnHeader6 As ColumnHeader
 End Class
