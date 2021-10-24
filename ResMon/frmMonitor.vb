@@ -55,8 +55,6 @@ Public Class frmMonitor
     End Property
 
     Private Sub Monitor()
-        Dim lastError As String = Nothing
-
         Try
             computer.Open()
             running = True
@@ -87,10 +85,6 @@ Public Class frmMonitor
                                     moboSensor.Temperature.Add(sensor)
                                 Case SensorType.Fan
                                     moboSensor.Fans.Add(sensor)
-                                Case SensorType.Voltage
-                                    moboSensor.Voltages.Add(sensor)
-                                Case SensorType.Control
-                                    moboSensor.Controls.Add(sensor)
                             End Select
                         Next
                     Case HardwareType.GpuNvidia, HardwareType.GpuAti
@@ -131,11 +125,11 @@ Public Class frmMonitor
                             Select Case sensor.SensorType
 
                                 Case SensorType.Data
-                                    hddsensor.Data.Add(sensor)
+                                    hddSensor.Data.Add(sensor)
                                 Case SensorType.Load
-                                    hddsensor.Load.Add(sensor)
+                                    hddSensor.Load.Add(sensor)
                                 Case SensorType.Temperature
-                                    hddsensor.Temperature.Add(sensor)
+                                    hddSensor.Temperature.Add(sensor)
                             End Select
                         Next
                 End Select
@@ -143,11 +137,8 @@ Public Class frmMonitor
 
             netSensor.Adapter = netMonitor.Adapters(UserSettings.NetworkAdapterIndex)
         Catch ex As Exception
-            If lastError <> ex.Message Then
-                MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
-                Logger.Log(ex)
-            End If
-            lastError = ex.Message
+            Logger.Log(ex)
+            computer.Open()
         End Try
     End Sub
 

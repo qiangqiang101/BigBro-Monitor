@@ -346,6 +346,9 @@ Public Class ImageControl
                     Else
                         _val = CInt(Math.Round((_max * (100 * myParentForm.hddsensor.RawDiskTotalFreeSpace(CStr(_sensorParam)) / myParentForm.hddsensor.RawDiskTotalSize(CStr(_sensorParam))) / 100)))
                     End If
+
+                Case eSensorType.MoboTemperatureC, eSensorType.MoboTemperatureF
+                    _val = CInt(Math.Round((_max * myParentForm.moboSensor.RawTemperatureC) / 100))
             End Select
 
             Try

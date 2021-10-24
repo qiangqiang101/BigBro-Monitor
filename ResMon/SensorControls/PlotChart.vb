@@ -349,9 +349,9 @@ Public Class PlotChart
         Next
 
         If _scaleMode = ScaleMode.Relative Then
-            Dim sb As SolidBrush = New SolidBrush(_plotChartStyle.ChartLinePen.Color)
+            Dim sb As SolidBrush = New SolidBrush(ForeColor)
             If _plotChartStyle.ShowCurMax Then
-                g.DrawString($"{Text} CUR: {currentValue.ToString}{measureUnit} MAX: {currentMaxValue.ToString()}{measureUnit}", Font, sb, 4.0F, 2.0F)
+                g.DrawString($"{Text} ({currentValue.ToString}{measureUnit}/{currentMaxValue.ToString()}{measureUnit})", Font, sb, 4.0F, 2.0F)
             Else
                 g.DrawString(Text, Font, sb, 4.0F, 2.0F)
             End If
@@ -420,6 +420,10 @@ Public Class PlotChart
                 AddValue(myParentForm.cpuSensor.RawTemperatureF, "°F")
             Case eSensorType.CPULoadPercent
                 AddValue(myParentForm.cpuSensor.RawLoadPercent, "%")
+            Case eSensorType.CPUClockSpeed
+                AddValue(myParentForm.cpuSensor.RawClockSpeed, " MHz")
+            Case eSensorType.CPUPowerWattage
+                AddValue(myParentForm.cpuSensor.RawPowerWattage, " W")
 
             Case eSensorType.GPUTemperatureC
                 If IsNumeric(_sensorParam) Then
@@ -450,6 +454,24 @@ Public Class PlotChart
                     AddValue(myParentForm.gpuSensor.RawVRAMUsage(CInt(_sensorParam)), " MB")
                 Else
                     AddValue(myParentForm.gpuSensor.RawVRAMUsage, " MB")
+                End If
+            Case eSensorType.GPUFan
+                If String.IsNullOrEmpty(_sensorParam) Then
+                    AddValue(myParentForm.gpuSensor.RawFanSpeed, " RPM")
+                Else
+                    AddValue(myParentForm.gpuSensor.RawFanSpeed(CInt(_sensorParam)), " RPM")
+                End If
+            Case eSensorType.GPUClockSpeed
+                If String.IsNullOrEmpty(_sensorParam) Then
+                    AddValue(myParentForm.gpuSensor.RawClockSpeed, " MHz")
+                Else
+                    AddValue(myParentForm.gpuSensor.RawClockSpeed(CInt(_sensorParam)), " MHz")
+                End If
+            Case eSensorType.GPUPowerWattage
+                If String.IsNullOrEmpty(_sensorParam) Then
+                    AddValue(myParentForm.gpuSensor.RawPowerWattage, " W")
+                Else
+                    AddValue(myParentForm.gpuSensor.RawPowerWattage(CInt(_sensorParam)), "W")
                 End If
 
             Case eSensorType.RAMLoadPercent
@@ -493,6 +515,17 @@ Public Class PlotChart
                     AddValue(myParentForm.netSensor.RawPing, " ms")
                 Else
                     AddValue(myParentForm.netSensor.RawPing(CStr(_sensorParam)), " ms")
+                End If
+
+            Case eSensorType.MoboTemperatureC
+                AddValue(myParentForm.moboSensor.RawTemperatureC, "°C")
+            Case eSensorType.MoboTemperatureF
+                AddValue(myParentForm.moboSensor.RawTemperatureF, "°F")
+            Case eSensorType.MoboFan
+                If String.IsNullOrEmpty(_sensorParam) Then
+                    AddValue(myParentForm.moboSensor.RawFanSpeed, " RPM")
+                Else
+                    AddValue(myParentForm.moboSensor.RawFanSpeed(CInt(_sensorParam)), " RPM")
                 End If
         End Select
     End Sub

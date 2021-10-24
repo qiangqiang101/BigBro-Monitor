@@ -292,6 +292,12 @@ Public Class TextLabel
                 Else
                     Text = _b4Text & myParentForm.gpuSensor.VRAMUsage
                 End If
+            Case eSensorType.GPUFan
+                If String.IsNullOrEmpty(_sensorParam) Then
+                    Text = _b4Text & myParentForm.gpuSensor.FanSpeed
+                Else
+                    Text = _b4Text & myParentForm.gpuSensor.FanSpeed(CInt(_sensorParam))
+                End If
 
             Case eSensorType.RAMLoadPercent
                 Text = _b4Text & myParentForm.ramSensor.LoadPercent
@@ -363,6 +369,17 @@ Public Class TextLabel
                     Text = _b4Text & Now.ToString
                 Else
                     Text = _b4Text & Now.ToString(CStr(_sensorParam))
+                End If
+
+            Case eSensorType.MoboTemperatureC
+                Text = _b4Text & myParentForm.moboSensor.TemperatureC
+            Case eSensorType.MoboTemperatureF
+                Text = _b4Text & myParentForm.moboSensor.TemperatureF
+            Case eSensorType.MoboFan
+                If String.IsNullOrEmpty(_sensorParam) Then
+                    Text = _b4Text & myParentForm.moboSensor.FanSpeed
+                Else
+                    Text = _b4Text & myParentForm.moboSensor.FanSpeed(_sensorParam)
                 End If
         End Select
     End Sub

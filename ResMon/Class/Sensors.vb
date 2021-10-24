@@ -112,6 +112,22 @@ Public Class CPUSensors
         End Try
     End Function
 
+    Public Function RawClockSpeed() As Single
+        Try
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*CPU Core*").FirstOrDefault.Value.GetValueOrDefault
+        Catch ex As Exception
+            Return 0F
+        End Try
+    End Function
+
+    Public Function RawPowerWattage() As Single
+        Try
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Package*").FirstOrDefault.Value.GetValueOrDefault
+        Catch ex As Exception
+            Return 0F
+        End Try
+    End Function
+
 End Class
 
 Public Class GPUSensors
@@ -325,6 +341,30 @@ Public Class GPUSensors
             End Try
         Catch ex As Exception
             Return 0
+        End Try
+    End Function
+
+    Public Function RawClockSpeed(Optional GPUNo As Integer = 0) As Single
+        Try
+            Try
+                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
+            Catch ex As Exception
+                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
+            End Try
+        Catch ex As Exception
+            Return 0F
+        End Try
+    End Function
+
+    Public Function RawPowerWattage(Optional GPUNo As Integer = 0) As Single
+        Try
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU Power*").FirstOrDefault.Value.GetValueOrDefault
+        Catch ex As Exception
+            Try
+                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU Power*").FirstOrDefault.Value.GetValueOrDefault
+            Catch exc As Exception
+                Return 0F
+            End Try
         End Try
     End Function
 
@@ -561,8 +601,6 @@ End Class
 Public Class MainboardSensor
     Public Temperature As SensorGroup
     Public Fans As SensorGroup
-    Public Voltages As SensorGroup
-    Public Controls As SensorGroup
 
     Public Computer As Computer
 
@@ -615,7 +653,7 @@ Public Class MainboardSensor
 
     Public Function FanSpeed(Optional fan As Integer = 1) As String
         Try
-            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Fan AndAlso x.Name = $"*Fan #{fan}*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
+            Return $"{Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Fan AndAlso x.Name = $"Fan #{fan}").FirstOrDefault.Value.GetValueOrDefault)} RPM"
         Catch ex As Exception
             Return "0 RPM"
         End Try
@@ -639,7 +677,7 @@ Public Class MainboardSensor
 
     Public Function RawFanSpeed(Optional fan As Integer = 1) As Integer
         Try
-            Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Fan AndAlso x.Name = $"*Fan #{fan}*").FirstOrDefault.Value.GetValueOrDefault))
+            Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Fan AndAlso x.Name = $"Fan #{fan}").FirstOrDefault.Value.GetValueOrDefault))
         Catch ex As Exception
             Return 0
         End Try

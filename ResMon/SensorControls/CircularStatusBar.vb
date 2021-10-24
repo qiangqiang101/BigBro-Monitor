@@ -726,6 +726,15 @@ Public Class CircularStatusBar
                     _min = 0L
                     _max = myParentForm.hddsensor.RawDiskTotalSize(CStr(_sensorParam))
                 End If
+
+            Case eSensorType.MoboTemperatureC
+                _val = myParentForm.moboSensor.RawTemperatureC()
+                _min = 0
+                _max = 120
+            Case eSensorType.MoboTemperatureF
+                _val = myParentForm.moboSensor.RawTemperatureF()
+                _min = 32
+                _max = 248
         End Select
 
         Invalidate()
