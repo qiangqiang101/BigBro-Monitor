@@ -675,7 +675,7 @@ Public Class MainboardSensor
         End Try
     End Function
 
-    Public Function RawFanSpeed(Optional fan As Integer = 1) As Integer
+    Public Function RawFanSpeed(Optional fan As Integer = 1) As Single
         Try
             Return CInt(Math.Floor(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Fan AndAlso x.Name = $"Fan #{fan}").FirstOrDefault.Value.GetValueOrDefault))
         Catch ex As Exception

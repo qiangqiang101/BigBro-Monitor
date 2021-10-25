@@ -5,6 +5,7 @@ Imports System.Drawing.Drawing2D
 Public Class CircularStatusBar
     Inherits Control
 
+    Private dynaMax As Boolean = False
     Public myParentForm As frmMonitor
     Public rzControl As ResizeableControl
 
@@ -205,8 +206,11 @@ Public Class CircularStatusBar
                         _sensorParam = "www.google.com"
                     Case eSensorType.HDDUsage, eSensorType.HDDTotalFreeSpace, eSensorType.HDDTotalSize
                         _sensorParam = "C:\"
-                    Case eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF, eSensorType.GPUClockSpeed, eSensorType.GPULoadPercent, eSensorType.GPUMemoryPercent, eSensorType.GPUPowerWattage, eSensorType.GPUTemperatureC, eSensorType.GPUTemperatureF, eSensorType.GPUVRAMUsage
+                    Case eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF, eSensorType.GPUClockSpeed, eSensorType.GPULoadPercent, eSensorType.GPUMemoryPercent, eSensorType.GPUPowerWattage,
+                         eSensorType.GPUTemperatureC, eSensorType.GPUTemperatureF, eSensorType.GPUVRAMUsage
                         _sensorParam = 0
+                    Case eSensorType.MoboFan
+                        _sensorParam = 1
                 End Select
             End If
         End Set
@@ -603,139 +607,242 @@ Public Class CircularStatusBar
                 _val = myParentForm.cpuSensor.RawTemperatureC
                 _min = 0
                 _max = 120
+                dynaMax = False
             Case eSensorType.CPUTemperatureF
                 _val = myParentForm.cpuSensor.RawTemperatureF
-                _min = 0
+                _min = 32
                 _max = 248
+                dynaMax = False
             Case eSensorType.CPULoadPercent
                 _val = myParentForm.cpuSensor.RawLoadPercent
                 _min = 0
                 _max = 100
+                dynaMax = False
 
             Case eSensorType.GPUTemperatureC
                 If IsNumeric(_sensorParam) Then
                     _val = myParentForm.gpuSensor.RawTemperatureC(_sensorParam)
                     _min = 0
                     _max = 120
+                    dynaMax = False
                 Else
                     _val = myParentForm.gpuSensor.RawTemperatureC
                     _min = 0
                     _max = 120
+                    dynaMax = False
                 End If
             Case eSensorType.GPUTemperatureF
                 If IsNumeric(_sensorParam) Then
                     _val = myParentForm.gpuSensor.RawTemperatureF(_sensorParam)
                     _min = 32
                     _max = 248
+                    dynaMax = False
                 Else
                     _val = myParentForm.gpuSensor.RawTemperatureF
                     _min = 32
                     _max = 248
+                    dynaMax = False
                 End If
             Case eSensorType.GPULoadPercent
                 If IsNumeric(_sensorParam) Then
                     _val = myParentForm.gpuSensor.RawLoadPercent(_sensorParam)
                     _min = 0
                     _max = 100
+                    dynaMax = False
                 Else
                     _val = myParentForm.gpuSensor.RawLoadPercent
                     _min = 0
                     _max = 100
+                    dynaMax = False
                 End If
             Case eSensorType.GPUMemoryPercent
                 If IsNumeric(_sensorParam) Then
                     _val = myParentForm.gpuSensor.RawMemoryPercent(_sensorParam)
                     _min = 0
                     _max = 100
+                    dynaMax = False
                 Else
                     _val = myParentForm.gpuSensor.RawMemoryPercent
                     _min = 0
                     _max = 100
+                    dynaMax = False
                 End If
             Case eSensorType.GPUVRAMUsage
                 If IsNumeric(_sensorParam) Then
                     _val = myParentForm.gpuSensor.RawVRAMUsage(_sensorParam)
                     _min = 0
                     _max = myParentForm.gpuSensor.RawVRAMTotal(_sensorParam)
+                    dynaMax = False
                 Else
                     _val = myParentForm.gpuSensor.RawVRAMUsage
                     _min = 0
                     _max = myParentForm.gpuSensor.RawVRAMTotal
+                    dynaMax = False
                 End If
 
             Case eSensorType.RAMLoadPercent
                 _val = myParentForm.ramSensor.RawLoadPercent
                 _min = 0
                 _max = 100
+                dynaMax = False
             Case eSensorType.RAMUsage
                 _val = myParentForm.ramSensor.RawRAMUsage
                 _min = 0
                 _max = myParentForm.ramSensor.RawRAMAvailable + myParentForm.ramSensor.RawRAMUsage
+                dynaMax = False
             Case eSensorType.RAMAvailable
                 _val = myParentForm.ramSensor.RawRAMAvailable
                 _min = 0
                 _max = myParentForm.ramSensor.RawRAMTotal
+                dynaMax = False
 
             Case eSensorType.HDDTemperatureC
                 If IsNumeric(_sensorParam) Then
                     _val = myParentForm.hddsensor.RawTemperatureC(CInt(_sensorParam))
                     _min = 0
                     _max = 120
+                    dynaMax = False
                 Else
                     _val = myParentForm.hddsensor.RawTemperatureC()
                     _min = 0
                     _max = 120
+                    dynaMax = False
                 End If
             Case eSensorType.HDDTemperatureF
                 If IsNumeric(_sensorParam) Then
                     _val = myParentForm.hddsensor.RawTemperatureF(CInt(_sensorParam))
                     _min = 32
                     _max = 248
+                    dynaMax = False
                 Else
                     _val = myParentForm.hddsensor.RawTemperatureF()
                     _min = 32
                     _max = 248
+                    dynaMax = False
                 End If
             Case eSensorType.HDDLoadPercent
                 If IsNumeric(_sensorParam) Then
                     _val = myParentForm.hddsensor.RawLoadPercent(CInt(_sensorParam))
                     _min = 0
                     _max = 100
+                    dynaMax = False
                 Else
                     _val = myParentForm.hddsensor.RawLoadPercent()
                     _min = 0
                     _max = 100
+                    dynaMax = False
                 End If
             Case eSensorType.HDDUsage
                 If String.IsNullOrEmpty(_sensorParam) Then
                     _val = myParentForm.hddsensor.RawDiskUsage()
                     _min = 0L
-                    _max = myParentForm.hddsensor.RawDiskTotalSize()
+                    _max = myParentForm.hddSensor.RawDiskTotalSize()
+                    dynaMax = False
                 Else
                     _val = myParentForm.hddsensor.RawDiskUsage(CStr(_sensorParam))
                     _min = 0L
-                    _max = myParentForm.hddsensor.RawDiskTotalSize(CStr(_sensorParam))
+                    _max = myParentForm.hddSensor.RawDiskTotalSize(CStr(_sensorParam))
+                    dynaMax = False
                 End If
             Case eSensorType.HDDTotalFreeSpace
                 If String.IsNullOrEmpty(_sensorParam) Then
                     _val = myParentForm.hddsensor.RawDiskTotalFreeSpace()
                     _min = 0L
-                    _max = myParentForm.hddsensor.RawDiskTotalSize()
+                    _max = myParentForm.hddSensor.RawDiskTotalSize()
+                    dynaMax = False
                 Else
                     _val = myParentForm.hddsensor.RawDiskTotalFreeSpace(CStr(_sensorParam))
                     _min = 0L
-                    _max = myParentForm.hddsensor.RawDiskTotalSize(CStr(_sensorParam))
+                    _max = myParentForm.hddSensor.RawDiskTotalSize(CStr(_sensorParam))
+                    dynaMax = False
                 End If
 
             Case eSensorType.MoboTemperatureC
                 _val = myParentForm.moboSensor.RawTemperatureC()
                 _min = 0
                 _max = 120
+                dynaMax = False
             Case eSensorType.MoboTemperatureF
                 _val = myParentForm.moboSensor.RawTemperatureF()
                 _min = 32
                 _max = 248
+                dynaMax = False
+
+                'Added 25/10/2021 dynamic max
+            Case eSensorType.CPUClockSpeed
+                _val = CInt(myParentForm.cpuSensor.RawClockSpeed())
+                _min = 0
+                dynaMax = True
+            Case eSensorType.CPUPowerWattage
+                _val = CInt(myParentForm.cpuSensor.RawPowerWattage())
+                _min = 0
+                dynaMax = True
+
+            Case eSensorType.GPUClockSpeed
+                If IsNumeric(_sensorParam) Then
+                    _val = CInt(myParentForm.gpuSensor.RawClockSpeed(CInt(_sensorParam)))
+                    _min = 0
+                    dynaMax = True
+                Else
+                    _val = CInt(myParentForm.gpuSensor.RawClockSpeed())
+                    _min = 0
+                    dynaMax = True
+                End If
+            Case eSensorType.GPUPowerWattage
+                If IsNumeric(_sensorParam) Then
+                    _val = CInt(myParentForm.gpuSensor.RawPowerWattage(CInt(_sensorParam)))
+                    _min = 0
+                    dynaMax = True
+                Else
+                    _val = CInt(myParentForm.gpuSensor.RawPowerWattage())
+                    _min = 0
+                    dynaMax = True
+                End If
+            Case eSensorType.GPUFan
+                If IsNumeric(_sensorParam) Then
+                    _val = CInt(myParentForm.gpuSensor.RawFanSpeed(CInt(_sensorParam)))
+                    _min = 0
+                    dynaMax = True
+                Else
+                    _val = CInt(myParentForm.gpuSensor.RawFanSpeed())
+                    _min = 0
+                    dynaMax = True
+                End If
+
+            Case eSensorType.DownloadSpeed
+                _val = CInt(myParentForm.netSensor.RawDownloadSpeed())
+                _min = 0
+                dynaMax = True
+            Case eSensorType.UploadSpeed
+                _val = CInt(myParentForm.netSensor.RawUploadSpeed)
+                _min = 0
+                dynaMax = True
+            Case eSensorType.Ping
+                If String.IsNullOrEmpty(_sensorParam) Then
+                    _val = CInt(myParentForm.netSensor.RawPing)
+                    _min = 0
+                    dynaMax = True
+                Else
+                    _val = CInt(myParentForm.netSensor.RawPing(_sensorParam))
+                    _min = 0
+                    dynaMax = True
+                End If
+
+            Case eSensorType.MoboFan
+                If IsNumeric(_sensorParam) Then
+                    _val = CInt(myParentForm.moboSensor.RawFanSpeed(CInt(_sensorParam)))
+                    _min = 0
+                    dynaMax = True
+                Else
+                    _val = CInt(myParentForm.moboSensor.RawFanSpeed())
+                    _min = 0
+                    dynaMax = True
+                End If
         End Select
+
+        If dynaMax Then
+            If _val > _max Then _max = _val
+        End If
 
         Invalidate()
     End Sub
