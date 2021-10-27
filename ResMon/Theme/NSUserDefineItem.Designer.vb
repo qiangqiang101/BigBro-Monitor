@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports MaterialSkin.Controls
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class NSUserDefineItem
     Inherits System.Windows.Forms.UserControl
 
@@ -22,19 +24,22 @@ Partial Class NSUserDefineItem
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lblLabel = New System.Windows.Forms.Label()
-        Me.btnBrowse = New ResMon.NSButton()
-        Me.txtBox = New ResMon.NSTextBox()
+        Me.lblLabel = New MaterialSkin.Controls.MaterialLabel()
+        Me.btnBrowse = New MaterialSkin.Controls.MaterialButton()
+        Me.txtBox = New MaterialSkin.Controls.MaterialTextBox()
         Me.SuspendLayout()
         '
         'lblLabel
         '
         Me.lblLabel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.lblLabel.ForeColor = System.Drawing.Color.White
+        Me.lblLabel.Depth = 0
+        Me.lblLabel.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.lblLabel.ForeColor = System.Drawing.SystemColors.ControlText
         Me.lblLabel.Location = New System.Drawing.Point(0, 0)
+        Me.lblLabel.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblLabel.Name = "lblLabel"
-        Me.lblLabel.Size = New System.Drawing.Size(86, 23)
+        Me.lblLabel.Size = New System.Drawing.Size(86, 50)
         Me.lblLabel.TabIndex = 0
         Me.lblLabel.Text = "Label1"
         Me.lblLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -43,11 +48,22 @@ Partial Class NSUserDefineItem
         '
         Me.btnBrowse.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnBrowse.AutoSize = False
+        Me.btnBrowse.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnBrowse.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnBrowse.Depth = 0
+        Me.btnBrowse.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnBrowse.HighEmphasis = True
+        Me.btnBrowse.Icon = Nothing
         Me.btnBrowse.Location = New System.Drawing.Point(252, 0)
+        Me.btnBrowse.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnBrowse.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnBrowse.Name = "btnBrowse"
-        Me.btnBrowse.Size = New System.Drawing.Size(26, 23)
+        Me.btnBrowse.Size = New System.Drawing.Size(26, 50)
         Me.btnBrowse.TabIndex = 2
         Me.btnBrowse.Text = "..."
+        Me.btnBrowse.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnBrowse.UseAccentColor = False
         '
         'txtBox
         '
@@ -55,33 +71,37 @@ Partial Class NSUserDefineItem
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtBox.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.txtBox.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtBox.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtBox.Depth = 0
+        Me.txtBox.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.txtBox.LeadingIcon = Nothing
         Me.txtBox.Location = New System.Drawing.Point(92, 0)
         Me.txtBox.MaxLength = 32767
+        Me.txtBox.MouseState = MaterialSkin.MouseState.OUT
         Me.txtBox.Multiline = False
         Me.txtBox.Name = "txtBox"
-        Me.txtBox.ReadOnly = False
-        Me.txtBox.Size = New System.Drawing.Size(186, 23)
+        Me.txtBox.Size = New System.Drawing.Size(186, 50)
         Me.txtBox.TabIndex = 1
-        Me.txtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtBox.UseSystemPasswordChar = False
+        Me.txtBox.Text = ""
+        Me.txtBox.TrailingIcon = Nothing
         '
         'NSUserDefineItem
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.BackColor = System.Drawing.SystemColors.Control
         Me.Controls.Add(Me.btnBrowse)
         Me.Controls.Add(Me.txtBox)
         Me.Controls.Add(Me.lblLabel)
         Me.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.Margin = New System.Windows.Forms.Padding(0)
         Me.Name = "NSUserDefineItem"
-        Me.Size = New System.Drawing.Size(278, 23)
+        Me.Size = New System.Drawing.Size(278, 50)
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents lblLabel As Label
-    Friend WithEvents txtBox As NSTextBox
-    Friend WithEvents btnBrowse As NSButton
+    Friend WithEvents lblLabel As MaterialLabel
+    Friend WithEvents txtBox As MaterialTextBox
+    Friend WithEvents btnBrowse As MaterialButton
 End Class

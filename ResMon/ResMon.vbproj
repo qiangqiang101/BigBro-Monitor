@@ -44,7 +44,7 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
@@ -52,7 +52,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>BigBroMonitor.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -88,6 +88,10 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MaterialSkin, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialSkin.2.2.2.1\lib\net461\MaterialSkin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.902.49, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.WebView2.1.0.902.49\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
       <Private>True</Private>
@@ -139,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Class\Dwm.vb" />
     <Compile Include="Class\FancyStringEditor.vb" />
     <Compile Include="Class\HardwareID.vb" />
     <Compile Include="Class\HttpServer.vb" />
@@ -148,6 +153,7 @@
     <Compile Include="Class\RoundRectCorners.vb" />
     <Compile Include="Class\UserPresetData.vb" />
     <Compile Include="Class\WeatherInfo.vb" />
+    <Compile Include="Class\WinApi.vb" />
     <Compile Include="frmAbout.Designer.vb">
       <DependentUpon>frmAbout.vb</DependentUpon>
     </Compile>
@@ -241,9 +247,6 @@
     <Compile Include="Theme\DBFlowLayoutPanel.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Theme\NetSeal.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Theme\NSThemeItem.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -254,9 +257,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Theme\TagsLabel.vb">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Theme\ThemeBase154.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Theme\FillPicturebox.vb">

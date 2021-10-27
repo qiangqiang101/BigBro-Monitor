@@ -1,4 +1,21 @@
-﻿Public Class frmActivateLicense
+﻿Imports MaterialSkin
+
+Public Class frmActivateLicense
+
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+        Dim msm = MaterialSkinManager.Instance
+        msm.AddFormToManage(Me)
+        msm.Theme = MaterialSkinManager.Themes.DARK
+        msm.ColorScheme = New ColorScheme(Primary.Yellow800, Primary.Yellow900, Primary.Yellow500, Accent.Yellow200, TextShade.BLACK)
+        Text = ProgramLanguage.ActivationTitle
+    End Sub
+
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Close()
     End Sub
@@ -31,7 +48,7 @@
     End Sub
 
     Private Sub frmActivateLicense_Load(sender As Object, e As EventArgs) Handles Me.Load
-        NsTheme1.Text = ProgramLanguage.ActivationTitle
+        Text = ProgramLanguage.ActivationTitle
         lblEnterLicense.Text = ProgramLanguage.lblEnterLicense
         btnActivate.Text = ProgramLanguage.btnActivate
         btnCancel.Text = ProgramLanguage.btnCancel

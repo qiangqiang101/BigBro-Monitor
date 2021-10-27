@@ -1,9 +1,11 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports MaterialSkin.Controls
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmSetting
-    Inherits System.Windows.Forms.Form
+    Inherits MaterialForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,162 +22,138 @@ Partial Class frmSetting
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSetting))
-        Me.nsTheme = New ResMon.NSTheme()
-        Me.cbTopMost = New ResMon.NSCheckBox()
-        Me.cmbLanguage = New ResMon.NSComboBox()
-        Me.lblLanguage = New System.Windows.Forms.Label()
-        Me.gbLicense = New ResMon.NSGroupBox()
-        Me.lblKey = New System.Windows.Forms.Label()
-        Me.btnActivate = New ResMon.NSButton()
-        Me.lblName = New System.Windows.Forms.Label()
-        Me.lblLicense = New System.Windows.Forms.Label()
-        Me.btnCredits = New ResMon.NSButton()
-        Me.gbWeather = New ResMon.NSGroupBox()
-        Me.lblTown = New System.Windows.Forms.Label()
-        Me.cmbTown = New ResMon.NSComboBox()
-        Me.cmbStates = New ResMon.NSComboBox()
-        Me.lblState = New System.Windows.Forms.Label()
-        Me.cbClose = New ResMon.NSControlButton()
-        Me.btnSave = New ResMon.NSButton()
-        Me.lblBroadcastPort = New System.Windows.Forms.Label()
-        Me.cbBroadcast = New ResMon.NSCheckBox()
-        Me.txtPort = New ResMon.NSTextBox()
-        Me.cbAuto = New ResMon.NSCheckBox()
-        Me.cmbNetwork = New ResMon.NSComboBox()
-        Me.lblNetworkAdapter = New System.Windows.Forms.Label()
-        Me.nsTheme.SuspendLayout()
-        Me.gbLicense.SuspendLayout()
+        Me.cbTopMost = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.cmbLanguage = New MaterialSkin.Controls.MaterialComboBox()
+        Me.lblLanguage = New MaterialSkin.Controls.MaterialLabel()
+        Me.lblKey = New MaterialSkin.Controls.MaterialLabel()
+        Me.btnActivate = New MaterialSkin.Controls.MaterialButton()
+        Me.lblName = New MaterialSkin.Controls.MaterialLabel()
+        Me.lblLicense = New MaterialSkin.Controls.MaterialLabel()
+        Me.btnCredits = New MaterialSkin.Controls.MaterialButton()
+        Me.lblTown = New MaterialSkin.Controls.MaterialLabel()
+        Me.cmbTown = New MaterialSkin.Controls.MaterialComboBox()
+        Me.cmbStates = New MaterialSkin.Controls.MaterialComboBox()
+        Me.lblState = New MaterialSkin.Controls.MaterialLabel()
+        Me.btnSave = New MaterialSkin.Controls.MaterialButton()
+        Me.lblBroadcastPort = New MaterialSkin.Controls.MaterialLabel()
+        Me.cbBroadcast = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.txtPort = New MaterialSkin.Controls.MaterialTextBox()
+        Me.cbAuto = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.cmbNetwork = New MaterialSkin.Controls.MaterialComboBox()
+        Me.lblNetworkAdapter = New MaterialSkin.Controls.MaterialLabel()
+        Me.gbWeather = New System.Windows.Forms.GroupBox()
+        Me.gbLicense = New System.Windows.Forms.GroupBox()
         Me.gbWeather.SuspendLayout()
+        Me.gbLicense.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'nsTheme
-        '
-        Me.nsTheme.AccentOffset = 42
-        Me.nsTheme.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.nsTheme.BorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.nsTheme.Colors = New ResMon.Bloom(-1) {}
-        Me.nsTheme.Controls.Add(Me.cbTopMost)
-        Me.nsTheme.Controls.Add(Me.cmbLanguage)
-        Me.nsTheme.Controls.Add(Me.lblLanguage)
-        Me.nsTheme.Controls.Add(Me.gbLicense)
-        Me.nsTheme.Controls.Add(Me.btnCredits)
-        Me.nsTheme.Controls.Add(Me.gbWeather)
-        Me.nsTheme.Controls.Add(Me.cbClose)
-        Me.nsTheme.Controls.Add(Me.btnSave)
-        Me.nsTheme.Controls.Add(Me.lblBroadcastPort)
-        Me.nsTheme.Controls.Add(Me.cbBroadcast)
-        Me.nsTheme.Controls.Add(Me.txtPort)
-        Me.nsTheme.Controls.Add(Me.cbAuto)
-        Me.nsTheme.Controls.Add(Me.cmbNetwork)
-        Me.nsTheme.Controls.Add(Me.lblNetworkAdapter)
-        Me.nsTheme.Customization = ""
-        Me.nsTheme.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.nsTheme.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.nsTheme.Image = Nothing
-        Me.nsTheme.Location = New System.Drawing.Point(0, 0)
-        Me.nsTheme.Movable = True
-        Me.nsTheme.Name = "nsTheme"
-        Me.nsTheme.NoRounding = False
-        Me.nsTheme.Sizable = False
-        Me.nsTheme.Size = New System.Drawing.Size(421, 430)
-        Me.nsTheme.SmartBounds = True
-        Me.nsTheme.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.nsTheme.TabIndex = 5
-        Me.nsTheme.Text = "Settings"
-        Me.nsTheme.TransparencyKey = System.Drawing.Color.Empty
-        Me.nsTheme.Transparent = False
         '
         'cbTopMost
         '
+        Me.cbTopMost.AutoSize = True
         Me.cbTopMost.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.cbTopMost.Checked = False
+        Me.cbTopMost.Depth = 0
         Me.cbTopMost.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cbTopMost.ForeColor = System.Drawing.Color.White
-        Me.cbTopMost.Location = New System.Drawing.Point(184, 238)
+        Me.cbTopMost.Location = New System.Drawing.Point(221, 353)
+        Me.cbTopMost.Margin = New System.Windows.Forms.Padding(0)
+        Me.cbTopMost.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.cbTopMost.MouseState = MaterialSkin.MouseState.HOVER
         Me.cbTopMost.Name = "cbTopMost"
-        Me.cbTopMost.Size = New System.Drawing.Size(226, 20)
+        Me.cbTopMost.Ripple = True
+        Me.cbTopMost.Size = New System.Drawing.Size(175, 37)
         Me.cbTopMost.TabIndex = 5
         Me.cbTopMost.Text = "Monitor Stay on top"
+        Me.cbTopMost.UseVisualStyleBackColor = False
         '
         'cmbLanguage
         '
         Me.cmbLanguage.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbLanguage.AutoResize = False
         Me.cmbLanguage.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.cmbLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbLanguage.Depth = 0
+        Me.cmbLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.cmbLanguage.DropDownHeight = 174
         Me.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbLanguage.DropDownWidth = 121
         Me.cmbLanguage.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cmbLanguage.ForeColor = System.Drawing.Color.White
         Me.cmbLanguage.FormattingEnabled = True
-        Me.cmbLanguage.ItemHeight = 20
-        Me.cmbLanguage.Location = New System.Drawing.Point(129, 264)
+        Me.cmbLanguage.IntegralHeight = False
+        Me.cmbLanguage.ItemHeight = 43
+        Me.cmbLanguage.Location = New System.Drawing.Point(133, 393)
+        Me.cmbLanguage.MaxDropDownItems = 4
+        Me.cmbLanguage.MouseState = MaterialSkin.MouseState.OUT
         Me.cmbLanguage.Name = "cmbLanguage"
-        Me.cmbLanguage.Size = New System.Drawing.Size(282, 26)
+        Me.cmbLanguage.Size = New System.Drawing.Size(345, 49)
+        Me.cmbLanguage.StartIndex = 0
         Me.cmbLanguage.TabIndex = 6
         '
         'lblLanguage
         '
         Me.lblLanguage.AutoSize = True
         Me.lblLanguage.BackColor = System.Drawing.Color.Transparent
-        Me.lblLanguage.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.lblLanguage.Depth = 0
+        Me.lblLanguage.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblLanguage.ForeColor = System.Drawing.Color.White
-        Me.lblLanguage.Location = New System.Drawing.Point(9, 267)
+        Me.lblLanguage.Location = New System.Drawing.Point(6, 395)
+        Me.lblLanguage.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblLanguage.Name = "lblLanguage"
-        Me.lblLanguage.Size = New System.Drawing.Size(70, 14)
+        Me.lblLanguage.Size = New System.Drawing.Size(72, 19)
         Me.lblLanguage.TabIndex = 15
         Me.lblLanguage.Text = "Language"
-        '
-        'gbLicense
-        '
-        Me.gbLicense.Controls.Add(Me.lblKey)
-        Me.gbLicense.Controls.Add(Me.btnActivate)
-        Me.gbLicense.Controls.Add(Me.lblName)
-        Me.gbLicense.Controls.Add(Me.lblLicense)
-        Me.gbLicense.DrawSeperator = True
-        Me.gbLicense.Location = New System.Drawing.Point(12, 296)
-        Me.gbLicense.Name = "gbLicense"
-        Me.gbLicense.Size = New System.Drawing.Size(397, 94)
-        Me.gbLicense.SubTitle = ""
-        Me.gbLicense.TabIndex = 7
-        Me.gbLicense.Text = "NsGroupBox2"
-        Me.gbLicense.Title = "License"
         '
         'lblKey
         '
         Me.lblKey.AutoSize = True
         Me.lblKey.BackColor = System.Drawing.Color.Transparent
-        Me.lblKey.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.lblKey.Depth = 0
+        Me.lblKey.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblKey.ForeColor = System.Drawing.Color.White
-        Me.lblKey.Location = New System.Drawing.Point(8, 54)
+        Me.lblKey.Location = New System.Drawing.Point(6, 37)
+        Me.lblKey.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblKey.Name = "lblKey"
-        Me.lblKey.Size = New System.Drawing.Size(47, 14)
+        Me.lblKey.Size = New System.Drawing.Size(36, 19)
         Me.lblKey.TabIndex = 10
         Me.lblKey.Text = "_____"
         '
         'btnActivate
         '
         Me.btnActivate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnActivate.AutoSize = False
+        Me.btnActivate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.btnActivate.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.btnActivate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnActivate.Depth = 0
         Me.btnActivate.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.btnActivate.ForeColor = System.Drawing.Color.White
-        Me.btnActivate.Location = New System.Drawing.Point(294, 64)
+        Me.btnActivate.HighEmphasis = True
+        Me.btnActivate.Icon = Nothing
+        Me.btnActivate.Location = New System.Drawing.Point(345, 40)
+        Me.btnActivate.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnActivate.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnActivate.Name = "btnActivate"
-        Me.btnActivate.Size = New System.Drawing.Size(100, 27)
+        Me.btnActivate.Size = New System.Drawing.Size(120, 36)
         Me.btnActivate.TabIndex = 0
         Me.btnActivate.Text = "Activate"
+        Me.btnActivate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnActivate.UseAccentColor = False
+        Me.btnActivate.UseVisualStyleBackColor = False
         '
         'lblName
         '
         Me.lblName.AutoSize = True
         Me.lblName.BackColor = System.Drawing.Color.Transparent
-        Me.lblName.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.lblName.Depth = 0
+        Me.lblName.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblName.ForeColor = System.Drawing.Color.White
-        Me.lblName.Location = New System.Drawing.Point(8, 73)
+        Me.lblName.Location = New System.Drawing.Point(6, 56)
+        Me.lblName.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(64, 14)
+        Me.lblName.Size = New System.Drawing.Size(67, 19)
         Me.lblName.TabIndex = 3
         Me.lblName.Text = "PC Name"
         '
@@ -183,51 +161,50 @@ Partial Class frmSetting
         '
         Me.lblLicense.AutoSize = True
         Me.lblLicense.BackColor = System.Drawing.Color.Transparent
-        Me.lblLicense.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.lblLicense.Depth = 0
+        Me.lblLicense.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblLicense.ForeColor = System.Drawing.Color.White
-        Me.lblLicense.Location = New System.Drawing.Point(8, 35)
+        Me.lblLicense.Location = New System.Drawing.Point(6, 18)
+        Me.lblLicense.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblLicense.Name = "lblLicense"
-        Me.lblLicense.Size = New System.Drawing.Size(89, 14)
+        Me.lblLicense.Size = New System.Drawing.Size(89, 19)
         Me.lblLicense.TabIndex = 2
         Me.lblLicense.Text = "Unregistered"
         '
         'btnCredits
         '
         Me.btnCredits.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnCredits.AutoSize = False
+        Me.btnCredits.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.btnCredits.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.btnCredits.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnCredits.Depth = 0
         Me.btnCredits.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.btnCredits.ForeColor = System.Drawing.Color.White
-        Me.btnCredits.Location = New System.Drawing.Point(12, 395)
+        Me.btnCredits.HighEmphasis = True
+        Me.btnCredits.Icon = Nothing
+        Me.btnCredits.Location = New System.Drawing.Point(9, 537)
+        Me.btnCredits.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnCredits.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnCredits.Name = "btnCredits"
-        Me.btnCredits.Size = New System.Drawing.Size(100, 27)
+        Me.btnCredits.Size = New System.Drawing.Size(120, 36)
         Me.btnCredits.TabIndex = 8
         Me.btnCredits.Text = "About"
-        '
-        'gbWeather
-        '
-        Me.gbWeather.Controls.Add(Me.lblTown)
-        Me.gbWeather.Controls.Add(Me.cmbTown)
-        Me.gbWeather.Controls.Add(Me.cmbStates)
-        Me.gbWeather.Controls.Add(Me.lblState)
-        Me.gbWeather.DrawSeperator = True
-        Me.gbWeather.Location = New System.Drawing.Point(12, 128)
-        Me.gbWeather.Name = "gbWeather"
-        Me.gbWeather.Padding = New System.Windows.Forms.Padding(5)
-        Me.gbWeather.Size = New System.Drawing.Size(397, 104)
-        Me.gbWeather.SubTitle = ""
-        Me.gbWeather.TabIndex = 3
-        Me.gbWeather.Text = "NsGroupBox1"
-        Me.gbWeather.Title = "Weather Forecast Settings"
+        Me.btnCredits.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnCredits.UseAccentColor = False
+        Me.btnCredits.UseVisualStyleBackColor = False
         '
         'lblTown
         '
         Me.lblTown.AutoSize = True
         Me.lblTown.BackColor = System.Drawing.Color.Transparent
-        Me.lblTown.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.lblTown.Depth = 0
+        Me.lblTown.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblTown.ForeColor = System.Drawing.Color.White
-        Me.lblTown.Location = New System.Drawing.Point(8, 72)
+        Me.lblTown.Location = New System.Drawing.Point(6, 78)
+        Me.lblTown.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblTown.Name = "lblTown"
-        Me.lblTown.Size = New System.Drawing.Size(40, 14)
+        Me.lblTown.Size = New System.Drawing.Size(41, 19)
         Me.lblTown.TabIndex = 18
         Me.lblTown.Text = "Town"
         '
@@ -235,198 +212,275 @@ Partial Class frmSetting
         '
         Me.cmbTown.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbTown.AutoResize = False
         Me.cmbTown.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.cmbTown.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbTown.Depth = 0
+        Me.cmbTown.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.cmbTown.DropDownHeight = 174
         Me.cmbTown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbTown.DropDownWidth = 121
         Me.cmbTown.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cmbTown.ForeColor = System.Drawing.Color.White
         Me.cmbTown.FormattingEnabled = True
-        Me.cmbTown.ItemHeight = 20
-        Me.cmbTown.Location = New System.Drawing.Point(117, 69)
+        Me.cmbTown.IntegralHeight = False
+        Me.cmbTown.ItemHeight = 43
+        Me.cmbTown.Location = New System.Drawing.Point(121, 76)
+        Me.cmbTown.MaxDropDownItems = 4
+        Me.cmbTown.MouseState = MaterialSkin.MouseState.OUT
         Me.cmbTown.Name = "cmbTown"
-        Me.cmbTown.Size = New System.Drawing.Size(272, 26)
+        Me.cmbTown.Size = New System.Drawing.Size(345, 49)
+        Me.cmbTown.StartIndex = 0
         Me.cmbTown.TabIndex = 1
         '
         'cmbStates
         '
         Me.cmbStates.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbStates.AutoResize = False
         Me.cmbStates.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.cmbStates.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbStates.Depth = 0
+        Me.cmbStates.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.cmbStates.DropDownHeight = 174
         Me.cmbStates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbStates.DropDownWidth = 121
         Me.cmbStates.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cmbStates.ForeColor = System.Drawing.Color.White
         Me.cmbStates.FormattingEnabled = True
-        Me.cmbStates.ItemHeight = 20
-        Me.cmbStates.Location = New System.Drawing.Point(117, 37)
+        Me.cmbStates.IntegralHeight = False
+        Me.cmbStates.ItemHeight = 43
+        Me.cmbStates.Location = New System.Drawing.Point(121, 21)
+        Me.cmbStates.MaxDropDownItems = 4
+        Me.cmbStates.MouseState = MaterialSkin.MouseState.OUT
         Me.cmbStates.Name = "cmbStates"
-        Me.cmbStates.Size = New System.Drawing.Size(272, 26)
+        Me.cmbStates.Size = New System.Drawing.Size(345, 49)
+        Me.cmbStates.StartIndex = 0
         Me.cmbStates.TabIndex = 0
         '
         'lblState
         '
         Me.lblState.AutoSize = True
         Me.lblState.BackColor = System.Drawing.Color.Transparent
-        Me.lblState.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.lblState.Depth = 0
+        Me.lblState.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblState.ForeColor = System.Drawing.Color.White
-        Me.lblState.Location = New System.Drawing.Point(8, 40)
+        Me.lblState.Location = New System.Drawing.Point(6, 23)
+        Me.lblState.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblState.Name = "lblState"
-        Me.lblState.Size = New System.Drawing.Size(48, 14)
+        Me.lblState.Size = New System.Drawing.Size(46, 19)
         Me.lblState.TabIndex = 14
         Me.lblState.Text = "States"
-        '
-        'cbClose
-        '
-        Me.cbClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbClose.ControlButton = ResMon.NSControlButton.Button.Close
-        Me.cbClose.Location = New System.Drawing.Point(397, 4)
-        Me.cbClose.Margin = New System.Windows.Forms.Padding(0)
-        Me.cbClose.MaximumSize = New System.Drawing.Size(18, 20)
-        Me.cbClose.MinimumSize = New System.Drawing.Size(18, 20)
-        Me.cbClose.Name = "cbClose"
-        Me.cbClose.Size = New System.Drawing.Size(18, 20)
-        Me.cbClose.TabIndex = 12
-        Me.cbClose.Text = "NsControlButton1"
         '
         'btnSave
         '
         Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSave.AutoSize = False
+        Me.btnSave.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.btnSave.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnSave.Depth = 0
         Me.btnSave.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(309, 395)
+        Me.btnSave.HighEmphasis = True
+        Me.btnSave.Icon = Nothing
+        Me.btnSave.Location = New System.Drawing.Point(357, 537)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnSave.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(100, 27)
+        Me.btnSave.Size = New System.Drawing.Size(120, 36)
         Me.btnSave.TabIndex = 9
         Me.btnSave.Text = "Save"
+        Me.btnSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnSave.UseAccentColor = True
+        Me.btnSave.UseVisualStyleBackColor = False
         '
         'lblBroadcastPort
         '
         Me.lblBroadcastPort.AutoSize = True
         Me.lblBroadcastPort.BackColor = System.Drawing.Color.Transparent
-        Me.lblBroadcastPort.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.lblBroadcastPort.Depth = 0
+        Me.lblBroadcastPort.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblBroadcastPort.ForeColor = System.Drawing.Color.White
-        Me.lblBroadcastPort.Location = New System.Drawing.Point(8, 75)
+        Me.lblBroadcastPort.Location = New System.Drawing.Point(6, 124)
+        Me.lblBroadcastPort.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblBroadcastPort.Name = "lblBroadcastPort"
-        Me.lblBroadcastPort.Size = New System.Drawing.Size(100, 14)
+        Me.lblBroadcastPort.Size = New System.Drawing.Size(106, 19)
         Me.lblBroadcastPort.TabIndex = 5
         Me.lblBroadcastPort.Text = "Broadcast Port"
         '
         'cbBroadcast
         '
+        Me.cbBroadcast.AutoSize = True
         Me.cbBroadcast.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.cbBroadcast.Checked = False
+        Me.cbBroadcast.Depth = 0
         Me.cbBroadcast.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cbBroadcast.ForeColor = System.Drawing.Color.White
-        Me.cbBroadcast.Location = New System.Drawing.Point(12, 102)
+        Me.cbBroadcast.Location = New System.Drawing.Point(133, 175)
+        Me.cbBroadcast.Margin = New System.Windows.Forms.Padding(0)
+        Me.cbBroadcast.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.cbBroadcast.MouseState = MaterialSkin.MouseState.HOVER
         Me.cbBroadcast.Name = "cbBroadcast"
-        Me.cbBroadcast.Size = New System.Drawing.Size(144, 20)
+        Me.cbBroadcast.Ripple = True
+        Me.cbBroadcast.Size = New System.Drawing.Size(159, 37)
         Me.cbBroadcast.TabIndex = 2
         Me.cbBroadcast.Text = "Enable Broadcast"
+        Me.cbBroadcast.UseVisualStyleBackColor = False
         '
         'txtPort
         '
         Me.txtPort.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPort.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.txtPort.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtPort.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPort.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.txtPort.Depth = 0
+        Me.txtPort.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.txtPort.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
-        Me.txtPort.Location = New System.Drawing.Point(128, 70)
+        Me.txtPort.LeadingIcon = Nothing
+        Me.txtPort.Location = New System.Drawing.Point(133, 122)
         Me.txtPort.MaxLength = 32767
+        Me.txtPort.MouseState = MaterialSkin.MouseState.OUT
         Me.txtPort.Multiline = False
         Me.txtPort.Name = "txtPort"
-        Me.txtPort.ReadOnly = False
-        Me.txtPort.Size = New System.Drawing.Size(282, 26)
+        Me.txtPort.Size = New System.Drawing.Size(345, 50)
         Me.txtPort.TabIndex = 1
         Me.txtPort.Text = "8080"
-        Me.txtPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtPort.UseSystemPasswordChar = False
+        Me.txtPort.TrailingIcon = Nothing
         '
         'cbAuto
         '
+        Me.cbAuto.AutoSize = True
         Me.cbAuto.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.cbAuto.Checked = False
+        Me.cbAuto.Depth = 0
         Me.cbAuto.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cbAuto.ForeColor = System.Drawing.Color.White
-        Me.cbAuto.Location = New System.Drawing.Point(12, 238)
+        Me.cbAuto.Location = New System.Drawing.Point(3, 353)
+        Me.cbAuto.Margin = New System.Windows.Forms.Padding(0)
+        Me.cbAuto.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.cbAuto.MouseState = MaterialSkin.MouseState.HOVER
         Me.cbAuto.Name = "cbAuto"
-        Me.cbAuto.Size = New System.Drawing.Size(166, 20)
+        Me.cbAuto.Ripple = True
+        Me.cbAuto.Size = New System.Drawing.Size(172, 37)
         Me.cbAuto.TabIndex = 4
         Me.cbAuto.Text = "Start with Windows"
+        Me.cbAuto.UseVisualStyleBackColor = False
         '
         'cmbNetwork
         '
         Me.cmbNetwork.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbNetwork.AutoResize = False
         Me.cmbNetwork.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.cmbNetwork.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbNetwork.Depth = 0
+        Me.cmbNetwork.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.cmbNetwork.DropDownHeight = 174
         Me.cmbNetwork.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbNetwork.DropDownWidth = 121
         Me.cmbNetwork.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cmbNetwork.ForeColor = System.Drawing.Color.White
         Me.cmbNetwork.FormattingEnabled = True
-        Me.cmbNetwork.ItemHeight = 20
-        Me.cmbNetwork.Location = New System.Drawing.Point(128, 38)
+        Me.cmbNetwork.IntegralHeight = False
+        Me.cmbNetwork.ItemHeight = 43
+        Me.cmbNetwork.Location = New System.Drawing.Point(133, 67)
+        Me.cmbNetwork.MaxDropDownItems = 4
+        Me.cmbNetwork.MouseState = MaterialSkin.MouseState.OUT
         Me.cmbNetwork.Name = "cmbNetwork"
-        Me.cmbNetwork.Size = New System.Drawing.Size(282, 26)
+        Me.cmbNetwork.Size = New System.Drawing.Size(345, 49)
+        Me.cmbNetwork.StartIndex = 0
         Me.cmbNetwork.TabIndex = 0
         '
         'lblNetworkAdapter
         '
         Me.lblNetworkAdapter.AutoSize = True
         Me.lblNetworkAdapter.BackColor = System.Drawing.Color.Transparent
-        Me.lblNetworkAdapter.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.lblNetworkAdapter.Depth = 0
+        Me.lblNetworkAdapter.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblNetworkAdapter.ForeColor = System.Drawing.Color.White
-        Me.lblNetworkAdapter.Location = New System.Drawing.Point(8, 41)
+        Me.lblNetworkAdapter.Location = New System.Drawing.Point(6, 76)
+        Me.lblNetworkAdapter.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblNetworkAdapter.Name = "lblNetworkAdapter"
-        Me.lblNetworkAdapter.Size = New System.Drawing.Size(114, 14)
+        Me.lblNetworkAdapter.Size = New System.Drawing.Size(118, 19)
         Me.lblNetworkAdapter.TabIndex = 1
         Me.lblNetworkAdapter.Text = "Network Adapter"
+        '
+        'gbWeather
+        '
+        Me.gbWeather.Controls.Add(Me.cmbStates)
+        Me.gbWeather.Controls.Add(Me.lblState)
+        Me.gbWeather.Controls.Add(Me.lblTown)
+        Me.gbWeather.Controls.Add(Me.cmbTown)
+        Me.gbWeather.Location = New System.Drawing.Point(6, 215)
+        Me.gbWeather.Name = "gbWeather"
+        Me.gbWeather.Size = New System.Drawing.Size(472, 135)
+        Me.gbWeather.TabIndex = 3
+        Me.gbWeather.TabStop = False
+        Me.gbWeather.Text = "Weather Forecast Settings"
+        '
+        'gbLicense
+        '
+        Me.gbLicense.Controls.Add(Me.btnActivate)
+        Me.gbLicense.Controls.Add(Me.lblLicense)
+        Me.gbLicense.Controls.Add(Me.lblKey)
+        Me.gbLicense.Controls.Add(Me.lblName)
+        Me.gbLicense.Location = New System.Drawing.Point(6, 448)
+        Me.gbLicense.Name = "gbLicense"
+        Me.gbLicense.Size = New System.Drawing.Size(472, 85)
+        Me.gbLicense.TabIndex = 7
+        Me.gbLicense.TabStop = False
+        Me.gbLicense.Text = "License"
         '
         'frmSetting
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(421, 430)
-        Me.Controls.Add(Me.nsTheme)
+        Me.ClientSize = New System.Drawing.Size(484, 582)
+        Me.Controls.Add(Me.gbLicense)
+        Me.Controls.Add(Me.gbWeather)
+        Me.Controls.Add(Me.lblBroadcastPort)
+        Me.Controls.Add(Me.cbTopMost)
+        Me.Controls.Add(Me.cbBroadcast)
+        Me.Controls.Add(Me.txtPort)
+        Me.Controls.Add(Me.cmbLanguage)
+        Me.Controls.Add(Me.cmbNetwork)
+        Me.Controls.Add(Me.lblNetworkAdapter)
+        Me.Controls.Add(Me.btnSave)
+        Me.Controls.Add(Me.lblLanguage)
+        Me.Controls.Add(Me.btnCredits)
+        Me.Controls.Add(Me.cbAuto)
         Me.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmSetting"
+        Me.Sizable = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Settings"
-        Me.nsTheme.ResumeLayout(False)
-        Me.nsTheme.PerformLayout()
-        Me.gbLicense.ResumeLayout(False)
-        Me.gbLicense.PerformLayout()
         Me.gbWeather.ResumeLayout(False)
         Me.gbWeather.PerformLayout()
+        Me.gbLicense.ResumeLayout(False)
+        Me.gbLicense.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents cmbNetwork As NSComboBox
-    Friend WithEvents lblNetworkAdapter As Label
-    Friend WithEvents cbAuto As NSCheckBox
-    Friend WithEvents btnSave As NSButton
-    Friend WithEvents cbBroadcast As NSCheckBox
-    Friend WithEvents lblBroadcastPort As Label
-    Friend WithEvents txtPort As NSTextBox
-    Friend WithEvents nsTheme As NSTheme
-    Friend WithEvents cbClose As NSControlButton
-    Friend WithEvents gbWeather As NSGroupBox
-    Friend WithEvents cmbStates As NSComboBox
-    Friend WithEvents lblState As Label
-    Friend WithEvents lblTown As Label
-    Friend WithEvents cmbTown As NSComboBox
-    Friend WithEvents cbTopMost As NSCheckBox
-    Friend WithEvents btnCredits As NSButton
-    Friend WithEvents gbLicense As NSGroupBox
-    Friend WithEvents lblName As Label
-    Friend WithEvents lblLicense As Label
-    Friend WithEvents btnActivate As NSButton
-    Friend WithEvents lblKey As Label
-    Friend WithEvents cmbLanguage As NSComboBox
-    Friend WithEvents lblLanguage As Label
+    Friend WithEvents cmbNetwork As MaterialComboBox
+    Friend WithEvents lblNetworkAdapter As MaterialLabel
+    Friend WithEvents cbAuto As MaterialCheckbox
+    Friend WithEvents btnSave As MaterialButton
+    Friend WithEvents cbBroadcast As MaterialCheckbox
+    Friend WithEvents lblBroadcastPort As MaterialLabel
+    Friend WithEvents txtPort As MaterialTextBox
+    Friend WithEvents cmbStates As MaterialComboBox
+    Friend WithEvents lblState As MaterialLabel
+    Friend WithEvents lblTown As MaterialLabel
+    Friend WithEvents cmbTown As MaterialComboBox
+    Friend WithEvents cbTopMost As MaterialCheckbox
+    Friend WithEvents btnCredits As MaterialButton
+    Friend WithEvents lblName As MaterialLabel
+    Friend WithEvents lblLicense As MaterialLabel
+    Friend WithEvents btnActivate As MaterialButton
+    Friend WithEvents lblKey As MaterialLabel
+    Friend WithEvents cmbLanguage As MaterialComboBox
+    Friend WithEvents lblLanguage As MaterialLabel
+    Friend WithEvents gbWeather As GroupBox
+    Friend WithEvents gbLicense As GroupBox
 End Class

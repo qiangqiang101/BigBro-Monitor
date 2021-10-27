@@ -1,6 +1,8 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports MaterialSkin.Controls
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmAbout
-    Inherits System.Windows.Forms.Form
+    Inherits MaterialForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -22,127 +24,102 @@ Partial Class frmAbout
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.NsTheme1 = New ResMon.NSTheme()
-        Me.txtCredit = New ResMon.NSTextBox()
-        Me.btnClose = New ResMon.NSButton()
-        Me.lblVersion = New System.Windows.Forms.Label()
-        Me.NsLabel1 = New ResMon.NSLabel()
-        Me.cbClose = New ResMon.NSControlButton()
-        Me.NsTheme1.SuspendLayout()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAbout))
+        Me.btnClose = New MaterialSkin.Controls.MaterialButton()
+        Me.MaterialLabel1 = New MaterialSkin.Controls.MaterialLabel()
+        Me.lblVersion = New MaterialSkin.Controls.MaterialLabel()
+        Me.txtCredit = New MaterialSkin.Controls.MaterialMultiLineTextBox()
         Me.SuspendLayout()
-        '
-        'NsTheme1
-        '
-        Me.NsTheme1.AccentOffset = 42
-        Me.NsTheme1.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.NsTheme1.BorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.NsTheme1.Colors = New ResMon.Bloom(-1) {}
-        Me.NsTheme1.Controls.Add(Me.txtCredit)
-        Me.NsTheme1.Controls.Add(Me.btnClose)
-        Me.NsTheme1.Controls.Add(Me.lblVersion)
-        Me.NsTheme1.Controls.Add(Me.NsLabel1)
-        Me.NsTheme1.Controls.Add(Me.cbClose)
-        Me.NsTheme1.Customization = ""
-        Me.NsTheme1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.NsTheme1.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.NsTheme1.Image = Nothing
-        Me.NsTheme1.Location = New System.Drawing.Point(0, 0)
-        Me.NsTheme1.Movable = True
-        Me.NsTheme1.Name = "NsTheme1"
-        Me.NsTheme1.NoRounding = False
-        Me.NsTheme1.Sizable = False
-        Me.NsTheme1.Size = New System.Drawing.Size(432, 544)
-        Me.NsTheme1.SmartBounds = True
-        Me.NsTheme1.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.NsTheme1.TabIndex = 0
-        Me.NsTheme1.Text = "About Resource Monitor"
-        Me.NsTheme1.TransparencyKey = System.Drawing.Color.Empty
-        Me.NsTheme1.Transparent = False
-        '
-        'txtCredit
-        '
-        Me.txtCredit.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtCredit.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtCredit.Location = New System.Drawing.Point(12, 100)
-        Me.txtCredit.MaxLength = 32767
-        Me.txtCredit.Multiline = True
-        Me.txtCredit.Name = "txtCredit"
-        Me.txtCredit.ReadOnly = True
-        Me.txtCredit.Size = New System.Drawing.Size(408, 403)
-        Me.txtCredit.TabIndex = 17
-        Me.txtCredit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.txtCredit.UseSystemPasswordChar = False
         '
         'btnClose
         '
         Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnClose.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.btnClose.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(320, 509)
+        Me.btnClose.AutoSize = False
+        Me.btnClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnClose.BackColor = System.Drawing.SystemColors.Control
+        Me.btnClose.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnClose.Depth = 0
+        Me.btnClose.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnClose.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnClose.HighEmphasis = True
+        Me.btnClose.Icon = Nothing
+        Me.btnClose.Location = New System.Drawing.Point(305, 499)
+        Me.btnClose.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnClose.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(100, 27)
-        Me.btnClose.TabIndex = 16
+        Me.btnClose.Size = New System.Drawing.Size(120, 36)
+        Me.btnClose.TabIndex = 5
         Me.btnClose.Text = "Close"
+        Me.btnClose.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnClose.UseAccentColor = False
+        Me.btnClose.UseVisualStyleBackColor = False
+        '
+        'MaterialLabel1
+        '
+        Me.MaterialLabel1.AutoSize = True
+        Me.MaterialLabel1.BackColor = System.Drawing.Color.Transparent
+        Me.MaterialLabel1.Depth = 0
+        Me.MaterialLabel1.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.MaterialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H5
+        Me.MaterialLabel1.Location = New System.Drawing.Point(6, 64)
+        Me.MaterialLabel1.MouseState = MaterialSkin.MouseState.HOVER
+        Me.MaterialLabel1.Name = "MaterialLabel1"
+        Me.MaterialLabel1.Size = New System.Drawing.Size(162, 29)
+        Me.MaterialLabel1.TabIndex = 6
+        Me.MaterialLabel1.Text = "BigBro Monitor"
         '
         'lblVersion
         '
         Me.lblVersion.AutoSize = True
         Me.lblVersion.BackColor = System.Drawing.Color.Transparent
-        Me.lblVersion.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.lblVersion.ForeColor = System.Drawing.Color.White
-        Me.lblVersion.Location = New System.Drawing.Point(12, 68)
+        Me.lblVersion.Depth = 0
+        Me.lblVersion.Font = New System.Drawing.Font("Roboto Medium", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel)
+        Me.lblVersion.FontType = MaterialSkin.MaterialSkinManager.fontType.H6
+        Me.lblVersion.Location = New System.Drawing.Point(6, 93)
+        Me.lblVersion.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblVersion.Name = "lblVersion"
-        Me.lblVersion.Size = New System.Drawing.Size(77, 14)
-        Me.lblVersion.TabIndex = 15
-        Me.lblVersion.Text = "Version 1.0"
+        Me.lblVersion.Size = New System.Drawing.Size(69, 24)
+        Me.lblVersion.TabIndex = 7
+        Me.lblVersion.Text = "Version"
         '
-        'NsLabel1
+        'txtCredit
         '
-        Me.NsLabel1.Font = New System.Drawing.Font("Verdana", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NsLabel1.Location = New System.Drawing.Point(12, 42)
-        Me.NsLabel1.Name = "NsLabel1"
-        Me.NsLabel1.Size = New System.Drawing.Size(261, 23)
-        Me.NsLabel1.TabIndex = 14
-        Me.NsLabel1.Text = "NsLabel1"
-        Me.NsLabel1.Value1 = "BigBro"
-        Me.NsLabel1.Value2 = "Monitor"
-        '
-        'cbClose
-        '
-        Me.cbClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbClose.ControlButton = ResMon.NSControlButton.Button.Close
-        Me.cbClose.Location = New System.Drawing.Point(408, 4)
-        Me.cbClose.Margin = New System.Windows.Forms.Padding(0)
-        Me.cbClose.MaximumSize = New System.Drawing.Size(18, 20)
-        Me.cbClose.MinimumSize = New System.Drawing.Size(18, 20)
-        Me.cbClose.Name = "cbClose"
-        Me.cbClose.Size = New System.Drawing.Size(18, 20)
-        Me.cbClose.TabIndex = 13
-        Me.cbClose.Text = "NsControlButton1"
+        Me.txtCredit.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtCredit.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtCredit.Depth = 0
+        Me.txtCredit.Font = New System.Drawing.Font("Segoe UI", 14.0!)
+        Me.txtCredit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.txtCredit.Location = New System.Drawing.Point(6, 120)
+        Me.txtCredit.MouseState = MaterialSkin.MouseState.HOVER
+        Me.txtCredit.Name = "txtCredit"
+        Me.txtCredit.ReadOnly = True
+        Me.txtCredit.Size = New System.Drawing.Size(420, 370)
+        Me.txtCredit.TabIndex = 6
+        Me.txtCredit.Text = ""
         '
         'frmAbout
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.BackColor = System.Drawing.SystemColors.ControlDarkDark
         Me.ClientSize = New System.Drawing.Size(432, 544)
-        Me.Controls.Add(Me.NsTheme1)
-        Me.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Controls.Add(Me.lblVersion)
+        Me.Controls.Add(Me.txtCredit)
+        Me.Controls.Add(Me.MaterialLabel1)
+        Me.Controls.Add(Me.btnClose)
+        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "frmAbout"
+        Me.Sizable = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "About Resource Monitor"
-        Me.NsTheme1.ResumeLayout(False)
-        Me.NsTheme1.PerformLayout()
+        Me.Text = "About BigBro Monitor"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents NsTheme1 As NSTheme
-    Friend WithEvents cbClose As NSControlButton
-    Friend WithEvents NsLabel1 As NSLabel
-    Friend WithEvents lblVersion As Label
-    Friend WithEvents btnClose As NSButton
-    Friend WithEvents txtCredit As NSTextBox
+    Friend WithEvents btnClose As MaterialSkin.Controls.MaterialButton
+    Friend WithEvents MaterialLabel1 As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents lblVersion As MaterialSkin.Controls.MaterialLabel
+    Friend WithEvents txtCredit As MaterialSkin.Controls.MaterialMultiLineTextBox
 End Class

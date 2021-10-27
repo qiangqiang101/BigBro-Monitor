@@ -1,10 +1,25 @@
 ﻿Imports System.IO
 Imports Echevil
+Imports MaterialSkin
 
 Public Class frmSetting
 
     Private ReadOnly netMonitor As New NetworkMonitor
     Private ReadOnly startupFile As String = $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), Application.ProductName)}.lnk"
+
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+        Dim msm = MaterialSkinManager.Instance
+        msm.AddFormToManage(Me)
+        msm.Theme = MaterialSkinManager.Themes.DARK
+        msm.ColorScheme = New ColorScheme(Primary.Yellow800, Primary.Yellow900, Primary.Yellow500, Accent.Yellow200, TextShade.BLACK)
+        Text = ProgramLanguage.SettingTitle
+    End Sub
 
     Private Sub frmSetting_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         For Each state In States
@@ -44,17 +59,17 @@ Public Class frmSetting
         lblName.Text = MachineName
 
         'Translate
-        nsTheme.Text = ProgramLanguage.SettingTitle
+        Text = ProgramLanguage.SettingTitle
         lblNetworkAdapter.Text = ProgramLanguage.lblNetworkAdapter
         lblBroadcastPort.Text = ProgramLanguage.lblBroadcastPort
         cbBroadcast.Text = ProgramLanguage.cbBroadcast
-        gbWeather.Title = ProgramLanguage.gbWeather
+        gbWeather.Text = ProgramLanguage.gbWeather
         lblState.Text = ProgramLanguage.lblState
         lblTown.Text = ProgramLanguage.lblTown
         cbAuto.Text = ProgramLanguage.cbAuto
         cbTopMost.Text = ProgramLanguage.cbTopMost
         lblLanguage.Text = ProgramLanguage.lblLanguage
-        gbLicense.Title = ProgramLanguage.gbLicense
+        gbLicense.Text = ProgramLanguage.gbLicense
         btnActivate.Text = ProgramLanguage.btnActivate
         btnCredits.Text = ProgramLanguage.btnCredits
         btnSave.Text = ProgramLanguage.btnSave

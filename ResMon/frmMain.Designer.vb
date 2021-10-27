@@ -1,6 +1,8 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+﻿Imports MaterialSkin.Controls
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMain
-    Inherits System.Windows.Forms.Form
+    Inherits MaterialForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -25,31 +27,27 @@ Partial Class frmMain
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.niTray = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.nsTheme = New ResMon.NSTheme()
-        Me.cbMin = New ResMon.NSControlButton()
-        Me.cbMax = New ResMon.NSControlButton()
-        Me.cbClose = New ResMon.NSControlButton()
         Me.scContainer = New System.Windows.Forms.SplitContainer()
         Me.flpThemes = New System.Windows.Forms.FlowLayoutPanel()
         Me.pToolbox = New System.Windows.Forms.Panel()
-        Me.txtSearch = New ResMon.NSTextBox()
-        Me.btnSearch = New ResMon.NSButton()
-        Me.btnResetFilter = New ResMon.NSButton()
+        Me.txtSearch = New MaterialSkin.Controls.MaterialTextBox()
+        Me.btnSearch = New MaterialSkin.Controls.MaterialButton()
+        Me.btnResetFilter = New MaterialSkin.Controls.MaterialButton()
         Me.scContainerRight = New System.Windows.Forms.SplitContainer()
-        Me.pbThemeSnapshot = New ResMon.FillPicturebox()
         Me.scButtons = New System.Windows.Forms.SplitContainer()
-        Me.btnApply = New ResMon.NSButton()
-        Me.btnDelete = New ResMon.NSButton()
+        Me.btnApply = New MaterialSkin.Controls.MaterialButton()
+        Me.btnDelete = New MaterialSkin.Controls.MaterialButton()
         Me.flpTags = New System.Windows.Forms.FlowLayoutPanel()
-        Me.lblAuthor = New System.Windows.Forms.Label()
-        Me.gbSettings = New ResMon.NSGroupBox()
+        Me.lblAuthor = New MaterialSkin.Controls.MaterialLabel()
+        Me.gbSettings = New System.Windows.Forms.GroupBox()
+        Me.lblThemeName = New MaterialSkin.Controls.MaterialLabel()
+        Me.btnOK = New MaterialSkin.Controls.MaterialButton()
+        Me.btnCancel = New MaterialSkin.Controls.MaterialButton()
+        Me.btnSettings = New MaterialSkin.Controls.MaterialButton()
+        Me.btnThemeEditor = New MaterialSkin.Controls.MaterialButton()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.pbThemeSnapshot = New ResMon.FillPicturebox()
         Me.flpUserDefine = New ResMon.DBFlowLayoutPanel()
-        Me.lblThemeName = New System.Windows.Forms.Label()
-        Me.btnOK = New ResMon.NSButton()
-        Me.btnCancel = New ResMon.NSButton()
-        Me.btnSettings = New ResMon.NSButton()
-        Me.btnThemeEditor = New ResMon.NSButton()
-        Me.nsTheme.SuspendLayout()
         CType(Me.scContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.scContainer.Panel1.SuspendLayout()
         Me.scContainer.Panel2.SuspendLayout()
@@ -64,6 +62,7 @@ Partial Class frmMain
         Me.scButtons.Panel2.SuspendLayout()
         Me.scButtons.SuspendLayout()
         Me.gbSettings.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'niTray
@@ -76,76 +75,6 @@ Partial Class frmMain
         Me.niTray.Text = "BigBro Monitor"
         Me.niTray.Visible = True
         '
-        'nsTheme
-        '
-        Me.nsTheme.AccentOffset = 42
-        Me.nsTheme.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.nsTheme.BorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.nsTheme.Colors = New ResMon.Bloom(-1) {}
-        Me.nsTheme.Controls.Add(Me.cbMin)
-        Me.nsTheme.Controls.Add(Me.cbMax)
-        Me.nsTheme.Controls.Add(Me.cbClose)
-        Me.nsTheme.Controls.Add(Me.scContainer)
-        Me.nsTheme.Controls.Add(Me.btnOK)
-        Me.nsTheme.Controls.Add(Me.btnCancel)
-        Me.nsTheme.Controls.Add(Me.btnSettings)
-        Me.nsTheme.Controls.Add(Me.btnThemeEditor)
-        Me.nsTheme.Customization = ""
-        Me.nsTheme.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.nsTheme.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.nsTheme.Image = Nothing
-        Me.nsTheme.Location = New System.Drawing.Point(0, 0)
-        Me.nsTheme.Movable = True
-        Me.nsTheme.Name = "nsTheme"
-        Me.nsTheme.NoRounding = False
-        Me.nsTheme.Sizable = True
-        Me.nsTheme.Size = New System.Drawing.Size(1360, 768)
-        Me.nsTheme.SmartBounds = True
-        Me.nsTheme.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.nsTheme.TabIndex = 12
-        Me.nsTheme.Text = "BigBro Monitor"
-        Me.nsTheme.TransparencyKey = System.Drawing.Color.Empty
-        Me.nsTheme.Transparent = True
-        '
-        'cbMin
-        '
-        Me.cbMin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbMin.ControlButton = ResMon.NSControlButton.Button.Minimize
-        Me.cbMin.Location = New System.Drawing.Point(1298, 4)
-        Me.cbMin.Margin = New System.Windows.Forms.Padding(0)
-        Me.cbMin.MaximumSize = New System.Drawing.Size(18, 20)
-        Me.cbMin.MinimumSize = New System.Drawing.Size(18, 20)
-        Me.cbMin.Name = "cbMin"
-        Me.cbMin.Size = New System.Drawing.Size(18, 20)
-        Me.cbMin.TabIndex = 13
-        Me.cbMin.Text = "NsControlButton1"
-        '
-        'cbMax
-        '
-        Me.cbMax.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbMax.ControlButton = ResMon.NSControlButton.Button.MaximizeRestore
-        Me.cbMax.Location = New System.Drawing.Point(1316, 4)
-        Me.cbMax.Margin = New System.Windows.Forms.Padding(0)
-        Me.cbMax.MaximumSize = New System.Drawing.Size(18, 20)
-        Me.cbMax.MinimumSize = New System.Drawing.Size(18, 20)
-        Me.cbMax.Name = "cbMax"
-        Me.cbMax.Size = New System.Drawing.Size(18, 20)
-        Me.cbMax.TabIndex = 12
-        Me.cbMax.Text = "NsControlButton1"
-        '
-        'cbClose
-        '
-        Me.cbClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbClose.ControlButton = ResMon.NSControlButton.Button.Close
-        Me.cbClose.Location = New System.Drawing.Point(1335, 4)
-        Me.cbClose.Margin = New System.Windows.Forms.Padding(0)
-        Me.cbClose.MaximumSize = New System.Drawing.Size(18, 20)
-        Me.cbClose.MinimumSize = New System.Drawing.Size(18, 20)
-        Me.cbClose.Name = "cbClose"
-        Me.cbClose.Size = New System.Drawing.Size(18, 20)
-        Me.cbClose.TabIndex = 11
-        Me.cbClose.Text = "NsControlButton1"
-        '
         'scContainer
         '
         Me.scContainer.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -153,31 +82,30 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.scContainer.BackColor = System.Drawing.Color.Transparent
         Me.scContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2
-        Me.scContainer.Location = New System.Drawing.Point(12, 42)
+        Me.scContainer.Location = New System.Drawing.Point(6, 75)
         Me.scContainer.Name = "scContainer"
         '
         'scContainer.Panel1
         '
-        Me.scContainer.Panel1.Controls.Add(Me.flpThemes)
+        Me.scContainer.Panel1.Controls.Add(Me.GroupBox1)
         Me.scContainer.Panel1.Controls.Add(Me.pToolbox)
         Me.scContainer.Panel1.Font = New System.Drawing.Font("Verdana", 9.0!)
         '
         'scContainer.Panel2
         '
         Me.scContainer.Panel2.Controls.Add(Me.scContainerRight)
-        Me.scContainer.Size = New System.Drawing.Size(1336, 681)
-        Me.scContainer.SplitterDistance = 1051
+        Me.scContainer.Size = New System.Drawing.Size(1348, 639)
+        Me.scContainer.SplitterDistance = 933
         Me.scContainer.TabIndex = 10
         '
         'flpThemes
         '
         Me.flpThemes.AutoScroll = True
-        Me.flpThemes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.flpThemes.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.flpThemes.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.flpThemes.Location = New System.Drawing.Point(0, 34)
+        Me.flpThemes.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.flpThemes.Location = New System.Drawing.Point(3, 18)
         Me.flpThemes.Name = "flpThemes"
-        Me.flpThemes.Size = New System.Drawing.Size(1051, 647)
+        Me.flpThemes.Size = New System.Drawing.Size(927, 568)
         Me.flpThemes.TabIndex = 3
         '
         'pToolbox
@@ -186,48 +114,75 @@ Partial Class frmMain
         Me.pToolbox.Controls.Add(Me.btnSearch)
         Me.pToolbox.Controls.Add(Me.btnResetFilter)
         Me.pToolbox.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pToolbox.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.pToolbox.Location = New System.Drawing.Point(0, 0)
         Me.pToolbox.Name = "pToolbox"
-        Me.pToolbox.Size = New System.Drawing.Size(1051, 34)
+        Me.pToolbox.Size = New System.Drawing.Size(933, 50)
         Me.pToolbox.TabIndex = 4
         '
         'txtSearch
         '
-        Me.txtSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.txtSearch.BackColor = System.Drawing.SystemColors.Window
+        Me.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtSearch.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.txtSearch.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.txtSearch.Depth = 0
+        Me.txtSearch.Font = New System.Drawing.Font("Segoe UI", 16.0!)
+        Me.txtSearch.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.txtSearch.LeadingIcon = Nothing
         Me.txtSearch.Location = New System.Drawing.Point(3, 3)
-        Me.txtSearch.MaxLength = 32767
+        Me.txtSearch.MaxLength = 50
+        Me.txtSearch.MouseState = MaterialSkin.MouseState.OUT
         Me.txtSearch.Multiline = False
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.ReadOnly = False
-        Me.txtSearch.Size = New System.Drawing.Size(259, 27)
+        Me.txtSearch.Size = New System.Drawing.Size(259, 36)
         Me.txtSearch.TabIndex = 0
-        Me.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtSearch.UseSystemPasswordChar = False
+        Me.txtSearch.Text = ""
+        Me.txtSearch.TrailingIcon = Nothing
+        Me.txtSearch.UseTallSize = False
         '
         'btnSearch
         '
-        Me.btnSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.btnSearch.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.btnSearch.ForeColor = System.Drawing.Color.White
+        Me.btnSearch.AutoSize = False
+        Me.btnSearch.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnSearch.BackColor = System.Drawing.SystemColors.Control
+        Me.btnSearch.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnSearch.Depth = 0
+        Me.btnSearch.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnSearch.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnSearch.HighEmphasis = True
+        Me.btnSearch.Icon = Nothing
         Me.btnSearch.Location = New System.Drawing.Point(268, 3)
+        Me.btnSearch.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnSearch.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(100, 27)
+        Me.btnSearch.Size = New System.Drawing.Size(120, 36)
         Me.btnSearch.TabIndex = 1
         Me.btnSearch.Text = "Search"
+        Me.btnSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnSearch.UseAccentColor = False
+        Me.btnSearch.UseVisualStyleBackColor = False
         '
         'btnResetFilter
         '
-        Me.btnResetFilter.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.btnResetFilter.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.btnResetFilter.ForeColor = System.Drawing.Color.White
-        Me.btnResetFilter.Location = New System.Drawing.Point(374, 3)
+        Me.btnResetFilter.AutoSize = False
+        Me.btnResetFilter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnResetFilter.BackColor = System.Drawing.SystemColors.Control
+        Me.btnResetFilter.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnResetFilter.Depth = 0
+        Me.btnResetFilter.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnResetFilter.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnResetFilter.HighEmphasis = True
+        Me.btnResetFilter.Icon = Nothing
+        Me.btnResetFilter.Location = New System.Drawing.Point(396, 3)
+        Me.btnResetFilter.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnResetFilter.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnResetFilter.Name = "btnResetFilter"
-        Me.btnResetFilter.Size = New System.Drawing.Size(150, 27)
+        Me.btnResetFilter.Size = New System.Drawing.Size(150, 36)
         Me.btnResetFilter.TabIndex = 2
         Me.btnResetFilter.Text = "Reset Filter"
+        Me.btnResetFilter.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnResetFilter.UseAccentColor = False
+        Me.btnResetFilter.UseVisualStyleBackColor = False
         '
         'scContainerRight
         '
@@ -249,28 +204,16 @@ Partial Class frmMain
         Me.scContainerRight.Panel2.Controls.Add(Me.gbSettings)
         Me.scContainerRight.Panel2.Controls.Add(Me.lblThemeName)
         Me.scContainerRight.Panel2.Padding = New System.Windows.Forms.Padding(5)
-        Me.scContainerRight.Size = New System.Drawing.Size(281, 681)
-        Me.scContainerRight.SplitterDistance = 282
+        Me.scContainerRight.Size = New System.Drawing.Size(411, 639)
+        Me.scContainerRight.SplitterDistance = 184
         Me.scContainerRight.TabIndex = 0
-        '
-        'pbThemeSnapshot
-        '
-        Me.pbThemeSnapshot.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pbThemeSnapshot.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.pbThemeSnapshot.Image = Global.ResMon.My.Resources.Resources.Blank
-        Me.pbThemeSnapshot.ImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.pbThemeSnapshot.Location = New System.Drawing.Point(0, 0)
-        Me.pbThemeSnapshot.Name = "pbThemeSnapshot"
-        Me.pbThemeSnapshot.Size = New System.Drawing.Size(281, 282)
-        Me.pbThemeSnapshot.TabIndex = 3
-        Me.pbThemeSnapshot.Text = "FillPicturebox1"
         '
         'scButtons
         '
         Me.scButtons.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.scButtons.IsSplitterFixed = True
-        Me.scButtons.Location = New System.Drawing.Point(8, 360)
+        Me.scButtons.Location = New System.Drawing.Point(8, 416)
         Me.scButtons.Name = "scButtons"
         '
         'scButtons.Panel1
@@ -280,53 +223,75 @@ Partial Class frmMain
         'scButtons.Panel2
         '
         Me.scButtons.Panel2.Controls.Add(Me.btnDelete)
-        Me.scButtons.Size = New System.Drawing.Size(265, 27)
-        Me.scButtons.SplitterDistance = 130
+        Me.scButtons.Size = New System.Drawing.Size(395, 27)
+        Me.scButtons.SplitterDistance = 193
         Me.scButtons.TabIndex = 4
         '
         'btnApply
         '
-        Me.btnApply.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.btnApply.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnApply.BackColor = System.Drawing.SystemColors.Control
+        Me.btnApply.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnApply.Depth = 0
         Me.btnApply.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnApply.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.btnApply.ForeColor = System.Drawing.Color.White
+        Me.btnApply.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnApply.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnApply.HighEmphasis = True
+        Me.btnApply.Icon = Nothing
         Me.btnApply.Location = New System.Drawing.Point(0, 0)
+        Me.btnApply.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnApply.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnApply.Name = "btnApply"
-        Me.btnApply.Size = New System.Drawing.Size(130, 27)
+        Me.btnApply.Size = New System.Drawing.Size(193, 27)
         Me.btnApply.TabIndex = 1
         Me.btnApply.Text = "Apply"
+        Me.btnApply.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnApply.UseAccentColor = False
+        Me.btnApply.UseVisualStyleBackColor = False
         '
         'btnDelete
         '
-        Me.btnDelete.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.btnDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnDelete.BackColor = System.Drawing.SystemColors.Control
+        Me.btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnDelete.Depth = 0
         Me.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnDelete.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.btnDelete.ForeColor = System.Drawing.Color.White
+        Me.btnDelete.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnDelete.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnDelete.HighEmphasis = True
+        Me.btnDelete.Icon = Nothing
         Me.btnDelete.Location = New System.Drawing.Point(0, 0)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnDelete.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(131, 27)
+        Me.btnDelete.Size = New System.Drawing.Size(198, 27)
         Me.btnDelete.TabIndex = 11
         Me.btnDelete.Text = "Delete"
+        Me.btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnDelete.UseAccentColor = False
+        Me.btnDelete.UseVisualStyleBackColor = False
         '
         'flpTags
         '
         Me.flpTags.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.flpTags.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.flpTags.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.flpTags.Location = New System.Drawing.Point(8, 64)
         Me.flpTags.Name = "flpTags"
-        Me.flpTags.Size = New System.Drawing.Size(265, 41)
+        Me.flpTags.Size = New System.Drawing.Size(395, 41)
         Me.flpTags.TabIndex = 10
         '
         'lblAuthor
         '
         Me.lblAuthor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblAuthor.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.lblAuthor.Depth = 0
+        Me.lblAuthor.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblAuthor.ForeColor = System.Drawing.Color.White
-        Me.lblAuthor.Location = New System.Drawing.Point(5, 35)
+        Me.lblAuthor.Location = New System.Drawing.Point(8, 35)
+        Me.lblAuthor.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblAuthor.Name = "lblAuthor"
-        Me.lblAuthor.Size = New System.Drawing.Size(265, 26)
+        Me.lblAuthor.Size = New System.Drawing.Size(395, 26)
         Me.lblAuthor.TabIndex = 9
         Me.lblAuthor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -335,109 +300,176 @@ Partial Class frmMain
         Me.gbSettings.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gbSettings.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.gbSettings.BackColor = System.Drawing.Color.Transparent
         Me.gbSettings.Controls.Add(Me.flpUserDefine)
-        Me.gbSettings.DrawSeperator = True
-        Me.gbSettings.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.gbSettings.ForeColor = System.Drawing.Color.White
+        Me.gbSettings.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.gbSettings.ForeColor = System.Drawing.SystemColors.ControlText
         Me.gbSettings.Location = New System.Drawing.Point(8, 111)
         Me.gbSettings.Name = "gbSettings"
         Me.gbSettings.Padding = New System.Windows.Forms.Padding(5)
-        Me.gbSettings.Size = New System.Drawing.Size(265, 243)
-        Me.gbSettings.SubTitle = ""
+        Me.gbSettings.Size = New System.Drawing.Size(395, 299)
         Me.gbSettings.TabIndex = 0
         Me.gbSettings.TabStop = False
         Me.gbSettings.Text = "User Define Options"
-        Me.gbSettings.Title = "User Define Options"
-        '
-        'flpUserDefine
-        '
-        Me.flpUserDefine.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.flpUserDefine.AutoScroll = True
-        Me.flpUserDefine.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.flpUserDefine.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.flpUserDefine.Location = New System.Drawing.Point(5, 32)
-        Me.flpUserDefine.Margin = New System.Windows.Forms.Padding(0)
-        Me.flpUserDefine.Name = "flpUserDefine"
-        Me.flpUserDefine.Size = New System.Drawing.Size(255, 206)
-        Me.flpUserDefine.TabIndex = 11
         '
         'lblThemeName
         '
         Me.lblThemeName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblThemeName.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.lblThemeName.Depth = 0
+        Me.lblThemeName.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblThemeName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(205, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.lblThemeName.Location = New System.Drawing.Point(8, 5)
+        Me.lblThemeName.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblThemeName.Name = "lblThemeName"
-        Me.lblThemeName.Size = New System.Drawing.Size(265, 30)
+        Me.lblThemeName.Size = New System.Drawing.Size(395, 30)
         Me.lblThemeName.TabIndex = 3
         Me.lblThemeName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btnOK
         '
         Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnOK.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.btnOK.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.btnOK.ForeColor = System.Drawing.Color.White
-        Me.btnOK.Location = New System.Drawing.Point(1142, 729)
+        Me.btnOK.AutoSize = False
+        Me.btnOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnOK.BackColor = System.Drawing.SystemColors.Control
+        Me.btnOK.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnOK.Depth = 0
+        Me.btnOK.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnOK.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnOK.HighEmphasis = True
+        Me.btnOK.Icon = Nothing
+        Me.btnOK.Location = New System.Drawing.Point(1105, 723)
+        Me.btnOK.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnOK.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnOK.Name = "btnOK"
-        Me.btnOK.Size = New System.Drawing.Size(100, 27)
+        Me.btnOK.Size = New System.Drawing.Size(120, 36)
         Me.btnOK.TabIndex = 3
         Me.btnOK.Text = "OK"
+        Me.btnOK.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnOK.UseAccentColor = True
+        Me.btnOK.UseVisualStyleBackColor = False
         '
         'btnCancel
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.btnCancel.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.btnCancel.ForeColor = System.Drawing.Color.White
-        Me.btnCancel.Location = New System.Drawing.Point(1248, 729)
+        Me.btnCancel.AutoSize = False
+        Me.btnCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnCancel.BackColor = System.Drawing.SystemColors.Control
+        Me.btnCancel.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnCancel.Depth = 0
+        Me.btnCancel.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnCancel.HighEmphasis = True
+        Me.btnCancel.Icon = Nothing
+        Me.btnCancel.Location = New System.Drawing.Point(1233, 723)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnCancel.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(100, 27)
+        Me.btnCancel.Size = New System.Drawing.Size(120, 36)
         Me.btnCancel.TabIndex = 4
         Me.btnCancel.Text = "Cancel"
+        Me.btnCancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnCancel.UseAccentColor = False
+        Me.btnCancel.UseVisualStyleBackColor = False
         '
         'btnSettings
         '
         Me.btnSettings.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnSettings.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.btnSettings.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.btnSettings.ForeColor = System.Drawing.Color.White
-        Me.btnSettings.Location = New System.Drawing.Point(171, 729)
+        Me.btnSettings.AutoSize = False
+        Me.btnSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnSettings.BackColor = System.Drawing.SystemColors.Control
+        Me.btnSettings.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnSettings.Depth = 0
+        Me.btnSettings.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnSettings.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnSettings.HighEmphasis = True
+        Me.btnSettings.Icon = Nothing
+        Me.btnSettings.Location = New System.Drawing.Point(164, 723)
+        Me.btnSettings.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnSettings.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnSettings.Name = "btnSettings"
-        Me.btnSettings.Size = New System.Drawing.Size(100, 27)
+        Me.btnSettings.Size = New System.Drawing.Size(120, 36)
         Me.btnSettings.TabIndex = 2
         Me.btnSettings.Text = "Settings"
+        Me.btnSettings.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnSettings.UseAccentColor = False
+        Me.btnSettings.UseVisualStyleBackColor = False
         '
         'btnThemeEditor
         '
         Me.btnThemeEditor.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnThemeEditor.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.btnThemeEditor.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.btnThemeEditor.ForeColor = System.Drawing.Color.White
-        Me.btnThemeEditor.Location = New System.Drawing.Point(15, 729)
+        Me.btnThemeEditor.AutoSize = False
+        Me.btnThemeEditor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnThemeEditor.BackColor = System.Drawing.SystemColors.Control
+        Me.btnThemeEditor.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnThemeEditor.Depth = 0
+        Me.btnThemeEditor.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnThemeEditor.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnThemeEditor.HighEmphasis = True
+        Me.btnThemeEditor.Icon = Nothing
+        Me.btnThemeEditor.Location = New System.Drawing.Point(6, 723)
+        Me.btnThemeEditor.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnThemeEditor.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnThemeEditor.Name = "btnThemeEditor"
-        Me.btnThemeEditor.Size = New System.Drawing.Size(150, 27)
+        Me.btnThemeEditor.Size = New System.Drawing.Size(150, 36)
         Me.btnThemeEditor.TabIndex = 1
         Me.btnThemeEditor.Text = "Theme Editor"
+        Me.btnThemeEditor.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnThemeEditor.UseAccentColor = False
+        Me.btnThemeEditor.UseVisualStyleBackColor = False
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.flpThemes)
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox1.Location = New System.Drawing.Point(0, 50)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(933, 589)
+        Me.GroupBox1.TabIndex = 5
+        Me.GroupBox1.TabStop = False
+        '
+        'pbThemeSnapshot
+        '
+        Me.pbThemeSnapshot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pbThemeSnapshot.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.pbThemeSnapshot.Image = Global.ResMon.My.Resources.Resources.Blank
+        Me.pbThemeSnapshot.ImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.pbThemeSnapshot.Location = New System.Drawing.Point(0, 0)
+        Me.pbThemeSnapshot.Name = "pbThemeSnapshot"
+        Me.pbThemeSnapshot.Size = New System.Drawing.Size(411, 184)
+        Me.pbThemeSnapshot.TabIndex = 3
+        Me.pbThemeSnapshot.Text = "FillPicturebox1"
+        '
+        'flpUserDefine
+        '
+        Me.flpUserDefine.AutoScroll = True
+        Me.flpUserDefine.BackColor = System.Drawing.Color.Transparent
+        Me.flpUserDefine.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.flpUserDefine.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpUserDefine.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.flpUserDefine.Location = New System.Drawing.Point(5, 21)
+        Me.flpUserDefine.Margin = New System.Windows.Forms.Padding(0)
+        Me.flpUserDefine.Name = "flpUserDefine"
+        Me.flpUserDefine.Size = New System.Drawing.Size(385, 273)
+        Me.flpUserDefine.TabIndex = 11
         '
         'frmMain
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(1360, 768)
-        Me.Controls.Add(Me.nsTheme)
-        Me.DoubleBuffered = True
+        Me.Controls.Add(Me.scContainer)
+        Me.Controls.Add(Me.btnSettings)
+        Me.Controls.Add(Me.btnOK)
+        Me.Controls.Add(Me.btnThemeEditor)
+        Me.Controls.Add(Me.btnCancel)
         Me.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_48
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMain"
+        Me.Padding = New System.Windows.Forms.Padding(3, 72, 3, 3)
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "BigBro Monitor"
-        Me.nsTheme.ResumeLayout(False)
         Me.scContainer.Panel1.ResumeLayout(False)
         Me.scContainer.Panel2.ResumeLayout(False)
         CType(Me.scContainer, System.ComponentModel.ISupportInitialize).EndInit()
@@ -448,36 +480,36 @@ Partial Class frmMain
         CType(Me.scContainerRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.scContainerRight.ResumeLayout(False)
         Me.scButtons.Panel1.ResumeLayout(False)
+        Me.scButtons.Panel1.PerformLayout()
         Me.scButtons.Panel2.ResumeLayout(False)
+        Me.scButtons.Panel2.PerformLayout()
         CType(Me.scButtons, System.ComponentModel.ISupportInitialize).EndInit()
         Me.scButtons.ResumeLayout(False)
         Me.gbSettings.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents niTray As NotifyIcon
-    Friend WithEvents btnThemeEditor As NSButton
+    Friend WithEvents btnThemeEditor As MaterialButton
+    Friend WithEvents btnSettings As MaterialButton
+    Friend WithEvents btnCancel As MaterialButton
+    Friend WithEvents btnOK As MaterialButton
     Friend WithEvents scContainer As SplitContainer
-    Friend WithEvents btnResetFilter As NSButton
-    Friend WithEvents btnSearch As NSButton
-    Friend WithEvents txtSearch As NSTextBox
     Friend WithEvents flpThemes As FlowLayoutPanel
+    Friend WithEvents pToolbox As Panel
+    Friend WithEvents txtSearch As MaterialTextBox
+    Friend WithEvents btnSearch As MaterialButton
+    Friend WithEvents btnResetFilter As MaterialButton
     Friend WithEvents scContainerRight As SplitContainer
     Friend WithEvents pbThemeSnapshot As FillPicturebox
-    Friend WithEvents btnDelete As NSButton
-    Friend WithEvents flpTags As FlowLayoutPanel
-    Friend WithEvents lblAuthor As Label
-    Friend WithEvents btnApply As NSButton
-    Friend WithEvents gbSettings As NSGroupBox
-    Friend WithEvents lblThemeName As Label
-    Friend WithEvents btnCancel As NSButton
-    Friend WithEvents btnSettings As NSButton
-    Friend WithEvents btnOK As NSButton
-    Friend WithEvents nsTheme As NSTheme
-    Friend WithEvents cbMin As NSControlButton
-    Friend WithEvents cbMax As NSControlButton
-    Friend WithEvents cbClose As NSControlButton
-    Friend WithEvents pToolbox As Panel
-    Friend WithEvents flpUserDefine As DBFlowLayoutPanel
     Friend WithEvents scButtons As SplitContainer
+    Friend WithEvents btnApply As MaterialButton
+    Friend WithEvents btnDelete As MaterialButton
+    Friend WithEvents flpTags As FlowLayoutPanel
+    Friend WithEvents lblAuthor As MaterialLabel
+    Friend WithEvents gbSettings As GroupBox
+    Friend WithEvents flpUserDefine As DBFlowLayoutPanel
+    Friend WithEvents lblThemeName As MaterialLabel
+    Friend WithEvents GroupBox1 As GroupBox
 End Class

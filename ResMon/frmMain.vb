@@ -1,18 +1,33 @@
 ﻿Imports System.IO
+Imports System.Runtime.InteropServices
+Imports MaterialSkin
 Imports OpenHardwareMonitor.Hardware
+Imports ResMon.WinApi
 
 Public Class frmMain
 
     Private silent As Boolean = False
 
-    Protected Overrides Sub onresizeend(e As EventArgs)
-        MyBase.OnResizeEnd(e)
+    Public Sub New()
 
-        nsTheme.Invalidate()
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+        Dim msm = MaterialSkinManager.Instance
+        msm.AddFormToManage(Me)
+        msm.Theme = MaterialSkinManager.Themes.DARK
+        msm.ColorScheme = New ColorScheme(Primary.Yellow800, Primary.Yellow900, Primary.Yellow500, Accent.Yellow200, TextShade.BLACK)
+
+        Text = $"BigBro Monitor v{Application.ProductVersion} Build {GetBuildDateTime.ToShortDateString} {If(IsAdministrator(), "(Administrator)", "")}"
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DoubleBuffered = True
+        Dim msm = MaterialSkinManager.Instance
+        msm.AddFormToManage(Me)
+        msm.Theme = MaterialSkinManager.Themes.DARK
+        msm.ColorScheme = New ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE)
 
         Dim activationTuple = CheckActivation(HWID, MachineName)
         IsActivated = activationTuple.Item1
@@ -51,12 +66,11 @@ Public Class frmMain
         LoadPrivateFonts()
         PopulateFlp()
         Text = $"BigBro Monitor v{Application.ProductVersion} Build {GetBuildDateTime.ToShortDateString} {If(IsAdministrator(), "(Administrator)", "")}"
-        nsTheme.Text = Text
 
         'Translate
         btnResetFilter.Text = ProgramLanguage.btnResetFilter
         btnSearch.Text = ProgramLanguage.btnSearch
-        gbSettings.Title = ProgramLanguage.gbSettings
+        gbSettings.Text = ProgramLanguage.gbSettings
         btnApply.Text = ProgramLanguage.btnApply
         btnDelete.Text = ProgramLanguage.btnDelete
         btnThemeEditor.Text = ProgramLanguage.btnThemeEditor
