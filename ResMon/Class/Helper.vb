@@ -9,6 +9,7 @@ Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
 Imports System.Security.Cryptography
 Imports System.Security.Principal
+Imports MaterialSkin
 Imports Newtonsoft.Json.Linq
 
 Module Helper
@@ -28,6 +29,7 @@ Module Helper
     Public HWID As String = New HardwareID().Generate
     Public IsActivated As Boolean = False
     Public RemainingDays As Integer = 0
+    Public SkinManager As MaterialSkinManager = MaterialSkinManager.Instance
 
     Public snapshots As String
 

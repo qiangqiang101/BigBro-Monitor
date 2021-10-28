@@ -89,7 +89,7 @@ Partial Class NSUserDefineItem
         'NSUserDefineItem
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.BackColor = System.Drawing.SystemColors.Control
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.Controls.Add(Me.btnBrowse)
         Me.Controls.Add(Me.txtBox)
         Me.Controls.Add(Me.lblLabel)

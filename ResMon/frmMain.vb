@@ -15,10 +15,9 @@ Public Class frmMain
 
         ' Add any initialization after the InitializeComponent() call.
 
-        Dim msm = MaterialSkinManager.Instance
-        msm.AddFormToManage(Me)
-        msm.Theme = MaterialSkinManager.Themes.DARK
-        msm.ColorScheme = New ColorScheme(Primary.Yellow800, Primary.Yellow900, Primary.Yellow500, Accent.Yellow200, TextShade.BLACK)
+        SkinManager.AddFormToManage(Me)
+        SkinManager.Theme = MaterialSkinManager.Themes.DARK
+        SkinManager.ColorScheme = New ColorScheme(Primary.Yellow800, Primary.Yellow900, Primary.Yellow500, Accent.Yellow200, TextShade.BLACK)
 
         Text = $"BigBro Monitor v{Application.ProductVersion} Build {GetBuildDateTime.ToShortDateString} {If(IsAdministrator(), "(Administrator)", "")}"
     End Sub

@@ -14,10 +14,7 @@ Public Class frmSetting
 
         ' Add any initialization after the InitializeComponent() call.
 
-        Dim msm = MaterialSkinManager.Instance
-        msm.AddFormToManage(Me)
-        msm.Theme = MaterialSkinManager.Themes.DARK
-        msm.ColorScheme = New ColorScheme(Primary.Yellow800, Primary.Yellow900, Primary.Yellow500, Accent.Yellow200, TextShade.BLACK)
+        SkinManager.AddFormToManage(Me)
         Text = ProgramLanguage.SettingTitle
     End Sub
 

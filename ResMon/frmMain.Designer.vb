@@ -28,30 +28,31 @@ Partial Class frmMain
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.niTray = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.scContainer = New System.Windows.Forms.SplitContainer()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.flpThemes = New System.Windows.Forms.FlowLayoutPanel()
         Me.pToolbox = New System.Windows.Forms.Panel()
         Me.txtSearch = New MaterialSkin.Controls.MaterialTextBox()
         Me.btnSearch = New MaterialSkin.Controls.MaterialButton()
         Me.btnResetFilter = New MaterialSkin.Controls.MaterialButton()
         Me.scContainerRight = New System.Windows.Forms.SplitContainer()
+        Me.pbThemeSnapshot = New ResMon.FillPicturebox()
         Me.scButtons = New System.Windows.Forms.SplitContainer()
         Me.btnApply = New MaterialSkin.Controls.MaterialButton()
         Me.btnDelete = New MaterialSkin.Controls.MaterialButton()
         Me.flpTags = New System.Windows.Forms.FlowLayoutPanel()
         Me.lblAuthor = New MaterialSkin.Controls.MaterialLabel()
         Me.gbSettings = New System.Windows.Forms.GroupBox()
+        Me.flpUserDefine = New ResMon.DBFlowLayoutPanel()
         Me.lblThemeName = New MaterialSkin.Controls.MaterialLabel()
         Me.btnOK = New MaterialSkin.Controls.MaterialButton()
         Me.btnCancel = New MaterialSkin.Controls.MaterialButton()
         Me.btnSettings = New MaterialSkin.Controls.MaterialButton()
         Me.btnThemeEditor = New MaterialSkin.Controls.MaterialButton()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.pbThemeSnapshot = New ResMon.FillPicturebox()
-        Me.flpUserDefine = New ResMon.DBFlowLayoutPanel()
         CType(Me.scContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.scContainer.Panel1.SuspendLayout()
         Me.scContainer.Panel2.SuspendLayout()
         Me.scContainer.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.pToolbox.SuspendLayout()
         CType(Me.scContainerRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.scContainerRight.Panel1.SuspendLayout()
@@ -62,7 +63,6 @@ Partial Class frmMain
         Me.scButtons.Panel2.SuspendLayout()
         Me.scButtons.SuspendLayout()
         Me.gbSettings.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'niTray
@@ -98,6 +98,16 @@ Partial Class frmMain
         Me.scContainer.SplitterDistance = 933
         Me.scContainer.TabIndex = 10
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.flpThemes)
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox1.Location = New System.Drawing.Point(0, 50)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(933, 589)
+        Me.GroupBox1.TabIndex = 5
+        Me.GroupBox1.TabStop = False
+        '
         'flpThemes
         '
         Me.flpThemes.AutoScroll = True
@@ -126,7 +136,7 @@ Partial Class frmMain
         Me.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtSearch.Depth = 0
-        Me.txtSearch.Font = New System.Drawing.Font("Segoe UI", 16.0!)
+        Me.txtSearch.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.txtSearch.ForeColor = System.Drawing.SystemColors.ControlText
         Me.txtSearch.LeadingIcon = Nothing
         Me.txtSearch.Location = New System.Drawing.Point(3, 3)
@@ -205,15 +215,27 @@ Partial Class frmMain
         Me.scContainerRight.Panel2.Controls.Add(Me.lblThemeName)
         Me.scContainerRight.Panel2.Padding = New System.Windows.Forms.Padding(5)
         Me.scContainerRight.Size = New System.Drawing.Size(411, 639)
-        Me.scContainerRight.SplitterDistance = 184
+        Me.scContainerRight.SplitterDistance = 356
         Me.scContainerRight.TabIndex = 0
+        '
+        'pbThemeSnapshot
+        '
+        Me.pbThemeSnapshot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pbThemeSnapshot.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.pbThemeSnapshot.Image = Global.ResMon.My.Resources.Resources.Blank
+        Me.pbThemeSnapshot.ImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.pbThemeSnapshot.Location = New System.Drawing.Point(0, 0)
+        Me.pbThemeSnapshot.Name = "pbThemeSnapshot"
+        Me.pbThemeSnapshot.Size = New System.Drawing.Size(411, 356)
+        Me.pbThemeSnapshot.TabIndex = 3
+        Me.pbThemeSnapshot.Text = "FillPicturebox1"
         '
         'scButtons
         '
         Me.scButtons.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.scButtons.IsSplitterFixed = True
-        Me.scButtons.Location = New System.Drawing.Point(8, 416)
+        Me.scButtons.Location = New System.Drawing.Point(8, 244)
         Me.scButtons.Name = "scButtons"
         '
         'scButtons.Panel1
@@ -224,7 +246,7 @@ Partial Class frmMain
         '
         Me.scButtons.Panel2.Controls.Add(Me.btnDelete)
         Me.scButtons.Size = New System.Drawing.Size(395, 27)
-        Me.scButtons.SplitterDistance = 193
+        Me.scButtons.SplitterDistance = 192
         Me.scButtons.TabIndex = 4
         '
         'btnApply
@@ -242,7 +264,7 @@ Partial Class frmMain
         Me.btnApply.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnApply.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnApply.Name = "btnApply"
-        Me.btnApply.Size = New System.Drawing.Size(193, 27)
+        Me.btnApply.Size = New System.Drawing.Size(192, 27)
         Me.btnApply.TabIndex = 1
         Me.btnApply.Text = "Apply"
         Me.btnApply.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
@@ -264,7 +286,7 @@ Partial Class frmMain
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnDelete.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(198, 27)
+        Me.btnDelete.Size = New System.Drawing.Size(199, 27)
         Me.btnDelete.TabIndex = 11
         Me.btnDelete.Text = "Delete"
         Me.btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
@@ -307,10 +329,23 @@ Partial Class frmMain
         Me.gbSettings.Location = New System.Drawing.Point(8, 111)
         Me.gbSettings.Name = "gbSettings"
         Me.gbSettings.Padding = New System.Windows.Forms.Padding(5)
-        Me.gbSettings.Size = New System.Drawing.Size(395, 299)
+        Me.gbSettings.Size = New System.Drawing.Size(395, 127)
         Me.gbSettings.TabIndex = 0
         Me.gbSettings.TabStop = False
         Me.gbSettings.Text = "User Define Options"
+        '
+        'flpUserDefine
+        '
+        Me.flpUserDefine.AutoScroll = True
+        Me.flpUserDefine.BackColor = System.Drawing.Color.Transparent
+        Me.flpUserDefine.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.flpUserDefine.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpUserDefine.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.flpUserDefine.Location = New System.Drawing.Point(5, 21)
+        Me.flpUserDefine.Margin = New System.Windows.Forms.Padding(0)
+        Me.flpUserDefine.Name = "flpUserDefine"
+        Me.flpUserDefine.Size = New System.Drawing.Size(385, 101)
+        Me.flpUserDefine.TabIndex = 11
         '
         'lblThemeName
         '
@@ -418,41 +453,6 @@ Partial Class frmMain
         Me.btnThemeEditor.UseAccentColor = False
         Me.btnThemeEditor.UseVisualStyleBackColor = False
         '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.flpThemes)
-        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(0, 50)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(933, 589)
-        Me.GroupBox1.TabIndex = 5
-        Me.GroupBox1.TabStop = False
-        '
-        'pbThemeSnapshot
-        '
-        Me.pbThemeSnapshot.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pbThemeSnapshot.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.pbThemeSnapshot.Image = Global.ResMon.My.Resources.Resources.Blank
-        Me.pbThemeSnapshot.ImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.pbThemeSnapshot.Location = New System.Drawing.Point(0, 0)
-        Me.pbThemeSnapshot.Name = "pbThemeSnapshot"
-        Me.pbThemeSnapshot.Size = New System.Drawing.Size(411, 184)
-        Me.pbThemeSnapshot.TabIndex = 3
-        Me.pbThemeSnapshot.Text = "FillPicturebox1"
-        '
-        'flpUserDefine
-        '
-        Me.flpUserDefine.AutoScroll = True
-        Me.flpUserDefine.BackColor = System.Drawing.Color.Transparent
-        Me.flpUserDefine.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.flpUserDefine.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.flpUserDefine.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.flpUserDefine.Location = New System.Drawing.Point(5, 21)
-        Me.flpUserDefine.Margin = New System.Windows.Forms.Padding(0)
-        Me.flpUserDefine.Name = "flpUserDefine"
-        Me.flpUserDefine.Size = New System.Drawing.Size(385, 273)
-        Me.flpUserDefine.TabIndex = 11
-        '
         'frmMain
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -474,6 +474,7 @@ Partial Class frmMain
         Me.scContainer.Panel2.ResumeLayout(False)
         CType(Me.scContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.scContainer.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
         Me.pToolbox.ResumeLayout(False)
         Me.scContainerRight.Panel1.ResumeLayout(False)
         Me.scContainerRight.Panel2.ResumeLayout(False)
@@ -486,7 +487,6 @@ Partial Class frmMain
         CType(Me.scButtons, System.ComponentModel.ISupportInitialize).EndInit()
         Me.scButtons.ResumeLayout(False)
         Me.gbSettings.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

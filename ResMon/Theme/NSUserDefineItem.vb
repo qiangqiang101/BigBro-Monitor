@@ -1,5 +1,14 @@
 ﻿Public Class NSUserDefineItem
 
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
+
     Private _ControlType As eControlType = eControlType.TextLabel
     Public Property ControlType As eControlType
         Get

@@ -9,10 +9,7 @@ Public Class frmAbout
 
         ' Add any initialization after the InitializeComponent() call.
 
-        Dim msm = MaterialSkinManager.Instance
-        msm.AddFormToManage(Me)
-        msm.Theme = MaterialSkinManager.Themes.DARK
-        msm.ColorScheme = New ColorScheme(Primary.Yellow800, Primary.Yellow900, Primary.Yellow500, Accent.Yellow200, TextShade.BLACK)
+        SkinManager.AddFormToManage(Me)
     End Sub
 
     Private Sub frmAbout_Load(sender As Object, e As EventArgs) Handles Me.Load
