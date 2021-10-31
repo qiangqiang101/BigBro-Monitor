@@ -250,61 +250,7 @@ Simple Performance Chart
 Weather API
 © Malaysian Meteorological Department
 
-Net Seal Theme
-© Nimoru Software
-
-ThemeContainer154
-© aeonhack</value>
-  </data>
-  <data name="dial0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial10" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial12" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial13" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial14" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial15" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial15.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial7" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial8" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dial9" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dial9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+MaterialSkin 2 for .NET WinForms
+© leocb &amp; orapps44</value>
   </data>
 </root>

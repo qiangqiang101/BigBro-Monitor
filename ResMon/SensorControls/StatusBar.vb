@@ -319,17 +319,13 @@ Public Class StatusBar
 
         If _useTexture Then
             Using tbrush As New TextureBrush(tempTexture, Drawing2D.WrapMode.Tile)
-                If Not _val = 0 Then
-                    formGraphics.FillRectangle(tbrush, New RectangleF(0, 0, _val / _max * Width - 1, Height - 1))
-                    formGraphics.DrawString(Text, Font, txtbrush, textPoint)
-                End If
+                If Not _val = 0 Then formGraphics.FillRectangle(tbrush, New RectangleF(0, 0, _val / _max * Width - 1, Height - 1))
+                formGraphics.DrawString(Text, Font, txtbrush, textPoint)
             End Using
         Else
             Using sbrush As New SolidBrush(_frontcolor)
-                If Not _val = 0 Then
-                    formGraphics.FillRectangle(sbrush, New RectangleF(0, 0, _val / _max * Width - 1, Height - 1))
-                    formGraphics.DrawString(Text, Font, txtbrush, textPoint)
-                End If
+                If Not _val = 0 Then formGraphics.FillRectangle(sbrush, New RectangleF(0, 0, _val / _max * Width - 1, Height - 1))
+                formGraphics.DrawString(Text, Font, txtbrush, textPoint)
             End Using
         End If
 

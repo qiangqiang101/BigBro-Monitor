@@ -143,7 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="Class\Dwm.vb" />
     <Compile Include="Class\FancyStringEditor.vb" />
     <Compile Include="Class\HardwareID.vb" />
     <Compile Include="Class\HttpServer.vb" />
@@ -153,7 +152,6 @@
     <Compile Include="Class\RoundRectCorners.vb" />
     <Compile Include="Class\UserPresetData.vb" />
     <Compile Include="Class\WeatherInfo.vb" />
-    <Compile Include="Class\WinApi.vb" />
     <Compile Include="frmAbout.Designer.vb">
       <DependentUpon>frmAbout.vb</DependentUpon>
     </Compile>
@@ -345,23 +343,6 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="monitor.ico" />
-    <None Include="Resources\dial15.png" />
-    <None Include="Resources\dial3.png" />
-    <None Include="Resources\dial2.png" />
-    <None Include="Resources\dial1.png" />
-    <None Include="Resources\dial0.png" />
-    <None Include="Resources\dial16.png" />
-    <None Include="Resources\dial14.png" />
-    <None Include="Resources\dial13.png" />
-    <None Include="Resources\dial12.png" />
-    <None Include="Resources\dial11.png" />
-    <None Include="Resources\dial10.png" />
-    <None Include="Resources\dial9.png" />
-    <None Include="Resources\dial8.png" />
-    <None Include="Resources\dial7.png" />
-    <None Include="Resources\dial6.png" />
-    <None Include="Resources\dial5.png" />
-    <None Include="Resources\dial4.png" />
     <None Include="Resources\kk-wind-rain_512.png" />
     <None Include="Resources\kk-wind-moon_512.png" />
     <None Include="Resources\kk-wind_512.png" />
