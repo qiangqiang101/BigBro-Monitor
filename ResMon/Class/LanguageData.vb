@@ -45,6 +45,7 @@ Public Structure LanguageData
     Public btnDelete As String
     Public btnActivate As String
     Public btnSave As String
+    Public lblCPUFan As String
 
     Public Sub New(filename As String)
         Me.FileName = filename

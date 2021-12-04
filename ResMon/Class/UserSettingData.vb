@@ -26,6 +26,7 @@ Public Structure UserSettingData
     Public LicenseKey As String
     Public HWID As String
     Public Language As String
+    Public CpuFan As Integer
 
     Public Sub New(filename As String)
         Me.FileName = filename

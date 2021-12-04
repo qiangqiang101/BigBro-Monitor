@@ -527,6 +527,8 @@ Public Class PlotChart
                 Else
                     AddValue(myParentForm.moboSensor.RawFanSpeed(CInt(_sensorParam)), " RPM")
                 End If
+            Case eSensorType.CPUFan
+                AddValue(myParentForm.moboSensor.RawFanSpeed(UserSettings.CpuFan + 1), " RPM")
         End Select
     End Sub
 

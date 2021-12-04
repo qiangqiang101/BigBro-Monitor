@@ -46,6 +46,8 @@ Partial Class frmSetting
         Me.lblNetworkAdapter = New MaterialSkin.Controls.MaterialLabel()
         Me.gbWeather = New System.Windows.Forms.GroupBox()
         Me.gbLicense = New System.Windows.Forms.GroupBox()
+        Me.cmbCPUFan = New MaterialSkin.Controls.MaterialComboBox()
+        Me.lblCPUFan = New MaterialSkin.Controls.MaterialLabel()
         Me.gbWeather.SuspendLayout()
         Me.gbLicense.SuspendLayout()
         Me.SuspendLayout()
@@ -57,14 +59,14 @@ Partial Class frmSetting
         Me.cbTopMost.Depth = 0
         Me.cbTopMost.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cbTopMost.ForeColor = System.Drawing.Color.White
-        Me.cbTopMost.Location = New System.Drawing.Point(221, 353)
+        Me.cbTopMost.Location = New System.Drawing.Point(221, 408)
         Me.cbTopMost.Margin = New System.Windows.Forms.Padding(0)
         Me.cbTopMost.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.cbTopMost.MouseState = MaterialSkin.MouseState.HOVER
         Me.cbTopMost.Name = "cbTopMost"
         Me.cbTopMost.Ripple = True
         Me.cbTopMost.Size = New System.Drawing.Size(175, 37)
-        Me.cbTopMost.TabIndex = 5
+        Me.cbTopMost.TabIndex = 6
         Me.cbTopMost.Text = "Monitor Stay on top"
         Me.cbTopMost.UseVisualStyleBackColor = False
         '
@@ -84,13 +86,13 @@ Partial Class frmSetting
         Me.cmbLanguage.FormattingEnabled = True
         Me.cmbLanguage.IntegralHeight = False
         Me.cmbLanguage.ItemHeight = 43
-        Me.cmbLanguage.Location = New System.Drawing.Point(133, 393)
+        Me.cmbLanguage.Location = New System.Drawing.Point(132, 448)
         Me.cmbLanguage.MaxDropDownItems = 4
         Me.cmbLanguage.MouseState = MaterialSkin.MouseState.OUT
         Me.cmbLanguage.Name = "cmbLanguage"
         Me.cmbLanguage.Size = New System.Drawing.Size(345, 49)
         Me.cmbLanguage.StartIndex = 0
-        Me.cmbLanguage.TabIndex = 6
+        Me.cmbLanguage.TabIndex = 7
         '
         'lblLanguage
         '
@@ -99,7 +101,7 @@ Partial Class frmSetting
         Me.lblLanguage.Depth = 0
         Me.lblLanguage.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblLanguage.ForeColor = System.Drawing.Color.White
-        Me.lblLanguage.Location = New System.Drawing.Point(6, 395)
+        Me.lblLanguage.Location = New System.Drawing.Point(5, 450)
         Me.lblLanguage.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblLanguage.Name = "lblLanguage"
         Me.lblLanguage.Size = New System.Drawing.Size(72, 19)
@@ -183,12 +185,12 @@ Partial Class frmSetting
         Me.btnCredits.ForeColor = System.Drawing.Color.White
         Me.btnCredits.HighEmphasis = True
         Me.btnCredits.Icon = Nothing
-        Me.btnCredits.Location = New System.Drawing.Point(9, 537)
+        Me.btnCredits.Location = New System.Drawing.Point(9, 594)
         Me.btnCredits.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnCredits.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnCredits.Name = "btnCredits"
         Me.btnCredits.Size = New System.Drawing.Size(120, 36)
-        Me.btnCredits.TabIndex = 8
+        Me.btnCredits.TabIndex = 9
         Me.btnCredits.Text = "About"
         Me.btnCredits.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.btnCredits.UseAccentColor = False
@@ -282,12 +284,12 @@ Partial Class frmSetting
         Me.btnSave.ForeColor = System.Drawing.Color.White
         Me.btnSave.HighEmphasis = True
         Me.btnSave.Icon = Nothing
-        Me.btnSave.Location = New System.Drawing.Point(357, 537)
+        Me.btnSave.Location = New System.Drawing.Point(357, 594)
         Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnSave.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(120, 36)
-        Me.btnSave.TabIndex = 9
+        Me.btnSave.TabIndex = 10
         Me.btnSave.Text = "Save"
         Me.btnSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.btnSave.UseAccentColor = True
@@ -300,7 +302,7 @@ Partial Class frmSetting
         Me.lblBroadcastPort.Depth = 0
         Me.lblBroadcastPort.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblBroadcastPort.ForeColor = System.Drawing.Color.White
-        Me.lblBroadcastPort.Location = New System.Drawing.Point(6, 124)
+        Me.lblBroadcastPort.Location = New System.Drawing.Point(6, 179)
         Me.lblBroadcastPort.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblBroadcastPort.Name = "lblBroadcastPort"
         Me.lblBroadcastPort.Size = New System.Drawing.Size(106, 19)
@@ -314,14 +316,14 @@ Partial Class frmSetting
         Me.cbBroadcast.Depth = 0
         Me.cbBroadcast.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cbBroadcast.ForeColor = System.Drawing.Color.White
-        Me.cbBroadcast.Location = New System.Drawing.Point(133, 175)
+        Me.cbBroadcast.Location = New System.Drawing.Point(132, 230)
         Me.cbBroadcast.Margin = New System.Windows.Forms.Padding(0)
         Me.cbBroadcast.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.cbBroadcast.MouseState = MaterialSkin.MouseState.HOVER
         Me.cbBroadcast.Name = "cbBroadcast"
         Me.cbBroadcast.Ripple = True
         Me.cbBroadcast.Size = New System.Drawing.Size(159, 37)
-        Me.cbBroadcast.TabIndex = 2
+        Me.cbBroadcast.TabIndex = 3
         Me.cbBroadcast.Text = "Enable Broadcast"
         Me.cbBroadcast.UseVisualStyleBackColor = False
         '
@@ -336,13 +338,13 @@ Partial Class frmSetting
         Me.txtPort.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.txtPort.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
         Me.txtPort.LeadingIcon = Nothing
-        Me.txtPort.Location = New System.Drawing.Point(133, 122)
+        Me.txtPort.Location = New System.Drawing.Point(133, 177)
         Me.txtPort.MaxLength = 32767
         Me.txtPort.MouseState = MaterialSkin.MouseState.OUT
         Me.txtPort.Multiline = False
         Me.txtPort.Name = "txtPort"
         Me.txtPort.Size = New System.Drawing.Size(345, 50)
-        Me.txtPort.TabIndex = 1
+        Me.txtPort.TabIndex = 2
         Me.txtPort.Text = "8080"
         Me.txtPort.TrailingIcon = Nothing
         '
@@ -353,14 +355,14 @@ Partial Class frmSetting
         Me.cbAuto.Depth = 0
         Me.cbAuto.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cbAuto.ForeColor = System.Drawing.Color.White
-        Me.cbAuto.Location = New System.Drawing.Point(3, 353)
+        Me.cbAuto.Location = New System.Drawing.Point(3, 408)
         Me.cbAuto.Margin = New System.Windows.Forms.Padding(0)
         Me.cbAuto.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.cbAuto.MouseState = MaterialSkin.MouseState.HOVER
         Me.cbAuto.Name = "cbAuto"
         Me.cbAuto.Ripple = True
         Me.cbAuto.Size = New System.Drawing.Size(172, 37)
-        Me.cbAuto.TabIndex = 4
+        Me.cbAuto.TabIndex = 5
         Me.cbAuto.Text = "Start with Windows"
         Me.cbAuto.UseVisualStyleBackColor = False
         '
@@ -408,10 +410,11 @@ Partial Class frmSetting
         Me.gbWeather.Controls.Add(Me.lblState)
         Me.gbWeather.Controls.Add(Me.lblTown)
         Me.gbWeather.Controls.Add(Me.cmbTown)
-        Me.gbWeather.Location = New System.Drawing.Point(6, 215)
+        Me.gbWeather.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.gbWeather.Location = New System.Drawing.Point(6, 270)
         Me.gbWeather.Name = "gbWeather"
         Me.gbWeather.Size = New System.Drawing.Size(472, 135)
-        Me.gbWeather.TabIndex = 3
+        Me.gbWeather.TabIndex = 4
         Me.gbWeather.TabStop = False
         Me.gbWeather.Text = "Weather Forecast Settings"
         '
@@ -421,17 +424,58 @@ Partial Class frmSetting
         Me.gbLicense.Controls.Add(Me.lblLicense)
         Me.gbLicense.Controls.Add(Me.lblKey)
         Me.gbLicense.Controls.Add(Me.lblName)
-        Me.gbLicense.Location = New System.Drawing.Point(6, 448)
+        Me.gbLicense.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.gbLicense.Location = New System.Drawing.Point(6, 503)
         Me.gbLicense.Name = "gbLicense"
         Me.gbLicense.Size = New System.Drawing.Size(472, 85)
-        Me.gbLicense.TabIndex = 7
+        Me.gbLicense.TabIndex = 8
         Me.gbLicense.TabStop = False
         Me.gbLicense.Text = "License"
+        '
+        'cmbCPUFan
+        '
+        Me.cmbCPUFan.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbCPUFan.AutoResize = False
+        Me.cmbCPUFan.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.cmbCPUFan.Depth = 0
+        Me.cmbCPUFan.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+        Me.cmbCPUFan.DropDownHeight = 174
+        Me.cmbCPUFan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCPUFan.DropDownWidth = 121
+        Me.cmbCPUFan.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.cmbCPUFan.ForeColor = System.Drawing.Color.White
+        Me.cmbCPUFan.FormattingEnabled = True
+        Me.cmbCPUFan.IntegralHeight = False
+        Me.cmbCPUFan.ItemHeight = 43
+        Me.cmbCPUFan.Location = New System.Drawing.Point(132, 122)
+        Me.cmbCPUFan.MaxDropDownItems = 4
+        Me.cmbCPUFan.MouseState = MaterialSkin.MouseState.OUT
+        Me.cmbCPUFan.Name = "cmbCPUFan"
+        Me.cmbCPUFan.Size = New System.Drawing.Size(345, 49)
+        Me.cmbCPUFan.StartIndex = 0
+        Me.cmbCPUFan.TabIndex = 1
+        '
+        'lblCPUFan
+        '
+        Me.lblCPUFan.AutoSize = True
+        Me.lblCPUFan.BackColor = System.Drawing.Color.Transparent
+        Me.lblCPUFan.Depth = 0
+        Me.lblCPUFan.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.lblCPUFan.ForeColor = System.Drawing.Color.White
+        Me.lblCPUFan.Location = New System.Drawing.Point(5, 131)
+        Me.lblCPUFan.MouseState = MaterialSkin.MouseState.HOVER
+        Me.lblCPUFan.Name = "lblCPUFan"
+        Me.lblCPUFan.Size = New System.Drawing.Size(90, 19)
+        Me.lblCPUFan.TabIndex = 17
+        Me.lblCPUFan.Text = "CPU Fan No."
         '
         'frmSetting
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(484, 582)
+        Me.ClientSize = New System.Drawing.Size(484, 639)
+        Me.Controls.Add(Me.cmbCPUFan)
+        Me.Controls.Add(Me.lblCPUFan)
         Me.Controls.Add(Me.gbLicense)
         Me.Controls.Add(Me.gbWeather)
         Me.Controls.Add(Me.lblBroadcastPort)
@@ -483,4 +527,6 @@ Partial Class frmSetting
     Friend WithEvents lblLanguage As MaterialLabel
     Friend WithEvents gbWeather As GroupBox
     Friend WithEvents gbLicense As GroupBox
+    Friend WithEvents cmbCPUFan As MaterialComboBox
+    Friend WithEvents lblCPUFan As MaterialLabel
 End Class

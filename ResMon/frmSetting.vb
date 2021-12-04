@@ -1,11 +1,14 @@
 ﻿Imports System.IO
 Imports Echevil
 Imports MaterialSkin
+Imports OpenHardwareMonitor.Hardware
 
 Public Class frmSetting
 
     Private ReadOnly netMonitor As New NetworkMonitor
     Private ReadOnly startupFile As String = $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), Application.ProductName)}.lnk"
+    Private ReadOnly computer As New Computer() With {.MainboardEnabled = True}
+    Private moboSensor As New MainboardSensor(computer)
 
     Public Sub New()
 
@@ -28,6 +31,31 @@ Public Class frmSetting
             If Not cmbNetwork.Items.Contains(adapter.Name) Then cmbNetwork.Items.Add(adapter.Name)
         Next
 
+        Try
+            computer.Open()
+            For Each hardware In computer.Hardware
+                If hardware.HardwareType = HardwareType.Mainboard Then
+                    hardware.Update()
+                    hardware.SubHardware.FirstOrDefault.Update()
+
+                    For Each sensor In hardware.SubHardware.FirstOrDefault.Sensors
+                        If sensor.SensorType = SensorType.Fan Then
+                            moboSensor.Fans.Add(sensor)
+                        End If
+                    Next
+                End If
+            Next
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        End Try
+        Try
+            For Each fan In moboSensor.Fans.Values
+                cmbCPUFan.Items.Add(fan.Name)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        End Try
+
         For Each langFile As String In Directory.GetFiles(LangsDir, "*.xml")
             Dim fileName As String = Path.GetFileNameWithoutExtension(langFile)
             If Not cmbLanguage.Items.Contains(fileName) Then
@@ -37,6 +65,7 @@ Public Class frmSetting
 
         cmbLanguage.SelectedItem = UserSettings.Language
         cmbNetwork.SelectedIndex = UserSettings.NetworkAdapterIndex
+        cmbCPUFan.SelectedIndex = UserSettings.cpuFan
         cbAuto.Checked = UserSettings.AutoStart 'File.Exists(startupFile)
         cbBroadcast.Checked = UserSettings.EnableBroadcast
         txtPort.Text = UserSettings.BroadcastPort
@@ -70,11 +99,13 @@ Public Class frmSetting
         btnActivate.Text = ProgramLanguage.btnActivate
         btnCredits.Text = ProgramLanguage.btnCredits
         btnSave.Text = ProgramLanguage.btnSave
+        lblCPUFan.Text = ProgramLanguage.lblCPUFan
     End Sub
 
     Public Sub ReloadInfo()
         cmbLanguage.SelectedItem = UserSettings.Language
         cmbNetwork.SelectedIndex = UserSettings.NetworkAdapterIndex
+        cmbCPUFan.SelectedIndex = UserSettings.CpuFan
         cbAuto.Checked = UserSettings.AutoStart 'File.Exists(startupFile)
         cbBroadcast.Checked = UserSettings.EnableBroadcast
         txtPort.Text = UserSettings.BroadcastPort
@@ -120,6 +151,7 @@ Public Class frmSetting
             .LicenseKey = UserSettings.LicenseKey
             .HWID = UserSettings.HWID
             .Language = cmbLanguage.SelectedItem.ToString
+            .CpuFan = cmbCPUFan.SelectedIndex
             .Save()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance

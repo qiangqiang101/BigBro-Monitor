@@ -381,6 +381,9 @@ Public Class TextLabel
                 Else
                     Text = _b4Text & myParentForm.moboSensor.FanSpeed(_sensorParam)
                 End If
+
+            Case eSensorType.CPUFan
+                Text = _b4Text & myParentForm.moboSensor.FanSpeed(UserSettings.CpuFan + 1)
         End Select
     End Sub
 
