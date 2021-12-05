@@ -279,86 +279,90 @@ Public Class ImageControl
     End Sub
 
     Public Sub UpdateControl()
-        If _enableDI AndAlso _imgs.Count <> 0 Then
-            Dim _min = 0
-            Dim _max = _imgs.Count - 1
-            Dim _val = 0
+        Try
+            If _enableDI AndAlso _imgs.Count <> 0 Then
+                Dim _min = 0
+                Dim _max = _imgs.Count - 1
+                Dim _val = 0
 
-            Select Case _sensor
-                Case eSensorType.CPUTemperatureC, eSensorType.CPUTemperatureF
-                    _val = CInt(Math.Round((_max * myParentForm.cpuSensor.RawTemperatureC) / 100))
-                Case eSensorType.CPULoadPercent
-                    _val = CInt(Math.Round((_max * myParentForm.cpuSensor.RawLoadPercent) / 100))
+                Select Case _sensor
+                    Case eSensorType.CPUTemperatureC, eSensorType.CPUTemperatureF
+                        _val = CInt(Math.Round((_max * myParentForm.cpuSensor.RawTemperatureC) / 100))
+                    Case eSensorType.CPULoadPercent
+                        _val = CInt(Math.Round((_max * myParentForm.cpuSensor.RawLoadPercent) / 100))
 
-                Case eSensorType.GPUTemperatureC, eSensorType.GPUTemperatureF
-                    If IsNumeric(_sensorParam) Then
-                        _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawTemperatureC(_sensorParam)) / 100))
-                    Else
-                        _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawTemperatureC) / 100))
-                    End If
-                Case eSensorType.GPULoadPercent
-                    If IsNumeric(_sensorParam) Then
-                        _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawLoadPercent(_sensorParam)) / 100))
-                    Else
-                        _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawLoadPercent) / 100))
-                    End If
-                Case eSensorType.GPUMemoryPercent
-                    If IsNumeric(_sensorParam) Then
-                        _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawMemoryPercent(_sensorParam)) / 100))
-                    Else
-                        _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawMemoryPercent) / 100))
-                    End If
-                Case eSensorType.GPUVRAMUsage
-                    If IsNumeric(_sensorParam) Then
-                        _val = CInt(Math.Round(((myParentForm.gpuSensor.RawVRAMTotal(_sensorParam) / _max * myParentForm.gpuSensor.RawVRAMUsage(_sensorParam)) / 100) / 100))
-                    Else
-                        _val = CInt(Math.Round(((myParentForm.gpuSensor.RawVRAMTotal / _max * myParentForm.gpuSensor.RawVRAMUsage) / 100) / 100))
-                    End If
+                    Case eSensorType.GPUTemperatureC, eSensorType.GPUTemperatureF
+                        If IsNumeric(_sensorParam) Then
+                            _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawTemperatureC(_sensorParam)) / 100))
+                        Else
+                            _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawTemperatureC) / 100))
+                        End If
+                    Case eSensorType.GPULoadPercent
+                        If IsNumeric(_sensorParam) Then
+                            _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawLoadPercent(_sensorParam)) / 100))
+                        Else
+                            _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawLoadPercent) / 100))
+                        End If
+                    Case eSensorType.GPUMemoryPercent
+                        If IsNumeric(_sensorParam) Then
+                            _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawMemoryPercent(_sensorParam)) / 100))
+                        Else
+                            _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawMemoryPercent) / 100))
+                        End If
+                    Case eSensorType.GPUVRAMUsage
+                        If IsNumeric(_sensorParam) Then
+                            _val = CInt(Math.Round(((myParentForm.gpuSensor.RawVRAMTotal(_sensorParam) / _max * myParentForm.gpuSensor.RawVRAMUsage(_sensorParam)) / 100) / 100))
+                        Else
+                            _val = CInt(Math.Round(((myParentForm.gpuSensor.RawVRAMTotal / _max * myParentForm.gpuSensor.RawVRAMUsage) / 100) / 100))
+                        End If
 
-                Case eSensorType.RAMLoadPercent
-                    _val = CInt(Math.Round((_max * myParentForm.ramSensor.RawLoadPercent) / 100))
-                Case eSensorType.RAMUsage
-                    _val = CInt(Math.Round(((myParentForm.ramSensor.RawRAMTotal / _max * myParentForm.ramSensor.RawRAMUsage) / 100) / 100))
-                Case eSensorType.RAMAvailable
-                    _val = CInt(Math.Round(((myParentForm.ramSensor.RawRAMTotal / _max * myParentForm.ramSensor.RawRAMAvailable) / 100) / 100))
+                    Case eSensorType.RAMLoadPercent
+                        _val = CInt(Math.Round((_max * myParentForm.ramSensor.RawLoadPercent) / 100))
+                    Case eSensorType.RAMUsage
+                        _val = CInt(Math.Round(((myParentForm.ramSensor.RawRAMTotal / _max * myParentForm.ramSensor.RawRAMUsage) / 100) / 100))
+                    Case eSensorType.RAMAvailable
+                        _val = CInt(Math.Round(((myParentForm.ramSensor.RawRAMTotal / _max * myParentForm.ramSensor.RawRAMAvailable) / 100) / 100))
 
-                Case eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF
-                    If IsNumeric(_sensorParam) Then
-                        _val = CInt(Math.Round((_max * myParentForm.hddsensor.RawTemperatureC(_sensorParam)) / 100))
-                    Else
-                        _val = CInt(Math.Round((_max * myParentForm.hddsensor.RawTemperatureC) / 100))
-                    End If
-                Case eSensorType.HDDLoadPercent
-                    If IsNumeric(_sensorParam) Then
-                        _val = CInt(Math.Round((_max * myParentForm.hddsensor.RawLoadPercent(_sensorParam)) / 100))
-                    Else
-                        _val = CInt(Math.Round((_max * myParentForm.hddsensor.RawLoadPercent) / 100))
-                    End If
-                Case eSensorType.HDDUsage
-                    If String.IsNullOrEmpty(_sensorParam) Then
-                        _val = CInt(Math.Round((_max * (100 * myParentForm.hddsensor.RawDiskUsage / myParentForm.hddsensor.RawDiskTotalSize) / 100)))
-                    Else
-                        _val = CInt(Math.Round((_max * (100 * myParentForm.hddsensor.RawDiskUsage(CStr(_sensorParam)) / myParentForm.hddsensor.RawDiskTotalSize(CStr(_sensorParam))) / 100)))
-                    End If
-                Case eSensorType.HDDTotalFreeSpace
-                    If String.IsNullOrEmpty(_sensorParam) Then
-                        _val = CInt(Math.Round((_max * (100 * myParentForm.hddsensor.RawDiskTotalFreeSpace / myParentForm.hddsensor.RawDiskTotalSize) / 100)))
-                    Else
-                        _val = CInt(Math.Round((_max * (100 * myParentForm.hddsensor.RawDiskTotalFreeSpace(CStr(_sensorParam)) / myParentForm.hddsensor.RawDiskTotalSize(CStr(_sensorParam))) / 100)))
-                    End If
+                    Case eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF
+                        If IsNumeric(_sensorParam) Then
+                            _val = CInt(Math.Round((_max * myParentForm.hddSensor.RawTemperatureC(_sensorParam)) / 100))
+                        Else
+                            _val = CInt(Math.Round((_max * myParentForm.hddSensor.RawTemperatureC) / 100))
+                        End If
+                    Case eSensorType.HDDLoadPercent
+                        If IsNumeric(_sensorParam) Then
+                            _val = CInt(Math.Round((_max * myParentForm.hddSensor.RawLoadPercent(_sensorParam)) / 100))
+                        Else
+                            _val = CInt(Math.Round((_max * myParentForm.hddSensor.RawLoadPercent) / 100))
+                        End If
+                    Case eSensorType.HDDUsage
+                        If String.IsNullOrEmpty(_sensorParam) Then
+                            _val = CInt(Math.Round((_max * (100 * myParentForm.hddSensor.RawDiskUsage / myParentForm.hddSensor.RawDiskTotalSize) / 100)))
+                        Else
+                            _val = CInt(Math.Round((_max * (100 * myParentForm.hddSensor.RawDiskUsage(CStr(_sensorParam)) / myParentForm.hddSensor.RawDiskTotalSize(CStr(_sensorParam))) / 100)))
+                        End If
+                    Case eSensorType.HDDTotalFreeSpace
+                        If String.IsNullOrEmpty(_sensorParam) Then
+                            _val = CInt(Math.Round((_max * (100 * myParentForm.hddSensor.RawDiskTotalFreeSpace / myParentForm.hddSensor.RawDiskTotalSize) / 100)))
+                        Else
+                            _val = CInt(Math.Round((_max * (100 * myParentForm.hddSensor.RawDiskTotalFreeSpace(CStr(_sensorParam)) / myParentForm.hddSensor.RawDiskTotalSize(CStr(_sensorParam))) / 100)))
+                        End If
 
-                Case eSensorType.MoboTemperatureC, eSensorType.MoboTemperatureF
-                    _val = CInt(Math.Round((_max * myParentForm.moboSensor.RawTemperatureC) / 100))
-            End Select
+                    Case eSensorType.MoboTemperatureC, eSensorType.MoboTemperatureF
+                        _val = CInt(Math.Round((_max * myParentForm.moboSensor.RawTemperatureC) / 100))
+                End Select
 
-            Try
-                Image = DynamicImages.Find(_val).Image
-            Catch ex As Exception
-                Image = My.Resources.Blank
-            End Try
+                Try
+                    Image = DynamicImages.Find(_val).Image
+                Catch ex As Exception
+                    Image = My.Resources.Blank
+                End Try
 
-            'Invalidate()
-        End If
+                'Invalidate()
+            End If
+        Catch ex As Exception
+            Logger.Log(ex)
+        End Try
     End Sub
 
 End Class

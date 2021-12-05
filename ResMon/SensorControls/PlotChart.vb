@@ -413,123 +413,127 @@ Public Class PlotChart
     End Sub
 
     Public Sub UpdateControl()
-        Select Case _sensor
-            Case eSensorType.CPUTemperatureC
-                AddValue(myParentForm.cpuSensor.RawTemperatureC, "°C")
-            Case eSensorType.CPUTemperatureF
-                AddValue(myParentForm.cpuSensor.RawTemperatureF, "°F")
-            Case eSensorType.CPULoadPercent
-                AddValue(myParentForm.cpuSensor.RawLoadPercent, "%")
-            Case eSensorType.CPUClockSpeed
-                AddValue(myParentForm.cpuSensor.RawClockSpeed, " MHz")
-            Case eSensorType.CPUPowerWattage
-                AddValue(myParentForm.cpuSensor.RawPowerWattage, " W")
+        Try
+            Select Case _sensor
+                Case eSensorType.CPUTemperatureC
+                    AddValue(myParentForm.cpuSensor.RawTemperatureC, "°C")
+                Case eSensorType.CPUTemperatureF
+                    AddValue(myParentForm.cpuSensor.RawTemperatureF, "°F")
+                Case eSensorType.CPULoadPercent
+                    AddValue(myParentForm.cpuSensor.RawLoadPercent, "%")
+                Case eSensorType.CPUClockSpeed
+                    AddValue(myParentForm.cpuSensor.RawClockSpeed, " MHz")
+                Case eSensorType.CPUPowerWattage
+                    AddValue(myParentForm.cpuSensor.RawPowerWattage, " W")
 
-            Case eSensorType.GPUTemperatureC
-                If IsNumeric(_sensorParam) Then
-                    AddValue(myParentForm.gpuSensor.RawTemperatureC(CInt(_sensorParam)), "°C")
-                Else
-                    AddValue(myParentForm.gpuSensor.RawTemperatureC, "°C")
-                End If
-            Case eSensorType.GPUTemperatureF
-                If IsNumeric(_sensorParam) Then
-                    AddValue(myParentForm.gpuSensor.RawTemperatureF(CInt(_sensorParam)), "°F")
-                Else
-                    AddValue(myParentForm.gpuSensor.RawTemperatureF, "°F")
-                End If
-            Case eSensorType.GPULoadPercent
-                If IsNumeric(_sensorParam) Then
-                    AddValue(myParentForm.gpuSensor.RawLoadPercent(CInt(_sensorParam)), "%")
-                Else
-                    AddValue(myParentForm.gpuSensor.RawLoadPercent, "%")
-                End If
-            Case eSensorType.GPUMemoryPercent
-                If IsNumeric(_sensorParam) Then
-                    AddValue(myParentForm.gpuSensor.RawMemoryPercent(CInt(_sensorParam)), "%")
-                Else
-                    AddValue(myParentForm.gpuSensor.RawMemoryPercent, "%")
-                End If
-            Case eSensorType.GPUVRAMUsage
-                If IsNumeric(_sensorParam) Then
-                    AddValue(myParentForm.gpuSensor.RawVRAMUsage(CInt(_sensorParam)), " MB")
-                Else
-                    AddValue(myParentForm.gpuSensor.RawVRAMUsage, " MB")
-                End If
-            Case eSensorType.GPUFan
-                If String.IsNullOrEmpty(_sensorParam) Then
-                    AddValue(myParentForm.gpuSensor.RawFanSpeed, " RPM")
-                Else
-                    AddValue(myParentForm.gpuSensor.RawFanSpeed(CInt(_sensorParam)), " RPM")
-                End If
-            Case eSensorType.GPUClockSpeed
-                If String.IsNullOrEmpty(_sensorParam) Then
-                    AddValue(myParentForm.gpuSensor.RawClockSpeed, " MHz")
-                Else
-                    AddValue(myParentForm.gpuSensor.RawClockSpeed(CInt(_sensorParam)), " MHz")
-                End If
-            Case eSensorType.GPUPowerWattage
-                If String.IsNullOrEmpty(_sensorParam) Then
-                    AddValue(myParentForm.gpuSensor.RawPowerWattage, " W")
-                Else
-                    AddValue(myParentForm.gpuSensor.RawPowerWattage(CInt(_sensorParam)), "W")
-                End If
+                Case eSensorType.GPUTemperatureC
+                    If IsNumeric(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawTemperatureC(CInt(_sensorParam)), "°C")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawTemperatureC, "°C")
+                    End If
+                Case eSensorType.GPUTemperatureF
+                    If IsNumeric(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawTemperatureF(CInt(_sensorParam)), "°F")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawTemperatureF, "°F")
+                    End If
+                Case eSensorType.GPULoadPercent
+                    If IsNumeric(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawLoadPercent(CInt(_sensorParam)), "%")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawLoadPercent, "%")
+                    End If
+                Case eSensorType.GPUMemoryPercent
+                    If IsNumeric(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawMemoryPercent(CInt(_sensorParam)), "%")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawMemoryPercent, "%")
+                    End If
+                Case eSensorType.GPUVRAMUsage
+                    If IsNumeric(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawVRAMUsage(CInt(_sensorParam)), " MB")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawVRAMUsage, " MB")
+                    End If
+                Case eSensorType.GPUFan
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawFanSpeed, " RPM")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawFanSpeed(CInt(_sensorParam)), " RPM")
+                    End If
+                Case eSensorType.GPUClockSpeed
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawClockSpeed, " MHz")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawClockSpeed(CInt(_sensorParam)), " MHz")
+                    End If
+                Case eSensorType.GPUPowerWattage
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawPowerWattage, " W")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawPowerWattage(CInt(_sensorParam)), "W")
+                    End If
 
-            Case eSensorType.RAMLoadPercent
-                AddValue(myParentForm.ramSensor.RawLoadPercent, "%")
-            Case eSensorType.RAMUsage
-                AddValue(myParentForm.ramSensor.RawRAMUsage, " GB")
-            Case eSensorType.RAMAvailable
-                AddValue(myParentForm.ramSensor.RawRAMAvailable, " GB")
+                Case eSensorType.RAMLoadPercent
+                    AddValue(myParentForm.ramSensor.RawLoadPercent, "%")
+                Case eSensorType.RAMUsage
+                    AddValue(myParentForm.ramSensor.RawRAMUsage, " GB")
+                Case eSensorType.RAMAvailable
+                    AddValue(myParentForm.ramSensor.RawRAMAvailable, " GB")
 
-            Case eSensorType.HDDTemperatureC
-                If IsNumeric(_sensorParam) Then
-                    AddValue(myParentForm.hddsensor.RawTemperatureC(CInt(_sensorParam)), "°C")
-                Else
-                    AddValue(myParentForm.hddsensor.RawTemperatureC, "°C")
-                End If
-            Case eSensorType.HDDTemperatureF
-                If IsNumeric(_sensorParam) Then
-                    AddValue(myParentForm.hddsensor.RawTemperatureF(CInt(_sensorParam)), "°C")
-                Else
-                    AddValue(myParentForm.hddsensor.RawTemperatureF, "°C")
-                End If
-            Case eSensorType.HDDLoadPercent
-                If IsNumeric(_sensorParam) Then
-                    AddValue(myParentForm.hddsensor.RawLoadPercent(CInt(_sensorParam)), "%")
-                Else
-                    AddValue(myParentForm.hddsensor.RawLoadPercent, "%")
-                End If
-            Case eSensorType.HDDUsage
-                If String.IsNullOrEmpty(_sensorParam) Then
-                    AddValue(myParentForm.hddsensor.RawDiskTotalFreeSpace, " GB")
-                Else
-                    AddValue(myParentForm.hddsensor.RawDiskTotalFreeSpace(CStr(_sensorParam)), " GB")
-                End If
+                Case eSensorType.HDDTemperatureC
+                    If IsNumeric(_sensorParam) Then
+                        AddValue(myParentForm.hddSensor.RawTemperatureC(CInt(_sensorParam)), "°C")
+                    Else
+                        AddValue(myParentForm.hddSensor.RawTemperatureC, "°C")
+                    End If
+                Case eSensorType.HDDTemperatureF
+                    If IsNumeric(_sensorParam) Then
+                        AddValue(myParentForm.hddSensor.RawTemperatureF(CInt(_sensorParam)), "°C")
+                    Else
+                        AddValue(myParentForm.hddSensor.RawTemperatureF, "°C")
+                    End If
+                Case eSensorType.HDDLoadPercent
+                    If IsNumeric(_sensorParam) Then
+                        AddValue(myParentForm.hddSensor.RawLoadPercent(CInt(_sensorParam)), "%")
+                    Else
+                        AddValue(myParentForm.hddSensor.RawLoadPercent, "%")
+                    End If
+                Case eSensorType.HDDUsage
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        AddValue(myParentForm.hddSensor.RawDiskTotalFreeSpace, " GB")
+                    Else
+                        AddValue(myParentForm.hddSensor.RawDiskTotalFreeSpace(CStr(_sensorParam)), " GB")
+                    End If
 
-            Case eSensorType.DownloadSpeed
-                AddValue(myParentForm.netSensor.RawDownloadSpeed, " KB/s")
-            Case eSensorType.UploadSpeed
-                AddValue(myParentForm.netSensor.RawUploadSpeed, " KB/s")
-            Case eSensorType.Ping
-                If String.IsNullOrEmpty(_sensorParam) Then
-                    AddValue(myParentForm.netSensor.RawPing, " ms")
-                Else
-                    AddValue(myParentForm.netSensor.RawPing(CStr(_sensorParam)), " ms")
-                End If
+                Case eSensorType.DownloadSpeed
+                    AddValue(myParentForm.netSensor.RawDownloadSpeed, " KB/s")
+                Case eSensorType.UploadSpeed
+                    AddValue(myParentForm.netSensor.RawUploadSpeed, " KB/s")
+                Case eSensorType.Ping
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        AddValue(myParentForm.netSensor.RawPing, " ms")
+                    Else
+                        AddValue(myParentForm.netSensor.RawPing(CStr(_sensorParam)), " ms")
+                    End If
 
-            Case eSensorType.MoboTemperatureC
-                AddValue(myParentForm.moboSensor.RawTemperatureC, "°C")
-            Case eSensorType.MoboTemperatureF
-                AddValue(myParentForm.moboSensor.RawTemperatureF, "°F")
-            Case eSensorType.MoboFan
-                If String.IsNullOrEmpty(_sensorParam) Then
-                    AddValue(myParentForm.moboSensor.RawFanSpeed, " RPM")
-                Else
-                    AddValue(myParentForm.moboSensor.RawFanSpeed(CInt(_sensorParam)), " RPM")
-                End If
-            Case eSensorType.CPUFan
-                AddValue(myParentForm.moboSensor.RawFanSpeed(UserSettings.CpuFan + 1), " RPM")
-        End Select
+                Case eSensorType.MoboTemperatureC
+                    AddValue(myParentForm.moboSensor.RawTemperatureC, "°C")
+                Case eSensorType.MoboTemperatureF
+                    AddValue(myParentForm.moboSensor.RawTemperatureF, "°F")
+                Case eSensorType.MoboFan
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        AddValue(myParentForm.moboSensor.RawFanSpeed, " RPM")
+                    Else
+                        AddValue(myParentForm.moboSensor.RawFanSpeed(CInt(_sensorParam)), " RPM")
+                    End If
+                Case eSensorType.CPUFan
+                    AddValue(myParentForm.moboSensor.RawFanSpeed(UserSettings.CpuFan + 1), " RPM")
+            End Select
+        Catch ex As Exception
+            Logger.Log(ex)
+        End Try
     End Sub
 
 End Class

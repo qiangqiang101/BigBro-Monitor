@@ -59,6 +59,8 @@ Public Class frmMonitor
             computer.Open()
             running = True
 
+            netSensor.Adapter = netMonitor.Adapters(UserSettings.NetworkAdapterIndex)
+
             For Each hardware In computer.Hardware
                 Select Case hardware.HardwareType
                     Case HardwareType.CPU
@@ -75,18 +77,7 @@ Public Class frmMonitor
                                     cpuSensor.Power.Add(sensor)
                             End Select
                         Next
-                    Case HardwareType.Mainboard
-                        hardware.Update()
-                        hardware.SubHardware.FirstOrDefault.Update()
 
-                        For Each sensor In hardware.SubHardware.FirstOrDefault.Sensors
-                            Select Case sensor.SensorType
-                                Case SensorType.Temperature
-                                    moboSensor.Temperature.Add(sensor)
-                                Case SensorType.Fan
-                                    moboSensor.Fans.Add(sensor)
-                            End Select
-                        Next
                     Case HardwareType.GpuNvidia, HardwareType.GpuAti
                         hardware.Update()
                         For Each sensor In hardware.Sensors
@@ -132,10 +123,28 @@ Public Class frmMonitor
                                     hddSensor.Temperature.Add(sensor)
                             End Select
                         Next
+
+                    Case HardwareType.Mainboard
+                        Try
+                            hardware.Update()
+                            If hardware.SubHardware.Count <> 0 Then
+                                hardware.SubHardware.FirstOrDefault.Update()
+
+                                For Each sensor In hardware.SubHardware.FirstOrDefault.Sensors
+                                    Select Case sensor.SensorType
+                                        Case SensorType.Temperature
+                                            moboSensor.Temperature.Add(sensor)
+                                        Case SensorType.Fan
+                                            moboSensor.Fans.Add(sensor)
+                                    End Select
+                                Next
+                            End If
+                        Catch ex As Exception
+                            'diam diam ya
+                        End Try
                 End Select
             Next
 
-            netSensor.Adapter = netMonitor.Adapters(UserSettings.NetworkAdapterIndex)
         Catch ex As Exception
             Logger.Log(ex)
             computer.Open()
@@ -275,6 +284,7 @@ Public Class frmMonitor
                 .LicenseKey = UserSettings.LicenseKey
                 .HWID = UserSettings.HWID
                 .Language = UserSettings.Language
+                .CpuFan = UserSettings.CpuFan
                 .SaveSilent()
             End With
             UserSettings = New UserSettingData(UserSettingFile).Instance

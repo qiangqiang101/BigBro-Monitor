@@ -1,8 +1,5 @@
 ﻿Imports System.IO
-Imports System.Runtime.InteropServices
 Imports MaterialSkin
-Imports OpenHardwareMonitor.Hardware
-Imports ResMon.WinApi
 
 Public Class frmMain
 
@@ -77,9 +74,6 @@ Public Class frmMain
         btnOK.Text = ProgramLanguage.btnOK
         btnCancel.Text = ProgramLanguage.btnCancel
         niTray.BalloonTipText = ProgramLanguage.niTray
-
-        'Call RegisterHotKey(Me.Handle, 100, &H1, Keys.S)
-        'Call RegisterHotKey(Me.Handle, 101, &H1, Keys.D0)
     End Sub
 
     Private Sub LoadPrivateFonts()
@@ -202,6 +196,7 @@ Public Class frmMain
             .LicenseKey = UserSettings.LicenseKey
             .HWID = UserSettings.HWID
             .Language = UserSettings.Language
+            .CpuFan = UserSettings.CpuFan
             .SaveSilent()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance
@@ -303,6 +298,7 @@ Public Class frmMain
             .LicenseKey = UserSettings.LicenseKey
             .HWID = UserSettings.HWID
             .Language = UserSettings.Language
+            .CpuFan = UserSettings.CpuFan
             .SaveSilent()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance
@@ -823,27 +819,6 @@ Public Class frmMain
 
     Private Sub flpUserDefine_ControlAdded(sender As Object, e As ControlEventArgs) Handles flpUserDefine.ControlAdded, flpUserDefine.ControlRemoved
         flpUserDefine.Padding = New Padding(0, 0, SystemInformation.VerticalScrollBarWidth, 0)
-    End Sub
-
-    'Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-    '    Call UnregisterHotKey(Me.Handle, 100)
-    '    Call UnregisterHotKey(Me.Handle, 101)
-    'End Sub
-
-    Protected Overrides Sub WndProc(ByRef m As Message)
-        If m.Msg = &H312 Then
-            Dim id As IntPtr = m.WParam
-            Select Case id.ToString
-                Case "100"
-                    Me.Show()
-                    WindowState = FormWindowState.Normal
-                    niTray.Visible = False
-                Case "101"
-                    If frmMonitor.Visible Then frmMonitor.Location = New Point(0, 0)
-            End Select
-        End If
-
-        MyBase.WndProc(m)
     End Sub
 
 End Class

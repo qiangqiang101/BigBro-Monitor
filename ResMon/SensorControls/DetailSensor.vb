@@ -240,46 +240,51 @@ Public Class DetailSensor
     End Sub
 
     Public Sub UpdateControl()
-        Select Case _sensor
-            Case eCompleteSensor.CPUClockSpeed
-                Dim result = myParentForm.cpuSensor.Clock.ToLeftRight
-                _left = result.Item1
-                _right = result.Item2
-            Case eCompleteSensor.CPUTemperature
-                Dim result = myParentForm.cpuSensor.Temperature.ToLeftRight
-                _left = result.Item1
-                _right = result.Item2
-            Case eCompleteSensor.CPULoad
-                Dim result = myParentForm.cpuSensor.Load.ToLeftRight
-                _left = result.Item1
-                _right = result.Item2
-            Case eCompleteSensor.CPUPowerWattage
-                Dim result = myParentForm.cpuSensor.Power.ToLeftRight
-                _left = result.Item1
-                _right = result.Item2
-            Case eCompleteSensor.GPUClockSpeed
-                Dim result = myParentForm.gpuSensor.Clock.ToLeftRight
-                _left = result.Item1
-                _right = result.Item2
-            Case eCompleteSensor.GPUTemperature
-                Dim result = myParentForm.gpuSensor.Temperature.ToLeftRight
-                _left = result.Item1
-                _right = result.Item2
-            Case eCompleteSensor.GPULoadPercent
-                Dim result = myParentForm.gpuSensor.Load.ToLeftRight
-                _left = result.Item1
-                _right = result.Item2
+        Try
+            Select Case _sensor
+                Case eCompleteSensor.CPUClockSpeed
+                    Dim result = myParentForm.cpuSensor.Clock.ToLeftRight
+                    _left = result.Item1
+                    _right = result.Item2
+                Case eCompleteSensor.CPUTemperature
+                    Dim result = myParentForm.cpuSensor.Temperature.ToLeftRight
+                    _left = result.Item1
+                    _right = result.Item2
+                Case eCompleteSensor.CPULoad
+                    Dim result = myParentForm.cpuSensor.Load.ToLeftRight
+                    _left = result.Item1
+                    _right = result.Item2
+                Case eCompleteSensor.CPUPowerWattage
+                    Dim result = myParentForm.cpuSensor.Power.ToLeftRight
+                    _left = result.Item1
+                    _right = result.Item2
+                Case eCompleteSensor.GPUClockSpeed
+                    Dim result = myParentForm.gpuSensor.Clock.ToLeftRight
+                    _left = result.Item1
+                    _right = result.Item2
+                Case eCompleteSensor.GPUTemperature
+                    Dim result = myParentForm.gpuSensor.Temperature.ToLeftRight
+                    _left = result.Item1
+                    _right = result.Item2
+                Case eCompleteSensor.GPULoadPercent
+                    Dim result = myParentForm.gpuSensor.Load.ToLeftRight
+                    _left = result.Item1
+                    _right = result.Item2
 
-            Case eCompleteSensor.MoboFan
-                Dim result = myParentForm.moboSensor.Fans.ToLeftRight
-                _left = result.Item1
-                _right = result.Item2
-            Case eCompleteSensor.MoboTemperature
-                Dim result = myParentForm.moboSensor.Temperature.ToLeftRight
-                _left = result.Item1
-                _right = result.Item2
-        End Select
-        Invalidate()
+                Case eCompleteSensor.MoboFan
+                    Dim result = myParentForm.moboSensor.Fans.ToLeftRight
+                    _left = result.Item1
+                    _right = result.Item2
+                Case eCompleteSensor.MoboTemperature
+                    Dim result = myParentForm.moboSensor.Temperature.ToLeftRight
+                    _left = result.Item1
+                    _right = result.Item2
+            End Select
+
+            Invalidate()
+        Catch ex As Exception
+            Logger.Log(ex)
+        End Try
     End Sub
 
 End Class

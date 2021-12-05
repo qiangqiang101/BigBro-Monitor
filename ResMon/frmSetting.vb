@@ -46,14 +46,16 @@ Public Class frmSetting
                 End If
             Next
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+            cmbCPUFan.Enabled = False
+            Logger.Log(ex)
         End Try
         Try
             For Each fan In moboSensor.Fans.Values
                 cmbCPUFan.Items.Add(fan.Name)
             Next
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+            cmbCPUFan.Enabled = False
+            Logger.Log(ex)
         End Try
 
         For Each langFile As String In Directory.GetFiles(LangsDir, "*.xml")
@@ -64,8 +66,13 @@ Public Class frmSetting
         Next
 
         cmbLanguage.SelectedItem = UserSettings.Language
-        cmbNetwork.SelectedIndex = UserSettings.NetworkAdapterIndex
-        cmbCPUFan.SelectedIndex = UserSettings.cpuFan
+        Try
+            cmbNetwork.SelectedIndex = UserSettings.NetworkAdapterIndex
+            If cmbCPUFan.Enabled Then cmbCPUFan.SelectedIndex = UserSettings.CpuFan
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+            Logger.Log(ex)
+        End Try
         cbAuto.Checked = UserSettings.AutoStart 'File.Exists(startupFile)
         cbBroadcast.Checked = UserSettings.EnableBroadcast
         txtPort.Text = UserSettings.BroadcastPort
@@ -104,8 +111,13 @@ Public Class frmSetting
 
     Public Sub ReloadInfo()
         cmbLanguage.SelectedItem = UserSettings.Language
-        cmbNetwork.SelectedIndex = UserSettings.NetworkAdapterIndex
-        cmbCPUFan.SelectedIndex = UserSettings.CpuFan
+        Try
+            cmbNetwork.SelectedIndex = UserSettings.NetworkAdapterIndex
+            If cmbCPUFan.Enabled Then cmbCPUFan.SelectedIndex = UserSettings.CpuFan
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+            Logger.Log(ex)
+        End Try
         cbAuto.Checked = UserSettings.AutoStart 'File.Exists(startupFile)
         cbBroadcast.Checked = UserSettings.EnableBroadcast
         txtPort.Text = UserSettings.BroadcastPort
@@ -151,7 +163,7 @@ Public Class frmSetting
             .LicenseKey = UserSettings.LicenseKey
             .HWID = UserSettings.HWID
             .Language = cmbLanguage.SelectedItem.ToString
-            .CpuFan = cmbCPUFan.SelectedIndex
+            If cmbCPUFan.Enabled Then .CpuFan = cmbCPUFan.SelectedIndex Else .CpuFan = UserSettings.CpuFan
             .Save()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance

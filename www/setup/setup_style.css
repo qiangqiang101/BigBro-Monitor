@@ -1,0 +1,143 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+*{
+	margin:0;
+	padding:0;
+	outline:none;
+}
+
+html{
+	width:100%;
+	min-height:100%;
+}
+
+body{
+	font-family: 'Open Sans', sans-serif;
+	font-size:13px;
+	background-color:#f2f2f2;
+}
+
+a, a:visited{
+	color:#01a9da;
+	text-decoration:none;
+	cursor:pointer !important;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea{
+	width:220px;
+	border:1px solid #cecece;
+	border-radius:2px;
+	padding:4px 10px;
+	font-family: 'Titillium Web', sans-serif;
+	font-size:14px;
+	box-shadow: inset 0px 1px 0px 0px #f1f1f1;
+}
+
+.btn,
+input[type="button"],
+input[type="submit"]{
+	border:none;
+	cursor:pointer;
+	display:inline-block;
+	font-family: 'Titillium Web', sans-serif;
+	font-size:13px;
+	color:#fff !important;
+	background-color:#777777;
+	border-radius:4px;
+	font-weight:bold;
+	padding:5px 15px;
+	text-transform:uppercase;
+}
+
+.btn:active,
+input[type="button"]:active,
+input[type="submit"]:active{
+	position:relative;
+	top:1px;
+}
+
+input:disabled{
+	opacity: 0.65; 
+}
+
+.marg{
+	padding:20px 0px;
+	width:560px;
+	margin:0 auto;
+}
+
+.wbox{
+	color:#555;
+	padding:25px 30px;
+	box-shadow: 0 1px 5px 0 rgba(85, 85, 85, 0.15);
+	background-color:#fff;
+	border-radius:2px;
+}
+
+h2{
+	color:#222;
+	font-weight:lighter;
+	margin-bottom:15px;
+}
+
+.top{
+	margin-bottom:15px;
+}
+
+.footer{
+	margin-top:10px;
+	color:#999;
+	margin-bottom:25px;
+}
+
+.blue{
+	background-color:#1586C1;
+}
+
+ul{
+	margin-top:5px;
+	margin-left:25px;
+}
+
+table{
+	margin:10px 0px 15px 0px;
+}
+
+td{
+	color:#666;
+	padding:5px 15px 5px 0px;
+	font-size: 13px;
+}
+
+td:first-child{
+	font-weight:bold;
+}
+
+#loading{
+	margin-left:10px;
+	display:none;
+}
+
+.warn{
+	text-align:center;
+	padding:20px;
+	border-radius:3px;
+	border-bottom: 1px solid rgb(245, 232, 195);
+	background: rgb(255, 252, 226);
+	margin:25px 0px;
+}
+
+.error{
+	margin: -8px 0px 16px 0px;
+	background-color: #FFEBE8;
+	border-radius: 2px;
+	padding: 9px 12px;
+	font-style:normal !important;
+	font-weight: bold;
+	color: #960000;
+	font-size: 13px;
+}

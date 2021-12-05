@@ -1,0 +1,1 @@
+<div class="uitem"><a href="edit_user?uid=%user_id%"><img src="uploads/avatars/%user_pic%.jpg"></a><div class="infos"><a id="username" href="edit_user?uid=%user_id%">%username%</a>ID: <b>%user_id%</b> &middot; <b>%user_email%</b></div></div>

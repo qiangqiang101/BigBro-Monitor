@@ -34,6 +34,7 @@ Public Class frmActivateLicense
                 .LicenseKey = txtKey.Text
                 .HWID = HWID
                 .Language = UserSettings.Language
+                .CpuFan = UserSettings.CpuFan
                 .SaveSilent()
             End With
             UserSettings = New UserSettingData(UserSettingFile).Instance

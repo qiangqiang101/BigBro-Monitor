@@ -1,0 +1,1 @@
+<div class="wbox comm cf" id="cm_id_%cid%"><a href="user/%user%"><img src="%site_url%uploads/avatars/%avatar%_thumb.jpg"></a><div class="com_rgt"><div class="com_name"><a href="user/%user%">%user%</a> %tag%</div><div class="com_txt">%comment%</div><div class="com_info">%infos%</div></div></div>

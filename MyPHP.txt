@@ -1,0 +1,4 @@
+Database:	bigbro88_cmsdb
+Host:	localhost
+Username:	bigbro88_cmsdb
+Password:	UZXLoN9lR
