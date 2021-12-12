@@ -384,7 +384,7 @@ Public Class TextLabel
                     End If
 
                 Case eSensorType.CPUFan
-                    Text = _b4Text & myParentForm.moboSensor.FanSpeed(UserSettings.CpuFan + 1)
+                    Text = _b4Text & myParentForm.moboSensor.FanSpeed(CInt(_sensorParam))
             End Select
         Catch ex As Exception
             Logger.Log(ex)

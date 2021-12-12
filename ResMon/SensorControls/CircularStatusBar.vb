@@ -841,7 +841,7 @@ Public Class CircularStatusBar
                     End If
 
                 Case eSensorType.CPUFan
-                    _val = CInt(myParentForm.moboSensor.RawFanSpeed(UserSettings.CpuFan + 1))
+                    _val = CInt(myParentForm.moboSensor.RawFanSpeed(CInt(_sensorParam)))
                     _min = 0
                     dynaMax = True
             End Select

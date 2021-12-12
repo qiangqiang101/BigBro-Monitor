@@ -39,7 +39,7 @@ Partial Class NSUserDefineItem
         Me.lblLabel.Location = New System.Drawing.Point(0, 0)
         Me.lblLabel.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblLabel.Name = "lblLabel"
-        Me.lblLabel.Size = New System.Drawing.Size(86, 50)
+        Me.lblLabel.Size = New System.Drawing.Size(107, 50)
         Me.lblLabel.TabIndex = 0
         Me.lblLabel.Text = "Label1"
         Me.lblLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -76,12 +76,12 @@ Partial Class NSUserDefineItem
         Me.txtBox.Depth = 0
         Me.txtBox.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.txtBox.LeadingIcon = Nothing
-        Me.txtBox.Location = New System.Drawing.Point(92, 0)
+        Me.txtBox.Location = New System.Drawing.Point(113, 0)
         Me.txtBox.MaxLength = 32767
         Me.txtBox.MouseState = MaterialSkin.MouseState.OUT
         Me.txtBox.Multiline = False
         Me.txtBox.Name = "txtBox"
-        Me.txtBox.Size = New System.Drawing.Size(186, 50)
+        Me.txtBox.Size = New System.Drawing.Size(165, 50)
         Me.txtBox.TabIndex = 1
         Me.txtBox.Text = ""
         Me.txtBox.TrailingIcon = Nothing

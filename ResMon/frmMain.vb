@@ -74,6 +74,7 @@ Public Class frmMain
         btnOK.Text = ProgramLanguage.btnOK
         btnCancel.Text = ProgramLanguage.btnCancel
         niTray.BalloonTipText = ProgramLanguage.niTray
+        btnDownloadTheme.Text = ProgramLanguage.btnDownloadTheme
     End Sub
 
     Private Sub LoadPrivateFonts()
@@ -160,6 +161,159 @@ Public Class frmMain
                     End With
                     flpUserDefine.Controls.Add(udItem)
                 Next
+
+                For Each label As MyTextLabel In theme.TextLabels.Where(Function(x) x.Sensor = eSensorType.CPUFan Or x.Sensor = eSensorType.MoboFan)
+                    Dim udItem2 As New NSUserDefineItem()
+                    With udItem2
+                        .ControlType = eControlType.TextLabel
+                        .lblLabel.Text = label.Name
+                        .IsNumeric = True
+                        Try
+                            .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = label.Name).Value
+                        Catch ex As Exception
+                            .txtBox.Text = label.SensorParam
+                        End Try
+                        .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+                    End With
+                    flpUserDefine.Controls.Add(udItem2)
+                Next
+                For Each image As MyImageControl In theme.ImageBoxes.Where(Function(x) x.Sensor = eSensorType.CPUFan Or x.Sensor = eSensorType.MoboFan)
+                    Dim udItem2 As New NSUserDefineItem()
+                    With udItem2
+                        .ControlType = eControlType.TextLabel
+                        .lblLabel.Text = image.Name
+                        .IsNumeric = True
+                        Try
+                            .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = image.Name).Value
+                        Catch ex As Exception
+                            .txtBox.Text = image.SensorParam
+                        End Try
+                        .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+                    End With
+                    flpUserDefine.Controls.Add(udItem2)
+                Next
+                For Each csb As MyCircularStatusBar In theme.CircularSBs.Where(Function(x) x.Sensor = eSensorType.CPUFan Or x.Sensor = eSensorType.MoboFan)
+                    Dim udItem2 As New NSUserDefineItem()
+                    With udItem2
+                        .ControlType = eControlType.TextLabel
+                        .lblLabel.Text = csb.Name
+                        .IsNumeric = True
+                        Try
+                            .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = csb.Name).Value
+                        Catch ex As Exception
+                            .txtBox.Text = csb.SensorParam
+                        End Try
+                        .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+                    End With
+                    flpUserDefine.Controls.Add(udItem2)
+                Next
+                For Each chart As MyPlotChart In theme.PlotCharts.Where(Function(x) x.Sensor = eSensorType.CPUFan Or x.Sensor = eSensorType.MoboFan)
+                    Dim udItem2 As New NSUserDefineItem()
+                    With udItem2
+                        .ControlType = eControlType.TextLabel
+                        .lblLabel.Text = chart.Name
+                        .IsNumeric = True
+                        Try
+                            .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = chart.Name).Value
+                        Catch ex As Exception
+                            .txtBox.Text = chart.SensorParam
+                        End Try
+                        .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+                    End With
+                    flpUserDefine.Controls.Add(udItem2)
+                Next
+                For Each statusbar As MyStatusBar In theme.StatusBars.Where(Function(x) x.Sensor = eSensorType.CPUFan Or x.Sensor = eSensorType.MoboFan)
+                    Dim udItem2 As New NSUserDefineItem()
+                    With udItem2
+                        .ControlType = eControlType.TextLabel
+                        .lblLabel.Text = statusbar.Name
+                        .IsNumeric = True
+                        Try
+                            .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = statusbar.Name).Value
+                        Catch ex As Exception
+                            .txtBox.Text = statusbar.SensorParam
+                        End Try
+                        .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+                    End With
+                    flpUserDefine.Controls.Add(udItem2)
+                Next
+
+                For Each label As MyTextLabel In theme.TextLabels.Where(Function(x) x.Sensor = eSensorType.HDDLoadPercent Or x.Sensor = eSensorType.HDDTemperatureC Or x.Sensor = eSensorType.HDDTemperatureF)
+                    Dim udItem2 As New NSUserDefineItem()
+                    With udItem2
+                        .ControlType = eControlType.TextLabel
+                        .lblLabel.Text = label.Name
+                        .IsNumeric = True
+                        Try
+                            .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = label.Name).Value
+                        Catch ex As Exception
+                            .txtBox.Text = label.SensorParam
+                        End Try
+                        .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+                    End With
+                    flpUserDefine.Controls.Add(udItem2)
+                Next
+                For Each image As MyImageControl In theme.ImageBoxes.Where(Function(x) x.Sensor = eSensorType.HDDLoadPercent Or x.Sensor = eSensorType.HDDTemperatureC Or x.Sensor = eSensorType.HDDTemperatureF)
+                    Dim udItem2 As New NSUserDefineItem()
+                    With udItem2
+                        .ControlType = eControlType.TextLabel
+                        .lblLabel.Text = image.Name
+                        .IsNumeric = True
+                        Try
+                            .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = image.Name).Value
+                        Catch ex As Exception
+                            .txtBox.Text = image.SensorParam
+                        End Try
+                        .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+                    End With
+                    flpUserDefine.Controls.Add(udItem2)
+                Next
+                For Each csb As MyCircularStatusBar In theme.CircularSBs.Where(Function(x) x.Sensor = eSensorType.HDDLoadPercent Or x.Sensor = eSensorType.HDDTemperatureC Or x.Sensor = eSensorType.HDDTemperatureF)
+                    Dim udItem2 As New NSUserDefineItem()
+                    With udItem2
+                        .ControlType = eControlType.TextLabel
+                        .lblLabel.Text = csb.Name
+                        .IsNumeric = True
+                        Try
+                            .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = csb.Name).Value
+                        Catch ex As Exception
+                            .txtBox.Text = csb.SensorParam
+                        End Try
+                        .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+                    End With
+                    flpUserDefine.Controls.Add(udItem2)
+                Next
+                For Each chart As MyPlotChart In theme.PlotCharts.Where(Function(x) x.Sensor = eSensorType.HDDLoadPercent Or x.Sensor = eSensorType.HDDTemperatureC Or x.Sensor = eSensorType.HDDTemperatureF)
+                    Dim udItem2 As New NSUserDefineItem()
+                    With udItem2
+                        .ControlType = eControlType.TextLabel
+                        .lblLabel.Text = chart.Name
+                        .IsNumeric = True
+                        Try
+                            .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = chart.Name).Value
+                        Catch ex As Exception
+                            .txtBox.Text = chart.SensorParam
+                        End Try
+                        .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+                    End With
+                    flpUserDefine.Controls.Add(udItem2)
+                Next
+                For Each statusbar As MyStatusBar In theme.StatusBars.Where(Function(x) x.Sensor = eSensorType.HDDLoadPercent Or x.Sensor = eSensorType.HDDTemperatureC Or x.Sensor = eSensorType.HDDTemperatureF)
+                    Dim udItem2 As New NSUserDefineItem()
+                    With udItem2
+                        .ControlType = eControlType.TextLabel
+                        .lblLabel.Text = statusbar.Name
+                        .IsNumeric = True
+                        Try
+                            .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = statusbar.Name).Value
+                        Catch ex As Exception
+                            .txtBox.Text = statusbar.SensorParam
+                        End Try
+                        .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+                    End With
+                    flpUserDefine.Controls.Add(udItem2)
+                Next
+
                 If flpUserDefine.Controls.Count >= 1 Then
                     btnApply.Enabled = True
                 Else
@@ -196,7 +350,6 @@ Public Class frmMain
             .LicenseKey = UserSettings.LicenseKey
             .HWID = UserSettings.HWID
             .Language = UserSettings.Language
-            .CpuFan = UserSettings.CpuFan
             .SaveSilent()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance
@@ -278,6 +431,159 @@ Public Class frmMain
             End With
             flpUserDefine.Controls.Add(udItem)
         Next
+
+        For Each label As MyTextLabel In selectedItem.ThemeData.TextLabels.Where(Function(x) x.Sensor = eSensorType.CPUFan Or x.Sensor = eSensorType.MoboFan)
+            Dim udItem2 As New NSUserDefineItem()
+            With udItem2
+                .ControlType = eControlType.TextLabel
+                .lblLabel.Text = label.Name
+                .IsNumeric = True
+                Try
+                    .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = label.Name).Value
+                Catch ex As Exception
+                    .txtBox.Text = label.SensorParam
+                End Try
+                .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+            End With
+            flpUserDefine.Controls.Add(udItem2)
+        Next
+        For Each image As MyImageControl In selectedItem.ThemeData.ImageBoxes.Where(Function(x) x.Sensor = eSensorType.CPUFan Or x.Sensor = eSensorType.MoboFan)
+            Dim udItem2 As New NSUserDefineItem()
+            With udItem2
+                .ControlType = eControlType.TextLabel
+                .lblLabel.Text = image.Name
+                .IsNumeric = True
+                Try
+                    .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = image.Name).Value
+                Catch ex As Exception
+                    .txtBox.Text = image.SensorParam
+                End Try
+                .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+            End With
+            flpUserDefine.Controls.Add(udItem2)
+        Next
+        For Each csb As MyCircularStatusBar In selectedItem.ThemeData.CircularSBs.Where(Function(x) x.Sensor = eSensorType.CPUFan Or x.Sensor = eSensorType.MoboFan)
+            Dim udItem2 As New NSUserDefineItem()
+            With udItem2
+                .ControlType = eControlType.TextLabel
+                .lblLabel.Text = csb.Name
+                .IsNumeric = True
+                Try
+                    .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = csb.Name).Value
+                Catch ex As Exception
+                    .txtBox.Text = csb.SensorParam
+                End Try
+                .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+            End With
+            flpUserDefine.Controls.Add(udItem2)
+        Next
+        For Each chart As MyPlotChart In selectedItem.ThemeData.PlotCharts.Where(Function(x) x.Sensor = eSensorType.CPUFan Or x.Sensor = eSensorType.MoboFan)
+            Dim udItem2 As New NSUserDefineItem()
+            With udItem2
+                .ControlType = eControlType.TextLabel
+                .lblLabel.Text = chart.Name
+                .IsNumeric = True
+                Try
+                    .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = chart.Name).Value
+                Catch ex As Exception
+                    .txtBox.Text = chart.SensorParam
+                End Try
+                .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+            End With
+            flpUserDefine.Controls.Add(udItem2)
+        Next
+        For Each statusbar As MyStatusBar In selectedItem.ThemeData.StatusBars.Where(Function(x) x.Sensor = eSensorType.CPUFan Or x.Sensor = eSensorType.MoboFan)
+            Dim udItem2 As New NSUserDefineItem()
+            With udItem2
+                .ControlType = eControlType.TextLabel
+                .lblLabel.Text = statusbar.Name
+                .IsNumeric = True
+                Try
+                    .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = statusbar.Name).Value
+                Catch ex As Exception
+                    .txtBox.Text = statusbar.SensorParam
+                End Try
+                .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+            End With
+            flpUserDefine.Controls.Add(udItem2)
+        Next
+
+        For Each label As MyTextLabel In selectedItem.ThemeData.TextLabels.Where(Function(x) x.Sensor = eSensorType.HDDLoadPercent Or x.Sensor = eSensorType.HDDTemperatureC Or x.Sensor = eSensorType.HDDTemperatureF)
+            Dim udItem2 As New NSUserDefineItem()
+            With udItem2
+                .ControlType = eControlType.TextLabel
+                .lblLabel.Text = label.Name
+                .IsNumeric = True
+                Try
+                    .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = label.Name).Value
+                Catch ex As Exception
+                    .txtBox.Text = label.SensorParam
+                End Try
+                .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+            End With
+            flpUserDefine.Controls.Add(udItem2)
+        Next
+        For Each image As MyImageControl In selectedItem.ThemeData.ImageBoxes.Where(Function(x) x.Sensor = eSensorType.HDDLoadPercent Or x.Sensor = eSensorType.HDDTemperatureC Or x.Sensor = eSensorType.HDDTemperatureF)
+            Dim udItem2 As New NSUserDefineItem()
+            With udItem2
+                .ControlType = eControlType.TextLabel
+                .lblLabel.Text = image.Name
+                .IsNumeric = True
+                Try
+                    .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = image.Name).Value
+                Catch ex As Exception
+                    .txtBox.Text = image.SensorParam
+                End Try
+                .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+            End With
+            flpUserDefine.Controls.Add(udItem2)
+        Next
+        For Each csb As MyCircularStatusBar In selectedItem.ThemeData.CircularSBs.Where(Function(x) x.Sensor = eSensorType.HDDLoadPercent Or x.Sensor = eSensorType.HDDTemperatureC Or x.Sensor = eSensorType.HDDTemperatureF)
+            Dim udItem2 As New NSUserDefineItem()
+            With udItem2
+                .ControlType = eControlType.TextLabel
+                .lblLabel.Text = csb.Name
+                .IsNumeric = True
+                Try
+                    .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = csb.Name).Value
+                Catch ex As Exception
+                    .txtBox.Text = csb.SensorParam
+                End Try
+                .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+            End With
+            flpUserDefine.Controls.Add(udItem2)
+        Next
+        For Each chart As MyPlotChart In selectedItem.ThemeData.PlotCharts.Where(Function(x) x.Sensor = eSensorType.HDDLoadPercent Or x.Sensor = eSensorType.HDDTemperatureC Or x.Sensor = eSensorType.HDDTemperatureF)
+            Dim udItem2 As New NSUserDefineItem()
+            With udItem2
+                .ControlType = eControlType.TextLabel
+                .lblLabel.Text = chart.Name
+                .IsNumeric = True
+                Try
+                    .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = chart.Name).Value
+                Catch ex As Exception
+                    .txtBox.Text = chart.SensorParam
+                End Try
+                .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+            End With
+            flpUserDefine.Controls.Add(udItem2)
+        Next
+        For Each statusbar As MyStatusBar In selectedItem.ThemeData.StatusBars.Where(Function(x) x.Sensor = eSensorType.HDDLoadPercent Or x.Sensor = eSensorType.HDDTemperatureC Or x.Sensor = eSensorType.HDDTemperatureF)
+            Dim udItem2 As New NSUserDefineItem()
+            With udItem2
+                .ControlType = eControlType.TextLabel
+                .lblLabel.Text = statusbar.Name
+                .IsNumeric = True
+                Try
+                    .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = statusbar.Name).Value
+                Catch ex As Exception
+                    .txtBox.Text = statusbar.SensorParam
+                End Try
+                .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+            End With
+            flpUserDefine.Controls.Add(udItem2)
+        Next
+
         If flpUserDefine.Controls.Count >= 1 Then
             btnApply.Enabled = True
         Else
@@ -298,7 +604,6 @@ Public Class frmMain
             .LicenseKey = UserSettings.LicenseKey
             .HWID = UserSettings.HWID
             .Language = UserSettings.Language
-            .CpuFan = UserSettings.CpuFan
             .SaveSilent()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance
@@ -385,7 +690,14 @@ Public Class frmMain
                 .UseCompatibleTextRendering = tl.UseCompatibleTextRendering
                 .AutoSize = tl.AutoSize
                 .Sensor = tl.Sensor
-                .SensorParam = tl.SensorParam
+                Select Case .Sensor
+                    Case eSensorType.CPUFan, eSensorType.MoboFan, eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF
+                        If currentPreset.TextLabels.Where(Function(x) x.Name = tl.Name).Count = 1 Then
+                            .SensorParam = currentPreset.TextLabels.SingleOrDefault(Function(x) x.Name = tl.Name).Value
+                        Else
+                            .SensorParam = tl.SensorParam
+                        End If
+                End Select
                 .rzControl = Nothing
             End With
             frmMonitor.Controls.Add(txtLbl)
@@ -425,7 +737,14 @@ Public Class frmMain
                 End Try
                 .SizeMode = ic.SizeMode
                 .Sensor = ic.Sensor
-                .SensorParam = ic.SensorParam
+                Select Case .Sensor
+                    Case eSensorType.CPUFan, eSensorType.MoboFan, eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF
+                        If currentPreset.TextLabels.Where(Function(x) x.Name = ic.Name).Count = 1 Then
+                            .SensorParam = currentPreset.TextLabels.SingleOrDefault(Function(x) x.Name = ic.Name).Value
+                        Else
+                            .SensorParam = ic.SensorParam
+                        End If
+                End Select
                 .EnableDynamicImages = ic.EnableDynamicImages
                 .DynamicImages = ic.DynamicImages.ToDynamicImages
                 .AllowUserEdit = ic.AllowUserEdit
@@ -459,7 +778,14 @@ Public Class frmMain
                 .Minimum = sb.Minimum
                 .Maximum = sb.Maximum
                 .Sensor = sb.Sensor
-                .SensorParam = sb.SensorParam
+                Select Case .Sensor
+                    Case eSensorType.CPUFan, eSensorType.MoboFan, eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF
+                        If currentPreset.TextLabels.Where(Function(x) x.Name = sb.Name).Count = 1 Then
+                            .SensorParam = currentPreset.TextLabels.SingleOrDefault(Function(x) x.Name = sb.Name).Value
+                        Else
+                            .SensorParam = sb.SensorParam
+                        End If
+                End Select
                 .Texture = sb.Texture.Base64ToImage
                 .TextureSize = sb.TextureSize
                 .UseTexture = sb.UseTexture
@@ -503,7 +829,14 @@ Public Class frmMain
                 .Maximum = csb.Maximum
                 .TextMode = csb.TextMode
                 .Sensor = csb.Sensor
-                .SensorParam = csb.SensorParam
+                Select Case .Sensor
+                    Case eSensorType.CPUFan, eSensorType.MoboFan, eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF
+                        If currentPreset.TextLabels.Where(Function(x) x.Name = csb.Name).Count = 1 Then
+                            .SensorParam = currentPreset.TextLabels.SingleOrDefault(Function(x) x.Name = csb.Name).Value
+                        Else
+                            .SensorParam = csb.SensorParam
+                        End If
+                End Select
                 .rzControl = Nothing
             End With
             frmMonitor.Controls.Add(csbProgress)
@@ -529,7 +862,14 @@ Public Class frmMain
                 .Padding = pc.Padding
                 .Size = pc.Size
                 .Sensor = pc.Sensor
-                .SensorParam = pc.SensorParam
+                Select Case .Sensor
+                    Case eSensorType.CPUFan, eSensorType.MoboFan, eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF
+                        If currentPreset.TextLabels.Where(Function(x) x.Name = pc.Name).Count = 1 Then
+                            .SensorParam = currentPreset.TextLabels.SingleOrDefault(Function(x) x.Name = pc.Name).Value
+                        Else
+                            .SensorParam = pc.SensorParam
+                        End If
+                End Select
                 .PlotChartStyle = pc.PlotChartStyle.ToPlotChartStyle
                 .BorderStyle = pc.BorderStyle
                 .ScaleMode = pc.ScaleMode
@@ -821,4 +1161,7 @@ Public Class frmMain
         flpUserDefine.Padding = New Padding(0, 0, SystemInformation.VerticalScrollBarWidth, 0)
     End Sub
 
+    Private Sub btnDownloadTheme_Click(sender As Object, e As EventArgs) Handles btnDownloadTheme.Click
+        Process.Start("https://www.bigbromonitor.com")
+    End Sub
 End Class

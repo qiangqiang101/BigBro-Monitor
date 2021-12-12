@@ -48,6 +48,7 @@ Partial Class frmMain
         Me.btnThemeEditor = New MaterialSkin.Controls.MaterialButton()
         Me.pbThemeSnapshot = New ResMon.FillPicturebox()
         Me.flpUserDefine = New ResMon.DBFlowLayoutPanel()
+        Me.btnDownloadTheme = New MaterialSkin.Controls.MaterialButton()
         CType(Me.scContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.scContainer.Panel1.SuspendLayout()
         Me.scContainer.Panel2.SuspendLayout()
@@ -120,6 +121,7 @@ Partial Class frmMain
         '
         'pToolbox
         '
+        Me.pToolbox.Controls.Add(Me.btnDownloadTheme)
         Me.pToolbox.Controls.Add(Me.txtSearch)
         Me.pToolbox.Controls.Add(Me.btnSearch)
         Me.pToolbox.Controls.Add(Me.btnResetFilter)
@@ -453,6 +455,29 @@ Partial Class frmMain
         Me.flpUserDefine.Size = New System.Drawing.Size(385, 101)
         Me.flpUserDefine.TabIndex = 11
         '
+        'btnDownloadTheme
+        '
+        Me.btnDownloadTheme.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnDownloadTheme.AutoSize = False
+        Me.btnDownloadTheme.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnDownloadTheme.BackColor = System.Drawing.SystemColors.Control
+        Me.btnDownloadTheme.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnDownloadTheme.Depth = 0
+        Me.btnDownloadTheme.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnDownloadTheme.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnDownloadTheme.HighEmphasis = True
+        Me.btnDownloadTheme.Icon = Nothing
+        Me.btnDownloadTheme.Location = New System.Drawing.Point(751, 3)
+        Me.btnDownloadTheme.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnDownloadTheme.MouseState = MaterialSkin.MouseState.HOVER
+        Me.btnDownloadTheme.Name = "btnDownloadTheme"
+        Me.btnDownloadTheme.Size = New System.Drawing.Size(178, 36)
+        Me.btnDownloadTheme.TabIndex = 3
+        Me.btnDownloadTheme.Text = "Download theme"
+        Me.btnDownloadTheme.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnDownloadTheme.UseAccentColor = False
+        Me.btnDownloadTheme.UseVisualStyleBackColor = False
+        '
         'frmMain
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -512,4 +537,5 @@ Partial Class frmMain
     Friend WithEvents flpUserDefine As DBFlowLayoutPanel
     Friend WithEvents lblThemeName As MaterialLabel
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents btnDownloadTheme As MaterialButton
 End Class

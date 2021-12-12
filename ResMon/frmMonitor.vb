@@ -284,7 +284,6 @@ Public Class frmMonitor
                 .LicenseKey = UserSettings.LicenseKey
                 .HWID = UserSettings.HWID
                 .Language = UserSettings.Language
-                .CpuFan = UserSettings.CpuFan
                 .SaveSilent()
             End With
             UserSettings = New UserSettingData(UserSettingFile).Instance

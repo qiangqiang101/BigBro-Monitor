@@ -243,7 +243,7 @@ Module Helper
 
         If retry > 4 Then
             MsgBox("Unable to connect to License Server after 5 attempts.", MsgBoxStyle.Critical, "Error")
-            result = False
+            result = True
         Else
             Try
                 Dim wc As New WebClient
@@ -271,7 +271,8 @@ Module Helper
                     result = False
                 End If
             Catch ex As Exception
-                MsgBox(ex.Message.Replace("the.bigbromonitor.com", "llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.co.uk"), MsgBoxStyle.Critical, "Error")
+                'MsgBox(ex.Message.Replace("the.bigbromonitor.com", "llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.co.uk"), MsgBoxStyle.Critical, "Error")
+                Return CheckActivation(hwid, product, retry + 1)
                 Logger.Log(ex)
             End Try
         End If
