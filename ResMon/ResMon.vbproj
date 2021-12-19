@@ -104,12 +104,19 @@
       <HintPath>..\packages\Microsoft.Web.WebView2.1.0.902.49\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NetworkMonitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NetworkMonitor.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NullLib.CommandLine, Version=1.1.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NullLib.CommandLine.1.1.0.2\lib\netstandard2.0\NullLib.CommandLine.dll</HintPath>
     </Reference>
     <Reference Include="OpenHardwareMonitorLib, Version=0.9.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

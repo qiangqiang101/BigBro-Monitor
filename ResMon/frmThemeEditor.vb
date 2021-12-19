@@ -1008,6 +1008,21 @@ Public Class frmThemeEditor
                 AddHandler circularStatusBar.MouseClick, AddressOf Control_MouseClick
             Case GetType(PlotChart)
                 Dim source = CType(ctrl, PlotChart)
+                Dim sourcePCS = CType(source.PlotChartStyle, PlotChartStyle)
+                Dim newPCS As New PlotChartStyle()
+                With newPCS
+                    .AntiAliasing = sourcePCS.AntiAliasing
+                    .AvgLinePen = sourcePCS.AvgLinePen
+                    .BackgroundColorBottom = sourcePCS.BackgroundColorBottom
+                    .BackgroundColorTop = sourcePCS.BackgroundColorTop
+                    .ChartLinePen = sourcePCS.ChartLinePen
+                    .HorizontalGridPen = sourcePCS.HorizontalGridPen
+                    .ShowAverageLine = sourcePCS.ShowAverageLine
+                    .ShowCurMax = sourcePCS.ShowCurMax
+                    .ShowHorizontalGridLines = sourcePCS.ShowHorizontalGridLines
+                    .ShowVerticalGridLines = sourcePCS.ShowVerticalGridLines
+                    .VerticalGridPen = sourcePCS.VerticalGridPen
+                End With
                 Dim plotChart As New PlotChart(True)
                 With plotChart
                     .myParentForm = monForm
@@ -1028,7 +1043,7 @@ Public Class frmThemeEditor
                     .Size = source.Size
                     .Sensor = source.Sensor
                     .SensorParam = source.SensorParam
-                    .PlotChartStyle = source.PlotChartStyle
+                    .PlotChartStyle = newPCS
                     .BorderStyle = source.BorderStyle
                     .ScaleMode = source.ScaleMode
                 End With
