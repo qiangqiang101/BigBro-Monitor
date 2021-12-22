@@ -369,7 +369,7 @@ Public Class TextLabel
                     If String.IsNullOrEmpty(_sensorParam) Then
                         Text = _b4Text & Now.ToString
                     Else
-                        Text = _b4Text & Now.ToString(CStr(_sensorParam))
+                        Text = _b4Text & Now.ToString(_sensorParam)
                     End If
 
                 Case eSensorType.MoboTemperatureC

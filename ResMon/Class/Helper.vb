@@ -311,14 +311,6 @@ Module Helper
         Return False
     End Function
 
-    '<DllImport("User32.dll")>
-    'Public Function RegisterHotKey(ByVal hwnd As IntPtr, ByVal id As Integer, ByVal fsModifiers As Integer, ByVal vk As Integer) As Integer
-    'End Function
-
-    '<DllImport("User32.dll")>
-    'Public Function UnregisterHotKey(ByVal hwnd As IntPtr, ByVal id As Integer) As Integer
-    'End Function
-
 End Module
 
 Public Enum eSensorType

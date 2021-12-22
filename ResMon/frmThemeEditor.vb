@@ -397,6 +397,50 @@ Public Class frmThemeEditor
             AddHandler wwidget.MouseClick, AddressOf Control_MouseClick
         Next
 
+        For Each av As MyAudioVisualizer In currentTheme.AudioVisualizers
+            Dim audio As New AudioVisualizer(True)
+            With audio
+                .myParentForm = frmMonitor
+                .BackColor = av.BackColor.ToColor
+                .Font = av.Font.ToFont
+                .ForeColor = av.ForeColor.ToColor
+                .RightToLeft = av.RightToLeft
+                .Text = av.Text
+                .Enabled = av.Enabled
+                .Visible = av.Visible
+                .Tag = "ThemeControl"
+                .Name = av.Name
+                .Anchor = av.Anchor
+                .Dock = av.Dock
+                .Location = av.Location
+                .Margin = av.Margin
+                .Padding = av.Padding
+                .Size = av.Size
+                .Sensor = av.Sensor
+                .rzControl = Nothing
+                .UseAverage = av.UseAverage
+                .BarCount = av.BarCount
+                .BarSpacing = av.BarSpacing
+                .ScalingStrategy = av.ScalingStrategy
+                .ColorStyle = av.ColorStyle
+                .Speed = av.Speed
+                .Color1 = av.Color1.ToColor
+                .Color2 = av.Color2.ToColor
+                .Color3 = av.Color3.ToColor
+                .Color4 = av.Color4.ToColor
+                .Color5 = av.Color5.ToColor
+                .Color6 = av.Color6.ToColor
+                .Color7 = av.Color7.ToColor
+            End With
+
+            monForm.Controls.Add(audio)
+
+            Dim node As New TreeNode($"{audio.Name} ({audio.Sensor.ToString})") With {.Tag = audio, .Name = audio.Name}
+            root.Nodes.Add(node)
+
+            AddHandler audio.MouseClick, AddressOf Control_MouseClick
+        Next
+
         Text = $"{themeConfig.Name} - Theme Editor"
 
         currentTheme.TextLabels.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, TextLabel).ParentName = x.ParentName)
@@ -407,6 +451,7 @@ Public Class frmThemeEditor
         currentTheme.DetailSensors.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, DetailSensor).ParentName = x.ParentName)
         currentTheme.YoutubeVideos.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, Youtube).ParentName = x.ParentName)
         currentTheme.WeatherWidgets.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, WeatherWidget).ParentName = x.ParentName)
+        currentTheme.AudioVisualizers.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, AudioVisualizer).ParentName = x.ParentName)
     End Sub
 
     Private Sub tsmiSaveAs_Click(sender As Object, e As EventArgs) Handles tsmiSaveAs.Click
@@ -433,6 +478,7 @@ Public Class frmThemeEditor
                 Dim dsList As New List(Of MyDetailSensor)
                 Dim ytList As New List(Of MyYoutube)
                 Dim wwList As New List(Of MyWeatherWidget)
+                Dim avList As New List(Of MyAudioVisualizer)
                 For Each control As Control In monForm.Controls
                     Select Case control.GetType
                         Case GetType(TextLabel)
@@ -451,6 +497,8 @@ Public Class frmThemeEditor
                             ytList.Add(New MyYoutube(control))
                         Case GetType(WeatherWidget)
                             wwList.Add(New MyWeatherWidget(control))
+                        Case GetType(AudioVisualizer)
+                            avList.Add(New MyAudioVisualizer(control))
                     End Select
                 Next
                 .TextLabels = tlList
@@ -461,6 +509,7 @@ Public Class frmThemeEditor
                 .DetailSensors = dsList
                 .YoutubeVideos = ytList
                 .WeatherWidgets = wwList
+                .AudioVisualizers = avList
                 .Snapshot = monForm.TakeScreenShot.ImageToBase64(ImageFormat.Png)
                 .CustomPreview = themeConfig.CustomPreview.ImageToBase64
                 .Save()
@@ -494,6 +543,7 @@ Public Class frmThemeEditor
                 Dim dsList As New List(Of MyDetailSensor)
                 Dim ytList As New List(Of MyYoutube)
                 Dim wwList As New List(Of MyWeatherWidget)
+                Dim avList As New List(Of MyAudioVisualizer)
                 For Each control As Control In monForm.Controls
                     Select Case control.GetType
                         Case GetType(TextLabel)
@@ -512,6 +562,8 @@ Public Class frmThemeEditor
                             ytList.Add(New MyYoutube(control))
                         Case GetType(WeatherWidget)
                             wwList.Add(New MyWeatherWidget(control))
+                        Case GetType(AudioVisualizer)
+                            avList.Add(New MyAudioVisualizer(control))
                     End Select
                 Next
                 .TextLabels = tlList
@@ -522,6 +574,7 @@ Public Class frmThemeEditor
                 .DetailSensors = dsList
                 .YoutubeVideos = ytList
                 .WeatherWidgets = wwList
+                .AudioVisualizers = avList
                 .Snapshot = monForm.TakeScreenShot.ImageToBase64(ImageFormat.Png)
                 .CustomPreview = themeConfig.CustomPreview.ImageToBase64
                 .Save()
@@ -688,6 +741,17 @@ Public Class frmThemeEditor
         AddHandler wWidget.MouseClick, AddressOf Control_MouseClick
     End Sub
 
+    Private Sub tsbVisualizer_Click(sender As Object, e As EventArgs) Handles tsbVisualizer.Click, tsmiVisualizer.Click
+        Dim aVisualizer As New AudioVisualizer(True) With {.Name = $"AudioVisualizer{GetControlCount("AudioVisualizer")}", .Location = CalculateCenter(monForm.Size, New Size(150, 50)), .Size = New Size(150, 50),
+            .myParentForm = monForm, .ForeColor = themeConfig.TextColor, .Tag = "ThemeControl"}
+        monForm.Controls.Add(aVisualizer)
+
+        Dim node As New TreeNode($"{aVisualizer.Name} ({aVisualizer.Sensor.ToString})") With {.Tag = aVisualizer, .Name = aVisualizer.Name}
+        root.Nodes.Add(node)
+
+        AddHandler aVisualizer.MouseClick, AddressOf Control_MouseClick
+    End Sub
+
     Private Sub tsmiDelete_Click(sender As Object, e As EventArgs) Handles tsmiDelete.Click
         If Not tvControls.SelectedNode.Name = "ThemeConfig" Then
             If tvControls.SelectedNode.Tag.GetType = GetType(Youtube) Then
@@ -742,6 +806,7 @@ Public Class frmThemeEditor
                 Dim dsList As New List(Of MyDetailSensor)
                 Dim ytList As New List(Of MyYoutube)
                 Dim wwList As New List(Of MyWeatherWidget)
+                Dim avList As New List(Of MyAudioVisualizer)
                 For Each control As Control In monForm.Controls
                     Select Case control.GetType
                         Case GetType(TextLabel)
@@ -760,6 +825,8 @@ Public Class frmThemeEditor
                             ytList.Add(New MyYoutube(control))
                         Case GetType(WeatherWidget)
                             wwList.Add(New MyWeatherWidget(control))
+                        Case GetType(AudioVisualizer)
+                            avList.Add(New MyAudioVisualizer(control))
                     End Select
                 Next
                 .TextLabels = tlList
@@ -770,6 +837,7 @@ Public Class frmThemeEditor
                 .DetailSensors = dsList
                 .YoutubeVideos = ytList
                 .WeatherWidgets = wwList
+                .AudioVisualizers = avList
                 .Snapshot = monForm.TakeScreenShot.ImageToBase64(ImageFormat.Png)
                 .CustomPreview = themeConfig.CustomPreview.ImageToBase64
                 .Build()
@@ -799,6 +867,7 @@ Public Class frmThemeEditor
                     Dim dsList As New List(Of MyDetailSensor)
                     Dim ytList As New List(Of MyYoutube)
                     Dim wwList As New List(Of MyWeatherWidget)
+                    Dim avList As New List(Of MyAudioVisualizer)
                     For Each control As Control In monForm.Controls
                         Select Case control.GetType
                             Case GetType(TextLabel)
@@ -817,6 +886,8 @@ Public Class frmThemeEditor
                                 ytList.Add(New MyYoutube(control))
                             Case GetType(WeatherWidget)
                                 wwList.Add(New MyWeatherWidget(control))
+                            Case GetType(AudioVisualizer)
+                                avList.Add(New MyAudioVisualizer(control))
                         End Select
                     Next
                     .TextLabels = tlList
@@ -827,6 +898,7 @@ Public Class frmThemeEditor
                     .DetailSensors = dsList
                     .YoutubeVideos = ytList
                     .WeatherWidgets = wwList
+                    .AudioVisualizers = avList
                     .Snapshot = monForm.TakeScreenShot.ImageToBase64(ImageFormat.Png)
                     .CustomPreview = themeConfig.CustomPreview.ImageToBase64
                     .Build()
@@ -1139,6 +1211,47 @@ Public Class frmThemeEditor
                 root.Nodes.Add(node)
 
                 AddHandler weatherWidget.MouseClick, AddressOf Control_MouseClick
+            Case GetType(AudioVisualizer)
+                Dim source = CType(ctrl, AudioVisualizer)
+                Dim audioVisualizer As New AudioVisualizer(True)
+                With audioVisualizer
+                    .myParentForm = monForm
+                    .BackColor = source.BackColor
+                    .Font = source.Font
+                    .ForeColor = source.ForeColor
+                    .RightToLeft = source.RightToLeft
+                    .Text = source.Text
+                    .Enabled = source.Enabled
+                    .Visible = source.Visible
+                    .Tag = "ThemeControl"
+                    .Name = $"AudioVisualizer{GetControlCount("AudioVisualizer")}"
+                    .Anchor = source.Anchor
+                    .Dock = source.Dock
+                    .Location = source.Location
+                    .Margin = source.Margin
+                    .Padding = source.Padding
+                    .Size = source.Size
+                    .Sensor = source.Sensor
+                    .UseAverage = source.UseAverage
+                    .BarCount = source.BarCount
+                    .BarSpacing = source.BarSpacing
+                    .ScalingStrategy = source.ScalingStrategy
+                    .ColorStyle = source.ColorStyle
+                    .Speed = source.Speed
+                    .Color1 = source.Color1
+                    .Color2 = source.Color2
+                    .Color3 = source.Color3
+                    .Color4 = source.Color4
+                    .Color5 = source.Color5
+                    .Color6 = source.Color6
+                    .Color7 = source.Color7
+                End With
+                monForm.Controls.Add(audioVisualizer)
+
+                Dim node As New TreeNode($"{audioVisualizer.Name} ({audioVisualizer.Sensor.ToString})") With {.Tag = audioVisualizer, .Name = audioVisualizer.Name}
+                root.Nodes.Add(node)
+
+                AddHandler audioVisualizer.MouseClick, AddressOf Control_MouseClick
         End Select
     End Sub
 
@@ -1200,4 +1313,5 @@ Public Class frmThemeEditor
             DoDragDrop(e.Item, DragDropEffects.Move)
         End If
     End Sub
+
 End Class

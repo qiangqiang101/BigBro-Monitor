@@ -3,6 +3,7 @@ Imports System.IO
 Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.Security.Cryptography
 Imports System.Xml.Serialization
+Imports AudioSpectrum
 
 <Serializable>
 Public Structure ThemeData
@@ -39,6 +40,7 @@ Public Structure ThemeData
     Public DetailSensors As List(Of MyDetailSensor)
     Public YoutubeVideos As List(Of MyYoutube)
     Public WeatherWidgets As List(Of MyWeatherWidget)
+    Public AudioVisualizers As List(Of MyAudioVisualizer)
     Public Snapshot As String
     Public UpdateInterval As Integer
     Public CustomPreview As String
@@ -717,5 +719,80 @@ Public Structure MyDynamicImageCollection
         End If
         Return il
     End Function
+
+End Structure
+
+<Serializable>
+Public Structure MyAudioVisualizer
+
+    Public BackColor As MyColor
+    Public BackgroundImage As String
+    Public BackgroundImageLayout As ImageLayout
+    Public Font As MyFont
+    Public ForeColor As MyColor
+    Public RightToLeft As Boolean
+    Public Text As String
+    Public Enabled As Boolean
+    Public Visible As Boolean
+    Public Tag As Object
+    Public Name As String
+    Public Anchor As AnchorStyles
+    Public Dock As DockStyle
+    Public Location As Point
+    Public Margin As Padding
+    Public Padding As Padding
+    Public Size As Size
+
+    Public Sensor As eSensorType
+    Public ParentName As String
+    Public UseAverage As Boolean
+    Public BarCount As Integer
+    Public BarSpacing As Integer
+    Public ScalingStrategy As ScalingStrategy
+    Public ColorStyle As ARColorStyle
+    Public Speed As Single
+    Public Color1 As MyColor
+    Public Color2 As MyColor
+    Public Color3 As MyColor
+    Public Color4 As MyColor
+    Public Color5 As MyColor
+    Public Color6 As MyColor
+    Public Color7 As MyColor
+
+    Public Sub New(control As AudioVisualizer)
+        BackColor = New MyColor(control.BackColor)
+        BackgroundImage = control.BackgroundImage.ImageToBase64
+        BackgroundImageLayout = control.BackgroundImageLayout
+        Font = New MyFont(control.Font)
+        ForeColor = New MyColor(control.ForeColor)
+        RightToLeft = control.RightToLeft
+        Text = control.Text
+        Enabled = control.Enabled
+        Visible = control.Visible
+        Tag = control.Tag
+        Name = control.Name
+        Anchor = control.Anchor
+        Dock = control.Dock
+        Location = control.Location
+        Margin = control.Margin
+        Padding = control.Padding
+        Size = control.Size
+
+        Sensor = control.Sensor
+        ParentName = control.ParentName
+        UseAverage = control.UseAverage
+        BarCount = control.BarCount
+        BarSpacing = control.BarSpacing
+        ScalingStrategy = control.ScalingStrategy
+        ColorStyle = control.ColorStyle
+        Speed = control.Speed
+        Color1 = New MyColor(control.Color1)
+        Color2 = New MyColor(control.Color2)
+        Color3 = New MyColor(control.Color3)
+        Color4 = New MyColor(control.Color4)
+        Color5 = New MyColor(control.Color5)
+        Color6 = New MyColor(control.Color6)
+        Color7 = New MyColor(control.Color7)
+    End Sub
 
 End Structure

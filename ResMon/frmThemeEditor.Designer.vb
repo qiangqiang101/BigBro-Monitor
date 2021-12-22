@@ -65,7 +65,9 @@ Partial Class frmThemeEditor
         Me.tsbGraphDiagram = New System.Windows.Forms.ToolStripButton()
         Me.tsbYoutube = New System.Windows.Forms.ToolStripButton()
         Me.tsbWeather = New System.Windows.Forms.ToolStripButton()
+        Me.tsbVisualizer = New System.Windows.Forms.ToolStripButton()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.tsmiVisualizer = New System.Windows.Forms.ToolStripMenuItem()
         Me.msMenu.SuspendLayout()
         Me.cmsRightClick.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,46 +100,46 @@ Partial Class frmThemeEditor
         'tsmiNew
         '
         Me.tsmiNew.Name = "tsmiNew"
-        Me.tsmiNew.Size = New System.Drawing.Size(123, 22)
+        Me.tsmiNew.Size = New System.Drawing.Size(152, 22)
         Me.tsmiNew.Text = "New"
         '
         'tsmiOpen
         '
         Me.tsmiOpen.Name = "tsmiOpen"
-        Me.tsmiOpen.Size = New System.Drawing.Size(123, 22)
+        Me.tsmiOpen.Size = New System.Drawing.Size(152, 22)
         Me.tsmiOpen.Text = "Open..."
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(120, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(149, 6)
         '
         'tsmiSave
         '
         Me.tsmiSave.Name = "tsmiSave"
-        Me.tsmiSave.Size = New System.Drawing.Size(123, 22)
+        Me.tsmiSave.Size = New System.Drawing.Size(152, 22)
         Me.tsmiSave.Text = "Save"
         '
         'tsmiSaveAs
         '
         Me.tsmiSaveAs.Name = "tsmiSaveAs"
-        Me.tsmiSaveAs.Size = New System.Drawing.Size(123, 22)
+        Me.tsmiSaveAs.Size = New System.Drawing.Size(152, 22)
         Me.tsmiSaveAs.Text = "Save As..."
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(120, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(149, 6)
         '
         'tsmiExit
         '
         Me.tsmiExit.Name = "tsmiExit"
-        Me.tsmiExit.Size = New System.Drawing.Size(123, 22)
+        Me.tsmiExit.Size = New System.Drawing.Size(152, 22)
         Me.tsmiExit.Text = "Exit"
         '
         'tsmiProject
         '
-        Me.tsmiProject.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiTextLabel, Me.tsmiDetailSensor, Me.tsmiImageBox, Me.tsmiStatusBar, Me.tsmiRoundSB, Me.tsmiPlot, Me.tsmiYoutube, Me.tsmiWeather, Me.ToolStripSeparator3, Me.tsmiThemeProperties})
+        Me.tsmiProject.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiTextLabel, Me.tsmiDetailSensor, Me.tsmiImageBox, Me.tsmiStatusBar, Me.tsmiRoundSB, Me.tsmiPlot, Me.tsmiYoutube, Me.tsmiWeather, Me.tsmiVisualizer, Me.ToolStripSeparator3, Me.tsmiThemeProperties})
         Me.tsmiProject.Name = "tsmiProject"
         Me.tsmiProject.Size = New System.Drawing.Size(56, 20)
         Me.tsmiProject.Text = "Project"
@@ -146,13 +148,13 @@ Partial Class frmThemeEditor
         '
         Me.tsmiTextLabel.Name = "tsmiTextLabel"
         Me.tsmiTextLabel.Size = New System.Drawing.Size(170, 22)
-        Me.tsmiTextLabel.Text = "Text"
+        Me.tsmiTextLabel.Text = "Text Label"
         '
         'tsmiDetailSensor
         '
         Me.tsmiDetailSensor.Name = "tsmiDetailSensor"
         Me.tsmiDetailSensor.Size = New System.Drawing.Size(170, 22)
-        Me.tsmiDetailSensor.Text = "Detail Sensor Info"
+        Me.tsmiDetailSensor.Text = "Detail Sensor"
         '
         'tsmiImageBox
         '
@@ -176,13 +178,13 @@ Partial Class frmThemeEditor
         '
         Me.tsmiPlot.Name = "tsmiPlot"
         Me.tsmiPlot.Size = New System.Drawing.Size(170, 22)
-        Me.tsmiPlot.Text = "Plot"
+        Me.tsmiPlot.Text = "Plot Chart"
         '
         'tsmiYoutube
         '
         Me.tsmiYoutube.Name = "tsmiYoutube"
         Me.tsmiYoutube.Size = New System.Drawing.Size(170, 22)
-        Me.tsmiYoutube.Text = "Youtube Video"
+        Me.tsmiYoutube.Text = "Youtube"
         '
         'tsmiWeather
         '
@@ -234,7 +236,7 @@ Partial Class frmThemeEditor
         Me.pWorkArea.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pWorkArea.Location = New System.Drawing.Point(0, 0)
         Me.pWorkArea.Name = "pWorkArea"
-        Me.pWorkArea.Size = New System.Drawing.Size(729, 673)
+        Me.pWorkArea.Size = New System.Drawing.Size(729, 666)
         Me.pWorkArea.TabIndex = 1
         '
         'cmsRightClick
@@ -274,8 +276,8 @@ Partial Class frmThemeEditor
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.pgProperties)
-        Me.SplitContainer1.Size = New System.Drawing.Size(275, 673)
-        Me.SplitContainer1.SplitterDistance = 335
+        Me.SplitContainer1.Size = New System.Drawing.Size(275, 666)
+        Me.SplitContainer1.SplitterDistance = 331
         Me.SplitContainer1.TabIndex = 3
         '
         'tvControls
@@ -286,7 +288,7 @@ Partial Class frmThemeEditor
         Me.tvControls.HideSelection = False
         Me.tvControls.Location = New System.Drawing.Point(0, 0)
         Me.tvControls.Name = "tvControls"
-        Me.tvControls.Size = New System.Drawing.Size(275, 335)
+        Me.tvControls.Size = New System.Drawing.Size(275, 331)
         Me.tvControls.TabIndex = 3
         '
         'pgProperties
@@ -294,28 +296,27 @@ Partial Class frmThemeEditor
         Me.pgProperties.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pgProperties.Location = New System.Drawing.Point(0, 0)
         Me.pgProperties.Name = "pgProperties"
-        Me.pgProperties.Size = New System.Drawing.Size(275, 334)
+        Me.pgProperties.Size = New System.Drawing.Size(275, 331)
         Me.pgProperties.TabIndex = 0
         '
         'tsToolStrip
         '
         Me.tsToolStrip.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.tsToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.tsToolStrip.ImageScalingSize = New System.Drawing.Size(25, 25)
-        Me.tsToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbText, Me.tsbCompleteText, Me.tsbImage, Me.tsbStatusBar, Me.tsbRoundSB, Me.tsbGraphDiagram, Me.tsbYoutube, Me.tsbWeather})
+        Me.tsToolStrip.ImageScalingSize = New System.Drawing.Size(32, 32)
+        Me.tsToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbText, Me.tsbCompleteText, Me.tsbImage, Me.tsbStatusBar, Me.tsbRoundSB, Me.tsbGraphDiagram, Me.tsbYoutube, Me.tsbWeather, Me.tsbVisualizer})
         Me.tsToolStrip.Location = New System.Drawing.Point(0, 24)
         Me.tsToolStrip.Name = "tsToolStrip"
-        Me.tsToolStrip.Size = New System.Drawing.Size(1008, 32)
+        Me.tsToolStrip.Size = New System.Drawing.Size(1008, 39)
         Me.tsToolStrip.TabIndex = 4
-        Me.tsToolStrip.Text = "ToolStrip1"
         '
         'tsbText
         '
         Me.tsbText.Image = Global.ResMon.My.Resources.Resources.text
         Me.tsbText.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbText.Name = "tsbText"
-        Me.tsbText.Size = New System.Drawing.Size(82, 29)
-        Me.tsbText.Text = "Add Text"
+        Me.tsbText.Size = New System.Drawing.Size(95, 36)
+        Me.tsbText.Text = "Text Label"
         Me.tsbText.ToolTipText = "Text"
         '
         'tsbCompleteText
@@ -323,8 +324,8 @@ Partial Class frmThemeEditor
         Me.tsbCompleteText.Image = Global.ResMon.My.Resources.Resources.text_list_bullets
         Me.tsbCompleteText.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbCompleteText.Name = "tsbCompleteText"
-        Me.tsbCompleteText.Size = New System.Drawing.Size(153, 29)
-        Me.tsbCompleteText.Text = "Add Detail Sensor Info"
+        Me.tsbCompleteText.Size = New System.Drawing.Size(111, 36)
+        Me.tsbCompleteText.Text = "Detail Sensor"
         Me.tsbCompleteText.ToolTipText = "Text"
         '
         'tsbImage
@@ -332,8 +333,8 @@ Partial Class frmThemeEditor
         Me.tsbImage.Image = Global.ResMon.My.Resources.Resources.images_flickr
         Me.tsbImage.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbImage.Name = "tsbImage"
-        Me.tsbImage.Size = New System.Drawing.Size(94, 29)
-        Me.tsbImage.Text = "Add Image"
+        Me.tsbImage.Size = New System.Drawing.Size(76, 36)
+        Me.tsbImage.Text = "Image"
         Me.tsbImage.ToolTipText = "Text"
         '
         'tsbStatusBar
@@ -341,17 +342,17 @@ Partial Class frmThemeEditor
         Me.tsbStatusBar.Image = Global.ResMon.My.Resources.Resources.progressbar
         Me.tsbStatusBar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbStatusBar.Name = "tsbStatusBar"
-        Me.tsbStatusBar.Size = New System.Drawing.Size(113, 29)
-        Me.tsbStatusBar.Text = "Add Status Bar"
+        Me.tsbStatusBar.Size = New System.Drawing.Size(95, 36)
+        Me.tsbStatusBar.Text = "Status Bar"
         Me.tsbStatusBar.ToolTipText = "Text"
         '
         'tsbRoundSB
         '
-        Me.tsbRoundSB.Image = Global.ResMon.My.Resources.Resources.http_status_ok_success
+        Me.tsbRoundSB.Image = Global.ResMon.My.Resources.Resources.dashboard
         Me.tsbRoundSB.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbRoundSB.Name = "tsbRoundSB"
-        Me.tsbRoundSB.Size = New System.Drawing.Size(157, 29)
-        Me.tsbRoundSB.Text = "Add Circular Status Bar"
+        Me.tsbRoundSB.Size = New System.Drawing.Size(139, 36)
+        Me.tsbRoundSB.Text = "Circular Status Bar"
         Me.tsbRoundSB.ToolTipText = "Text"
         '
         'tsbGraphDiagram
@@ -359,8 +360,8 @@ Partial Class frmThemeEditor
         Me.tsbGraphDiagram.Image = Global.ResMon.My.Resources.Resources.diagnostic_chart
         Me.tsbGraphDiagram.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbGraphDiagram.Name = "tsbGraphDiagram"
-        Me.tsbGraphDiagram.Size = New System.Drawing.Size(82, 29)
-        Me.tsbGraphDiagram.Text = "Add Plot"
+        Me.tsbGraphDiagram.Size = New System.Drawing.Size(96, 36)
+        Me.tsbGraphDiagram.Text = "Plot Chart"
         Me.tsbGraphDiagram.ToolTipText = "Text"
         '
         'tsbYoutube
@@ -368,8 +369,8 @@ Partial Class frmThemeEditor
         Me.tsbYoutube.Image = Global.ResMon.My.Resources.Resources.youtube
         Me.tsbYoutube.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbYoutube.Name = "tsbYoutube"
-        Me.tsbYoutube.Size = New System.Drawing.Size(138, 29)
-        Me.tsbYoutube.Text = "Add Youtube Video"
+        Me.tsbYoutube.Size = New System.Drawing.Size(87, 36)
+        Me.tsbYoutube.Text = "Youtube"
         Me.tsbYoutube.ToolTipText = "Text"
         '
         'tsbWeather
@@ -377,14 +378,23 @@ Partial Class frmThemeEditor
         Me.tsbWeather.Image = Global.ResMon.My.Resources.Resources.weather_sun
         Me.tsbWeather.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbWeather.Name = "tsbWeather"
-        Me.tsbWeather.Size = New System.Drawing.Size(146, 29)
-        Me.tsbWeather.Text = "Add Weather Widget"
+        Me.tsbWeather.Size = New System.Drawing.Size(128, 36)
+        Me.tsbWeather.Text = "Weather Widget"
         Me.tsbWeather.ToolTipText = "Text"
+        '
+        'tsbVisualizer
+        '
+        Me.tsbVisualizer.Image = Global.ResMon.My.Resources.Resources.chart_column
+        Me.tsbVisualizer.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbVisualizer.Name = "tsbVisualizer"
+        Me.tsbVisualizer.Size = New System.Drawing.Size(127, 36)
+        Me.tsbVisualizer.Text = "Audio Visualizer"
+        Me.tsbVisualizer.ToolTipText = "Text"
         '
         'SplitContainer2
         '
         Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer2.Location = New System.Drawing.Point(0, 56)
+        Me.SplitContainer2.Location = New System.Drawing.Point(0, 63)
         Me.SplitContainer2.Name = "SplitContainer2"
         '
         'SplitContainer2.Panel1
@@ -394,9 +404,15 @@ Partial Class frmThemeEditor
         'SplitContainer2.Panel2
         '
         Me.SplitContainer2.Panel2.Controls.Add(Me.SplitContainer1)
-        Me.SplitContainer2.Size = New System.Drawing.Size(1008, 673)
+        Me.SplitContainer2.Size = New System.Drawing.Size(1008, 666)
         Me.SplitContainer2.SplitterDistance = 729
         Me.SplitContainer2.TabIndex = 5
+        '
+        'tsmiVisualizer
+        '
+        Me.tsmiVisualizer.Name = "tsmiVisualizer"
+        Me.tsmiVisualizer.Size = New System.Drawing.Size(170, 22)
+        Me.tsmiVisualizer.Text = "Audio Visualizer"
         '
         'frmThemeEditor
         '
@@ -472,4 +488,6 @@ Partial Class frmThemeEditor
     Friend WithEvents tsmiCopy As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
     Friend WithEvents tsbRoundSB As ToolStripButton
+    Friend WithEvents tsbVisualizer As ToolStripButton
+    Friend WithEvents tsmiVisualizer As ToolStripMenuItem
 End Class

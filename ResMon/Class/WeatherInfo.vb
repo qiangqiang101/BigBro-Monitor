@@ -545,7 +545,7 @@ Public Module WeatherData
         If malayLang Then query &= "&lang=ms"
 
         If retryTimes > 5 Then
-            MsgBox("Unable to get API data from Malaysian Meteorological Department Server after 5 attempts.", MsgBoxStyle.Critical, "Error")
+            Logger.Log("Unable to get API data from Malaysian Meteorological Department Server after 5 attempts.")
             Return New WeatherInfo("N/A", "N/A", "N/A", 0, 0, "N/A")
         Else
             Try
