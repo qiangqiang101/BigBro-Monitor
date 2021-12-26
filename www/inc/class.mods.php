@@ -47,6 +47,7 @@ class mods{
 	
 	// mod categories list 
 	public $cats_list = array(
+	5 => "3.5 Inch", 
 	1 => "5 Inch", 
 	2 => "7 Inch", 
 	3 => "8.8 Inch", 

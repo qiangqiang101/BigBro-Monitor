@@ -445,7 +445,10 @@ Namespace My.Resources
         '''© Malaysian Meteorological Department
         '''
         '''MaterialSkin 2 for .NET WinForms
-        '''© leocb &amp; orapps44.
+        '''© leocb &amp; orapps44
+        '''
+        '''CSCore - .NET Audio Library
+        '''© Florian.
         '''</summary>
         Friend ReadOnly Property ThirdParty() As String
             Get

@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Class\Spectrum.vb" />
     <Compile Include="SensorControls\AudioVisualizer.vb">
       <SubType>Component</SubType>
     </Compile>

@@ -239,7 +239,10 @@ Weather API
 © Malaysian Meteorological Department
 
 MaterialSkin 2 for .NET WinForms
-© leocb &amp; orapps44</value>
+© leocb &amp; orapps44
+
+CSCore - .NET Audio Library
+© Florian</value>
   </data>
   <data name="cc_sun" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cc_sun.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

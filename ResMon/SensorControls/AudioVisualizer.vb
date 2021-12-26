@@ -24,7 +24,7 @@ Public Class AudioVisualizer
     Private _soundOut As ISoundOut
     Private _source As IWaveSource
     Private _pitchShifter As PitchShifter
-    Private _lineSpectrum As LineSpectrum
+    Private _lineSpectrum As Spectrum
     Private _angle As Single = 0F
 
     Private ReadOnly _bitmap As Bitmap = New Bitmap(2000, 600)
@@ -319,6 +319,42 @@ Public Class AudioVisualizer
         End Set
     End Property
 
+    Private _direction As eDirection = eDirection.Bottom
+    <Category("Style")>
+    Public Property Direction() As eDirection
+        Get
+            Return _direction
+        End Get
+        Set(value As eDirection)
+            _direction = value
+            Start()
+        End Set
+    End Property
+
+    Private _lineCap As LineCap = LineCap.Round
+    <Category("Style")>
+    Public Property LineCap() As LineCap
+        Get
+            Return _lineCap
+        End Get
+        Set(value As LineCap)
+            _lineCap = value
+            Start()
+        End Set
+    End Property
+
+    Private _barStyle As eBarStyle = eBarStyle.Bar
+    <Category("Style")>
+    Public Property BarStyle() As eBarStyle
+        Get
+            Return _barStyle
+        End Get
+        Set(value As eBarStyle)
+            _barStyle = value
+            Start()
+        End Set
+    End Property
+
     Private _colorStyle As ARColorStyle = ARColorStyle.Rainbow
     <Category("Style")>
     Public Property ColorStyle() As ARColorStyle
@@ -426,7 +462,7 @@ Public Class AudioVisualizer
             rzControl = New ResizeableControl(Me, ResizeableControl.EdgeEnum.None)
         End If
 
-        timer = New Timer() With {.Interval = 30}
+        timer = New Timer() With {.Interval = 2000}
 
         Start()
     End Sub
@@ -480,7 +516,7 @@ Public Class AudioVisualizer
 
         Dim spectrumProvider As New BasicSpectrumProvider(aSampleSource.WaveFormat.Channels, aSampleSource.WaveFormat.SampleRate, fftSize)
 
-        _lineSpectrum = New LineSpectrum(fftSize)
+        _lineSpectrum = New Spectrum(fftSize)
         With _lineSpectrum
             .SpectrumProvider = spectrumProvider
             .UseAverage = _useAverage
@@ -488,6 +524,9 @@ Public Class AudioVisualizer
             .BarSpacing = _barSpacing
             .IsXLogScale = True
             .ScalingStrategy = _scalingStrategy
+            .Direction = _direction
+            .LineCap = _lineCap
+            .BarStyle = _barStyle
         End With
 
         Dim notificationSource As New SingleBlockNotificationStream(aSampleSource)
@@ -510,7 +549,7 @@ Public Class AudioVisualizer
                     theBrush.InterpolationColors = colorBlend
 
                     Dim image As Image = Me.Image
-                    Dim newImage = _lineSpectrum.CreateSpectrumLine(Me.Size, theBrush, BackColor, True)
+                    Dim newImage = _lineSpectrum.CreateSpectrumLine(Me.Size, theBrush, BackColor, False)
                     If newImage IsNot Nothing Then
                         Me.Image = newImage
                         If image IsNot Nothing Then
@@ -519,7 +558,7 @@ Public Class AudioVisualizer
                     End If
                 Case ARColorStyle.Gradient
                     Dim image As Image = Me.Image
-                    Dim newImage = _lineSpectrum.CreateSpectrumLine(Me.Size, _color1, _color2, BackColor, True)
+                    Dim newImage = _lineSpectrum.CreateSpectrumLine(Me.Size, _color1, _color2, BackColor, False)
                     If newImage IsNot Nothing Then
                         Me.Image = newImage
                         If image IsNot Nothing Then
@@ -528,7 +567,7 @@ Public Class AudioVisualizer
                     End If
                 Case ARColorStyle.Solid
                     Dim image As Image = Me.Image
-                    Dim newImage = _lineSpectrum.CreateSpectrumLine(Me.Size, _color1, _color1, BackColor, True)
+                    Dim newImage = _lineSpectrum.CreateSpectrumLine(Me.Size, _color1, _color1, BackColor, False)
                     If newImage IsNot Nothing Then
                         Me.Image = newImage
                         If image IsNot Nothing Then

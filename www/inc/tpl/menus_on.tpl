@@ -12,4 +12,4 @@
    </div>
 </div>
 <a href="https://discord.gg/SMwjGND3pV" target="_blank" class="btn" style="background-color: #5865F2">Discord</a>
-<a href="https://shopee.com.my/kongchungchong" target="_blank" class="btn" style="background-color: #FF6600">Shopee</a>
+<a href="https://shopee.com.my/ckcsale_x_bigbromonitor" target="_blank" class="btn" style="background-color: #FF6600">Shopee</a>

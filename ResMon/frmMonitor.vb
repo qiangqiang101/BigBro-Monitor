@@ -21,6 +21,7 @@ Public Class frmMonitor
     Private MouseDownX As Integer
     Private MouseDownY As Integer
     Public Editing As Boolean = False
+    Public CurrentTheme As ThemeData
 
     Private Sub Updater_Tick(sender As Object, e As EventArgs) Handles Updater.Tick
         rs.FindAllControls(Me)
@@ -34,6 +35,11 @@ Public Class frmMonitor
                 If control.Controls.Count <> 0 Then UpdateChildControl(control)
             End If
         Next
+
+        If Not Me.Editing Then
+            If Me.Width <> CurrentTheme.Size.Width Then Me.Width = CurrentTheme.Size.Width
+            If Me.Height <> CurrentTheme.Size.Height Then Me.Height = CurrentTheme.Size.Height
+        End If
     End Sub
 
     Private Sub UpdateChildControl(child As Control)

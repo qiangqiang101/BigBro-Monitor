@@ -749,6 +749,9 @@ Public Structure MyAudioVisualizer
     Public BarCount As Integer
     Public BarSpacing As Integer
     Public ScalingStrategy As ScalingStrategy
+    Public Direction As eDirection
+    Public LineCap As LineCap
+    Public BarStyle As eBarStyle
     Public ColorStyle As ARColorStyle
     Public Speed As Single
     Public Color1 As MyColor
@@ -784,6 +787,9 @@ Public Structure MyAudioVisualizer
         BarCount = control.BarCount
         BarSpacing = control.BarSpacing
         ScalingStrategy = control.ScalingStrategy
+        Direction = control.Direction
+        LineCap = control.LineCap
+        BarStyle = control.BarStyle
         ColorStyle = control.ColorStyle
         Speed = control.Speed
         Color1 = New MyColor(control.Color1)

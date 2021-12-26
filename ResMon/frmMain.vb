@@ -461,6 +461,7 @@ Public Class frmMain
             .Opacity = currentTheme.Opacity
             .BackgroundImage = currentTheme.BackgroundImage.Base64ToImage
             '.TransparencyKey = currentTheme.TransparencyKey.ToColor
+            .CurrentTheme = currentTheme
         End With
 
         For Each tl As MyTextLabel In currentTheme.TextLabels
@@ -545,7 +546,7 @@ Public Class frmMain
                 .BorderStyle = ic.BorderStyle
                 .AllowUserEdit = ic.AllowUserEdit
                 Try
-                    If ic.AllowUserEdit AndAlso currentPreset.ImageBoxes.Where(Function(x) x.Name = ic.Name).Count = 1 Then
+                    If ic.AllowUserEdit AndAlso currentPreset.ImageBoxes.Where(Function(x) x.Name = ic.Name).Count = 1 AndAlso Not .EnableDynamicImages Then
                         .Image = currentPreset.ImageBoxes.SingleOrDefault(Function(x) x.Name = ic.Name).Value.Base64ToImage
                     Else
                         .Image = ic.Image.Base64ToImage
@@ -824,6 +825,9 @@ Public Class frmMain
                 .BarCount = av.BarCount
                 .BarSpacing = av.BarSpacing
                 .ScalingStrategy = av.ScalingStrategy
+                .Direction = av.Direction
+                .LineCap = av.LineCap
+                .BarStyle = av.BarStyle
                 .ColorStyle = av.ColorStyle
                 .Speed = av.Speed
                 .Color1 = av.Color1.ToColor
@@ -833,6 +837,7 @@ Public Class frmMain
                 .Color5 = av.Color5.ToColor
                 .Color6 = av.Color6.ToColor
                 .Color7 = av.Color7.ToColor
+                .timer.Interval = 30
             End With
             frmMonitor.Controls.Add(audio)
         Next

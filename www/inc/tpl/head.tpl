@@ -36,11 +36,11 @@
    <div class="cats">
       <div class="marg">
          <a id="c_0" href="home">Home</a>
+		 <a id="c_5" href="3p5inch">3.5 Inch</a>
          <a id="c_1" href="5inch">5 Inch</a>
          <a id="c_2" href="7inch">7 Inch</a>
          <a id="c_3" href="8p8inch">8.8 Inch</a>
          <a id="c_4" href="misc">Misc</a>
-         <!-- <a id="c_5" href="weapons">Weapons</a> -->
          <!-- <a id="c_6" href="scripts">Scripts</a> -->
          <!-- <a id="c_7" href="tools">Tools</a> -->
          <!-- <a id="c_8" href="misc">Misc</a> -->

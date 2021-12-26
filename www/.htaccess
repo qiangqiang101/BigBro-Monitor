@@ -39,8 +39,8 @@ RewriteRule ^8p8inch/([0-9]+)$ cat.php?cid=3&pid=$1
 RewriteRule ^misc(|/)$ cat.php?cid=4
 RewriteRule ^misc/([0-9]+)$ cat.php?cid=4&pid=$1
 
-# RewriteRule ^misc(|/)$ cat.php?cid=5
-# RewriteRule ^misc/([0-9]+)$ cat.php?cid=5&pid=$1
+RewriteRule ^3p5inch(|/)$ cat.php?cid=5
+RewriteRule ^3p5inch/([0-9]+)$ cat.php?cid=5&pid=$1
 
 # RewriteRule ^tools(|/)$ cat.php?cid=6
 # RewriteRule ^tools/([0-9]+)$ cat.php?cid=6&pid=$1

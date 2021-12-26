@@ -20,11 +20,11 @@
             <b>Category</b>
             <select name="category" class="w420">
                <option value="0" selected="">Select a category...</option>
+			   <option value="5">3.5 Inch</option>
                <option value="1">5 Inch</option>
                <option value="2">7 Inch</option>
                <option value="3">8.8 Inch</option>
                <option value="4">Misc</option>
-               <!-- <option value="5">Weapons</option> -->
                <!-- <option value="6">Scripts</option> -->
                <!-- <option value="7">Tools</option> -->
                <!-- <option value="8">Misc</option> -->

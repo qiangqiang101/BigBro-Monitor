@@ -20,6 +20,7 @@
             
             <b>Category</b>
             <select id="drop_cats" name="category" class="w420">
+			   <option value="5">3.5 Inch</option>
                <option value="1">5 Inch</option>
                <option value="2">7 Inch</option>
                <option value="3">8 Inch</option>

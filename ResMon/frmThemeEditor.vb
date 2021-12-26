@@ -422,6 +422,9 @@ Public Class frmThemeEditor
                 .BarCount = av.BarCount
                 .BarSpacing = av.BarSpacing
                 .ScalingStrategy = av.ScalingStrategy
+                .Direction = av.Direction
+                .LineCap = av.LineCap
+                .BarStyle = av.BarStyle
                 .ColorStyle = av.ColorStyle
                 .Speed = av.Speed
                 .Color1 = av.Color1.ToColor
@@ -431,6 +434,7 @@ Public Class frmThemeEditor
                 .Color5 = av.Color5.ToColor
                 .Color6 = av.Color6.ToColor
                 .Color7 = av.Color7.ToColor
+                .timer.Interval = 2000
             End With
 
             monForm.Controls.Add(audio)
@@ -745,6 +749,7 @@ Public Class frmThemeEditor
         Dim aVisualizer As New AudioVisualizer(True) With {.Name = $"AudioVisualizer{GetControlCount("AudioVisualizer")}", .Location = CalculateCenter(monForm.Size, New Size(150, 50)), .Size = New Size(150, 50),
             .myParentForm = monForm, .ForeColor = themeConfig.TextColor, .Tag = "ThemeControl"}
         monForm.Controls.Add(aVisualizer)
+        aVisualizer.timer.Interval = 2000
 
         Dim node As New TreeNode($"{aVisualizer.Name} ({aVisualizer.Sensor.ToString})") With {.Tag = aVisualizer, .Name = aVisualizer.Name}
         root.Nodes.Add(node)
@@ -1236,6 +1241,9 @@ Public Class frmThemeEditor
                     .BarCount = source.BarCount
                     .BarSpacing = source.BarSpacing
                     .ScalingStrategy = source.ScalingStrategy
+                    .Direction = source.Direction
+                    .LineCap = source.LineCap
+                    .BarStyle = source.BarStyle
                     .ColorStyle = source.ColorStyle
                     .Speed = source.Speed
                     .Color1 = source.Color1
@@ -1245,6 +1253,7 @@ Public Class frmThemeEditor
                     .Color5 = source.Color5
                     .Color6 = source.Color6
                     .Color7 = source.Color7
+                    .timer.Interval = 2000
                 End With
                 monForm.Controls.Add(audioVisualizer)
 
