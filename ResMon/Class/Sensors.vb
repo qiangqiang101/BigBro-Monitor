@@ -3,6 +3,7 @@ Imports System.Net
 Imports System.Net.NetworkInformation
 Imports System.Text
 Imports System.Text.RegularExpressions
+Imports System.Threading
 Imports Echevil
 Imports OpenHardwareMonitor.Hardware
 
@@ -725,7 +726,7 @@ Public Class NetworkSensor
         Dim sendPing As New Ping()
 
         Try
-            Dim result As PingReply = sendPing.Send(url)
+            Dim result As PingReply = sendPing.Send(url, 1000)
             If result.Status = IPStatus.Success Then Return $"{result.RoundtripTime} ms"
         Catch ex As Exception
             Return "Requested Timed Out"
@@ -737,7 +738,7 @@ Public Class NetworkSensor
         Dim sendPing As New Ping()
 
         Try
-            Dim result As PingReply = sendPing.Send(url)
+            Dim result As PingReply = sendPing.Send(url, 1000)
             If result.Status = IPStatus.Success Then Return result.RoundtripTime
         Catch ex As Exception
             Return 0L
