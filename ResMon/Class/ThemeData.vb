@@ -45,6 +45,9 @@ Public Structure ThemeData
     Public UpdateInterval As Integer
     Public CustomPreview As String
     Public Opacity As Double
+    Public RGBBackground As Boolean
+    Public RGBTransform As RGBTransform
+    Public RGBPattern As RGBPattern
 
     Public Sub New(filename As String)
         Me.FileName = filename

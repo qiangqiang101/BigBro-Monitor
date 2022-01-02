@@ -1,5 +1,6 @@
 ﻿Imports System.CodeDom.Compiler
 Imports System.ComponentModel
+Imports System.Drawing.Drawing2D
 Imports System.Drawing.Imaging
 Imports System.Reflection
 Imports Echevil
@@ -22,6 +23,54 @@ Public Class frmMonitor
     Private MouseDownY As Integer
     Public Editing As Boolean = False
     Public CurrentTheme As ThemeData
+
+    Private _rgbPosition As Single = 0F
+
+    Private _backgroundImg As Image = Nothing
+    Private _rgbOn As Boolean = False
+    Public Property RGBBackground() As Boolean
+        Get
+            Return _rgbOn
+        End Get
+        Set(value As Boolean)
+            _rgbOn = value
+            If Not Me.Editing Then
+                If value Then
+                    If Me.BackgroundImage IsNot Nothing Then
+                        _backgroundImg = Me.BackgroundImage
+                        Me.BackgroundImage = Nothing
+                    End If
+                    If Not RGBTicker.Enabled Then RGBTicker.Start()
+                Else
+                    If _backgroundImg IsNot Nothing Then
+                        BackgroundImage = _backgroundImg
+                        _backgroundImg = Nothing
+                    End If
+                    If RGBTicker.Enabled Then RGBTicker.Stop()
+                End If
+            End If
+        End Set
+    End Property
+
+    Private _rgbTransform As RGBTransform = RGBTransform.Slide1
+    Public Property RGBTransform() As RGBTransform
+        Get
+            Return _rgbTransform
+        End Get
+        Set(value As RGBTransform)
+            _rgbTransform = value
+        End Set
+    End Property
+
+    Private _rgbPattern As RGBPattern = RGBPattern.Rainbow
+    Public Property RGBPattern() As RGBPattern
+        Get
+            Return _rgbPattern
+        End Get
+        Set(value As RGBPattern)
+            _rgbPattern = value
+        End Set
+    End Property
 
     Private Sub Updater_Tick(sender As Object, e As EventArgs) Handles Updater.Tick
         rs.FindAllControls(Me)
@@ -252,13 +301,92 @@ Public Class frmMonitor
         End If
     End Sub
 
+    Private Sub RGBTicker_Tick(sender As Object, e As EventArgs) Handles RGBTicker.Tick
+        If Not Me.Editing Then
+            Invalidate()
+
+            _rgbPosition += 1.0F
+            If _rgbPosition >= Single.MaxValue - 1.0F Then _rgbPosition = 0F
+        End If
+    End Sub
+
+    Private Sub GenerateRGBSpectrum(graphic As Graphics, size As Size)
+        Using theBrush As New LinearGradientBrush(Point.Empty, New Point(size.Width, size.Height), Color.Red, Color.Blue)
+            Select Case _rgbTransform
+                Case RGBTransform.Slide1
+                    theBrush.TranslateTransform(_rgbPosition, -_rgbPosition, MatrixOrder.Prepend)
+                Case RGBTransform.Slide2
+                    theBrush.TranslateTransform(-_rgbPosition, _rgbPosition, MatrixOrder.Prepend)
+                Case RGBTransform.Rotate
+                    theBrush.RotateTransform(_rgbPosition, MatrixOrder.Prepend)
+            End Select
+
+            Dim colorBlend As New ColorBlend()
+            Select Case RGBPattern
+                Case RGBPattern.BlueToRed
+                    colorBlend.Colors = New Color() {Color.FromArgb(3, 24, 237), Color.FromArgb(122, 13, 125), Color.FromArgb(254, 0, 1)}
+                    colorBlend.Positions = New Single() {0F, 0.5F, 1.0F}
+                Case RGBPattern.Cyberpunk
+                    colorBlend.Colors = New Color() {Color.FromArgb(206, 253, 66), Color.FromArgb(0, 220, 255), Color.FromArgb(206, 253, 66)}
+                    colorBlend.Positions = New Single() {0F, 0.5F, 1.0F}
+                Case RGBPattern.Police
+                    colorBlend.Colors = New Color() {Color.Black, Color.FromArgb(0, 0, 135), Color.FromArgb(12, 0, 243), Color.Red, Color.Black}
+                    colorBlend.Positions = New Single() {0F, 0.25F, 0.5F, 0.75F, 1.0F}
+                Case RGBPattern.PurplePink
+                    colorBlend.Colors = New Color() {Color.FromArgb(254, 0, 146), Color.FromArgb(75, 0, 217), Color.FromArgb(254, 0, 146)}
+                    colorBlend.Positions = New Single() {0F, 0.5F, 1.0F}
+                Case RGBPattern.Rainbow
+                    colorBlend.Colors = New Color() {Color.Purple, Color.Red, Color.Yellow, Color.Lime, Color.Cyan, Color.Blue, Color.Purple}
+                    colorBlend.Positions = New Single() {0F, 0.1666F, 0.3333F, 0.5F, 0.6666F, 0.8333F, 1.0F}
+                Case RGBPattern.RedToBlack
+                    colorBlend.Colors = New Color() {Color.Red, Color.FromArgb(128, 0, 0), Color.Black}
+                    colorBlend.Positions = New Single() {0F, 0.5F, 1.0F}
+                Case RGBPattern.YellowPink
+                    colorBlend.Colors = New Color() {Color.FromArgb(241, 249, 5), Color.FromArgb(255, 6, 231), Color.FromArgb(241, 249, 5)}
+                    colorBlend.Positions = New Single() {0F, 0.5F, 1.0F}
+                Case RGBPattern.YellowToRed
+                    colorBlend.Colors = New Color() {Color.FromArgb(245, 188, 64), Color.FromArgb(254, 64, 125), Color.FromArgb(249, 30, 31)}
+                    colorBlend.Positions = New Single() {0F, 0.5F, 1.0F}
+            End Select
+
+            theBrush.InterpolationColors = colorBlend
+
+            PrepareGraphics(graphic, False)
+
+            Dim rgbImg As New Bitmap(size.Width, size.Height)
+            Using g As Graphics = Graphics.FromImage(rgbImg)
+                PrepareGraphics(g, False)
+                g.FillRectangle(theBrush, 0, 0, size.Width, size.Height)
+            End Using
+
+            If rgbImg IsNot Nothing Then graphic.DrawImage(rgbImg, ClientRectangle)
+            If _backgroundImg IsNot Nothing Then graphic.DrawImage(_backgroundImg, ClientRectangle)
+        End Using
+    End Sub
+
+    Private Sub PrepareGraphics(graphics As Graphics, highQuality As Boolean)
+        If highQuality Then
+            graphics.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
+            graphics.CompositingQuality = Drawing2D.CompositingQuality.AssumeLinear
+            graphics.PixelOffsetMode = Drawing2D.PixelOffsetMode.Default
+            graphics.TextRenderingHint = Drawing.Text.TextRenderingHint.ClearTypeGridFit
+        Else
+            graphics.SmoothingMode = Drawing2D.SmoothingMode.HighSpeed
+            graphics.CompositingQuality = Drawing2D.CompositingQuality.HighSpeed
+            graphics.PixelOffsetMode = Drawing2D.PixelOffsetMode.None
+            graphics.TextRenderingHint = Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit
+        End If
+    End Sub
+
     Private Sub OnFrameChanged(ByVal o As Object, ByVal e As EventArgs)
         Invalidate()
         Threading.Thread.Sleep(20)
     End Sub
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
-
+        If Not Me.Editing Then
+            If RGBBackground Then GenerateRGBSpectrum(e.Graphics, New Size(Width / 10, Height / 10))
+        End If
     End Sub
 
     Protected Overrides Sub OnPaintBackground(e As PaintEventArgs)
@@ -276,23 +404,28 @@ Public Class frmMonitor
 
     Private Sub frmMonitor_LocationChanged(sender As Object, e As EventArgs) Handles Me.LocationChanged
         If Not Editing Then
-            Dim newUserSettings As New UserSettingData(UserSettingFile)
-            With newUserSettings
-                .CurrentTheme = UserSettings.CurrentTheme
-                .AutoStart = UserSettings.AutoStart
-                .Location = Location
-                .NetworkAdapterIndex = UserSettings.NetworkAdapterIndex
-                .EnableBroadcast = UserSettings.EnableBroadcast
-                .BroadcastPort = UserSettings.BroadcastPort
-                .State = UserSettings.State
-                .Town = UserSettings.Town
-                .TopMost = UserSettings.TopMost
-                .LicenseKey = UserSettings.LicenseKey
-                .HWID = UserSettings.HWID
-                .Language = UserSettings.Language
-                .SaveSilent()
-            End With
-            UserSettings = New UserSettingData(UserSettingFile).Instance
+            If Not IsFormBeingDragged Then
+                Try
+                    Dim newUserSettings As New UserSettingData(UserSettingFile)
+                    With newUserSettings
+                        .CurrentTheme = UserSettings.CurrentTheme
+                        .AutoStart = UserSettings.AutoStart
+                        .Location = Location
+                        .NetworkAdapterIndex = UserSettings.NetworkAdapterIndex
+                        .EnableBroadcast = UserSettings.EnableBroadcast
+                        .BroadcastPort = UserSettings.BroadcastPort
+                        .State = UserSettings.State
+                        .Town = UserSettings.Town
+                        .TopMost = UserSettings.TopMost
+                        .LicenseKey = UserSettings.LicenseKey
+                        .HWID = UserSettings.HWID
+                        .Language = UserSettings.Language
+                        .SaveSilent()
+                    End With
+                    UserSettings = New UserSettingData(UserSettingFile).Instance
+                Catch ex As Exception
+                End Try
+            End If
         End If
     End Sub
 
@@ -312,3 +445,20 @@ Public Class frmMonitor
         End Try
     End Sub
 End Class
+
+Public Enum RGBTransform
+    Slide1
+    Slide2
+    Rotate
+End Enum
+
+Public Enum RGBPattern
+    Rainbow
+    PurplePink
+    YellowPink
+    Cyberpunk
+    YellowToRed
+    Police
+    BlueToRed
+    RedToBlack
+End Enum

@@ -18,7 +18,7 @@ Public Class frmActivateLicense
     End Sub
 
     Private Sub btnActivate_Click(sender As Object, e As EventArgs) Handles btnActivate.Click
-        Dim success = ELSActivateLicense(txtKey.Text, HWID, MachineName)
+        Dim success = ELSActivateLicense(txtKey.Text, HWID, txtEmail.Text)
         If success Then
             Dim newUserSettings As New UserSettingData(UserSettingFile)
             With newUserSettings

@@ -101,6 +101,9 @@ Public Class frmThemeEditor
             .ForeColor = themeConfig.TextColor
             .Updater.Interval = themeConfig.UpdateInterval
             .Opacity = themeConfig.Opacity
+            .RGBBackground = themeConfig.RGBBackground
+            .RGBPattern = themeConfig.RGBPattern
+            .RGBTransform = themeConfig.RGBTransform
         End With
 
         For Each tl As MyTextLabel In currentTheme.TextLabels
@@ -473,6 +476,9 @@ Public Class frmThemeEditor
                 .Version = themeConfig.Version
                 .UpdateInterval = themeConfig.UpdateInterval
                 .Opacity = themeConfig.Opacity
+                .RGBBackground = themeConfig.RGBBackground
+                .RGBPattern = themeConfig.RGBPattern
+                .RGBTransform = themeConfig.RGBTransform
                 '.TransparencyKey = New MyColor(themeConfig.TransparencyKey)
                 Dim tlList As New List(Of MyTextLabel)
                 Dim icList As New List(Of MyImageControl)
@@ -538,6 +544,9 @@ Public Class frmThemeEditor
                 .Version = themeConfig.Version
                 .UpdateInterval = themeConfig.UpdateInterval
                 .Opacity = themeConfig.Opacity
+                .RGBBackground = themeConfig.RGBBackground
+                .RGBPattern = themeConfig.RGBPattern
+                .RGBTransform = themeConfig.RGBTransform
                 '.TransparencyKey = New MyColor(themeConfig.TransparencyKey)
                 Dim tlList As New List(Of MyTextLabel)
                 Dim icList As New List(Of MyImageControl)
@@ -606,6 +615,9 @@ Public Class frmThemeEditor
                 monForm.BackgroundImage = tc.BackgroundImage
                 monForm.UpdateInterval = tc.UpdateInterval
                 monForm.Opacity = tc.Opacity
+                monForm.RGBBackground = tc.RGBBackground
+                monForm.RGBPattern = tc.RGBPattern
+                monForm.RGBTransform = tc.RGBTransform
             Else
                 If pgProperties.SelectedObject.Tag = "ThemeControl" Then
                     Select Case e.ChangedItem.Label
@@ -802,6 +814,9 @@ Public Class frmThemeEditor
                 .Version = themeConfig.Version
                 .UpdateInterval = themeConfig.UpdateInterval
                 .Opacity = themeConfig.Opacity
+                .RGBBackground = themeConfig.RGBBackground
+                .RGBPattern = themeConfig.RGBPattern
+                .RGBTransform = themeConfig.RGBTransform
                 '.TransparencyKey = New MyColor(themeConfig.TransparencyKey)
                 Dim tlList As New List(Of MyTextLabel)
                 Dim icList As New List(Of MyImageControl)
@@ -862,6 +877,9 @@ Public Class frmThemeEditor
                     .Size = themeConfig.Size
                     .Version = themeConfig.Version
                     .UpdateInterval = themeConfig.UpdateInterval
+                    .RGBBackground = themeConfig.RGBBackground
+                    .RGBPattern = themeConfig.RGBPattern
+                    .RGBTransform = themeConfig.RGBTransform
                     .Opacity = themeConfig.Opacity
                     '.TransparencyKey = New MyColor(themeConfig.TransparencyKey)
                     Dim tlList As New List(Of MyTextLabel)

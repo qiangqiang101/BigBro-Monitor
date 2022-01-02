@@ -191,6 +191,10 @@ $doc = '<!DOCTYPE html>
 			$("[name=\"action\"]").attr("value", "reset");
 			$("#form").submit();
 		});
+		
+		$(".getUserHWID").click(function() {
+			alert($(this).attr("alt"));
+			});
 
 	</script>
 	

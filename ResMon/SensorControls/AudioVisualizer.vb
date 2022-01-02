@@ -462,7 +462,7 @@ Public Class AudioVisualizer
             rzControl = New ResizeableControl(Me, ResizeableControl.EdgeEnum.None)
         End If
 
-        timer = New Timer() With {.Interval = 2000}
+        timer = New Timer() With {.Interval = 500}
 
         Start()
     End Sub
@@ -540,6 +540,7 @@ Public Class AudioVisualizer
     Private Sub GenerateLineSpectrum()
         Using theBrush As New LinearGradientBrush(Point.Empty, New Point(Me.Width, Me.Height), _color1, _color2)
             theBrush.RotateTransform(_angle)
+            'theBrush.TranslateTransform(_angle, -_angle, MatrixOrder.Prepend)
 
             Select Case _colorStyle
                 Case ARColorStyle.Rainbow

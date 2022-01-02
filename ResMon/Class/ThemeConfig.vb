@@ -40,4 +40,10 @@ Public Class ThemeConfig
         End Set
     End Property
 
+    <Category("Appearance"), DefaultValue(False)>
+    Public Property RGBBackground() As Boolean
+    <Category("Appearance")>
+    Public Property RGBTransform() As RGBTransform
+    <Category("Appearance")>
+    Public Property RGBPattern() As RGBPattern
 End Class

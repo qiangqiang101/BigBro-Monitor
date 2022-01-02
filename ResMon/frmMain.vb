@@ -461,6 +461,9 @@ Public Class frmMain
             .Opacity = currentTheme.Opacity
             .BackgroundImage = currentTheme.BackgroundImage.Base64ToImage
             '.TransparencyKey = currentTheme.TransparencyKey.ToColor
+            .RGBBackground = currentTheme.RGBBackground
+            .RGBPattern = currentTheme.RGBPattern
+            .RGBTransform = currentTheme.RGBTransform
             .CurrentTheme = currentTheme
         End With
 

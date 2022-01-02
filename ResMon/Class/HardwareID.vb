@@ -6,7 +6,6 @@ Imports System.Text
 Public Class HardwareID
     Protected Class WMI_CLASSES
         Public Shared ReadOnly MOTHERBOARD As String() = {"Win32_BaseBoard", "Name", "Manufacturer", "Version"}
-        Public Shared ReadOnly GPU As String() = {"Win32_VideoController", "Name", "DeviceID", "DriverVersion"}
         Public Shared ReadOnly CDROM As String() = {"Win32_CDROMDrive", "Name", "Manufacturer", "DeviceID"}
         Public Shared ReadOnly CPU As String() = {"Win32_Processor", "Name", "Manufacturer", "ProcessorId"}
         Public Shared ReadOnly HDD As String() = {"Win32_DiskDrive", "Name", "Manufacturer", "Model"}
@@ -22,7 +21,6 @@ Public Class HardwareID
             GetProperties(WMI_CLASSES.MOTHERBOARD),
             GetProperties(WMI_CLASSES.CDROM),
             GetProperties(WMI_CLASSES.BIOS),
-            GetProperties(WMI_CLASSES.GPU),
             GetProperties(WMI_CLASSES.CPU),
             GetProperties(WMI_CLASSES.HDD)
         }

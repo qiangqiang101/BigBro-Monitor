@@ -47,7 +47,7 @@
 		}
 		
 		#content .second {
-			width: 440px;
+			width: 420px;
 		}
 		
 		#content .third {
@@ -55,7 +55,7 @@
 		}
 		
 		#content .fourth {
-			width: 40px;
+			width: 60px;
 		}
 	
 		#content img {
@@ -77,8 +77,11 @@
 			<div class="first left">
 				ID
 			</div>
-			<div class="second left">
+			<!-- <div class="second left">
 				HWID
+			</div> -->
+			<div class="second left">
+				Key
 			</div>
             <div class="product left">
     			PC Name
@@ -104,8 +107,11 @@
 				<div class="first left">
 					'.$users[$i]['id'].'
 				</div>
-				<div class="second left">
+				<!-- <div class="second left">
 					'.$users[$i]['hwid'].'
+				</div> -->
+				<div class="second left">
+					'.$keys[$i]['key'].'
 				</div>
                 <div class="product left">
         		    '.$users[$i]['product'].'
@@ -119,6 +125,7 @@
 				<div class="fourth left">
 					<img class="left pointer submitFormReset" src="grafik/images/refresh.png" alt="'.$users[$i]['id'].'" title="Reset HWID"></img>
 					<img class="left pointer submitFormDelete" src="grafik/images/remove.png" alt="'.$users[$i]['id'].'" title="Delete"></img>
+					<img class="left pointer getUserHWID" src="grafik/images/getHwid.png" alt="'.$users[$i]['hwid'].'" title="Get HWID"></img>
 				</div>
 				<div class="clear"></div>
 			</div>

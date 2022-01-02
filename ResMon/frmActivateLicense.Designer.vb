@@ -29,6 +29,7 @@ Partial Class frmActivateLicense
         Me.btnActivate = New MaterialSkin.Controls.MaterialButton()
         Me.lblEnterLicense = New MaterialSkin.Controls.MaterialLabel()
         Me.txtKey = New MaterialSkin.Controls.MaterialTextBox()
+        Me.txtEmail = New MaterialSkin.Controls.MaterialTextBox()
         Me.SuspendLayout()
         '
         'btnCancel
@@ -43,12 +44,12 @@ Partial Class frmActivateLicense
         Me.btnCancel.ForeColor = System.Drawing.Color.White
         Me.btnCancel.HighEmphasis = True
         Me.btnCancel.Icon = Nothing
-        Me.btnCancel.Location = New System.Drawing.Point(225, 226)
+        Me.btnCancel.Location = New System.Drawing.Point(225, 282)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnCancel.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(120, 36)
-        Me.btnCancel.TabIndex = 1
+        Me.btnCancel.TabIndex = 2
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.btnCancel.UseAccentColor = False
@@ -66,12 +67,12 @@ Partial Class frmActivateLicense
         Me.btnActivate.ForeColor = System.Drawing.Color.White
         Me.btnActivate.HighEmphasis = True
         Me.btnActivate.Icon = Nothing
-        Me.btnActivate.Location = New System.Drawing.Point(353, 226)
+        Me.btnActivate.Location = New System.Drawing.Point(353, 282)
         Me.btnActivate.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnActivate.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnActivate.Name = "btnActivate"
         Me.btnActivate.Size = New System.Drawing.Size(120, 36)
-        Me.btnActivate.TabIndex = 2
+        Me.btnActivate.TabIndex = 3
         Me.btnActivate.Text = "Activate"
         Me.btnActivate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         Me.btnActivate.UseAccentColor = True
@@ -102,21 +103,47 @@ Partial Class frmActivateLicense
         Me.txtKey.Depth = 0
         Me.txtKey.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.txtKey.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
-        Me.txtKey.LeadingIcon = Nothing
-        Me.txtKey.Location = New System.Drawing.Point(178, 158)
+        Me.txtKey.Hint = "License Key"
+        Me.txtKey.LeadingIcon = Global.ResMon.My.Resources.Resources.key_solid
+        Me.txtKey.Location = New System.Drawing.Point(176, 172)
         Me.txtKey.MaxLength = 32767
         Me.txtKey.MouseState = MaterialSkin.MouseState.OUT
         Me.txtKey.Multiline = False
         Me.txtKey.Name = "txtKey"
-        Me.txtKey.Size = New System.Drawing.Size(345, 50)
+        Me.txtKey.Size = New System.Drawing.Size(345, 36)
         Me.txtKey.TabIndex = 0
         Me.txtKey.Text = ""
         Me.txtKey.TrailingIcon = Nothing
+        Me.txtKey.UseTallSize = False
+        '
+        'txtEmail
+        '
+        Me.txtEmail.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtEmail.Depth = 0
+        Me.txtEmail.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.txtEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.txtEmail.Hint = "Email Address"
+        Me.txtEmail.LeadingIcon = Global.ResMon.My.Resources.Resources.mail
+        Me.txtEmail.Location = New System.Drawing.Point(176, 214)
+        Me.txtEmail.MaxLength = 32767
+        Me.txtEmail.MouseState = MaterialSkin.MouseState.OUT
+        Me.txtEmail.Multiline = False
+        Me.txtEmail.Name = "txtEmail"
+        Me.txtEmail.Size = New System.Drawing.Size(345, 36)
+        Me.txtEmail.TabIndex = 1
+        Me.txtEmail.Text = ""
+        Me.txtEmail.TrailingIcon = Nothing
+        Me.txtEmail.UseTallSize = False
         '
         'frmActivateLicense
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(696, 292)
+        Me.ClientSize = New System.Drawing.Size(696, 348)
+        Me.Controls.Add(Me.txtEmail)
         Me.Controls.Add(Me.txtKey)
         Me.Controls.Add(Me.lblEnterLicense)
         Me.Controls.Add(Me.btnCancel)
@@ -137,4 +164,5 @@ Partial Class frmActivateLicense
     Friend WithEvents btnActivate As MaterialButton
     Friend WithEvents lblEnterLicense As MaterialLabel
     Friend WithEvents txtKey As MaterialTextBox
+    Friend WithEvents txtEmail As MaterialTextBox
 End Class

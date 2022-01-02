@@ -353,6 +353,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bbmonitor3.ico" />
+    <None Include="Resources\mail.png" />
+    <None Include="Resources\mail-at-sign.png" />
+    <None Include="Resources\key-solid.png" />
     <None Include="Resources\dashboard.png" />
     <None Include="Resources\chart_column.png" />
   </ItemGroup>

@@ -233,6 +233,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property key_solid() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("key-solid", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property kk_cloud_512() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("kk_cloud_512", resourceCulture)
@@ -386,6 +396,26 @@ Namespace My.Resources
         Friend ReadOnly Property kk_wind_rain_512() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("kk_wind_rain_512", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property mail() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("mail", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property mail_at_sign() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("mail-at-sign", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
