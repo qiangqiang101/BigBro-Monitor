@@ -36,19 +36,19 @@ Partial Class frmMain
         Me.btnSearch = New MaterialSkin.Controls.MaterialButton()
         Me.btnResetFilter = New MaterialSkin.Controls.MaterialButton()
         Me.scContainerRight = New System.Windows.Forms.SplitContainer()
+        Me.pbThemeSnapshot = New ResMon.FillPicturebox()
         Me.scButtons = New System.Windows.Forms.SplitContainer()
         Me.btnApply = New MaterialSkin.Controls.MaterialButton()
         Me.btnDelete = New MaterialSkin.Controls.MaterialButton()
         Me.flpTags = New System.Windows.Forms.FlowLayoutPanel()
         Me.lblAuthor = New MaterialSkin.Controls.MaterialLabel()
         Me.gbSettings = New System.Windows.Forms.GroupBox()
+        Me.flpUserDefine = New ResMon.DBFlowLayoutPanel()
         Me.lblThemeName = New MaterialSkin.Controls.MaterialLabel()
         Me.btnOK = New MaterialSkin.Controls.MaterialButton()
         Me.btnCancel = New MaterialSkin.Controls.MaterialButton()
         Me.btnSettings = New MaterialSkin.Controls.MaterialButton()
         Me.btnThemeEditor = New MaterialSkin.Controls.MaterialButton()
-        Me.pbThemeSnapshot = New ResMon.FillPicturebox()
-        Me.flpUserDefine = New ResMon.DBFlowLayoutPanel()
         CType(Me.scContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.scContainer.Panel1.SuspendLayout()
         Me.scContainer.Panel2.SuspendLayout()
@@ -161,7 +161,7 @@ Partial Class frmMain
         Me.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtSearch.Depth = 0
-        Me.txtSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.txtSearch.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.txtSearch.ForeColor = System.Drawing.SystemColors.ControlText
         Me.txtSearch.LeadingIcon = Nothing
         Me.txtSearch.Location = New System.Drawing.Point(3, 3)
@@ -242,6 +242,18 @@ Partial Class frmMain
         Me.scContainerRight.Size = New System.Drawing.Size(393, 639)
         Me.scContainerRight.SplitterDistance = 356
         Me.scContainerRight.TabIndex = 0
+        '
+        'pbThemeSnapshot
+        '
+        Me.pbThemeSnapshot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pbThemeSnapshot.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.pbThemeSnapshot.Image = Global.ResMon.My.Resources.Resources.Blank
+        Me.pbThemeSnapshot.ImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.pbThemeSnapshot.Location = New System.Drawing.Point(0, 0)
+        Me.pbThemeSnapshot.Name = "pbThemeSnapshot"
+        Me.pbThemeSnapshot.Size = New System.Drawing.Size(393, 356)
+        Me.pbThemeSnapshot.TabIndex = 3
+        Me.pbThemeSnapshot.Text = "FillPicturebox1"
         '
         'scButtons
         '
@@ -346,6 +358,19 @@ Partial Class frmMain
         Me.gbSettings.TabIndex = 0
         Me.gbSettings.TabStop = False
         Me.gbSettings.Text = "User Define Options"
+        '
+        'flpUserDefine
+        '
+        Me.flpUserDefine.AutoScroll = True
+        Me.flpUserDefine.BackColor = System.Drawing.Color.Transparent
+        Me.flpUserDefine.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.flpUserDefine.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpUserDefine.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.flpUserDefine.Location = New System.Drawing.Point(5, 21)
+        Me.flpUserDefine.Margin = New System.Windows.Forms.Padding(0)
+        Me.flpUserDefine.Name = "flpUserDefine"
+        Me.flpUserDefine.Size = New System.Drawing.Size(367, 101)
+        Me.flpUserDefine.TabIndex = 11
         '
         'lblThemeName
         '
@@ -453,31 +478,6 @@ Partial Class frmMain
         Me.btnThemeEditor.UseAccentColor = False
         Me.btnThemeEditor.UseVisualStyleBackColor = False
         '
-        'pbThemeSnapshot
-        '
-        Me.pbThemeSnapshot.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pbThemeSnapshot.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.pbThemeSnapshot.Image = Global.ResMon.My.Resources.Resources.Blank
-        Me.pbThemeSnapshot.ImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.pbThemeSnapshot.Location = New System.Drawing.Point(0, 0)
-        Me.pbThemeSnapshot.Name = "pbThemeSnapshot"
-        Me.pbThemeSnapshot.Size = New System.Drawing.Size(393, 356)
-        Me.pbThemeSnapshot.TabIndex = 3
-        Me.pbThemeSnapshot.Text = "FillPicturebox1"
-        '
-        'flpUserDefine
-        '
-        Me.flpUserDefine.AutoScroll = True
-        Me.flpUserDefine.BackColor = System.Drawing.Color.Transparent
-        Me.flpUserDefine.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.flpUserDefine.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.flpUserDefine.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.flpUserDefine.Location = New System.Drawing.Point(5, 21)
-        Me.flpUserDefine.Margin = New System.Windows.Forms.Padding(0)
-        Me.flpUserDefine.Name = "flpUserDefine"
-        Me.flpUserDefine.Size = New System.Drawing.Size(367, 101)
-        Me.flpUserDefine.TabIndex = 11
-        '
         'frmMain
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -494,7 +494,7 @@ Partial Class frmMain
         Me.MinimumSize = New System.Drawing.Size(800, 600)
         Me.Name = "frmMain"
         Me.Padding = New System.Windows.Forms.Padding(3, 72, 3, 3)
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "BigBro Monitor"
         Me.scContainer.Panel1.ResumeLayout(False)
         Me.scContainer.Panel2.ResumeLayout(False)
