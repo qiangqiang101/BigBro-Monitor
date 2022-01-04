@@ -32,7 +32,7 @@ Public Structure UserSettingData
         Me.FileName = filename
     End Sub
 
-    Public Sub Save1()
+    Public Sub Save()
         Using fs As FileStream = File.Create(FileName)
             Dim formatter As New BinaryFormatter()
             formatter.Serialize(fs, Me)

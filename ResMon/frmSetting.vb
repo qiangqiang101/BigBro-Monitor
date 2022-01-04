@@ -137,7 +137,7 @@ Public Class frmSetting
             .Email = UserSettings.Email
             .HWID = UserSettings.HWID
             .Language = cmbLanguage.SelectedItem.ToString
-            .Save1()
+            .Save()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance
         ProgramLanguage = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance

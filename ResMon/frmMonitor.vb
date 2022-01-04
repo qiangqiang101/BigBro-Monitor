@@ -418,6 +418,7 @@ Public Class frmMonitor
                         .Town = UserSettings.Town
                         .TopMost = UserSettings.TopMost
                         .LicenseKey = UserSettings.LicenseKey
+                        .Email = UserSettings.Email
                         .HWID = UserSettings.HWID
                         .Language = UserSettings.Language
                         .SaveSilent()

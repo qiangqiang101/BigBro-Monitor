@@ -49,8 +49,17 @@ Public Class FillPicturebox
                 Case ImageLayout.Stretch
                     formGraphics.DrawImage(_image, New RectangleF(0, 0, Width, Width))
                 Case ImageLayout.Center
+                    'tbrush.WrapMode = WrapMode.Clamp
+                    'Dim displayArea As New Rectangle(0, 0, Width, Width)
+                    'Dim xDisplayCenterRelative As New Point(displayArea.Width / 2, displayArea.Height / 2)
+                    'Dim xImageCenterRelative As New Point(_image.Width / 2, _image.Height / 2)
+                    'Dim xOffsetRelative As New Point(xDisplayCenterRelative.X - xImageCenterRelative.X, xDisplayCenterRelative.Y - xImageCenterRelative.Y)
+                    'Dim xAbsolutePixel As Point = xOffsetRelative + New Size(displayArea.Location)
+                    'tbrush.TranslateTransform(xAbsolutePixel.X, xAbsolutePixel.Y)
+                    'formGraphics.FillRectangle(tbrush, New RectangleF(0, 0, Width, Height))
+
                     tbrush.WrapMode = WrapMode.Clamp
-                    Dim displayArea As New Rectangle(0, 0, Width, Width)
+                    Dim displayArea As New Rectangle(0, 0, Width, Height)
                     Dim xDisplayCenterRelative As New Point(displayArea.Width / 2, displayArea.Height / 2)
                     Dim xImageCenterRelative As New Point(_image.Width / 2, _image.Height / 2)
                     Dim xOffsetRelative As New Point(xDisplayCenterRelative.X - xImageCenterRelative.X, xDisplayCenterRelative.Y - xImageCenterRelative.Y)
