@@ -54,7 +54,7 @@
 	function getUsers() {
 		$result = mysql_query("SELECT * FROM `keys` WHERE NOT hwid='' ORDER BY created DESC");
 		echo mysql_error();
-		$return = array("id", "hwid", "registered", "expiredate", "product");
+		$return = array("id", "key", "hwid", "created", "registered", "expiredate", "product");
 		$arr = array();
 		for($i=0; $i<mysql_num_rows($result); $i++) {
 			foreach($return as $k=>$v) {

@@ -25,7 +25,7 @@ Public Class frmMain
         msm.Theme = MaterialSkinManager.Themes.DARK
         msm.ColorScheme = New ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE)
 
-        Dim activationTuple = CheckActivation(HWID, MachineName)
+        Dim activationTuple = CheckActivation(HWID, UserSettings.Email)
         IsActivated = activationTuple.Item1
         RemainingDays = activationTuple.Item2
 
@@ -353,6 +353,7 @@ Public Class frmMain
             .Town = UserSettings.Town
             .TopMost = UserSettings.TopMost
             .LicenseKey = UserSettings.LicenseKey
+            .Email = UserSettings.Email
             .HWID = UserSettings.HWID
             .Language = UserSettings.Language
             .SaveSilent()
@@ -414,6 +415,7 @@ Public Class frmMain
             .Town = UserSettings.Town
             .TopMost = UserSettings.TopMost
             .LicenseKey = UserSettings.LicenseKey
+            .Email = UserSettings.Email
             .HWID = UserSettings.HWID
             .Language = UserSettings.Language
             .SaveSilent()

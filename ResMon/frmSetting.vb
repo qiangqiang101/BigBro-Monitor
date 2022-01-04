@@ -59,7 +59,7 @@ Public Class frmSetting
             lblLicense.Text = ProgramLanguage.Unregistered
             lblKey.Text = Nothing
         End If
-        lblName.Text = MachineName
+        lblName.Text = UserSettings.Email
 
         'Translate
         Text = ProgramLanguage.SettingTitle
@@ -103,7 +103,7 @@ Public Class frmSetting
             lblLicense.Text = $"{ProgramLanguage.Registered} ({If(RemainingDays = 1, ProgramLanguage.DayRemain.Replace("%dr%", RemainingDays), ProgramLanguage.DaysRemain.Replace("%dr%", RemainingDays))})"
             lblKey.Text = UserSettings.LicenseKey
         End If
-        lblName.Text = MachineName
+        lblName.Text = UserSettings.Email
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -134,9 +134,10 @@ Public Class frmSetting
             .Town = cmbTown.SelectedItem.ToString
             .TopMost = cbTopMost.Checked
             .LicenseKey = UserSettings.LicenseKey
+            .Email = UserSettings.Email
             .HWID = UserSettings.HWID
             .Language = cmbLanguage.SelectedItem.ToString
-            .Save()
+            .Save1()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance
         ProgramLanguage = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance

@@ -24,6 +24,7 @@ Public Structure UserSettingData
     Public Town As String
     Public TopMost As Boolean
     Public LicenseKey As String
+    Public Email As String
     Public HWID As String
     Public Language As String
 
@@ -31,7 +32,7 @@ Public Structure UserSettingData
         Me.FileName = filename
     End Sub
 
-    Public Sub Save()
+    Public Sub Save1()
         Using fs As FileStream = File.Create(FileName)
             Dim formatter As New BinaryFormatter()
             formatter.Serialize(fs, Me)

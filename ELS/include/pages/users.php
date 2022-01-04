@@ -30,16 +30,17 @@
 		#content .first,
 		#content .second,
 		#content .third,
-		#content .fourth {
+		#content .fourth,
+		#content .createddate {
 			padding: 3px 5px;
 		}
 		
 		#content .first {
-			width: 50px;
+			width: 40px;
 		}
         
         #content .product {
-    		width: 180px;
+    		width: 230px;
 		}
         
         #content .fifth {
@@ -47,7 +48,7 @@
 		}
 		
 		#content .second {
-			width: 420px;
+			width: 200px;
 		}
 		
 		#content .third {
@@ -56,6 +57,10 @@
 		
 		#content .fourth {
 			width: 60px;
+		}
+		
+		#content .createddate {
+			width: 180px;
 		}
 	
 		#content img {
@@ -77,14 +82,14 @@
 			<div class="first left">
 				ID
 			</div>
-			<!-- <div class="second left">
-				HWID
-			</div> -->
 			<div class="second left">
 				Key
 			</div>
             <div class="product left">
-    			PC Name
+    			Email Address
+			</div>
+			<div class="createddate left">
+				Created
 			</div>
 			<div class="third left">
 				Registered
@@ -111,11 +116,14 @@
 					'.$users[$i]['hwid'].'
 				</div> -->
 				<div class="second left">
-					'.$keys[$i]['key'].'
+					'.$users[$i]['key'].'
 				</div>
                 <div class="product left">
         		    '.$users[$i]['product'].'
 			    </div>
+				<div class="createddate left">
+				'.$users[$i]['created'].'
+				</div>
 				<div class="third left">
 					'.$users[$i]['registered'].'
 				</div>

@@ -9,13 +9,14 @@ Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
 Imports System.Security.Cryptography
 Imports System.Security.Principal
+Imports System.Text.RegularExpressions
 Imports MaterialSkin
 Imports Newtonsoft.Json.Linq
 
 Module Helper
 
     Public dateFormat As String = "dd/MMM/yyyy"
-    Public MachineName As String = Environment.MachineName
+    'Public MachineName As String = Environment.MachineName
     Public ThemesDir As String = $"{My.Application.Info.DirectoryPath}\Themes"
     Public PresetDataDir As String = $"{My.Application.Info.DirectoryPath}\Presets"
     Public FontsDir As String = $"{My.Application.Info.DirectoryPath}\Fonts"
@@ -231,14 +232,14 @@ Module Helper
         g.InterpolationMode = iMode
     End Sub
 
-    Public Function CheckActivation(hwid As String, product As String, Optional retry As Integer = 0) As Tuple(Of Boolean, Integer)
+    Public Function CheckActivation(hwid As String, email As String, Optional retry As Integer = 0) As Tuple(Of Boolean, Integer)
         Dim result As Boolean = False
         Dim [date] As Date = Now
         Dim date2 As Date = Now
         Dim remainDays As Integer = 0
         Dim canLogin As Boolean = False
 
-        Dim query As String = $"https://the.bigbromonitor.com/index.php?a=canuse&hwid={hwid}&product={product}"
+        Dim query As String = $"https://the.bigbromonitor.com/index.php?a=canuse&hwid={hwid}&product={email}"
         Dim query2 As String = $"https://the.bigbromonitor.com/index.php?a=checkdate&hwid={hwid}"
 
         If retry > 4 Then
@@ -251,10 +252,10 @@ Module Helper
                 If strSource.Contains("TRUE") Then
                     strSource = wc.DownloadString(query2)
 
-                    If strSource.Contains(MachineName) Then
+                    If strSource.Contains(email) Then
                         ' Check the date
-                        Dim start As Integer = strSource.IndexOf(MachineName) + MachineName.Length
-                        Dim [end] As Integer = strSource.IndexOf(":" + MachineName)
+                        Dim start As Integer = strSource.IndexOf(email) + email.Length
+                        Dim [end] As Integer = strSource.IndexOf(":" + email)
                         Dim datestring = strSource.Substring(start, [end] - start)
                         [date] = DateTime.ParseExact(datestring, "yyyy-MM-dd", Nothing)
                         strSource = wc.DownloadString("http://weltzeit4u.com/Datum/index.php")
@@ -272,7 +273,7 @@ Module Helper
                 End If
             Catch ex As Exception
                 'MsgBox(ex.Message.Replace("the.bigbromonitor.com", "llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.co.uk"), MsgBoxStyle.Critical, "Error")
-                Return CheckActivation(hwid, product, retry + 1)
+                Return CheckActivation(hwid, email, retry + 1)
                 Logger.Log(ex)
             End Try
         End If
@@ -280,8 +281,8 @@ Module Helper
         Return New Tuple(Of Boolean, Integer)(result, remainDays)
     End Function
 
-    Public Function ELSActivateLicense(key As String, hwid As String, product As String, Optional retry As Integer = 0) As Boolean
-        Dim query As String = $"https://the.bigbromonitor.com/index.php?a=register&key={key}&hwid={hwid}&product={product}"
+    Public Function ELSActivateLicense(key As String, hwid As String, email As String, Optional retry As Integer = 0) As Boolean
+        Dim query As String = $"https://the.bigbromonitor.com/index.php?a=register&key={key}&hwid={hwid}&product={email}"
 
         If retry > 4 Then
             MsgBox("Unable to connect to License Server after 5 attempts.", MsgBoxStyle.Critical, "Error")
@@ -304,11 +305,18 @@ Module Helper
                     Return True
                 End If
             Catch ex As Exception
-                ELSActivateLicense(key, hwid, product, retry + 1)
+                ELSActivateLicense(key, hwid, email, retry + 1)
             End Try
         End If
 
         Return False
+    End Function
+
+    <Extension>
+    Public Function IsEmailValid(email As String) As Boolean
+        Dim pattern As String = "^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$"
+        Dim match As Match = Regex.Match(email, pattern, RegexOptions.IgnoreCase)
+        Return match.Success
     End Function
 
 End Module

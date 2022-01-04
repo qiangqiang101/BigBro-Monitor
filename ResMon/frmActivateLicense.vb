@@ -18,29 +18,40 @@ Public Class frmActivateLicense
     End Sub
 
     Private Sub btnActivate_Click(sender As Object, e As EventArgs) Handles btnActivate.Click
-        Dim success = ELSActivateLicense(txtKey.Text, HWID, txtEmail.Text)
-        If success Then
-            Dim newUserSettings As New UserSettingData(UserSettingFile)
-            With newUserSettings
-                .CurrentTheme = UserSettings.CurrentTheme
-                .AutoStart = UserSettings.AutoStart
-                .Location = UserSettings.Location
-                .NetworkAdapterIndex = UserSettings.NetworkAdapterIndex
-                .EnableBroadcast = UserSettings.EnableBroadcast
-                .BroadcastPort = UserSettings.BroadcastPort
-                .State = UserSettings.State
-                .Town = UserSettings.Town
-                .TopMost = UserSettings.TopMost
-                .LicenseKey = txtKey.Text
-                .HWID = HWID
-                .Language = UserSettings.Language
-                .SaveSilent()
-            End With
-            UserSettings = New UserSettingData(UserSettingFile).Instance
-            If frmSetting.Visible Then frmSetting.ReloadInfo()
-            IsActivated = True
-            'MsgBox("Activation successful, thanks for your support.", MsgBoxStyle.Information, "Activation")
-            Close()
+        If txtEmail.Text = Nothing Then
+            MsgBox("Please enter your email address.", MsgBoxStyle.Exclamation, "Invalid")
+        ElseIf Not txtEmail.Text.IsEmailValid() Then
+            MsgBox("The email address you entered is invalid, please try again or contact our support team.", MsgBoxStyle.Exclamation, "Invalid")
+        ElseIf txtKey.Text = Nothing Then
+            MsgBox("The product key you entered is invalid or not exists, please try again or contact our support team.", MsgBoxStyle.Exclamation, "Invalid")
+        ElseIf txtKey.Text.Length < 19 Then
+            MsgBox("The product key you entered is invalid or not exists, please try again or contact our support team.", MsgBoxStyle.Exclamation, "Invalid")
+        Else
+            Dim success = ELSActivateLicense(txtKey.Text, HWID, txtEmail.Text)
+            If success Then
+                Dim newUserSettings As New UserSettingData(UserSettingFile)
+                With newUserSettings
+                    .CurrentTheme = UserSettings.CurrentTheme
+                    .AutoStart = UserSettings.AutoStart
+                    .Location = UserSettings.Location
+                    .NetworkAdapterIndex = UserSettings.NetworkAdapterIndex
+                    .EnableBroadcast = UserSettings.EnableBroadcast
+                    .BroadcastPort = UserSettings.BroadcastPort
+                    .State = UserSettings.State
+                    .Town = UserSettings.Town
+                    .TopMost = UserSettings.TopMost
+                    .LicenseKey = txtKey.Text
+                    .Email = txtEmail.Text
+                    .HWID = HWID
+                    .Language = UserSettings.Language
+                    .SaveSilent()
+                End With
+                UserSettings = New UserSettingData(UserSettingFile).Instance
+                If frmSetting.Visible Then frmSetting.ReloadInfo()
+                IsActivated = True
+                'MsgBox("Activation successful, thanks for your support.", MsgBoxStyle.Information, "Activation")
+                Close()
+            End If
         End If
     End Sub
 
