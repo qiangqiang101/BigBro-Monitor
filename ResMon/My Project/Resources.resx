@@ -118,14 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cc_sun_clouds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cc_sun_clouds.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mail-at-sign" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mail-at-sign.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="dashboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dashboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cc_moon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_moon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="kk_cloud_rain_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kk-cloud-rain_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,9 +148,6 @@
   <data name="kk_cloud_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kk-cloud_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="kk_sun_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\kk-sun_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="cc_moon_rain" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cc_moon_rain.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -169,14 +163,17 @@
   <data name="kk_moon_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kk-moon_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="diagnostic_chart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\diagnostic_chart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="kk_cloudy_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kk-cloudy_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="kk_thunderstorm_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kk-thunderstorm_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="diagnostic_chart" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\diagnostic_chart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="kk_sun_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kk-sun_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="kk_cloud_wind_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kk-cloud-wind_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,11 +187,14 @@
   <data name="cc_moon_clouds" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cc_moon_clouds.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="progressbar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\progressbar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cc_sun_clouds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cc_sun_clouds.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cc_NA_lighting" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cc_NA_lighting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="progressbar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\progressbar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="text" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -259,16 +259,19 @@ CSCore - .NET Audio Library
   <data name="cc_sun_rain" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cc_sun_rain.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="mail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="kk_wind_moon_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kk-wind-moon_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cc_moon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cc_moon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mail-at-sign" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mail-at-sign.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="kk_sun_windy_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kk-sun-windy_512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mail" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="style" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\style.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

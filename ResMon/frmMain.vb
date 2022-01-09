@@ -192,6 +192,21 @@ Public Class frmMain
             End With
             flpUserDefine.Controls.Add(udItem2)
         Next
+        For Each cText As MyCustomText In theme.CustomTexts.Where(Function(x) x.Sensor = eSensorType.CPUFan Or x.Sensor = eSensorType.MoboFan)
+            Dim udItem2 As New NSUserDefineItem()
+            With udItem2
+                .ControlType = eControlType.TextLabel
+                .lblLabel.Text = cText.Name
+                .IsNumeric = True
+                Try
+                    .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = cText.Name).Value
+                Catch ex As Exception
+                    .txtBox.Text = cText.SensorParam
+                End Try
+                .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+            End With
+            flpUserDefine.Controls.Add(udItem2)
+        Next
         For Each image As MyImageControl In theme.ImageBoxes.Where(Function(x) x.Sensor = eSensorType.CPUFan Or x.Sensor = eSensorType.MoboFan)
             Dim udItem2 As New NSUserDefineItem()
             With udItem2
@@ -263,6 +278,21 @@ Public Class frmMain
                     .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = label.Name).Value
                 Catch ex As Exception
                     .txtBox.Text = label.SensorParam
+                End Try
+                .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
+            End With
+            flpUserDefine.Controls.Add(udItem2)
+        Next
+        For Each cText As MyCustomText In theme.CustomTexts.Where(Function(x) x.Sensor = eSensorType.HDDLoadPercent Or x.Sensor = eSensorType.HDDTemperatureC Or x.Sensor = eSensorType.HDDTemperatureF)
+            Dim udItem2 As New NSUserDefineItem()
+            With udItem2
+                .ControlType = eControlType.TextLabel
+                .lblLabel.Text = cText.Name
+                .IsNumeric = True
+                Try
+                    .txtBox.Text = preset.TextLabels.SingleOrDefault(Function(x) x.Name = cText.Name).Value
+                Catch ex As Exception
+                    .txtBox.Text = cText.SensorParam
                 End Try
                 .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
             End With
@@ -525,6 +555,64 @@ Public Class frmMain
                 .rzControl = Nothing
             End With
             frmMonitor.Controls.Add(txtLbl)
+        Next
+
+        For Each ct As MyCustomText In currentTheme.CustomTexts
+            Dim cusTxt As New CustomText(False)
+            With cusTxt
+                .myParentForm = frmMonitor
+                .BackColor = ct.BackColor.ToColor
+                .Font = ct.Font.ToFont
+                .RightToLeft = ct.RightToLeft
+                .Enabled = ct.Enabled
+                .Visible = ct.Visible
+                .Tag = "ThemeControl"
+                .Name = ct.Name
+                .Anchor = ct.Anchor
+                .Dock = ct.Dock
+                .Location = ct.Location
+                .Margin = ct.Margin
+                .Padding = ct.Padding
+                .Size = ct.Size
+                .BorderStyle = ct.BorderStyle
+                .FlatStyle = ct.FlatStyle
+                .Image = ct.Image.Base64ToImage
+                .ImageAlign = ct.ImageAlign
+                .UseMnemonic = ct.UseMnemonic
+                .AutoEllipsis = ct.AutoEllipsis
+                .UseCompatibleTextRendering = ct.UseCompatibleTextRendering
+                .AutoSize = ct.AutoSize
+                .Sensor = ct.Sensor
+                Select Case .Sensor
+                    Case eSensorType.CPUFan, eSensorType.MoboFan, eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF
+                        Try
+                            If currentPreset.TextLabels.Where(Function(x) x.Name = ct.Name).Count = 1 Then
+                                .SensorParam = currentPreset.TextLabels.SingleOrDefault(Function(x) x.Name = ct.Name).Value
+                            Else
+                                .SensorParam = ct.SensorParam
+                            End If
+                        Catch ex As Exception
+                            .SensorParam = ct.SensorParam
+                        End Try
+                    Case Else
+                        .SensorParam = ct.SensorParam
+                End Select
+                .Title = ct.Title
+                .Value = ct.Value
+                .Unit = ct.Unit
+                .TitleColor = ct.TitleColor.ToColor
+                .ValueColor = ct.ValueColor.ToColor
+                .UnitColor = ct.UnitColor.ToColor
+                .TitleAlign = ct.TitleAlign
+                .ValueAlign = ct.ValueAlign
+                .UnitAlign = ct.UnitAlign
+                .AutoWidth = ct.AutoWidth
+                .TitleWidth = ct.TitleWidth
+                .ValueWidth = ct.ValueWidth
+                .UnitWidth = ct.UnitWidth
+                .rzControl = Nothing
+            End With
+            frmMonitor.Controls.Add(cusTxt)
         Next
 
         For Each ic As MyImageControl In currentTheme.ImageBoxes
@@ -848,6 +936,7 @@ Public Class frmMain
         Next
 
         currentTheme.TextLabels.ForEach(Sub(x) SetParentName(x.Name, x.ParentName))
+        currentTheme.CustomTexts.ForEach(Sub(x) SetParentName(x.Name, x.ParentName))
         currentTheme.ImageBoxes.ForEach(Sub(x) SetParentName(x.Name, x.ParentName))
         currentTheme.StatusBars.ForEach(Sub(x) SetParentName(x.Name, x.ParentName))
         currentTheme.CircularSBs.ForEach(Sub(x) SetParentName(x.Name, x.ParentName))

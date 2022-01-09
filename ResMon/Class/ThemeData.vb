@@ -33,6 +33,7 @@ Public Structure ThemeData
     Public TextColor As MyColor
     'Public TransparencyKey As MyColor
     Public TextLabels As List(Of MyTextLabel)
+    Public CustomTexts As List(Of MyCustomText)
     Public ImageBoxes As List(Of MyImageControl)
     Public StatusBars As List(Of MyStatusBar)
     Public CircularSBs As List(Of MyCircularStatusBar)
@@ -170,6 +171,92 @@ Public Structure MyTextLabel
         Sensor = control.Sensor
         SensorParam = control.SensorParam
         ParentName = control.ParentName
+    End Sub
+
+End Structure
+
+<Serializable>
+Public Structure MyCustomText
+
+    Public BackColor As MyColor
+    Public Font As MyFont
+    Public RightToLeft As Boolean
+    Public Enabled As Boolean
+    Public Visible As Boolean
+    Public Tag As Object
+    Public Name As String
+    Public Anchor As AnchorStyles
+    Public Dock As DockStyle
+    Public Location As Point
+    Public Margin As Padding
+    Public Padding As Padding
+    Public Size As Size
+
+    Public BorderStyle As BorderStyle
+    Public FlatStyle As FlatStyle
+    Public Image As String
+    Public ImageAlign As ContentAlignment
+    Public UseMnemonic As Boolean
+    Public AutoEllipsis As Boolean
+    Public UseCompatibleTextRendering As Boolean
+    Public AutoSize As Boolean
+    Public Sensor As eSensorType
+    Public SensorParam As String
+    Public ParentName As String
+
+    Public Title As String
+    Public Value As String
+    Public Unit As String
+    Public TitleColor As MyColor
+    Public ValueColor As MyColor
+    Public UnitColor As MyColor
+    Public TitleAlign As ContentAlignment
+    Public ValueAlign As ContentAlignment
+    Public UnitAlign As ContentAlignment
+    Public AutoWidth As Boolean
+    Public TitleWidth As Single
+    Public ValueWidth As Single
+    Public UnitWidth As Single
+
+    Public Sub New(control As CustomText)
+        BackColor = New MyColor(control.BackColor)
+        Font = New MyFont(control.Font)
+        RightToLeft = control.RightToLeft
+        Enabled = control.Enabled
+        Visible = control.Visible
+        Tag = control.Tag
+        Name = control.Name
+        Anchor = control.Anchor
+        Dock = control.Dock
+        Location = control.Location
+        Margin = control.Margin
+        Padding = control.Padding
+        Size = control.Size
+        BorderStyle = control.BorderStyle
+        FlatStyle = control.FlatStyle
+        Image = control.Image.ImageToBase64
+        ImageAlign = control.ImageAlign
+        UseMnemonic = control.UseMnemonic
+        AutoEllipsis = control.AutoEllipsis
+        UseCompatibleTextRendering = control.UseCompatibleTextRendering
+        AutoSize = control.AutoSize
+        Sensor = control.Sensor
+        SensorParam = control.SensorParam
+        ParentName = control.ParentName
+
+        Title = control.Title
+        Value = control.Value
+        Unit = control.Unit
+        TitleColor = New MyColor(control.TitleColor)
+        ValueColor = New MyColor(control.ValueColor)
+        UnitColor = New MyColor(control.UnitColor)
+        TitleAlign = control.TitleAlign
+        ValueAlign = control.ValueAlign
+        UnitAlign = control.UnitAlign
+        AutoWidth = control.AutoWidth
+        TitleWidth = control.TitleWidth
+        ValueWidth = control.ValueWidth
+        UnitWidth = control.UnitWidth
     End Sub
 
 End Structure

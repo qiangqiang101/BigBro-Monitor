@@ -181,6 +181,9 @@
     <Compile Include="frmSandbox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SensorControls\CustomText.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SensorControls\PlotChartStyle.vb" />
     <Compile Include="Class\ResizeableControl.vb" />
     <Compile Include="Class\Sensors.vb" />
@@ -353,6 +356,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bbmonitor3.ico" />
+    <None Include="Resources\style.png" />
     <None Include="Resources\mail.png" />
     <None Include="Resources\mail-at-sign.png" />
     <None Include="Resources\key-solid.png" />

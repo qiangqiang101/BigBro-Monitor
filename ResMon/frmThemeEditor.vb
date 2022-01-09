@@ -148,6 +148,56 @@ Public Class frmThemeEditor
             AddHandler txtLbl.MouseClick, AddressOf Control_MouseClick
         Next
 
+        For Each ct As MyCustomText In currentTheme.CustomTexts
+            Dim cusTxt As New CustomText(True)
+            With cusTxt
+                .myParentForm = monForm
+                .BackColor = ct.BackColor.ToColor
+                .Font = ct.Font.ToFont
+                .RightToLeft = ct.RightToLeft
+                .Enabled = ct.Enabled
+                .Visible = ct.Visible
+                .Tag = "ThemeControl"
+                .Name = ct.Name
+                .Anchor = ct.Anchor
+                .Dock = ct.Dock
+                .Location = ct.Location
+                .Margin = ct.Margin
+                .Padding = ct.Padding
+                .Size = ct.Size
+                .BorderStyle = ct.BorderStyle
+                .FlatStyle = ct.FlatStyle
+                .Image = ct.Image.Base64ToImage
+                .ImageAlign = ct.ImageAlign
+                .UseMnemonic = ct.UseMnemonic
+                .AutoEllipsis = ct.AutoEllipsis
+                .UseCompatibleTextRendering = ct.UseCompatibleTextRendering
+                .AutoSize = ct.AutoSize
+                .Sensor = ct.Sensor
+                .SensorParam = ct.SensorParam
+                .Title = ct.Title
+                .Value = ct.Value
+                .Unit = ct.Unit
+                .TitleColor = ct.TitleColor.ToColor
+                .ValueColor = ct.ValueColor.ToColor
+                .UnitColor = ct.UnitColor.ToColor
+                .TitleAlign = ct.TitleAlign
+                .ValueAlign = ct.ValueAlign
+                .UnitAlign = ct.UnitAlign
+                .AutoWidth = ct.AutoWidth
+                .TitleWidth = ct.TitleWidth
+                .ValueWidth = ct.ValueWidth
+                .UnitWidth = ct.UnitWidth
+                '.ParentName = tl.ParentName
+            End With
+            monForm.Controls.Add(cusTxt)
+
+            Dim node As New TreeNode($"{cusTxt.Name} ({cusTxt.Sensor.ToString})") With {.Tag = cusTxt, .Name = cusTxt.Name}
+            root.Nodes.Add(node)
+
+            AddHandler cusTxt.MouseClick, AddressOf Control_MouseClick
+        Next
+
         For Each ic As MyImageControl In currentTheme.ImageBoxes
             Dim picBox As New ImageControl(True)
             With picBox
@@ -451,6 +501,7 @@ Public Class frmThemeEditor
         Text = $"{themeConfig.Name} - Theme Editor"
 
         currentTheme.TextLabels.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, TextLabel).ParentName = x.ParentName)
+        currentTheme.CustomTexts.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, CustomText).ParentName = x.ParentName)
         currentTheme.ImageBoxes.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, ImageControl).ParentName = x.ParentName)
         currentTheme.StatusBars.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, StatusBar).ParentName = x.ParentName)
         currentTheme.CircularSBs.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, CircularStatusBar).ParentName = x.ParentName)
@@ -481,6 +532,7 @@ Public Class frmThemeEditor
                 .RGBTransform = themeConfig.RGBTransform
                 '.TransparencyKey = New MyColor(themeConfig.TransparencyKey)
                 Dim tlList As New List(Of MyTextLabel)
+                Dim ctList As New List(Of MyCustomText)
                 Dim icList As New List(Of MyImageControl)
                 Dim sbList As New List(Of MyStatusBar)
                 Dim csbList As New List(Of MyCircularStatusBar)
@@ -493,6 +545,8 @@ Public Class frmThemeEditor
                     Select Case control.GetType
                         Case GetType(TextLabel)
                             tlList.Add(New MyTextLabel(control))
+                        Case GetType(CustomText)
+                            ctList.Add(New MyCustomText(control))
                         Case GetType(ImageControl)
                             icList.Add(New MyImageControl(control))
                         Case GetType(StatusBar)
@@ -512,6 +566,7 @@ Public Class frmThemeEditor
                     End Select
                 Next
                 .TextLabels = tlList
+                .CustomTexts = ctList
                 .ImageBoxes = icList
                 .StatusBars = sbList
                 .CircularSBs = csbList
@@ -549,6 +604,7 @@ Public Class frmThemeEditor
                 .RGBTransform = themeConfig.RGBTransform
                 '.TransparencyKey = New MyColor(themeConfig.TransparencyKey)
                 Dim tlList As New List(Of MyTextLabel)
+                Dim ctList As New List(Of MyCustomText)
                 Dim icList As New List(Of MyImageControl)
                 Dim sbList As New List(Of MyStatusBar)
                 Dim csbList As New List(Of MyCircularStatusBar)
@@ -561,6 +617,8 @@ Public Class frmThemeEditor
                     Select Case control.GetType
                         Case GetType(TextLabel)
                             tlList.Add(New MyTextLabel(control))
+                        Case GetType(CustomText)
+                            ctList.Add(New MyCustomText(control))
                         Case GetType(ImageControl)
                             icList.Add(New MyImageControl(control))
                         Case GetType(StatusBar)
@@ -580,6 +638,7 @@ Public Class frmThemeEditor
                     End Select
                 Next
                 .TextLabels = tlList
+                .CustomTexts = ctList
                 .ImageBoxes = icList
                 .StatusBars = sbList
                 .CircularSBs = csbList
@@ -678,6 +737,17 @@ Public Class frmThemeEditor
         root.Nodes.Add(node)
 
         AddHandler txtLbl.MouseClick, AddressOf Control_MouseClick
+    End Sub
+
+    Private Sub tsbCusText_Click(sender As Object, e As EventArgs) Handles tsbCusText.Click, tsmiCustomText.Click
+        Dim cusTxt As New CustomText(True) With {.Title = "New", .Value = "Custom", .Unit = "Text", .Name = $"CustomText{GetControlCount("CustomText")}", .Location = CalculateCenter(monForm.Size, New Size(300, 30)),
+        .Size = New Size(200, 30), .myParentForm = monForm, .TitleColor = themeConfig.TextColor, .ValueColor = themeConfig.TextColor, .UnitColor = themeConfig.TextColor, .Tag = "ThemeControl"}
+        monForm.Controls.Add(cusTxt)
+
+        Dim node As New TreeNode($"{cusTxt.Name} ({cusTxt.Sensor.ToString})") With {.Tag = cusTxt, .Name = cusTxt.Name}
+        root.Nodes.Add(node)
+
+        AddHandler cusTxt.MouseClick, AddressOf Control_MouseClick
     End Sub
 
     Private Sub tsbRoundSB_Click(sender As Object, e As EventArgs) Handles tsbRoundSB.Click, tsmiRoundSB.Click
@@ -819,6 +889,7 @@ Public Class frmThemeEditor
                 .RGBTransform = themeConfig.RGBTransform
                 '.TransparencyKey = New MyColor(themeConfig.TransparencyKey)
                 Dim tlList As New List(Of MyTextLabel)
+                Dim ctList As New List(Of MyCustomText)
                 Dim icList As New List(Of MyImageControl)
                 Dim sbList As New List(Of MyStatusBar)
                 Dim csbList As New List(Of MyCircularStatusBar)
@@ -831,6 +902,8 @@ Public Class frmThemeEditor
                     Select Case control.GetType
                         Case GetType(TextLabel)
                             tlList.Add(New MyTextLabel(control))
+                        Case GetType(CustomText)
+                            ctList.Add(New MyCustomText(control))
                         Case GetType(ImageControl)
                             icList.Add(New MyImageControl(control))
                         Case GetType(StatusBar)
@@ -850,6 +923,7 @@ Public Class frmThemeEditor
                     End Select
                 Next
                 .TextLabels = tlList
+                .CustomTexts = ctList
                 .ImageBoxes = icList
                 .StatusBars = sbList
                 .CircularSBs = csbList
@@ -883,6 +957,7 @@ Public Class frmThemeEditor
                     .Opacity = themeConfig.Opacity
                     '.TransparencyKey = New MyColor(themeConfig.TransparencyKey)
                     Dim tlList As New List(Of MyTextLabel)
+                    Dim ctList As New List(Of MyCustomText)
                     Dim icList As New List(Of MyImageControl)
                     Dim sbList As New List(Of MyStatusBar)
                     Dim csbList As New List(Of MyCircularStatusBar)
@@ -895,6 +970,8 @@ Public Class frmThemeEditor
                         Select Case control.GetType
                             Case GetType(TextLabel)
                                 tlList.Add(New MyTextLabel(control))
+                            Case GetType(CustomText)
+                                ctList.Add(New MyCustomText(control))
                             Case GetType(ImageControl)
                                 icList.Add(New MyImageControl(control))
                             Case GetType(StatusBar)
@@ -914,6 +991,7 @@ Public Class frmThemeEditor
                         End Select
                     Next
                     .TextLabels = tlList
+                    .CustomTexts = ctList
                     .ImageBoxes = icList
                     .StatusBars = sbList
                     .CircularSBs = csbList
@@ -983,6 +1061,55 @@ Public Class frmThemeEditor
                 root.Nodes.Add(node)
 
                 AddHandler textLabel.MouseClick, AddressOf Control_MouseClick
+            Case GetType(CustomText)
+                Dim source = CType(ctrl, CustomText)
+                Dim customText As New CustomText(True)
+                With customText
+                    .myParentForm = monForm
+                    .BackColor = source.BackColor
+                    .Font = source.Font
+                    .RightToLeft = source.RightToLeft
+                    .Text = source.Text
+                    .Enabled = source.Enabled
+                    .Visible = source.Visible
+                    .Tag = "ThemeControl"
+                    .Name = $"CustomText{GetControlCount("CustomText")}"
+                    .Anchor = source.Anchor
+                    .Dock = source.Dock
+                    .Location = source.Location
+                    .Margin = source.Margin
+                    .Padding = source.Padding
+                    .Size = source.Size
+                    .BorderStyle = source.BorderStyle
+                    .FlatStyle = source.FlatStyle
+                    .Image = source.Image
+                    .ImageAlign = source.ImageAlign
+                    .UseMnemonic = source.UseMnemonic
+                    .AutoEllipsis = source.AutoEllipsis
+                    .UseCompatibleTextRendering = source.UseCompatibleTextRendering
+                    .AutoSize = source.AutoSize
+                    .Sensor = source.Sensor
+                    .SensorParam = source.SensorParam
+                    .Title = source.Title
+                    .Value = source.Value
+                    .Unit = source.Unit
+                    .TitleColor = source.TitleColor
+                    .ValueColor = source.ValueColor
+                    .UnitColor = source.UnitColor
+                    .TitleAlign = source.TitleAlign
+                    .ValueAlign = source.ValueAlign
+                    .UnitAlign = source.UnitAlign
+                    .AutoWidth = source.AutoWidth
+                    .TitleWidth = source.TitleWidth
+                    .ValueWidth = source.ValueWidth
+                    .UnitWidth = source.UnitWidth
+                End With
+                monForm.Controls.Add(customText)
+
+                Dim node As New TreeNode($"{customText.Name} ({customText.Sensor.ToString})") With {.Tag = customText, .Name = customText.Name}
+                root.Nodes.Add(node)
+
+                AddHandler customText.MouseClick, AddressOf Control_MouseClick
             Case GetType(ImageControl)
                 Dim source = CType(ctrl, ImageControl)
                 Dim imageControl As New ImageControl(True)

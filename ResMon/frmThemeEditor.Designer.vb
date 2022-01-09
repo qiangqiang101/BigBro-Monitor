@@ -42,6 +42,7 @@ Partial Class frmThemeEditor
         Me.tsmiPlot = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiYoutube = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiWeather = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiVisualizer = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsmiThemeProperties = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiBuild = New System.Windows.Forms.ToolStripMenuItem()
@@ -58,6 +59,7 @@ Partial Class frmThemeEditor
         Me.pgProperties = New System.Windows.Forms.PropertyGrid()
         Me.tsToolStrip = New System.Windows.Forms.ToolStrip()
         Me.tsbText = New System.Windows.Forms.ToolStripButton()
+        Me.tsbCusText = New System.Windows.Forms.ToolStripButton()
         Me.tsbCompleteText = New System.Windows.Forms.ToolStripButton()
         Me.tsbImage = New System.Windows.Forms.ToolStripButton()
         Me.tsbStatusBar = New System.Windows.Forms.ToolStripButton()
@@ -67,7 +69,7 @@ Partial Class frmThemeEditor
         Me.tsbWeather = New System.Windows.Forms.ToolStripButton()
         Me.tsbVisualizer = New System.Windows.Forms.ToolStripButton()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.tsmiVisualizer = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiCustomText = New System.Windows.Forms.ToolStripMenuItem()
         Me.msMenu.SuspendLayout()
         Me.cmsRightClick.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,46 +102,46 @@ Partial Class frmThemeEditor
         'tsmiNew
         '
         Me.tsmiNew.Name = "tsmiNew"
-        Me.tsmiNew.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiNew.Size = New System.Drawing.Size(123, 22)
         Me.tsmiNew.Text = "New"
         '
         'tsmiOpen
         '
         Me.tsmiOpen.Name = "tsmiOpen"
-        Me.tsmiOpen.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiOpen.Size = New System.Drawing.Size(123, 22)
         Me.tsmiOpen.Text = "Open..."
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(120, 6)
         '
         'tsmiSave
         '
         Me.tsmiSave.Name = "tsmiSave"
-        Me.tsmiSave.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiSave.Size = New System.Drawing.Size(123, 22)
         Me.tsmiSave.Text = "Save"
         '
         'tsmiSaveAs
         '
         Me.tsmiSaveAs.Name = "tsmiSaveAs"
-        Me.tsmiSaveAs.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiSaveAs.Size = New System.Drawing.Size(123, 22)
         Me.tsmiSaveAs.Text = "Save As..."
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(120, 6)
         '
         'tsmiExit
         '
         Me.tsmiExit.Name = "tsmiExit"
-        Me.tsmiExit.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiExit.Size = New System.Drawing.Size(123, 22)
         Me.tsmiExit.Text = "Exit"
         '
         'tsmiProject
         '
-        Me.tsmiProject.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiTextLabel, Me.tsmiDetailSensor, Me.tsmiImageBox, Me.tsmiStatusBar, Me.tsmiRoundSB, Me.tsmiPlot, Me.tsmiYoutube, Me.tsmiWeather, Me.tsmiVisualizer, Me.ToolStripSeparator3, Me.tsmiThemeProperties})
+        Me.tsmiProject.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiTextLabel, Me.tsmiCustomText, Me.tsmiDetailSensor, Me.tsmiImageBox, Me.tsmiStatusBar, Me.tsmiRoundSB, Me.tsmiPlot, Me.tsmiYoutube, Me.tsmiWeather, Me.tsmiVisualizer, Me.ToolStripSeparator3, Me.tsmiThemeProperties})
         Me.tsmiProject.Name = "tsmiProject"
         Me.tsmiProject.Size = New System.Drawing.Size(56, 20)
         Me.tsmiProject.Text = "Project"
@@ -191,6 +193,12 @@ Partial Class frmThemeEditor
         Me.tsmiWeather.Name = "tsmiWeather"
         Me.tsmiWeather.Size = New System.Drawing.Size(170, 22)
         Me.tsmiWeather.Text = "Weather Widget"
+        '
+        'tsmiVisualizer
+        '
+        Me.tsmiVisualizer.Name = "tsmiVisualizer"
+        Me.tsmiVisualizer.Size = New System.Drawing.Size(170, 22)
+        Me.tsmiVisualizer.Text = "Audio Visualizer"
         '
         'ToolStripSeparator3
         '
@@ -304,7 +312,7 @@ Partial Class frmThemeEditor
         Me.tsToolStrip.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.tsToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.tsToolStrip.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.tsToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbText, Me.tsbCompleteText, Me.tsbImage, Me.tsbStatusBar, Me.tsbRoundSB, Me.tsbGraphDiagram, Me.tsbYoutube, Me.tsbWeather, Me.tsbVisualizer})
+        Me.tsToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbText, Me.tsbCusText, Me.tsbCompleteText, Me.tsbImage, Me.tsbStatusBar, Me.tsbRoundSB, Me.tsbGraphDiagram, Me.tsbYoutube, Me.tsbWeather, Me.tsbVisualizer})
         Me.tsToolStrip.Location = New System.Drawing.Point(0, 24)
         Me.tsToolStrip.Name = "tsToolStrip"
         Me.tsToolStrip.Size = New System.Drawing.Size(1008, 39)
@@ -318,6 +326,15 @@ Partial Class frmThemeEditor
         Me.tsbText.Size = New System.Drawing.Size(95, 36)
         Me.tsbText.Text = "Text Label"
         Me.tsbText.ToolTipText = "Text"
+        '
+        'tsbCusText
+        '
+        Me.tsbCusText.Image = Global.ResMon.My.Resources.Resources.style
+        Me.tsbCusText.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbCusText.Name = "tsbCusText"
+        Me.tsbCusText.Size = New System.Drawing.Size(109, 36)
+        Me.tsbCusText.Text = "Custom Text"
+        Me.tsbCusText.ToolTipText = "Text"
         '
         'tsbCompleteText
         '
@@ -408,11 +425,11 @@ Partial Class frmThemeEditor
         Me.SplitContainer2.SplitterDistance = 729
         Me.SplitContainer2.TabIndex = 5
         '
-        'tsmiVisualizer
+        'tsmiCustomText
         '
-        Me.tsmiVisualizer.Name = "tsmiVisualizer"
-        Me.tsmiVisualizer.Size = New System.Drawing.Size(170, 22)
-        Me.tsmiVisualizer.Text = "Audio Visualizer"
+        Me.tsmiCustomText.Name = "tsmiCustomText"
+        Me.tsmiCustomText.Size = New System.Drawing.Size(170, 22)
+        Me.tsmiCustomText.Text = "Custom Text"
         '
         'frmThemeEditor
         '
@@ -490,4 +507,6 @@ Partial Class frmThemeEditor
     Friend WithEvents tsbRoundSB As ToolStripButton
     Friend WithEvents tsbVisualizer As ToolStripButton
     Friend WithEvents tsmiVisualizer As ToolStripMenuItem
+    Friend WithEvents tsbCusText As ToolStripButton
+    Friend WithEvents tsmiCustomText As ToolStripMenuItem
 End Class
