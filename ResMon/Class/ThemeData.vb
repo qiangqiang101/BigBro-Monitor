@@ -217,6 +217,8 @@ Public Structure MyCustomText
     Public TitleWidth As Single
     Public ValueWidth As Single
     Public UnitWidth As Single
+    Public TitleFont As MyFont
+    Public UnitFont As MyFont
 
     Public Sub New(control As CustomText)
         BackColor = New MyColor(control.BackColor)
@@ -239,7 +241,7 @@ Public Structure MyCustomText
         UseMnemonic = control.UseMnemonic
         AutoEllipsis = control.AutoEllipsis
         UseCompatibleTextRendering = control.UseCompatibleTextRendering
-        AutoSize = control.AutoSize
+        AutoSize = False
         Sensor = control.Sensor
         SensorParam = control.SensorParam
         ParentName = control.ParentName
@@ -257,6 +259,8 @@ Public Structure MyCustomText
         TitleWidth = control.TitleWidth
         ValueWidth = control.ValueWidth
         UnitWidth = control.UnitWidth
+        TitleFont = New MyFont(control.TitleFont)
+        UnitFont = New MyFont(control.UnitFont)
     End Sub
 
 End Structure
@@ -354,6 +358,9 @@ Public Structure MyStatusBar
     Public Sensor As eSensorType
     Public SensorParam As String
     Public ParentName As String
+    Public FillDirection As FillDirection
+    Public ShowValue As Boolean
+    Public Unit As String
 
     Public Sub New(control As StatusBar)
         BackColor = New MyColor(control.BackColor)
@@ -383,6 +390,9 @@ Public Structure MyStatusBar
         Sensor = control.Sensor
         SensorParam = control.SensorParam
         ParentName = control.ParentName
+        FillDirection = control.FillDirection
+        ShowValue = control.ShowValue
+        Unit = control.Unit
     End Sub
 
 End Structure

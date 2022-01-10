@@ -35,9 +35,11 @@ Partial Class frmThemeEditor
         Me.tsmiExit = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiProject = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiTextLabel = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiCustomText = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiDetailSensor = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiImageBox = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiStatusBar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiVStatusBar = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiRoundSB = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiPlot = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiYoutube = New System.Windows.Forms.ToolStripMenuItem()
@@ -62,14 +64,15 @@ Partial Class frmThemeEditor
         Me.tsbCusText = New System.Windows.Forms.ToolStripButton()
         Me.tsbCompleteText = New System.Windows.Forms.ToolStripButton()
         Me.tsbImage = New System.Windows.Forms.ToolStripButton()
-        Me.tsbStatusBar = New System.Windows.Forms.ToolStripButton()
+        Me.tsbStatusBar = New System.Windows.Forms.ToolStripSplitButton()
+        Me.tsbVStatusBar = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsbRoundSB = New System.Windows.Forms.ToolStripButton()
         Me.tsbGraphDiagram = New System.Windows.Forms.ToolStripButton()
         Me.tsbYoutube = New System.Windows.Forms.ToolStripButton()
         Me.tsbWeather = New System.Windows.Forms.ToolStripButton()
         Me.tsbVisualizer = New System.Windows.Forms.ToolStripButton()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.tsmiCustomText = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsbHStatusBar = New System.Windows.Forms.ToolStripMenuItem()
         Me.msMenu.SuspendLayout()
         Me.cmsRightClick.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,6 +155,12 @@ Partial Class frmThemeEditor
         Me.tsmiTextLabel.Size = New System.Drawing.Size(170, 22)
         Me.tsmiTextLabel.Text = "Text Label"
         '
+        'tsmiCustomText
+        '
+        Me.tsmiCustomText.Name = "tsmiCustomText"
+        Me.tsmiCustomText.Size = New System.Drawing.Size(170, 22)
+        Me.tsmiCustomText.Text = "Custom Text"
+        '
         'tsmiDetailSensor
         '
         Me.tsmiDetailSensor.Name = "tsmiDetailSensor"
@@ -166,9 +175,16 @@ Partial Class frmThemeEditor
         '
         'tsmiStatusBar
         '
+        Me.tsmiStatusBar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiVStatusBar})
         Me.tsmiStatusBar.Name = "tsmiStatusBar"
         Me.tsmiStatusBar.Size = New System.Drawing.Size(170, 22)
         Me.tsmiStatusBar.Text = "Status Bar"
+        '
+        'tsmiVStatusBar
+        '
+        Me.tsmiVStatusBar.Name = "tsmiVStatusBar"
+        Me.tsmiVStatusBar.Size = New System.Drawing.Size(167, 22)
+        Me.tsmiVStatusBar.Text = "Vertical Status Bar"
         '
         'tsmiRoundSB
         '
@@ -356,12 +372,19 @@ Partial Class frmThemeEditor
         '
         'tsbStatusBar
         '
+        Me.tsbStatusBar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbVStatusBar, Me.tsbHStatusBar})
         Me.tsbStatusBar.Image = Global.ResMon.My.Resources.Resources.progressbar
         Me.tsbStatusBar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbStatusBar.Name = "tsbStatusBar"
-        Me.tsbStatusBar.Size = New System.Drawing.Size(95, 36)
+        Me.tsbStatusBar.Size = New System.Drawing.Size(107, 36)
         Me.tsbStatusBar.Text = "Status Bar"
         Me.tsbStatusBar.ToolTipText = "Text"
+        '
+        'tsbVStatusBar
+        '
+        Me.tsbVStatusBar.Name = "tsbVStatusBar"
+        Me.tsbVStatusBar.Size = New System.Drawing.Size(184, 22)
+        Me.tsbVStatusBar.Text = "Vertical Status Bar"
         '
         'tsbRoundSB
         '
@@ -425,11 +448,11 @@ Partial Class frmThemeEditor
         Me.SplitContainer2.SplitterDistance = 729
         Me.SplitContainer2.TabIndex = 5
         '
-        'tsmiCustomText
+        'tsbHStatusBar
         '
-        Me.tsmiCustomText.Name = "tsmiCustomText"
-        Me.tsmiCustomText.Size = New System.Drawing.Size(170, 22)
-        Me.tsmiCustomText.Text = "Custom Text"
+        Me.tsbHStatusBar.Name = "tsbHStatusBar"
+        Me.tsbHStatusBar.Size = New System.Drawing.Size(184, 22)
+        Me.tsbHStatusBar.Text = "Horizontal Status Bar"
         '
         'frmThemeEditor
         '
@@ -477,7 +500,6 @@ Partial Class frmThemeEditor
     Friend WithEvents pgProperties As PropertyGrid
     Friend WithEvents tsToolStrip As ToolStrip
     Friend WithEvents tsbImage As ToolStripButton
-    Friend WithEvents tsbStatusBar As ToolStripButton
     Friend WithEvents cmsRightClick As ContextMenuStrip
     Friend WithEvents tsmiDelete As ToolStripMenuItem
     Friend WithEvents tvControls As TreeView
@@ -509,4 +531,8 @@ Partial Class frmThemeEditor
     Friend WithEvents tsmiVisualizer As ToolStripMenuItem
     Friend WithEvents tsbCusText As ToolStripButton
     Friend WithEvents tsmiCustomText As ToolStripMenuItem
+    Friend WithEvents tsbStatusBar As ToolStripSplitButton
+    Friend WithEvents tsbVStatusBar As ToolStripMenuItem
+    Friend WithEvents tsmiVStatusBar As ToolStripMenuItem
+    Friend WithEvents tsbHStatusBar As ToolStripMenuItem
 End Class

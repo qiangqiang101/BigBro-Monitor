@@ -351,11 +351,11 @@ Public Class frmMonitor
 
             theBrush.InterpolationColors = colorBlend
 
-            PrepareGraphics(graphic, False)
+            PrepareGraphics(graphic, UserSettings.RgbEffectHighQuality)
 
             Dim rgbImg As New Bitmap(size.Width, size.Height)
             Using g As Graphics = Graphics.FromImage(rgbImg)
-                PrepareGraphics(g, False)
+                PrepareGraphics(g, UserSettings.RgbEffectHighQuality)
                 g.FillRectangle(theBrush, 0, 0, size.Width, size.Height)
             End Using
 
@@ -420,6 +420,8 @@ Public Class frmMonitor
                     .Email = UserSettings.Email
                     .HWID = UserSettings.HWID
                     .Language = UserSettings.Language
+                    .AudioEffectHighQuality = UserSettings.AudioEffectHighQuality
+                    .RgbEffectHighQuality = UserSettings.RgbEffectHighQuality
                     .SaveSilent()
                 End With
                 UserSettings = New UserSettingData(UserSettingFile).Instance

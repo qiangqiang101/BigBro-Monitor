@@ -386,6 +386,8 @@ Public Class frmMain
             .Email = UserSettings.Email
             .HWID = UserSettings.HWID
             .Language = UserSettings.Language
+            .AudioEffectHighQuality = UserSettings.AudioEffectHighQuality
+            .RgbEffectHighQuality = UserSettings.RgbEffectHighQuality
             .SaveSilent()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance
@@ -448,6 +450,8 @@ Public Class frmMain
             .Email = UserSettings.Email
             .HWID = UserSettings.HWID
             .Language = UserSettings.Language
+            .AudioEffectHighQuality = UserSettings.AudioEffectHighQuality
+            .RgbEffectHighQuality = UserSettings.RgbEffectHighQuality
             .SaveSilent()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance
@@ -581,7 +585,7 @@ Public Class frmMain
                 .UseMnemonic = ct.UseMnemonic
                 .AutoEllipsis = ct.AutoEllipsis
                 .UseCompatibleTextRendering = ct.UseCompatibleTextRendering
-                .AutoSize = ct.AutoSize
+                .AutoSize = False
                 .Sensor = ct.Sensor
                 Select Case .Sensor
                     Case eSensorType.CPUFan, eSensorType.MoboFan, eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF
@@ -610,6 +614,8 @@ Public Class frmMain
                 .TitleWidth = ct.TitleWidth
                 .ValueWidth = ct.ValueWidth
                 .UnitWidth = ct.UnitWidth
+                .TitleFont = ct.TitleFont.ToFont
+                .UnitFont = ct.UnitFont.ToFont
                 .rzControl = Nothing
             End With
             frmMonitor.Controls.Add(cusTxt)
@@ -709,6 +715,9 @@ Public Class frmMain
                 .Texture = sb.Texture.Base64ToImage
                 .TextureSize = sb.TextureSize
                 .UseTexture = sb.UseTexture
+                .FillDirection = sb.FillDirection
+                .ShowValue = sb.ShowValue
+                .Unit = sb.Unit
                 .rzControl = Nothing
             End With
             frmMonitor.Controls.Add(sbProgress)

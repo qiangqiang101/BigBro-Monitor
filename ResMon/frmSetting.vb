@@ -77,6 +77,8 @@ Public Class frmSetting
         btnCredits.Text = ProgramLanguage.btnCredits
         btnSave.Text = ProgramLanguage.btnSave
         cbResetSPanel.Text = ProgramLanguage.cbResetSPanel
+        cbHQRgb.Text = ProgramLanguage.cbHQRgb
+        cbHQAE.Text = ProgramLanguage.cbHQAE
     End Sub
 
     Public Sub ReloadInfo()
@@ -90,6 +92,8 @@ Public Class frmSetting
         cbAuto.Checked = UserSettings.AutoStart 'File.Exists(startupFile)
         cbBroadcast.Checked = UserSettings.EnableBroadcast
         txtPort.Text = UserSettings.BroadcastPort
+        cbHQRgb.Checked = UserSettings.RgbEffectHighQuality
+        cbHQAE.Checked = UserSettings.AudioEffectHighQuality
         cmbStates.SelectedItem = UserSettings.State
         If cmbTown.Items.Count <> 0 Then
             cmbTown.SelectedItem = UserSettings.Town
@@ -137,6 +141,8 @@ Public Class frmSetting
             .Email = UserSettings.Email
             .HWID = UserSettings.HWID
             .Language = cmbLanguage.SelectedItem.ToString
+            .RgbEffectHighQuality = cbHQRgb.Checked
+            .AudioEffectHighQuality = cbHQAE.Checked
             .Save()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance

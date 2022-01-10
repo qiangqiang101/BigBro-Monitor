@@ -44,6 +44,8 @@ Public Class frmActivateLicense
                     .Email = txtEmail.Text
                     .HWID = HWID
                     .Language = UserSettings.Language
+                    .AudioEffectHighQuality = UserSettings.AudioEffectHighQuality
+                    .RgbEffectHighQuality = UserSettings.RgbEffectHighQuality
                     .SaveSilent()
                 End With
                 UserSettings = New UserSettingData(UserSettingFile).Instance

@@ -172,7 +172,7 @@ Public Class frmThemeEditor
                 .UseMnemonic = ct.UseMnemonic
                 .AutoEllipsis = ct.AutoEllipsis
                 .UseCompatibleTextRendering = ct.UseCompatibleTextRendering
-                .AutoSize = ct.AutoSize
+                .AutoSize = False
                 .Sensor = ct.Sensor
                 .SensorParam = ct.SensorParam
                 .Title = ct.Title
@@ -188,6 +188,8 @@ Public Class frmThemeEditor
                 .TitleWidth = ct.TitleWidth
                 .ValueWidth = ct.ValueWidth
                 .UnitWidth = ct.UnitWidth
+                .TitleFont = ct.TitleFont.ToFont
+                .UnitFont = ct.UnitFont.ToFont
                 '.ParentName = tl.ParentName
             End With
             monForm.Controls.Add(cusTxt)
@@ -267,6 +269,9 @@ Public Class frmThemeEditor
                 .Texture = sb.Texture.Base64ToImage
                 .TextureSize = sb.TextureSize
                 .UseTexture = sb.UseTexture
+                .FillDirection = sb.FillDirection
+                .ShowValue = sb.ShowValue
+                .Unit = sb.Unit
                 '.ParentName = sb.ParentName
             End With
 
@@ -741,7 +746,7 @@ Public Class frmThemeEditor
 
     Private Sub tsbCusText_Click(sender As Object, e As EventArgs) Handles tsbCusText.Click, tsmiCustomText.Click
         Dim cusTxt As New CustomText(True) With {.Title = "New", .Value = "Custom", .Unit = "Text", .Name = $"CustomText{GetControlCount("CustomText")}", .Location = CalculateCenter(monForm.Size, New Size(300, 30)),
-        .Size = New Size(200, 30), .myParentForm = monForm, .TitleColor = themeConfig.TextColor, .ValueColor = themeConfig.TextColor, .UnitColor = themeConfig.TextColor, .Tag = "ThemeControl"}
+        .Size = New Size(200, 30), .myParentForm = monForm, .TitleColor = themeConfig.TextColor, .ValueColor = themeConfig.TextColor, .UnitColor = themeConfig.TextColor, .Tag = "ThemeControl", .AutoSize = False}
         monForm.Controls.Add(cusTxt)
 
         Dim node As New TreeNode($"{cusTxt.Name} ({cusTxt.Sensor.ToString})") With {.Tag = cusTxt, .Name = cusTxt.Name}
@@ -761,9 +766,20 @@ Public Class frmThemeEditor
         AddHandler csbProgress.MouseClick, AddressOf Control_MouseClick
     End Sub
 
-    Private Sub tsbStatusBar_Click(sender As Object, e As EventArgs) Handles tsbStatusBar.Click, tsmiStatusBar.Click
+    Private Sub tsbHStatusBar_Click(sender As Object, e As EventArgs) Handles tsbHStatusBar.Click, tsmiStatusBar.Click
         Dim sbProgress As New StatusBar(True) With {.Text = "New Status Bar", .Name = $"StatusBar{GetControlCount("StatusBar")}", .Location = CalculateCenter(monForm.Size, New Size(100, 20)), .Size = New Size(100, 20),
-            .myParentForm = monForm, .ForeColor = themeConfig.TextColor, .Tag = "ThemeControl"}
+            .myParentForm = monForm, .ForeColor = themeConfig.TextColor, .Tag = "ThemeControl", .FillDirection = FillDirection.LeftToRight}
+        monForm.Controls.Add(sbProgress)
+
+        Dim node As New TreeNode($"{sbProgress.Name} ({sbProgress.Sensor.ToString})") With {.Tag = sbProgress, .Name = sbProgress.Name}
+        root.Nodes.Add(node)
+
+        AddHandler sbProgress.MouseClick, AddressOf Control_MouseClick
+    End Sub
+
+    Private Sub tsbVStatusBar_Click(sender As Object, e As EventArgs) Handles tsbVStatusBar.Click, tsmiVStatusBar.Click
+        Dim sbProgress As New StatusBar(True) With {.Text = "New Status Bar", .Name = $"StatusBar{GetControlCount("StatusBar")}", .Location = CalculateCenter(monForm.Size, New Size(20, 100)), .Size = New Size(20, 100),
+           .myParentForm = monForm, .ForeColor = themeConfig.TextColor, .Tag = "ThemeControl", .FillDirection = FillDirection.DownToUp}
         monForm.Controls.Add(sbProgress)
 
         Dim node As New TreeNode($"{sbProgress.Name} ({sbProgress.Sensor.ToString})") With {.Tag = sbProgress, .Name = sbProgress.Name}
@@ -1087,7 +1103,7 @@ Public Class frmThemeEditor
                     .UseMnemonic = source.UseMnemonic
                     .AutoEllipsis = source.AutoEllipsis
                     .UseCompatibleTextRendering = source.UseCompatibleTextRendering
-                    .AutoSize = source.AutoSize
+                    .AutoSize = False
                     .Sensor = source.Sensor
                     .SensorParam = source.SensorParam
                     .Title = source.Title
@@ -1103,6 +1119,8 @@ Public Class frmThemeEditor
                     .TitleWidth = source.TitleWidth
                     .ValueWidth = source.ValueWidth
                     .UnitWidth = source.UnitWidth
+                    .TitleFont = source.TitleFont
+                    .UnitFont = source.UnitFont
                 End With
                 monForm.Controls.Add(customText)
 
@@ -1177,6 +1195,9 @@ Public Class frmThemeEditor
                     .Texture = source.Texture
                     .TextureSize = source.TextureSize
                     .UseTexture = source.UseTexture
+                    .FillDirection = source.FillDirection
+                    .ShowValue = source.ShowValue
+                    .Unit = source.Unit
                 End With
                 monForm.Controls.Add(statusBar)
 

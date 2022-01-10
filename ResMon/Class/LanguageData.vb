@@ -47,6 +47,9 @@ Public Structure LanguageData
     Public btnSave As String
     Public btnDownloadTheme As String
     Public cbResetSPanel As String
+    Public lblTemperature As String
+    Public cbHQRgb As String
+    Public cbHQAE As String
 
     Public Sub New(filename As String)
         Me.FileName = filename

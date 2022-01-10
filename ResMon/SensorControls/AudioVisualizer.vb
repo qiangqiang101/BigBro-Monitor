@@ -550,7 +550,7 @@ Public Class AudioVisualizer
                     theBrush.InterpolationColors = colorBlend
 
                     Dim image As Image = Me.Image
-                    Dim newImage = _lineSpectrum.CreateSpectrumLine(Me.Size, theBrush, BackColor, False)
+                    Dim newImage = _lineSpectrum.CreateSpectrumLine(Me.Size, theBrush, BackColor, UserSettings.AudioEffectHighQuality)
                     If newImage IsNot Nothing Then
                         Me.Image = newImage
                         If image IsNot Nothing Then
@@ -559,7 +559,7 @@ Public Class AudioVisualizer
                     End If
                 Case ARColorStyle.Gradient
                     Dim image As Image = Me.Image
-                    Dim newImage = _lineSpectrum.CreateSpectrumLine(Me.Size, _color1, _color2, BackColor, False)
+                    Dim newImage = _lineSpectrum.CreateSpectrumLine(Me.Size, _color1, _color2, BackColor, UserSettings.AudioEffectHighQuality)
                     If newImage IsNot Nothing Then
                         Me.Image = newImage
                         If image IsNot Nothing Then
@@ -568,7 +568,7 @@ Public Class AudioVisualizer
                     End If
                 Case ARColorStyle.Solid
                     Dim image As Image = Me.Image
-                    Dim newImage = _lineSpectrum.CreateSpectrumLine(Me.Size, _color1, _color1, BackColor, False)
+                    Dim newImage = _lineSpectrum.CreateSpectrumLine(Me.Size, _color1, _color1, BackColor, UserSettings.AudioEffectHighQuality)
                     If newImage IsNot Nothing Then
                         Me.Image = newImage
                         If image IsNot Nothing Then

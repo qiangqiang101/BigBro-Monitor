@@ -125,6 +125,16 @@ Public Class CustomText
         End Set
     End Property
 
+    <Browsable(True)>
+    Public Overloads Property AutoSize() As Boolean
+        Get
+            Return MyBase.AutoSize
+        End Get
+        Set(value As Boolean)
+            MyBase.AutoSize = False
+        End Set
+    End Property
+
     <Browsable(False)>
     Public Overloads Property CausesValidation() As Boolean
         Get
@@ -378,6 +388,30 @@ Public Class CustomText
         End Set
     End Property
 
+    Private _titleFont As Font = MyBase.Font
+    <Category("Appearance")>
+    Public Property TitleFont() As Font
+        Get
+            Return _titleFont
+        End Get
+        Set(value As Font)
+            _titleFont = value
+            Invalidate()
+        End Set
+    End Property
+
+    Private _unitFont As Font = MyBase.Font
+    <Category("Appearance")>
+    Public Property UnitFont() As Font
+        Get
+            Return _unitFont
+        End Get
+        Set(value As Font)
+            _unitFont = value
+            Invalidate()
+        End Set
+    End Property
+
     Public Sub New(allowResize As Boolean)
         Tag = "ThemeControl"
         BackColor = Color.Transparent
@@ -566,7 +600,7 @@ Public Class CustomText
 
             AlignmentConverter(titleFormat, TitleAlign)
 
-            gp.AddString(Title, Font.FontFamily, Font.Style, CSng(g.DpiY * Font.Size / 72), rfa, titleFormat)
+            gp.AddString(Title, _titleFont.FontFamily, _titleFont.Style, CSng(g.DpiY * _titleFont.Size / 72), rfa, titleFormat)
 
             Select Case titleFormat.LineAlignment
                 Case StringAlignment.Near : pf = New PointF(0, 0)
@@ -618,7 +652,7 @@ Public Class CustomText
 
             AlignmentConverter(unitFormat, UnitAlign)
 
-            gp.AddString(Unit, Font.FontFamily, Font.Style, CSng(g.DpiY * Font.Size / 72), rfa, unitFormat)
+            gp.AddString(Unit, _unitFont.FontFamily, _unitFont.Style, CSng(g.DpiY * _unitFont.Size / 72), rfa, unitFormat)
 
             Select Case unitFormat.LineAlignment
                 Case StringAlignment.Near : pf = New PointF(Width / CalculateRfWidth(), 0)
