@@ -307,29 +307,55 @@ Public Class StatusBar
         End Set
     End Property
 
+    Private _fillDirection As FillDirection = FillDirection.LeftToRight
+    <Category("Behavior")>
+    Public Property FillDirection() As FillDirection
+        Get
+            Return _fillDirection
+        End Get
+        Set(value As FillDirection)
+            _fillDirection = value
+            Invalidate()
+        End Set
+    End Property
+
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
         MyBase.OnPaint(e)
 
         Dim formGraphics As Graphics = e.Graphics
         formGraphics.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
-        Dim txtbrush As New SolidBrush(ForeColor)
+        Using txtbrush As New SolidBrush(ForeColor)
+            Dim textSize = formGraphics.MeasureString(Text, Font)
+            Dim textPoint As New Point(CInt(ClientRectangle.Left + (ClientRectangle.Width / 2) - (textSize.Width / 2)), CInt(ClientRectangle.Top + (ClientRectangle.Height / 2) - (textSize.Height / 2)))
 
-        Dim textSize = formGraphics.MeasureString(Text, Font)
-        Dim textPoint As New Point(CInt(ClientRectangle.Left + (ClientRectangle.Width / 2) - (textSize.Width / 2)), CInt(ClientRectangle.Top + (ClientRectangle.Height / 2) - (textSize.Height / 2)))
+            Select Case _fillDirection
+                Case FillDirection.LeftToRight
+                    If _useTexture Then
+                        Using tbrush As New TextureBrush(tempTexture, Drawing2D.WrapMode.Tile)
+                            If Not _val = 0 Then formGraphics.FillRectangle(tbrush, New RectangleF(0, 0, _val / _max * Width - 1, Height - 1))
+                            formGraphics.DrawString(Text, Font, txtbrush, textPoint)
+                        End Using
+                    Else
+                        Using sbrush As New SolidBrush(_frontcolor)
+                            If Not _val = 0 Then formGraphics.FillRectangle(sbrush, New RectangleF(0, 0, _val / _max * Width - 1, Height - 1))
+                            formGraphics.DrawString(Text, Font, txtbrush, textPoint)
+                        End Using
+                    End If
+                Case FillDirection.DownToUp
+                    'If _useTexture Then
+                    '    Using tbrush As New TextureBrush(tempTexture, Drawing2D.WrapMode.Tile)
+                    '        If Not _val = 0 Then formGraphics.FillRectangle(tbrush, New RectangleF(0, 0, _val / _max * Width - 1, Height - 1))
+                    '        formGraphics.DrawString(Text, Font, txtbrush, textPoint)
+                    '    End Using
+                    'Else
+                    '    Using sbrush As New SolidBrush(_frontcolor)
+                    '        If Not _val = 0 Then formGraphics.FillRectangle(sbrush, New RectangleF(0, 0, _val / _max * Width - 1, Height - 1))
+                    '        formGraphics.DrawString(Text, Font, txtbrush, textPoint)
+                    '    End Using
+                    'End If
+            End Select
 
-        If _useTexture Then
-            Using tbrush As New TextureBrush(tempTexture, Drawing2D.WrapMode.Tile)
-                If Not _val = 0 Then formGraphics.FillRectangle(tbrush, New RectangleF(0, 0, _val / _max * Width - 1, Height - 1))
-                formGraphics.DrawString(Text, Font, txtbrush, textPoint)
-            End Using
-        Else
-            Using sbrush As New SolidBrush(_frontcolor)
-                If Not _val = 0 Then formGraphics.FillRectangle(sbrush, New RectangleF(0, 0, _val / _max * Width - 1, Height - 1))
-                formGraphics.DrawString(Text, Font, txtbrush, textPoint)
-            End Using
-        End If
-
-        txtbrush.Dispose()
+        End Using
     End Sub
 
     Public Sub New(allowResize As Boolean)
@@ -614,3 +640,8 @@ Public Class StatusBar
     End Sub
 
 End Class
+
+Public Enum FillDirection
+    LeftToRight
+    DownToUp
+End Enum

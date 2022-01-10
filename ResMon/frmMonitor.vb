@@ -404,29 +404,27 @@ Public Class frmMonitor
 
     Private Sub frmMonitor_LocationChanged(sender As Object, e As EventArgs) Handles Me.LocationChanged
         If Not Editing Then
-            If Not IsFormBeingDragged Then
-                Try
-                    Dim newUserSettings As New UserSettingData(UserSettingFile)
-                    With newUserSettings
-                        .CurrentTheme = UserSettings.CurrentTheme
-                        .AutoStart = UserSettings.AutoStart
-                        .Location = Location
-                        .NetworkAdapterIndex = UserSettings.NetworkAdapterIndex
-                        .EnableBroadcast = UserSettings.EnableBroadcast
-                        .BroadcastPort = UserSettings.BroadcastPort
-                        .State = UserSettings.State
-                        .Town = UserSettings.Town
-                        .TopMost = UserSettings.TopMost
-                        .LicenseKey = UserSettings.LicenseKey
-                        .Email = UserSettings.Email
-                        .HWID = UserSettings.HWID
-                        .Language = UserSettings.Language
-                        .SaveSilent()
-                    End With
-                    UserSettings = New UserSettingData(UserSettingFile).Instance
-                Catch ex As Exception
-                End Try
-            End If
+            Try
+                Dim newUserSettings As New UserSettingData(UserSettingFile)
+                With newUserSettings
+                    .CurrentTheme = UserSettings.CurrentTheme
+                    .AutoStart = UserSettings.AutoStart
+                    .Location = Location
+                    .NetworkAdapterIndex = UserSettings.NetworkAdapterIndex
+                    .EnableBroadcast = UserSettings.EnableBroadcast
+                    .BroadcastPort = UserSettings.BroadcastPort
+                    .State = UserSettings.State
+                    .Town = UserSettings.Town
+                    .TopMost = UserSettings.TopMost
+                    .LicenseKey = UserSettings.LicenseKey
+                    .Email = UserSettings.Email
+                    .HWID = UserSettings.HWID
+                    .Language = UserSettings.Language
+                    .SaveSilent()
+                End With
+                UserSettings = New UserSettingData(UserSettingFile).Instance
+            Catch ex As Exception
+            End Try
         End If
     End Sub
 
