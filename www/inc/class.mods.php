@@ -54,6 +54,14 @@ class mods{
 	4 => "Misc"
 	);	
 	
+	public $cats_title_list = array(
+	5 => "3.5 Inch", 
+	1 => "5 Inch", 
+	2 => "7 Inch", 
+	3 => "8.8 Inch", 
+	4 => "Misc"
+	);	
+	
 	function __construct($config)
 	{
 		$this->mpp = $config["mpp"];

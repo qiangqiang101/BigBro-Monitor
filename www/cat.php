@@ -30,7 +30,7 @@ if(isset($_GET["cid"]))
 
 // page
 $tpl->set_param("sel_cat", $cid);
-$tpl->set_param("page_title", $mods->cats_list[$cid]);
+$tpl->set_param("page_title", $mods->cats_title_list[$cid]);
 $tpl->load("head");
 $tpl->load("cat");
 $tpl->load("footer");
