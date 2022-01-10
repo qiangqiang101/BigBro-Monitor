@@ -27,6 +27,9 @@ Public Structure UserSettingData
     Public Email As String
     Public HWID As String
     Public Language As String
+    Public AudioEffectHighQuality As Boolean
+    Public RgbEffectHighQuality As Boolean
+    Public TemperatureDegree As Integer
 
     Public Sub New(filename As String)
         Me.FileName = filename
