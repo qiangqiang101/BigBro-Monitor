@@ -22,7 +22,8 @@ Module Helper
     Public FontsDir As String = $"{My.Application.Info.DirectoryPath}\Fonts"
     Public LogsDir As String = $"{My.Application.Info.DirectoryPath}\Logs"
     Public LangsDir As String = $"{My.Application.Info.DirectoryPath}\Languages"
-    Public UserSettingFile As String = $"{My.Application.Info.DirectoryPath}\UserSettings.bin"
+    Public UserSettingFile As String = $"{My.Computer.FileSystem.SpecialDirectories.MyDocuments}\BigBro Monitor\UserSettings.bin"
+    Public OldUserSettingFile As String = $"{My.Application.Info.DirectoryPath}\UserSettings.bin"
     Public UserSettings As UserSettingData = New UserSettingData(UserSettingFile).Instance
     Public ProgramLanguage As LanguageData = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance
     Public key As New DESCryptoServiceProvider()
@@ -272,7 +273,6 @@ Module Helper
                     result = False
                 End If
             Catch ex As Exception
-                'MsgBox(ex.Message.Replace("the.bigbromonitor.com", "llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.co.uk"), MsgBoxStyle.Critical, "Error")
                 Return CheckActivation(hwid, email, retry + 1)
                 Logger.Log(ex)
             End Try
@@ -298,18 +298,63 @@ Module Helper
                     MsgBox("Your HWID is invalid, please try again or contact our support team.", MsgBoxStyle.Exclamation, "Invalid")
                     Return False
                 ElseIf strSource.Contains("key is already in use") Then
-                    MsgBox("The product key you entered is already in use, please try again or contact our support team.", MsgBoxStyle.Exclamation, "Invalid")
-                    Return False
+                    If KeyInUseButCanStillUse(hwid, email) Then
+                        MsgBox("Product registration was successful!, Thank you for using our product, We will be happy if you spread the word and tell your friends about this product.", MsgBoxStyle.Information, "Successful")
+                        Return True
+                    Else
+                        MsgBox("The product key you entered is already in use, please try again or contact our support team.", MsgBoxStyle.Exclamation, "Invalid")
+                        Return False
+                    End If
                 Else
                     MsgBox("Product registration was successful!, Thank you for using our product, We will be happy if you spread the word and tell your friends about this product.", MsgBoxStyle.Information, "Successful")
                     Return True
                 End If
             Catch ex As Exception
-                ELSActivateLicense(key, hwid, email, retry + 1)
+                Return ELSActivateLicense(key, hwid, email, retry + 1)
             End Try
         End If
 
         Return False
+    End Function
+
+    Public Function KeyInUseButCanStillUse(hwid As String, email As String, Optional retry As Integer = 0) As Boolean
+        Dim query As String = $"https://the.bigbromonitor.com/index.php?a=checkdate&hwid={hwid}"
+
+        Dim result As Boolean = False
+        Dim [date] As Date = Now
+        Dim date2 As Date = Now
+        Dim canLogin As Boolean = False
+
+        If retry > 4 Then
+            MsgBox("Unable to connect to License Server after 5 attempts.", MsgBoxStyle.Critical, "Error")
+            Return False
+        Else
+            Try
+                Dim wc As New WebClient
+                Dim strSource As String = wc.DownloadString(query)
+
+                If strSource.Contains(email) Then
+                    ' Check the date
+                    Dim start As Integer = strSource.IndexOf(email) + email.Length
+                    Dim [end] As Integer = strSource.IndexOf(":" + email)
+                    Dim datestring = strSource.Substring(start, [end] - start)
+                    [date] = DateTime.ParseExact(datestring, "yyyy-MM-dd", Nothing)
+                    strSource = wc.DownloadString("http://weltzeit4u.com/Datum/index.php")
+
+                    Dim start2 As Integer = strSource.IndexOf("<span id='gross_fett_blau'>") + 27
+                    Dim end2 As Integer = strSource.IndexOf("</span> (arabische")
+                    Dim dateToday As String = strSource.Substring(start2, end2 - start2)
+                    date2 = DateTime.ParseExact(dateToday, "dd.MM.yyyy", Nothing)
+                    If [date] < date2 Then result = True Else canLogin = True
+                    If canLogin Then result = True
+                End If
+            Catch ex As Exception
+                Return KeyInUseButCanStillUse(hwid, email, retry + 1)
+                Logger.Log(ex)
+            End Try
+        End If
+
+        Return result
     End Function
 
     <Extension>

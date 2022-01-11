@@ -20,6 +20,38 @@ Public Class frmMain
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If Not File.Exists(UserSettingFile) Then
+            If Not Directory.Exists($"{My.Computer.FileSystem.SpecialDirectories.MyDocuments}\BigBro Monitor") Then Directory.CreateDirectory($"{My.Computer.FileSystem.SpecialDirectories.MyDocuments}\BigBro Monitor")
+
+            If File.Exists(OldUserSettingFile) Then
+                File.Move(OldUserSettingFile, UserSettingFile)
+                UserSettings = New UserSettingData(UserSettingFile).Instance
+                ProgramLanguage = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance
+            Else
+                Dim tempUserSetting As New UserSettingData(UserSettingFile)
+                With tempUserSetting
+                    .AudioEffectHighQuality = False
+                    .AutoStart = False
+                    .BroadcastPort = 8080
+                    .CurrentTheme = "Project Cyan 5inch.xml"
+                    .Email = Nothing
+                    .EnableBroadcast = False
+                    .HWID = Nothing
+                    .Language = "English"
+                    .LicenseKey = Nothing
+                    .Location = Point.Empty
+                    .NetworkAdapterIndex = 0
+                    .RgbEffectHighQuality = False
+                    .State = "KUALA LUMPUR"
+                    .Town = "KUALA LUMPUR"
+                    .TopMost = True
+                End With
+                tempUserSetting.SaveSilent()
+                UserSettings = tempUserSetting
+                ProgramLanguage = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance
+            End If
+        End If
+
         Dim msm = MaterialSkinManager.Instance
         msm.AddFormToManage(Me)
         msm.Theme = MaterialSkinManager.Themes.DARK
