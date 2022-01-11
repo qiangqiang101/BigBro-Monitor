@@ -3,6 +3,7 @@ Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.Security.Cryptography
 Imports System.Xml.Serialization
 
+<Serializable>
 Public Structure UserPresetData
 
     Public ReadOnly Property Instance As UserPresetData
@@ -54,10 +55,18 @@ Public Structure PDItem
 
     Public Name As String
     Public Value As String
+    Public Image As String
 
     Public Sub New(name As String, value As String)
         Me.Name = name
         Me.Value = value
+        Me.Image = Nothing
+    End Sub
+
+    Public Sub New(name As String, value As String, image As Boolean)
+        Me.Name = name
+        Me.Value = Nothing
+        Me.Image = value
     End Sub
 
 End Structure

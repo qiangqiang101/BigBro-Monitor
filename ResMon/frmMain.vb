@@ -154,9 +154,9 @@ Public Class frmMain
                 .ControlType = eControlType.ImageControl
                 .lblLabel.Text = image.Name
                 Try
-                    .txtBox.Text = preset.ImageBoxes.SingleOrDefault(Function(x) x.Name = image.Name).Value
+                    .fpbImage.Image = preset.ImageBoxes.SingleOrDefault(Function(x) x.Name = image.Name).Image.Base64ToImage
                 Catch ex As Exception
-                    .txtBox.Text = image.Image
+                    .fpbImage.Image = image.Image.Base64ToImage
                 End Try
                 .Width = flpUserDefine.Width - SystemInformation.VerticalScrollBarWidth
             End With
@@ -624,6 +624,7 @@ Public Class frmMain
         For Each ic As MyImageControl In currentTheme.ImageBoxes
             Dim picBox As New ImageControl(False)
             With picBox
+                Dim image As String = "None"
                 .myParentForm = frmMonitor
                 .BackColor = ic.BackColor.ToColor
                 .BackgroundImage = ic.BackgroundImage.Base64ToImage
@@ -643,17 +644,22 @@ Public Class frmMain
                 .Padding = ic.Padding
                 .Size = ic.Size
                 .BorderStyle = ic.BorderStyle
+                .EnableDynamicImages = ic.EnableDynamicImages
+                .DynamicImages = ic.DynamicImages.ToDynamicImages
                 .AllowUserEdit = ic.AllowUserEdit
-                Try
-                    If ic.AllowUserEdit AndAlso currentPreset.ImageBoxes.Where(Function(x) x.Name = ic.Name).Count = 1 AndAlso Not .EnableDynamicImages Then
-                        .Image = currentPreset.ImageBoxes.SingleOrDefault(Function(x) x.Name = ic.Name).Value.Base64ToImage
-                    Else
-                        .Image = ic.Image.Base64ToImage
-                    End If
-                Catch ex As Exception
-                    .Image = ic.Image.Base64ToImage
-                End Try
                 .SizeMode = ic.SizeMode
+                If ic.AllowUserEdit Then
+                    Try
+                        If currentPreset.ImageBoxes.Where(Function(x) x.Name = ic.Name).Count = 1 AndAlso Not .EnableDynamicImages Then
+                            image = currentPreset.ImageBoxes.SingleOrDefault(Function(x) x.Name = ic.Name).Image
+                        End If
+                    Catch ex As Exception
+                        image = ic.Image
+                    End Try
+                Else
+                    image = ic.Image
+                End If
+                .Image = image.Base64ToImage
                 .Sensor = ic.Sensor
                 Select Case .Sensor
                     Case eSensorType.CPUFan, eSensorType.MoboFan, eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF
@@ -665,9 +671,6 @@ Public Class frmMain
                     Case Else
                         .SensorParam = ic.SensorParam
                 End Select
-                .EnableDynamicImages = ic.EnableDynamicImages
-                .DynamicImages = ic.DynamicImages.ToDynamicImages
-                .AllowUserEdit = ic.AllowUserEdit
                 .rzControl = Nothing
             End With
             frmMonitor.Controls.Add(picBox)
@@ -1016,7 +1019,7 @@ Public Class frmMain
                     Case eControlType.TextLabel
                         tlList.Add(New PDItem(ctrl.lblLabel.Text, ctrl.txtBox.Text))
                     Case eControlType.ImageControl
-                        ibList.Add(New PDItem(ctrl.lblLabel.Text, ctrl.txtBox.Text))
+                        ibList.Add(New PDItem(ctrl.lblLabel.Text, ctrl.fpbImage.Image.ImageToBase64, True))
                     Case eControlType.Youtube
                         yvList.Add(New PDItem(ctrl.lblLabel.Text, ctrl.txtBox.Text))
                 End Select

@@ -267,7 +267,6 @@ Public Class ImageControl
         End Set
     End Property
 
-
     Public Sub New(allowResize As Boolean)
         Tag = "ThemeControl"
         _imgs = New DynamicImageCollection

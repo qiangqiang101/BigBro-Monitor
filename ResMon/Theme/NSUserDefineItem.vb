@@ -18,10 +18,12 @@
             _ControlType = value
             Select Case _ControlType
                 Case eControlType.ImageControl
+                    fpbImage.Visible = True
                     btnBrowse.Visible = True
-                    txtBox.Width -= 32
+                    txtBox.Visible = False
                 Case Else
                     btnBrowse.Visible = False
+                    fpbImage.Visible = False
             End Select
         End Set
     End Property
@@ -41,9 +43,10 @@
             Dim ofd As New OpenFileDialog With {.Filter = "JPG File|*.jpg|JPEG File|*.jpeg|PNG File|*.png|BMP File|*.bmp|GIF File|*.gif", .Multiselect = False, .Title = "Select image file..."}
             Dim result As DialogResult = ofd.ShowDialog()
             If result = DialogResult.OK Then
-                Using bitmap As Image = Image.FromFile(ofd.FileName)
-                    txtBox.Text = bitmap.ImageToBase64
-                End Using
+                'Using bitmap As New Bitmap = Image.FromFile(ofd.FileName)
+                '    fpbImage.Image = bitmap
+                'End Using
+                fpbImage.Image = New Bitmap(ofd.FileName)
             End If
         End If
     End Sub

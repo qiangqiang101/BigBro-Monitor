@@ -24,9 +24,11 @@ Partial Class NSUserDefineItem
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(NSUserDefineItem))
         Me.lblLabel = New MaterialSkin.Controls.MaterialLabel()
         Me.btnBrowse = New MaterialSkin.Controls.MaterialButton()
         Me.txtBox = New MaterialSkin.Controls.MaterialTextBox()
+        Me.fpbImage = New ResMon.FillPicturebox()
         Me.SuspendLayout()
         '
         'lblLabel
@@ -86,6 +88,20 @@ Partial Class NSUserDefineItem
         Me.txtBox.Text = ""
         Me.txtBox.TrailingIcon = Nothing
         '
+        'fpbImage
+        '
+        Me.fpbImage.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.fpbImage.Image = CType(resources.GetObject("fpbImage.Image"), System.Drawing.Image)
+        Me.fpbImage.ImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.fpbImage.Location = New System.Drawing.Point(113, 0)
+        Me.fpbImage.Name = "fpbImage"
+        Me.fpbImage.Size = New System.Drawing.Size(165, 50)
+        Me.fpbImage.TabIndex = 3
+        Me.fpbImage.Text = "FillPicturebox1"
+        Me.fpbImage.Visible = False
+        '
         'NSUserDefineItem
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -93,6 +109,7 @@ Partial Class NSUserDefineItem
         Me.Controls.Add(Me.btnBrowse)
         Me.Controls.Add(Me.txtBox)
         Me.Controls.Add(Me.lblLabel)
+        Me.Controls.Add(Me.fpbImage)
         Me.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.Margin = New System.Windows.Forms.Padding(0)
         Me.Name = "NSUserDefineItem"
@@ -104,4 +121,5 @@ Partial Class NSUserDefineItem
     Friend WithEvents lblLabel As MaterialLabel
     Friend WithEvents txtBox As MaterialTextBox
     Friend WithEvents btnBrowse As MaterialButton
+    Friend WithEvents fpbImage As FillPicturebox
 End Class
