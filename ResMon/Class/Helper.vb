@@ -45,6 +45,25 @@ Module Helper
         End If
     End Function
 
+    Public Function GetSpeedUnit(bite As ULong) As String
+        Try
+            Select Case bite
+                Case Is >= 1099511627776
+                    Return "TB/s"
+                Case 1073741824 To 1099511627775
+                    Return "GB/s"
+                Case 1048576 To 1073741823
+                    Return "MB/s"
+                Case 0 To 1048575
+                    Return "KB/s"
+                Case Else
+                    Return ""
+            End Select
+        Catch
+            Return ""
+        End Try
+    End Function
+
     Public Function GetSpeed(bite As ULong) As String
         Dim DoubleBytes As Double
 
@@ -62,6 +81,27 @@ Module Helper
                 Case 0 To 1048575
                     DoubleBytes = CDbl(bite / 1024) 'KB
                     Return FormatNumber(DoubleBytes, 2) & " KB/s"
+                Case Else
+                    Return ""
+            End Select
+        Catch
+            Return ""
+        End Try
+    End Function
+
+    Public Function GetDiskSizeUnit(bite As ULong) As String
+        Try
+            Select Case bite
+                Case Is >= 1099511627776
+                    Return "TB"
+                Case 1073741824 To 1099511627775
+                    Return "GB"
+                Case 1048576 To 1073741823
+                    Return "MB"
+                Case 1024 To 1048575
+                    Return "KB"
+                Case 0 To 1023
+                    Return "bytes"
                 Case Else
                     Return ""
             End Select
