@@ -207,7 +207,8 @@ Public Class CircularStatusBar
                     Case eSensorType.HDDUsage, eSensorType.HDDTotalFreeSpace, eSensorType.HDDTotalSize
                         _sensorParam = "C:\"
                     Case eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF, eSensorType.GPUClockSpeed, eSensorType.GPULoadPercent, eSensorType.GPUMemoryPercent, eSensorType.GPUPowerWattage,
-                         eSensorType.GPUTemperatureC, eSensorType.GPUTemperatureF, eSensorType.GPUVRAMUsage
+                         eSensorType.GPUTemperatureC, eSensorType.GPUTemperatureF, eSensorType.GPUVRAMUsage, eSensorType.GPUMemoryClock, eSensorType.GPUShaderClock, eSensorType.GPUFrameBufferLoad,
+                         eSensorType.GPUVideoEngineLoad, eSensorType.GPUBusInterfaceLoad, eSensorType.GPUVRAMFree, eSensorType.GPUVRAMTotal
                         _sensorParam = 0
                     Case eSensorType.MoboFan
                         _sensorParam = 1
@@ -844,6 +845,89 @@ Public Class CircularStatusBar
                     _val = CInt(myParentForm.moboSensor.RawFanSpeed(CInt(_sensorParam)))
                     _min = 0
                     dynaMax = True
+
+                    'Added 13/01/2022
+                Case eSensorType.CPUCorePower
+                    _val = CInt(myParentForm.cpuSensor.RawCorePower())
+                    _min = 0
+                    dynaMax = True
+                Case eSensorType.CPUGraphicPower
+                    _val = CInt(myParentForm.cpuSensor.RawGraphicPower())
+                    _min = 0
+                    dynaMax = True
+                Case eSensorType.CPUDRAMPower
+                    _val = CInt(myParentForm.cpuSensor.RawDRAMPower())
+                    _min = 0
+                    dynaMax = True
+
+                Case eSensorType.GPUMemoryClock
+                    If IsNumeric(_sensorParam) Then
+                        _val = CInt(myParentForm.gpuSensor.RawMemoryClock(_sensorParam))
+                        _min = 0
+                        dynaMax = True
+                    Else
+                        _val = CInt(myParentForm.gpuSensor.RawMemoryClock())
+                        _min = 0
+                        dynaMax = True
+                    End If
+                Case eSensorType.GPUShaderClock
+                    If IsNumeric(_sensorParam) Then
+                        _val = CInt(myParentForm.gpuSensor.RawShaderClock(_sensorParam))
+                        _min = 0
+                        dynaMax = True
+                    Else
+                        _val = CInt(myParentForm.gpuSensor.RawShaderClock())
+                        _min = 0
+                        dynaMax = True
+                    End If
+                Case eSensorType.GPUFrameBufferLoad
+                    If IsNumeric(_sensorParam) Then
+                        _val = myParentForm.gpuSensor.RawFrameBufferLoad(_sensorParam)
+                        _min = 0
+                        _max = 100
+                        dynaMax = False
+                    Else
+                        _val = myParentForm.gpuSensor.RawFrameBufferLoad
+                        _min = 0
+                        _max = 100
+                        dynaMax = False
+                    End If
+                Case eSensorType.GPUVideoEngineLoad
+                    If IsNumeric(_sensorParam) Then
+                        _val = myParentForm.gpuSensor.RawVideoEngineLoad(_sensorParam)
+                        _min = 0
+                        _max = 100
+                        dynaMax = False
+                    Else
+                        _val = myParentForm.gpuSensor.RawVideoEngineLoad
+                        _min = 0
+                        _max = 100
+                        dynaMax = False
+                    End If
+                Case eSensorType.GPUBusInterfaceLoad
+                    If IsNumeric(_sensorParam) Then
+                        _val = myParentForm.gpuSensor.RawBusInterfaceLoad(_sensorParam)
+                        _min = 0
+                        _max = 100
+                        dynaMax = False
+                    Else
+                        _val = myParentForm.gpuSensor.RawBusInterfaceLoad
+                        _min = 0
+                        _max = 100
+                        dynaMax = False
+                    End If
+                Case eSensorType.GPUVRAMFree
+                    If IsNumeric(_sensorParam) Then
+                        _val = myParentForm.gpuSensor.RawVRAMFree(_sensorParam)
+                        _min = 0
+                        _max = myParentForm.gpuSensor.RawVRAMTotal(_sensorParam)
+                        dynaMax = False
+                    Else
+                        _val = myParentForm.gpuSensor.RawVRAMFree
+                        _min = 0
+                        _max = myParentForm.gpuSensor.RawVRAMTotal
+                        dynaMax = False
+                    End If
             End Select
 
             If dynaMax Then

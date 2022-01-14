@@ -207,8 +207,12 @@ Public Class PlotChart
                         _sensorParam = "www.google.com"
                     Case eSensorType.HDDUsage, eSensorType.HDDTotalFreeSpace, eSensorType.HDDTotalSize
                         _sensorParam = "C:\"
-                    Case eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF, eSensorType.GPUClockSpeed, eSensorType.GPULoadPercent, eSensorType.GPUMemoryPercent, eSensorType.GPUPowerWattage, eSensorType.GPUTemperatureC, eSensorType.GPUTemperatureF, eSensorType.GPUVRAMUsage
+                    Case eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF, eSensorType.GPUClockSpeed, eSensorType.GPULoadPercent, eSensorType.GPUMemoryPercent, eSensorType.GPUPowerWattage,
+                         eSensorType.GPUTemperatureC, eSensorType.GPUTemperatureF, eSensorType.GPUVRAMUsage, eSensorType.GPUMemoryClock, eSensorType.GPUShaderClock, eSensorType.GPUFrameBufferLoad,
+                         eSensorType.GPUVideoEngineLoad, eSensorType.GPUBusInterfaceLoad, eSensorType.GPUVRAMFree, eSensorType.GPUVRAMTotal
                         _sensorParam = 0
+                    Case eSensorType.MoboFan
+                        _sensorParam = 1
                 End Select
             End If
         End Set
@@ -530,6 +534,51 @@ Public Class PlotChart
                     End If
                 Case eSensorType.CPUFan
                     AddValue(myParentForm.moboSensor.RawFanSpeed(CInt(_sensorParam)), " RPM")
+
+                    'Added 13/01/2022
+                Case eSensorType.CPUCorePower
+                    AddValue(myParentForm.cpuSensor.RawCorePower, " W")
+                Case eSensorType.CPUGraphicPower
+                    AddValue(myParentForm.cpuSensor.RawGraphicPower, " W")
+                Case eSensorType.CPUDRAMPower
+                    AddValue(myParentForm.cpuSensor.RawDRAMPower, " W")
+
+                Case eSensorType.GPUMemoryClock
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawMemoryClock, " MHz")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawMemoryClock(CInt(_sensorParam)), " MHz")
+                    End If
+                Case eSensorType.GPUShaderClock
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawShaderClock, " MHz")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawShaderClock(CInt(_sensorParam)), " MHz")
+                    End If
+                Case eSensorType.GPUFrameBufferLoad
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawFrameBufferLoad, "%")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawFrameBufferLoad(CInt(_sensorParam)), "%")
+                    End If
+                Case eSensorType.GPUVideoEngineLoad
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawVideoEngineLoad, "%")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawVideoEngineLoad(CInt(_sensorParam)), "%")
+                    End If
+                Case eSensorType.GPUBusInterfaceLoad
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawBusInterfaceLoad, "%")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawBusInterfaceLoad(CInt(_sensorParam)), "%")
+                    End If
+                Case eSensorType.GPUVRAMFree
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        AddValue(myParentForm.gpuSensor.RawVRAMFree, " MB")
+                    Else
+                        AddValue(myParentForm.gpuSensor.RawVRAMFree(CInt(_sensorParam)), " MB")
+                    End If
             End Select
         Catch ex As Exception
             Logger.Log(ex)

@@ -89,6 +89,30 @@ Public Class CPUSensors
         End Try
     End Function
 
+    Public Function CorePower() As String
+        Try
+            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Cores*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
+        Catch ex As Exception
+            Return "0 W"
+        End Try
+    End Function
+
+    Public Function GraphicPower() As String
+        Try
+            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Graphics*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
+        Catch ex As Exception
+            Return "0 W"
+        End Try
+    End Function
+
+    Public Function DRAMPower() As String
+        Try
+            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU DRAM*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
+        Catch ex As Exception
+            Return "0 W"
+        End Try
+    End Function
+
     Public Function RawTemperatureC() As Integer
         Try
             Return CInt(TemperatureLevel())
@@ -124,6 +148,30 @@ Public Class CPUSensors
     Public Function RawPowerWattage() As Single
         Try
             Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Package*").FirstOrDefault.Value.GetValueOrDefault
+        Catch ex As Exception
+            Return 0F
+        End Try
+    End Function
+
+    Public Function RawCorePower() As Single
+        Try
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Cores*").FirstOrDefault.Value.GetValueOrDefault
+        Catch ex As Exception
+            Return 0F
+        End Try
+    End Function
+
+    Public Function RawGraphicPower() As Single
+        Try
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Graphics*").FirstOrDefault.Value.GetValueOrDefault
+        Catch ex As Exception
+            Return 0F
+        End Try
+    End Function
+
+    Public Function RawDRAMPower() As Single
+        Try
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU DRAM*").FirstOrDefault.Value.GetValueOrDefault
         Catch ex As Exception
             Return 0F
         End Try
@@ -181,6 +229,30 @@ Public Class GPUSensors
         End Try
     End Function
 
+    Public Function MemoryClock(Optional GPUNo As Integer = 0) As String
+        Try
+            Try
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+            Catch ex As Exception
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+            End Try
+        Catch ex As Exception
+            Return "0 MHz"
+        End Try
+    End Function
+
+    Public Function ShaderClock(Optional GPUNo As Integer = 0) As String
+        Try
+            Try
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+            Catch ex As Exception
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+            End Try
+        Catch ex As Exception
+            Return "0 MHz"
+        End Try
+    End Function
+
     Public Function TemperatureLevel(Optional GPUNo As Integer = 0) As Single
         Try
             Try
@@ -221,6 +293,42 @@ Public Class GPUSensors
         End Try
     End Function
 
+    Public Function FrameBufferLoad(Optional GPUNo As Integer = 0) As String
+        Try
+            Try
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            Catch ex As Exception
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            End Try
+        Catch ex As Exception
+            Return "0 %"
+        End Try
+    End Function
+
+    Public Function VideoEngineLoad(Optional GPUNo As Integer = 0) As String
+        Try
+            Try
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            Catch ex As Exception
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            End Try
+        Catch ex As Exception
+            Return "0 %"
+        End Try
+    End Function
+
+    Public Function BusInterfaceLoad(Optional GPUNo As Integer = 0) As String
+        Try
+            Try
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            Catch ex As Exception
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            End Try
+        Catch ex As Exception
+            Return "0 %"
+        End Try
+    End Function
+
     Public Function MemoryPercent(Optional GPUNo As Integer = 0) As String
         Try
             Try
@@ -245,6 +353,18 @@ Public Class GPUSensors
         End Try
     End Function
 
+    Public Function VRAMFree(Optional GPUNo As Integer = 0) As String
+        Try
+            Try
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+            Catch ex As Exception
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+            End Try
+        Catch ex As Exception
+            Return "0 MB"
+        End Try
+    End Function
+
     Public Function VRAMUsage(Optional GPUNo As Integer = 0) As String
         Try
             Try
@@ -257,12 +377,24 @@ Public Class GPUSensors
         End Try
     End Function
 
+    Public Function VRAMTotal(Optional GPUNo As Integer = 0) As String
+        Try
+            Try
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+            Catch ex As Exception
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+            End Try
+        Catch ex As Exception
+            Return "0 MB"
+        End Try
+    End Function
+
     Public Function FanSpeed(Optional GPUNo As Integer = 0) As String
         Try
             Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU Fan*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
             Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU Fan*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
             End Try
         Catch ex As Exception
             Return "0 RPM"
@@ -297,12 +429,60 @@ Public Class GPUSensors
         End Try
     End Function
 
+    Public Function RawFrameBufferLoad(Optional GPUNo As Integer = 0) As Integer
+        Try
+            Try
+                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault))
+            Catch ex As Exception
+                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault))
+            End Try
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
+    Public Function RawVideoEngineLoad(Optional GPUNo As Integer = 0) As Integer
+        Try
+            Try
+                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault))
+            Catch ex As Exception
+                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault))
+            End Try
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
+    Public Function RawBusInterfaceLoad(Optional GPUNo As Integer = 0) As Integer
+        Try
+            Try
+                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault))
+            Catch ex As Exception
+                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault))
+            End Try
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
     Public Function RawMemoryPercent(Optional GPUNo As Integer = 0) As Integer
         Try
             Try
                 Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault))
             Catch ex As Exception
                 Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault))
+            End Try
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
+    Public Function RawVRAMFree(Optional GPUNo As Integer = 0) As Integer
+        Try
+            Try
+                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault))
+            Catch ex As Exception
+                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault))
             End Try
         Catch ex As Exception
             Return 0
@@ -351,6 +531,30 @@ Public Class GPUSensors
                 Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
             Catch ex As Exception
                 Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
+            End Try
+        Catch ex As Exception
+            Return 0F
+        End Try
+    End Function
+
+    Public Function RawMemoryClock(Optional GPUNo As Integer = 0) As Single
+        Try
+            Try
+                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault
+            Catch ex As Exception
+                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault
+            End Try
+        Catch ex As Exception
+            Return 0F
+        End Try
+    End Function
+
+    Public Function RawShaderClock(Optional GPUNo As Integer = 0) As Single
+        Try
+            Try
+                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault
+            Catch ex As Exception
+                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault
             End Try
         Catch ex As Exception
             Return 0F
@@ -682,6 +886,61 @@ Public Class MainboardSensor
         Catch ex As Exception
             Return 0
         End Try
+    End Function
+
+End Class
+
+Public Class DisplaySensor
+
+    Public Function RefreshRate() As String
+        Dim query As New Management.SelectQuery("Win32_VideoController")
+        Dim refresh As String = "0 Hz"
+
+        Try
+            For Each mo As Management.ManagementObject In New Management.ManagementObjectSearcher(query).Get
+                refresh = If(mo("CurrentRefreshRate") IsNot Nothing, $"{mo("CurrentRefreshRate").ToString} Hz", "0 Hz")
+            Next
+
+            Return refresh
+        Catch ex As Exception
+            Return refresh
+        End Try
+    End Function
+
+    Public Function ScreenResolution() As String
+        Dim query As New Management.SelectQuery("Win32_VideoController")
+        Dim horizon As String = 0
+        Dim vertical As String = 0
+
+        Try
+            For Each mo As Management.ManagementObject In New Management.ManagementObjectSearcher(query).Get
+                horizon = If(mo("CurrentHorizontalResolution") IsNot Nothing, $"{mo("CurrentHorizontalResolution").ToString}", "0")
+                vertical = If(mo("CurrentVerticalResolution") IsNot Nothing, $"{mo("CurrentVerticalResolution").ToString}", "0")
+            Next
+
+            Return $"{horizon}x{vertical}"
+        Catch ex As Exception
+            Return "0x0"
+        End Try
+    End Function
+
+    Public Function RawRefreshRate() As Integer
+        Dim query As New Management.SelectQuery("Win32_VideoController")
+        Dim refresh As Integer = 0
+
+        Try
+            For Each mo As Management.ManagementObject In New Management.ManagementObjectSearcher(query).Get
+                refresh = If(mo("CurrentRefreshRate") IsNot Nothing, CInt(mo("CurrentRefreshRate").ToString), 0)
+            Next
+
+            Return refresh
+        Catch ex As Exception
+            Return refresh
+        End Try
+    End Function
+
+    Public Function RawScreenResolution() As String
+        Return ScreenResolution()
     End Function
 
 End Class

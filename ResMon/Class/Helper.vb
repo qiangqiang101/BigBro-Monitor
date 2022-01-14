@@ -406,6 +406,49 @@ Module Helper
 
 End Module
 
+'Public Enum eSensorType
+'    None
+'    CPUCoreCount
+'    CPUClockSpeed
+'    CPUTemperatureC
+'    CPUTemperatureF
+'    CPULoadPercent
+'    CPUPowerWattage
+'    GPUClockSpeed
+'    GPUTemperatureC
+'    GPUTemperatureF
+'    GPULoadPercent
+'    GPUMemoryPercent
+'    GPUPowerWattage
+'    GPUVRAMUsage
+'    RAMLoadPercent
+'    RAMUsage
+'    HDDTemperatureC
+'    HDDTemperatureF
+'    HDDLoadPercent
+'    DownloadSpeed
+'    UploadSpeed
+'    LongDate
+'    ShortDate
+'    LongTime
+'    ShortTime
+
+'    RAMAvailable
+'    RAMTotal
+'    HDDTotalSize
+'    HDDTotalFreeSpace
+'    HDDUsage
+'    Ping
+'    CustomDateTime
+
+'    GPUFan
+'    MoboTemperatureC
+'    MoboTemperatureF
+'    MoboFan
+
+'    CPUFan
+'End Enum
+
 Public Enum eSensorType
     None
     CPUCoreCount
@@ -414,39 +457,57 @@ Public Enum eSensorType
     CPUTemperatureF
     CPULoadPercent
     CPUPowerWattage
-    GPUClockSpeed
+    CPUFan = 36
+    CPUCorePower
+    CPUGraphicPower
+    CPUDRAMPower
+
+    GPUClockSpeed = 7
     GPUTemperatureC
     GPUTemperatureF
     GPULoadPercent
     GPUMemoryPercent
     GPUPowerWattage
     GPUVRAMUsage
-    RAMLoadPercent
+    GPUFan = 32
+    GPUMemoryClock = 40
+    GPUShaderClock
+    GPUFrameBufferLoad
+    GPUVideoEngineLoad
+    GPUBusInterfaceLoad
+    GPUVRAMFree
+    GPUVRAMTotal
+
+    RAMLoadPercent = 14
     RAMUsage
-    HDDTemperatureC
+    RAMAvailable = 25
+    RAMTotal
+
+    HDDTemperatureC = 16
     HDDTemperatureF
     HDDLoadPercent
-    DownloadSpeed
+    HDDTotalSize = 25
+    HDDTotalFreeSpace
+    HDDUsage
+
+    DownloadSpeed = 19
     UploadSpeed
-    LongDate
+    Ping = 25
+
+    LongDate = 21
     ShortDate
     LongTime
     ShortTime
+    CustomDateTime = 31
 
-    RAMAvailable
-    RAMTotal
-    HDDTotalSize
-    HDDTotalFreeSpace
-    HDDUsage
-    Ping
-    CustomDateTime
-
-    GPUFan
-    MoboTemperatureC
+    MoboTemperatureC = 33
     MoboTemperatureF
     MoboFan
 
-    CPUFan
+    DisplayScreenResolution = 47
+    DisplayRefreshRate
+
+    'Last Item DisplayRefreshRate = 48
 End Enum
 
 Public Enum eCompleteSensor

@@ -386,6 +386,63 @@ Public Class TextLabel
 
                 Case eSensorType.CPUFan
                     Text = _b4Text & myParentForm.moboSensor.FanSpeed(CInt(_sensorParam))
+
+                    'Add 13/01/2022
+                Case eSensorType.CPUCorePower
+                    Text = _b4Text & myParentForm.cpuSensor.CorePower
+                Case eSensorType.CPUGraphicPower
+                    Text = _b4Text & myParentForm.cpuSensor.GraphicPower
+                Case eSensorType.CPUDRAMPower
+                    Text = _b4Text & myParentForm.cpuSensor.DRAMPower
+
+                Case eSensorType.GPUMemoryClock
+                    If IsNumeric(_sensorParam) Then
+                        Text = _b4Text & myParentForm.gpuSensor.MemoryClock(CInt(_sensorParam))
+                    Else
+                        Text = _b4Text & myParentForm.gpuSensor.MemoryClock
+                    End If
+                Case eSensorType.GPUShaderClock
+                    If IsNumeric(_sensorParam) Then
+                        Text = _b4Text & myParentForm.gpuSensor.ShaderClock(CInt(_sensorParam))
+                    Else
+                        Text = _b4Text & myParentForm.gpuSensor.ShaderClock
+                    End If
+                Case eSensorType.GPUFrameBufferLoad
+                    If IsNumeric(_sensorParam) Then
+                        Text = _b4Text & myParentForm.gpuSensor.FrameBufferLoad(CInt(_sensorParam))
+                    Else
+                        Text = _b4Text & myParentForm.gpuSensor.FrameBufferLoad
+                    End If
+                Case eSensorType.GPUVideoEngineLoad
+                    If IsNumeric(_sensorParam) Then
+                        Text = _b4Text & myParentForm.gpuSensor.VideoEngineLoad(CInt(_sensorParam))
+                    Else
+                        Text = _b4Text & myParentForm.gpuSensor.VideoEngineLoad
+                    End If
+                Case eSensorType.GPUBusInterfaceLoad
+                    If IsNumeric(_sensorParam) Then
+                        Text = _b4Text & myParentForm.gpuSensor.BusInterfaceLoad(CInt(_sensorParam))
+                    Else
+                        Text = _b4Text & myParentForm.gpuSensor.BusInterfaceLoad
+                    End If
+                Case eSensorType.GPUVRAMFree
+                    If IsNumeric(_sensorParam) Then
+                        Text = _b4Text & myParentForm.gpuSensor.VRAMFree(CInt(_sensorParam))
+                    Else
+                        Text = _b4Text & myParentForm.gpuSensor.VRAMFree
+                    End If
+                Case eSensorType.GPUVRAMTotal
+                    If IsNumeric(_sensorParam) Then
+                        Text = _b4Text & myParentForm.gpuSensor.VRAMTotal(CInt(_sensorParam))
+                    Else
+                        Text = _b4Text & myParentForm.gpuSensor.VRAMTotal
+                    End If
+
+                    'Added 15/01/2022
+                Case eSensorType.DisplayScreenResolution
+                    Text = _b4Text & myParentForm.displaySensor.ScreenResolution
+                Case eSensorType.DisplayRefreshRate
+                    Text = _b4Text & myParentForm.displaySensor.RefreshRate
             End Select
         Catch ex As Exception
             Logger.Log(ex)

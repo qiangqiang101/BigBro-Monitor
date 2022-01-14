@@ -226,7 +226,9 @@ Public Class ImageControl
                         _sensorParam = "www.google.com"
                     Case eSensorType.HDDUsage, eSensorType.HDDTotalFreeSpace, eSensorType.HDDTotalSize
                         _sensorParam = "C:\"
-                    Case eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF, eSensorType.GPUClockSpeed, eSensorType.GPULoadPercent, eSensorType.GPUMemoryPercent, eSensorType.GPUPowerWattage, eSensorType.GPUTemperatureC, eSensorType.GPUTemperatureF, eSensorType.GPUVRAMUsage
+                    Case eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF, eSensorType.GPUClockSpeed, eSensorType.GPULoadPercent, eSensorType.GPUMemoryPercent, eSensorType.GPUPowerWattage,
+                         eSensorType.GPUTemperatureC, eSensorType.GPUTemperatureF, eSensorType.GPUVRAMUsage, eSensorType.GPUMemoryClock, eSensorType.GPUShaderClock, eSensorType.GPUFrameBufferLoad,
+                         eSensorType.GPUVideoEngineLoad, eSensorType.GPUBusInterfaceLoad, eSensorType.GPUVRAMFree, eSensorType.GPUVRAMTotal
                         _sensorParam = 0
                 End Select
             End If
@@ -349,6 +351,26 @@ Public Class ImageControl
 
                     Case eSensorType.MoboTemperatureC, eSensorType.MoboTemperatureF
                         _val = CInt(Math.Round((_max * myParentForm.moboSensor.RawTemperatureC) / 100))
+
+                        'Added 13/01/2022
+                    Case eSensorType.GPUFrameBufferLoad
+                        If IsNumeric(_sensorParam) Then
+                            _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawFrameBufferLoad(_sensorParam)) / 100))
+                        Else
+                            _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawFrameBufferLoad) / 100))
+                        End If
+                    Case eSensorType.GPUVideoEngineLoad
+                        If IsNumeric(_sensorParam) Then
+                            _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawVideoEngineLoad(_sensorParam)) / 100))
+                        Else
+                            _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawVideoEngineLoad) / 100))
+                        End If
+                    Case eSensorType.GPUBusInterfaceLoad
+                        If IsNumeric(_sensorParam) Then
+                            _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawBusInterfaceLoad(_sensorParam)) / 100))
+                        Else
+                            _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawBusInterfaceLoad) / 100))
+                        End If
                 End Select
 
                 Try

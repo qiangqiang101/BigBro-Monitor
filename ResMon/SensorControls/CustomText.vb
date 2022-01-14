@@ -6,7 +6,6 @@ Public Class CustomText
 
     Public myParentForm As frmMonitor
     Public rzControl As ResizeableControl
-    Private _forceUnit As String = Nothing
 
 #Region "Overrides"
 
@@ -215,8 +214,12 @@ Public Class CustomText
                         _sensorParam = "www.google.com"
                     Case eSensorType.HDDUsage, eSensorType.HDDTotalFreeSpace, eSensorType.HDDTotalSize
                         _sensorParam = "C:\"
-                    Case eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF, eSensorType.GPUClockSpeed, eSensorType.GPULoadPercent, eSensorType.GPUMemoryPercent, eSensorType.GPUPowerWattage, eSensorType.GPUTemperatureC, eSensorType.GPUTemperatureF, eSensorType.GPUVRAMUsage
+                    Case eSensorType.HDDLoadPercent, eSensorType.HDDTemperatureC, eSensorType.HDDTemperatureF, eSensorType.GPUClockSpeed, eSensorType.GPULoadPercent, eSensorType.GPUMemoryPercent, eSensorType.GPUPowerWattage,
+                         eSensorType.GPUTemperatureC, eSensorType.GPUTemperatureF, eSensorType.GPUVRAMUsage, eSensorType.GPUMemoryClock, eSensorType.GPUShaderClock, eSensorType.GPUFrameBufferLoad,
+                         eSensorType.GPUVideoEngineLoad, eSensorType.GPUBusInterfaceLoad, eSensorType.GPUVRAMFree, eSensorType.GPUVRAMTotal
                         _sensorParam = 0
+                    Case eSensorType.MoboFan
+                        _sensorParam = 1
                 End Select
             End If
         End Set
@@ -428,22 +431,16 @@ Public Class CustomText
             Select Case _sensor
                 Case eSensorType.CPUCoreCount
                     Value = myParentForm.cpuSensor.CoreCount
-                    _forceUnit = ""
                 Case eSensorType.CPUClockSpeed
                     Value = Math.Ceiling(myParentForm.cpuSensor.RawClockSpeed)
-                    _forceUnit = ""
                 Case eSensorType.CPUTemperatureC
                     Value = myParentForm.cpuSensor.RawTemperatureC
-                    _forceUnit = ""
                 Case eSensorType.CPUTemperatureF
                     Value = myParentForm.cpuSensor.RawTemperatureF
-                    _forceUnit = ""
                 Case eSensorType.CPULoadPercent
                     Value = myParentForm.cpuSensor.RawLoadPercent
-                    _forceUnit = ""
                 Case eSensorType.CPUPowerWattage
                     Value = Math.Round(myParentForm.cpuSensor.RawPowerWattage, 2)
-                    _forceUnit = ""
 
                 Case eSensorType.GPUClockSpeed
                     If IsNumeric(_sensorParam) Then
@@ -451,69 +448,60 @@ Public Class CustomText
                     Else
                         Value = Math.Ceiling(myParentForm.gpuSensor.RawClockSpeed)
                     End If
-                    _forceUnit = ""
                 Case eSensorType.GPUTemperatureC
                     If IsNumeric(_sensorParam) Then
                         Value = myParentForm.gpuSensor.RawTemperatureC(CInt(_sensorParam))
                     Else
                         Value = myParentForm.gpuSensor.RawTemperatureC
                     End If
-                    _forceUnit = ""
                 Case eSensorType.GPUTemperatureF
                     If IsNumeric(_sensorParam) Then
                         Value = myParentForm.gpuSensor.RawTemperatureF(CInt(_sensorParam))
                     Else
                         Value = myParentForm.gpuSensor.RawTemperatureF
                     End If
-                    _forceUnit = ""
                 Case eSensorType.GPULoadPercent
                     If IsNumeric(_sensorParam) Then
                         Value = myParentForm.gpuSensor.RawLoadPercent(CInt(_sensorParam))
                     Else
                         Value = myParentForm.gpuSensor.RawLoadPercent
                     End If
-                    _forceUnit = ""
                 Case eSensorType.GPUMemoryPercent
                     If IsNumeric(_sensorParam) Then
                         Value = myParentForm.gpuSensor.RawMemoryPercent(CInt(_sensorParam))
                     Else
                         Value = myParentForm.gpuSensor.RawMemoryPercent
                     End If
-                    _forceUnit = ""
                 Case eSensorType.GPUPowerWattage
                     If IsNumeric(_sensorParam) Then
                         Value = Math.Round(myParentForm.gpuSensor.RawPowerWattage(CInt(_sensorParam)), 2)
                     Else
                         Value = Math.Round(myParentForm.gpuSensor.RawPowerWattage, 2)
                     End If
-                    _forceUnit = ""
                 Case eSensorType.GPUVRAMUsage
                     If IsNumeric(_sensorParam) Then
                         Value = myParentForm.gpuSensor.RawVRAMUsage(CInt(_sensorParam))
                     Else
                         Value = myParentForm.gpuSensor.RawVRAMUsage
                     End If
-                    _forceUnit = ""
                 Case eSensorType.GPUFan
                     If String.IsNullOrEmpty(_sensorParam) Then
                         Value = myParentForm.gpuSensor.RawFanSpeed
                     Else
                         Value = myParentForm.gpuSensor.RawFanSpeed(CInt(_sensorParam))
                     End If
-                    _forceUnit = ""
 
                 Case eSensorType.RAMLoadPercent
                     Value = myParentForm.ramSensor.RawLoadPercent
-                    _forceUnit = ""
+
                 Case eSensorType.RAMUsage
                     Value = myParentForm.ramSensor.RawRAMUsage
-                    _forceUnit = ""
+
                 Case eSensorType.RAMAvailable
                     Value = myParentForm.ramSensor.RawRAMAvailable
-                    _forceUnit = ""
+
                 Case eSensorType.RAMTotal
                     Value = myParentForm.ramSensor.RawRAMTotal
-                    _forceUnit = ""
 
                 Case eSensorType.HDDTemperatureC
                     If IsNumeric(_sensorParam) Then
@@ -521,96 +509,132 @@ Public Class CustomText
                     Else
                         Value = myParentForm.hddSensor.RawTemperatureC
                     End If
-                    _forceUnit = ""
                 Case eSensorType.HDDTemperatureF
                     If IsNumeric(_sensorParam) Then
                         Value = myParentForm.hddSensor.RawTemperatureF(CInt(_sensorParam))
                     Else
                         Value = myParentForm.hddSensor.RawTemperatureF
                     End If
-                    _forceUnit = ""
+
                 Case eSensorType.HDDLoadPercent
                     If IsNumeric(_sensorParam) Then
                         Value = myParentForm.hddSensor.RawLoadPercent(CInt(_sensorParam))
                     Else
                         Value = myParentForm.hddSensor.RawLoadPercent
                     End If
-                    _forceUnit = ""
                 Case eSensorType.HDDTotalSize
                     If String.IsNullOrEmpty(_sensorParam) Then
                         Value = myParentForm.hddSensor.RawDiskTotalSize
-                        _forceUnit = GetDiskSizeUnit(myParentForm.hddSensor.RawDiskTotalSize)
                     Else
                         Value = myParentForm.hddSensor.RawDiskTotalSize(CStr(_sensorParam))
-                        _forceUnit = GetDiskSizeUnit(myParentForm.hddSensor.RawDiskTotalSize(CStr(_sensorParam)))
                     End If
                 Case eSensorType.HDDTotalFreeSpace
                     If String.IsNullOrEmpty(_sensorParam) Then
                         Value = myParentForm.hddSensor.RawDiskTotalFreeSpace
-                        _forceUnit = GetDiskSizeUnit(myParentForm.hddSensor.RawDiskTotalFreeSpace)
                     Else
                         Value = myParentForm.hddSensor.RawDiskTotalFreeSpace(CStr(_sensorParam))
-                        _forceUnit = GetDiskSizeUnit(myParentForm.hddSensor.RawDiskTotalFreeSpace(CStr(_sensorParam)))
                     End If
                 Case eSensorType.HDDUsage
                     If String.IsNullOrEmpty(_sensorParam) Then
                         Value = myParentForm.hddSensor.RawDiskUsage
-                        _forceUnit = GetDiskSizeUnit(myParentForm.hddSensor.RawDiskUsage)
                     Else
                         Value = myParentForm.hddSensor.RawDiskUsage(CStr(_sensorParam))
-                        _forceUnit = GetDiskSizeUnit(myParentForm.hddSensor.RawDiskUsage(CStr(_sensorParam)))
                     End If
-
                 Case eSensorType.DownloadSpeed
                     Value = Math.Round(myParentForm.netSensor.RawDownloadSpeed, 2)
-                    _forceUnit = GetSpeedUnit(myParentForm.netSensor.RawDownloadSpeed)
                 Case eSensorType.UploadSpeed
                     Value = Math.Round(myParentForm.netSensor.RawUploadSpeed, 2)
-                    _forceUnit = GetSpeedUnit(myParentForm.netSensor.RawUploadSpeed)
                 Case eSensorType.Ping
                     If String.IsNullOrEmpty(_sensorParam) Then
                         Value = myParentForm.netSensor.RawPing
                     Else
                         Value = myParentForm.netSensor.RawPing(CStr(_sensorParam))
                     End If
-                    _forceUnit = ""
 
                 Case eSensorType.LongDate
                     Value = Now.ToLongDateString
-                    _forceUnit = ""
                 Case eSensorType.ShortDate
                     Value = Now.ToShortDateString
-                    _forceUnit = ""
                 Case eSensorType.LongTime
                     Value = Now.ToLongTimeString
-                    _forceUnit = ""
                 Case eSensorType.ShortTime
                     Value = Now.ToShortTimeString
-                    _forceUnit = ""
                 Case eSensorType.CustomDateTime
                     If String.IsNullOrEmpty(_sensorParam) Then
                         Value = Now.ToString
                     Else
                         Value = Now.ToString(_sensorParam)
                     End If
-                    _forceUnit = ""
 
                 Case eSensorType.MoboTemperatureC
                     Value = myParentForm.moboSensor.RawTemperatureC
-                    _forceUnit = ""
                 Case eSensorType.MoboTemperatureF
                     Value = myParentForm.moboSensor.RawTemperatureF
-                    _forceUnit = ""
                 Case eSensorType.MoboFan
                     If String.IsNullOrEmpty(_sensorParam) Then
                         Value = myParentForm.moboSensor.RawFanSpeed
                     Else
                         Value = myParentForm.moboSensor.RawFanSpeed(_sensorParam)
                     End If
-                    _forceUnit = ""
                 Case eSensorType.CPUFan
                     Value = myParentForm.moboSensor.RawFanSpeed(CInt(_sensorParam))
-                    _forceUnit = ""
+
+
+                    'Added 13/01/2022
+                Case eSensorType.CPUCorePower
+                    Value = Math.Round(myParentForm.cpuSensor.RawCorePower, 2)
+                Case eSensorType.CPUGraphicPower
+                    Value = Math.Round(myParentForm.cpuSensor.RawGraphicPower, 2)
+                Case eSensorType.CPUDRAMPower
+                    Value = Math.Round(myParentForm.cpuSensor.RawDRAMPower, 2)
+                Case eSensorType.GPUMemoryClock
+                    If IsNumeric(_sensorParam) Then
+                        Value = Math.Ceiling(myParentForm.gpuSensor.RawMemoryClock(CInt(_sensorParam)))
+                    Else
+                        Value = Math.Ceiling(myParentForm.gpuSensor.RawMemoryClock)
+                    End If
+                Case eSensorType.GPUShaderClock
+                    If IsNumeric(_sensorParam) Then
+                        Value = Math.Ceiling(myParentForm.gpuSensor.RawShaderClock(CInt(_sensorParam)))
+                    Else
+                        Value = Math.Ceiling(myParentForm.gpuSensor.RawShaderClock)
+                    End If
+                Case eSensorType.GPUFrameBufferLoad
+                    If IsNumeric(_sensorParam) Then
+                        Value = myParentForm.gpuSensor.RawFrameBufferLoad(CInt(_sensorParam))
+                    Else
+                        Value = myParentForm.gpuSensor.RawFrameBufferLoad
+                    End If
+                Case eSensorType.GPUVideoEngineLoad
+                    If IsNumeric(_sensorParam) Then
+                        Value = myParentForm.gpuSensor.RawVideoEngineLoad(CInt(_sensorParam))
+                    Else
+                        Value = myParentForm.gpuSensor.RawVideoEngineLoad
+                    End If
+                Case eSensorType.GPUBusInterfaceLoad
+                    If IsNumeric(_sensorParam) Then
+                        Value = myParentForm.gpuSensor.RawBusInterfaceLoad(CInt(_sensorParam))
+                    Else
+                        Value = myParentForm.gpuSensor.RawBusInterfaceLoad
+                    End If
+                Case eSensorType.GPUVRAMFree
+                    If IsNumeric(_sensorParam) Then
+                        Value = myParentForm.gpuSensor.RawVRAMFree(CInt(_sensorParam))
+                    Else
+                        Value = myParentForm.gpuSensor.RawVRAMFree
+                    End If
+                Case eSensorType.GPUVRAMTotal
+                    If IsNumeric(_sensorParam) Then
+                        Value = myParentForm.gpuSensor.RawVRAMTotal(CInt(_sensorParam))
+                    Else
+                        Value = myParentForm.gpuSensor.RawVRAMTotal
+                    End If
+
+                    'Added 15/01/2022
+                Case eSensorType.DisplayScreenResolution
+                    Value = myParentForm.displaySensor.RawScreenResolution
+                Case eSensorType.DisplayRefreshRate
+                    Value = myParentForm.displaySensor.RawRefreshRate
             End Select
         Catch ex As Exception
             Logger.Log(ex)
@@ -691,7 +715,7 @@ Public Class CustomText
 
             AlignmentConverter(unitFormat, UnitAlign)
 
-            gp.AddString(Unit & _forceUnit, _unitFont.FontFamily, _unitFont.Style, CSng(g.DpiY * _unitFont.Size / 72), rfa, unitFormat)
+            gp.AddString(Unit, _unitFont.FontFamily, _unitFont.Style, CSng(g.DpiY * _unitFont.Size / 72), rfa, unitFormat)
 
             Select Case unitFormat.LineAlignment
                 Case StringAlignment.Near : pf = New PointF(Width / CalculateRfWidth(), 0)

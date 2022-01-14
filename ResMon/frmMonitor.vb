@@ -13,7 +13,7 @@ Public Class frmMonitor
     Dim running As Boolean = False
     Public cpuSensor As New CPUSensors(computer), gpuSensor As New GPUSensors(computer), ramSensor As New RAMSensors(computer), hddSensor As New HDDSensors(computer), moboSensor As New MainboardSensor(computer)
     Private ReadOnly netMonitor As New NetworkMonitor
-    Public netSensor As New NetworkSensor
+    Public netSensor As New NetworkSensor, displaySensor As New DisplaySensor
 
     Public httpServer As HttpServer
     Public rs As New Resizer
