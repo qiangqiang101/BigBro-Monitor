@@ -392,9 +392,9 @@ Public Class GPUSensors
     Public Function FanSpeed(Optional GPUNo As Integer = 0) As String
         Try
             Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU Fan*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
             Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU Fan*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
+                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
             End Try
         Catch ex As Exception
             Return "0 RPM"

@@ -7,7 +7,7 @@ Public Class frmSandbox
     Private Sub frmSandbox_Load(sender As Object, e As EventArgs) Handles Me.Load
         computer.Open()
 
-        For Each mother In computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard)
+        For Each mother In computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)
             mother.Update()
 
             'For Each sensor In mother.Sensors
