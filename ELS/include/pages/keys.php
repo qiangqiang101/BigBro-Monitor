@@ -152,7 +152,7 @@
 				<div class="left" style="width: 80px; min-height: 1px;">'; 
 				
 				if($page!=1) { 
-				$doc.='<a href="?s='.$s.'&page='.($page-1).'">previous</a>';
+				$doc.='<a href="?s='.$s.'&page='.($page-1).'" style="color: green;">Previous</a>';
 				} 
 				
 				$doc.='</div>
@@ -161,7 +161,7 @@
 				</div>
 				<div class="left" style="width: 80px; min-height: 1px; text-align: right;">
 					'; if($page!=$pages) { $doc.='
-						<a href="?s='.$s.'&page='.($page+1).'">next</a>
+						<a href="?s='.$s.'&page='.($page+1).'" style="color: green;">Next</a>
 					'; } $doc.='
 				</div>
 				<div class="clear"></div>
