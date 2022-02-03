@@ -648,6 +648,9 @@ Public Class frmMain
                 .UnitWidth = ct.UnitWidth
                 .TitleFont = ct.TitleFont.ToFont
                 .UnitFont = ct.UnitFont.ToFont
+                .TitleTextAdjustment = ct.TitleTextAdjustment
+                .ValueTextAdjustment = ct.ValueTextAdjustment
+                .UnitTextAdjustment = ct.UnitTextAdjustment
                 .rzControl = Nothing
             End With
             frmMonitor.Controls.Add(cusTxt)

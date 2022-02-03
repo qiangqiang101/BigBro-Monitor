@@ -416,6 +416,42 @@ Public Class CustomText
         End Set
     End Property
 
+    Private _titleTextAdjustment As Point = Point.Empty
+    <Category("Layout")>
+    Public Property TitleTextAdjustment() As Point
+        Get
+            Return _titleTextAdjustment
+        End Get
+        Set(value As Point)
+            _titleTextAdjustment = value
+            Invalidate()
+        End Set
+    End Property
+
+    Private _valueTextAdjustment As Point = Point.Empty
+    <Category("Layout")>
+    Public Property ValueTextAdjustment() As Point
+        Get
+            Return _valueTextAdjustment
+        End Get
+        Set(value As Point)
+            _valueTextAdjustment = value
+            Invalidate()
+        End Set
+    End Property
+
+    Private _unitTextAdjustment As Point = Point.Empty
+    <Category("Layout")>
+    Public Property UnitTextAdjustment() As Point
+        Get
+            Return _unitTextAdjustment
+        End Get
+        Set(value As Point)
+            _unitTextAdjustment = value
+            Invalidate()
+        End Set
+    End Property
+
     Public Sub New(allowResize As Boolean)
         Tag = "ThemeControl"
         BackColor = Color.Transparent
@@ -653,12 +689,13 @@ Public Class CustomText
         Using titleFormat As New StringFormat(StringFormat.GenericTypographic)
             Dim gp As New GraphicsPath
             Dim pf As PointF
+            Dim mt = TextRenderer.MeasureText(_title, _titleFont)
 
             Dim rfa As RectangleF 'String area rectangle.
             If _autoWidth Then
-                rfa = New RectangleF(0, 0, Width / CalculateRfWidth(), Height)
+                rfa = New RectangleF(_titleTextAdjustment.X, _titleTextAdjustment.Y, Width / CalculateRfWidth(), mt.Height + 1)
             Else
-                rfa = New RectangleF(0, 0, _titleWidth, Height)
+                rfa = New RectangleF(_titleTextAdjustment.X, _titleTextAdjustment.Y, _titleWidth, mt.Height + 1)
             End If
 
             AlignmentConverter(titleFormat, TitleAlign)
@@ -679,12 +716,13 @@ Public Class CustomText
         Using valueFormat As New StringFormat(StringFormat.GenericTypographic)
             Dim gp As New GraphicsPath
             Dim pf As PointF
+            Dim mt = TextRenderer.MeasureText(_value, Font)
 
             Dim rfa As RectangleF  'String area rectangle.
             If _autoWidth Then
-                rfa = New RectangleF(Width / CalculateRfWidth(), 0, Width / CalculateRfWidth(), Height)
+                rfa = New RectangleF((Width / CalculateRfWidth()) + _titleTextAdjustment.X + _valueTextAdjustment.X, _valueTextAdjustment.Y, Width / CalculateRfWidth(), mt.Height + 1)
             Else
-                rfa = New RectangleF(_titleWidth, 0, _valueWidth, Height)
+                rfa = New RectangleF(_titleWidth + _titleTextAdjustment.X + _valueTextAdjustment.X, _valueTextAdjustment.Y, _valueWidth, mt.Height + 1)
             End If
 
             AlignmentConverter(valueFormat, ValueAlign)
@@ -705,12 +743,13 @@ Public Class CustomText
         Using unitFormat As New StringFormat(StringFormat.GenericTypographic)
             Dim gp As New GraphicsPath
             Dim pf As PointF
+            Dim mt = TextRenderer.MeasureText(_unit, _unitFont)
 
             Dim rfa As RectangleF  'String area rectangle.
             If _autoWidth Then
-                rfa = New RectangleF((Width / CalculateRfWidth()) * 2, 0, Width / CalculateRfWidth(), Height)
+                rfa = New RectangleF(((Width / CalculateRfWidth()) * 2) + _titleTextAdjustment.X + _valueTextAdjustment.X + _unitTextAdjustment.X, _unitTextAdjustment.Y, Width / CalculateRfWidth(), mt.Height + 1)
             Else
-                rfa = New RectangleF(_titleWidth + _valueWidth, 0, _unitWidth, Height)
+                rfa = New RectangleF((_titleWidth + _valueWidth) + _titleTextAdjustment.X + _valueTextAdjustment.X + _unitTextAdjustment.X, _unitTextAdjustment.Y, _unitWidth, mt.Height + 1)
             End If
 
             AlignmentConverter(unitFormat, UnitAlign)

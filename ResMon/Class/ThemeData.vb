@@ -219,6 +219,9 @@ Public Structure MyCustomText
     Public UnitWidth As Single
     Public TitleFont As MyFont
     Public UnitFont As MyFont
+    Public TitleTextAdjustment As Point
+    Public ValueTextAdjustment As Point
+    Public UnitTextAdjustment As Point
 
     Public Sub New(control As CustomText)
         BackColor = New MyColor(control.BackColor)
@@ -261,6 +264,9 @@ Public Structure MyCustomText
         UnitWidth = control.UnitWidth
         TitleFont = New MyFont(control.TitleFont)
         UnitFont = New MyFont(control.UnitFont)
+        TitleTextAdjustment = control.TitleTextAdjustment
+        ValueTextAdjustment = control.ValueTextAdjustment
+        UnitTextAdjustment = control.UnitTextAdjustment
     End Sub
 
 End Structure

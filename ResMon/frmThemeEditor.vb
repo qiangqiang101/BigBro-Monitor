@@ -190,6 +190,9 @@ Public Class frmThemeEditor
                 .UnitWidth = ct.UnitWidth
                 .TitleFont = ct.TitleFont.ToFont
                 .UnitFont = ct.UnitFont.ToFont
+                .TitleTextAdjustment = ct.TitleTextAdjustment
+                .ValueTextAdjustment = ct.ValueTextAdjustment
+                .UnitTextAdjustment = ct.UnitTextAdjustment
                 '.ParentName = tl.ParentName
             End With
             monForm.Controls.Add(cusTxt)
@@ -1121,6 +1124,9 @@ Public Class frmThemeEditor
                     .UnitWidth = source.UnitWidth
                     .TitleFont = source.TitleFont
                     .UnitFont = source.UnitFont
+                    .TitleTextAdjustment = source.TitleTextAdjustment
+                    .ValueTextAdjustment = source.ValueTextAdjustment
+                    .UnitTextAdjustment = source.UnitTextAdjustment
                 End With
                 monForm.Controls.Add(customText)
 

@@ -407,105 +407,105 @@ Module Helper
 End Module
 
 'Public Enum eSensorType
-'    None
-'    CPUCoreCount
-'    CPUClockSpeed
-'    CPUTemperatureC
-'    CPUTemperatureF
-'    CPULoadPercent
-'    CPUPowerWattage
-'    GPUClockSpeed
-'    GPUTemperatureC
-'    GPUTemperatureF
-'    GPULoadPercent
-'    GPUMemoryPercent
-'    GPUPowerWattage
-'    GPUVRAMUsage
-'    RAMLoadPercent
-'    RAMUsage
-'    HDDTemperatureC
-'    HDDTemperatureF
-'    HDDLoadPercent
-'    DownloadSpeed
-'    UploadSpeed
-'    LongDate
-'    ShortDate
-'    LongTime
-'    ShortTime
+'0     None
+'1     CPUCoreCount
+'2     CPUClockSpeed
+'3     CPUTemperatureC
+'4     CPUTemperatureF
+'5     CPULoadPercent
+'6     CPUPowerWattage
+'7     GPUClockSpeed
+'8     GPUTemperatureC
+'9     GPUTemperatureF
+'10    GPULoadPercent
+'11    GPUMemoryPercent
+'12    GPUPowerWattage
+'13    GPUVRAMUsage
+'14    RAMLoadPercent
+'15    RAMUsage
+'16    HDDTemperatureC
+'17    HDDTemperatureF
+'18    HDDLoadPercent
+'19    DownloadSpeed
+'20    UploadSpeed
+'21    LongDate
+'22    ShortDate
+'23    LongTime
+'24    ShortTime
 
-'    RAMAvailable
-'    RAMTotal
-'    HDDTotalSize
-'    HDDTotalFreeSpace
-'    HDDUsage
-'    Ping
-'    CustomDateTime
+'25    RAMAvailable
+'26    RAMTotal
+'27    HDDTotalSize
+'28    HDDTotalFreeSpace
+'29    HDDUsage
+'30    Ping
+'31    CustomDateTime
 
-'    GPUFan
-'    MoboTemperatureC
-'    MoboTemperatureF
-'    MoboFan
+'32    GPUFan
+'33    MoboTemperatureC
+'34    MoboTemperatureF
+'35    MoboFan
 
-'    CPUFan
+'36    CPUFan
 'End Enum
 
 Public Enum eSensorType
-    None
-    CPUCoreCount
-    CPUClockSpeed
-    CPUTemperatureC
-    CPUTemperatureF
-    CPULoadPercent
-    CPUPowerWattage
+    None = 0
+    CPUCoreCount = 1
+    CPUClockSpeed = 2
+    CPUTemperatureC = 3
+    CPUTemperatureF = 4
+    CPULoadPercent = 5
+    CPUPowerWattage = 6
     CPUFan = 36
-    CPUCorePower
-    CPUGraphicPower
-    CPUDRAMPower
+    CPUCorePower = 37
+    CPUGraphicPower = 38
+    CPUDRAMPower = 39
 
     GPUClockSpeed = 7
-    GPUTemperatureC
-    GPUTemperatureF
-    GPULoadPercent
-    GPUMemoryPercent
-    GPUPowerWattage
-    GPUVRAMUsage
+    GPUTemperatureC = 8
+    GPUTemperatureF = 9
+    GPULoadPercent = 10
+    GPUMemoryPercent = 11
+    GPUPowerWattage = 12
+    GPUVRAMUsage = 13
     GPUFan = 32
     GPUMemoryClock = 40
-    GPUShaderClock
-    GPUFrameBufferLoad
-    GPUVideoEngineLoad
-    GPUBusInterfaceLoad
-    GPUVRAMFree
-    GPUVRAMTotal
+    GPUShaderClock = 41
+    GPUFrameBufferLoad = 42
+    GPUVideoEngineLoad = 43
+    GPUBusInterfaceLoad = 44
+    GPUVRAMFree = 45
+    GPUVRAMTotal = 46
 
     RAMLoadPercent = 14
-    RAMUsage
+    RAMUsage = 15
     RAMAvailable = 25
-    RAMTotal
+    RAMTotal = 26
 
     HDDTemperatureC = 16
-    HDDTemperatureF
-    HDDLoadPercent
-    HDDTotalSize = 25
-    HDDTotalFreeSpace
-    HDDUsage
+    HDDTemperatureF = 17
+    HDDLoadPercent = 18
+    HDDTotalSize = 27
+    HDDTotalFreeSpace = 28
+    HDDUsage = 29
 
     DownloadSpeed = 19
-    UploadSpeed
-    Ping = 25
+    UploadSpeed = 20
+    Ping = 30
 
     LongDate = 21
-    ShortDate
-    LongTime
-    ShortTime
+    ShortDate = 22
+    LongTime = 23
+    ShortTime = 24
     CustomDateTime = 31
 
     MoboTemperatureC = 33
-    MoboTemperatureF
-    MoboFan
+    MoboTemperatureF = 34
+    MoboFan = 35
 
     DisplayScreenResolution = 47
-    DisplayRefreshRate
+    DisplayRefreshRate = 48
 
     'Last Item DisplayRefreshRate = 48
 End Enum
