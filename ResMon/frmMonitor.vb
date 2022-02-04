@@ -1,5 +1,6 @@
 ﻿Imports System.CodeDom.Compiler
 Imports System.ComponentModel
+Imports System.ComponentModel.Design
 Imports System.Drawing.Drawing2D
 Imports System.Drawing.Imaging
 Imports System.Reflection
@@ -34,6 +35,7 @@ Public Class frmMonitor
         End Get
         Set(value As Boolean)
             _rgbOn = value
+
             If Not Me.Editing Then
                 If value Then
                     If Me.BackgroundImage IsNot Nothing Then
@@ -339,7 +341,7 @@ Public Class frmMonitor
                     colorBlend.Colors = New Color() {Color.Purple, Color.Red, Color.Yellow, Color.Lime, Color.Cyan, Color.Blue, Color.Purple}
                     colorBlend.Positions = New Single() {0F, 0.1666F, 0.3333F, 0.5F, 0.6666F, 0.8333F, 1.0F}
                 Case RGBPattern.RedToBlack
-                    colorBlend.Colors = New Color() {Color.Red, Color.FromArgb(128, 0, 0), Color.Black}
+                    colorBlend.Colors = New Color() {Color.Red, Color.Black, Color.FromArgb(128, 0, 0)}
                     colorBlend.Positions = New Single() {0F, 0.5F, 1.0F}
                 Case RGBPattern.YellowPink
                     colorBlend.Colors = New Color() {Color.FromArgb(241, 249, 5), Color.FromArgb(255, 6, 231), Color.FromArgb(241, 249, 5)}

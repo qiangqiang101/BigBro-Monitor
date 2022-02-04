@@ -85,9 +85,23 @@ Public Class frmThemeEditor
                 currentTheme = New ThemeData(filename).Instance
         End Select
 
-        themeConfig = New ThemeConfig() With {.Author = currentTheme.Author, .BackgroundColor = currentTheme.BackgroundColor.ToColor, .BackgroundImage = currentTheme.BackgroundImage.Base64ToImage, .Name = currentTheme.Name,
-            .Size = currentTheme.Size, .TextColor = currentTheme.TextColor.ToColor, .Version = currentTheme.Version, .UpdateInterval = currentTheme.UpdateInterval, .Tags = currentTheme.Tags,
-            .CustomPreview = currentTheme.CustomPreview.Base64ToImage, .Opacity = currentTheme.Opacity}
+        themeConfig = New ThemeConfig() With {
+            .Name = currentTheme.Name,
+            .Tags = currentTheme.Tags,
+            .Author = currentTheme.Author,
+            .Version = currentTheme.Version,
+            .CustomPreview = currentTheme.CustomPreview.Base64ToImage,
+            .Size = currentTheme.Size,
+            .BackgroundColor = currentTheme.BackgroundColor.ToColor,
+            .BackgroundImage = currentTheme.BackgroundImage.Base64ToImage,
+            .TextColor = currentTheme.TextColor.ToColor,
+            .UpdateInterval = currentTheme.UpdateInterval,
+            .Opacity = currentTheme.Opacity,
+            .RGBBackground = currentTheme.RGBBackground,
+            .RGBPattern = currentTheme.RGBPattern,
+            .RGBTransform = currentTheme.RGBTransform
+        }
+
         saveFile = filename
         themeFile = filename.Replace(".xml", ".theme")
 
