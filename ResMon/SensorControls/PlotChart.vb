@@ -579,6 +579,16 @@ Public Class PlotChart
                     Else
                         AddValue(myParentForm.gpuSensor.RawVRAMFree(CInt(_sensorParam)), " MB")
                     End If
+
+                    'Added 04/02/2022
+                Case eSensorType.RAMClockSpeed
+                    AddValue(myParentForm.ramSensor.RawRamClockSpeed, " MHz")
+                Case eSensorType.RAMVirtualUsage
+                    AddValue(myParentForm.ramSensor.RawVirtualMemoryUsage, " GB")
+                Case eSensorType.RAMVirtualAvailable
+                    AddValue(myParentForm.ramSensor.VirtualMemoryAvailable, " GB")
+                Case eSensorType.RAMVirtualTotal
+                    AddValue(myParentForm.ramSensor.VirtualMemoryTotal, " GB")
             End Select
         Catch ex As Exception
             Logger.Log(ex)

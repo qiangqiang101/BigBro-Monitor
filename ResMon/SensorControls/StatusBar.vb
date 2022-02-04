@@ -744,6 +744,22 @@ Public Class StatusBar
                         _max = myParentForm.gpuSensor.RawVRAMTotal
                         dynaMax = False
                     End If
+
+                    'Added 04/02/2022
+                Case eSensorType.RAMClockSpeed
+                    _val = CInt(myParentForm.ramSensor.RawRamClockSpeed())
+                    _min = 0
+                    dynaMax = True
+                Case eSensorType.RAMVirtualUsage
+                    _val = myParentForm.ramSensor.RawVirtualMemoryUsage
+                    _min = 0
+                    _max = myParentForm.ramSensor.RawVirtualMemoryTotal
+                    dynaMax = False
+                Case eSensorType.RAMVirtualAvailable
+                    _val = myParentForm.ramSensor.RawVirtualMemoryAvailable
+                    _min = 0
+                    _max = myParentForm.ramSensor.RawVirtualMemoryTotal
+                    dynaMax = False
             End Select
 
             If dynaMax Then

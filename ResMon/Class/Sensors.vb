@@ -661,6 +661,49 @@ Public Class RAMSensors
         End Try
     End Function
 
+    Public Function VirtualMemoryTotal() As String
+        Return $"{ByteToGiga(New Devices.ComputerInfo().TotalVirtualMemory)} GB"
+    End Function
+
+    Public Function VirtualMemoryAvailable() As String
+        Return $"{ByteToGiga(New Devices.ComputerInfo().AvailableVirtualMemory)} GB"
+    End Function
+
+    Public Function VirtualMemoryUsage() As String
+        Return $"{RawVirtualMemoryTotal() - RawVirtualMemoryAvailable()} GB"
+    End Function
+
+    Public Function RawVirtualMemoryTotal() As Integer
+        Return ByteToGiga(New Devices.ComputerInfo().TotalVirtualMemory)
+    End Function
+
+    Public Function RawVirtualMemoryAvailable() As Integer
+        Return ByteToGiga(New Devices.ComputerInfo().AvailableVirtualMemory)
+    End Function
+
+    Public Function RawVirtualMemoryUsage() As Integer
+        Return RawVirtualMemoryTotal() - RawVirtualMemoryAvailable()
+    End Function
+
+    Public Function RamClockSpeed() As String
+        Return $"{RawRamClockSpeed()} MHz"
+    End Function
+
+    Public Function RawRamClockSpeed() As Integer
+        Dim query As New Management.SelectQuery("Win32_PhysicalMemory")
+        Dim clock As Integer = 0
+
+        Try
+            For Each mo As Management.ManagementObject In New Management.ManagementObjectSearcher(query).Get
+                clock = If(mo("Speed") IsNot Nothing, CInt(mo("Speed").ToString), 0)
+            Next
+
+            Return clock
+        Catch ex As Exception
+            Return clock
+        End Try
+    End Function
+
 End Class
 
 Public Class HDDSensors

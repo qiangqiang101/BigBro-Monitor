@@ -404,6 +404,17 @@ Module Helper
         Return match.Success
     End Function
 
+    Public Function GetSystemUpTime() As TimeSpan
+        Try
+            Dim uptime = New PerformanceCounter("System", "System Up Time")
+            uptime.NextValue()
+            Return TimeSpan.FromSeconds(uptime.NextValue)
+        Catch ex As Exception
+            'handle the exception your way
+            Return New TimeSpan(0, 0, 0, 0)
+        End Try
+    End Function
+
 End Module
 
 'Public Enum eSensorType
@@ -482,6 +493,10 @@ Public Enum eSensorType
     RAMUsage = 15
     RAMAvailable = 25
     RAMTotal = 26
+    RAMClockSpeed = 49
+    RAMVirtualUsage = 50
+    RAMVirtualAvailable = 51
+    RAMVirtualTotal = 52
 
     HDDTemperatureC = 16
     HDDTemperatureF = 17
@@ -499,6 +514,7 @@ Public Enum eSensorType
     LongTime = 23
     ShortTime = 24
     CustomDateTime = 31
+    SystemUptime = 53
 
     MoboTemperatureC = 33
     MoboTemperatureF = 34
@@ -507,7 +523,7 @@ Public Enum eSensorType
     DisplayScreenResolution = 47
     DisplayRefreshRate = 48
 
-    'Last Item DisplayRefreshRate = 48
+    'Last Item SystemUptime = 53
 End Enum
 
 Public Enum eCompleteSensor

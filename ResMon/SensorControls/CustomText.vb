@@ -671,6 +671,22 @@ Public Class CustomText
                     Value = myParentForm.displaySensor.RawScreenResolution
                 Case eSensorType.DisplayRefreshRate
                     Value = myParentForm.displaySensor.RawRefreshRate
+
+                    'Added 04/02/2022
+                Case eSensorType.RAMClockSpeed
+                    Value = myParentForm.ramSensor.RawRamClockSpeed
+                Case eSensorType.RAMVirtualUsage
+                    Value = myParentForm.ramSensor.RawVirtualMemoryUsage
+                Case eSensorType.RAMVirtualAvailable
+                    Value = myParentForm.ramSensor.RawVirtualMemoryAvailable
+                Case eSensorType.RAMVirtualTotal
+                    Value = myParentForm.ramSensor.RawVirtualMemoryTotal
+                Case eSensorType.SystemUptime
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        Value = GetSystemUpTime.ToString("d\.h\:mm\:ss")
+                    Else
+                        Value = GetSystemUpTime.ToString(_sensorParam)
+                    End If
             End Select
         Catch ex As Exception
             Logger.Log(ex)

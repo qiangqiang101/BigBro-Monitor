@@ -443,6 +443,22 @@ Public Class TextLabel
                     Text = _b4Text & myParentForm.displaySensor.ScreenResolution
                 Case eSensorType.DisplayRefreshRate
                     Text = _b4Text & myParentForm.displaySensor.RefreshRate
+
+                    'Added 04/02/2022
+                Case eSensorType.RAMClockSpeed
+                    Text = _b4Text & myParentForm.ramSensor.RamClockSpeed
+                Case eSensorType.RAMVirtualUsage
+                    Text = _b4Text & myParentForm.ramSensor.VirtualMemoryUsage
+                Case eSensorType.RAMVirtualAvailable
+                    Text = _b4Text & myParentForm.ramSensor.VirtualMemoryAvailable
+                Case eSensorType.RAMVirtualTotal
+                    Text = _b4Text & myParentForm.ramSensor.VirtualMemoryTotal
+                Case eSensorType.SystemUptime
+                    If String.IsNullOrEmpty(_sensorParam) Then
+                        Text = _b4Text & GetSystemUpTime.ToString("d\.h\:mm\:ss")
+                    Else
+                        Text = _b4Text & GetSystemUpTime.ToString(_sensorParam)
+                    End If
             End Select
         Catch ex As Exception
             Logger.Log(ex)
