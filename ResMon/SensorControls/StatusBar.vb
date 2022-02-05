@@ -586,11 +586,17 @@ Public Class StatusBar
                     _max = 248
                     dynaMax = False
 
-                'Added 25/10/2021 dynamic max
+                'Added 25/10/2021 dynamic max | Modified 05/02/2022
                 Case eSensorType.CPUClockSpeed
-                    _val = CInt(myParentForm.cpuSensor.RawClockSpeed())
-                    _min = 0
-                    dynaMax = True
+                    If IsNumeric(_sensorParam) Then
+                        _val = CInt(myParentForm.cpuSensor.RawClockSpeed(_sensorParam))
+                        _min = 0
+                        dynaMax = True
+                    Else
+                        _val = CInt(myParentForm.cpuSensor.RawClockSpeed())
+                        _min = 0
+                        dynaMax = True
+                    End If
                 Case eSensorType.CPUPowerWattage
                     _val = CInt(myParentForm.cpuSensor.RawPowerWattage())
                     _min = 0
@@ -760,6 +766,36 @@ Public Class StatusBar
                     _min = 0
                     _max = myParentForm.ramSensor.RawVirtualMemoryTotal
                     dynaMax = False
+
+                    'Added 05/02/2022
+                Case eSensorType.CPUBusSpeed
+                    _val = CInt(myParentForm.cpuSensor.RawBusClockSpeed())
+                    _min = 0
+                    dynaMax = True
+                Case eSensorType.CPUCoreTemperatureC
+                    If IsNumeric(_sensorParam) Then
+                        _val = myParentForm.cpuSensor.RawCoreTemperatureC(_sensorParam)
+                        _min = 0
+                        _max = 120
+                        dynaMax = False
+                    Else
+                        _val = myParentForm.cpuSensor.RawCoreTemperatureC
+                        _min = 0
+                        _max = 120
+                        dynaMax = False
+                    End If
+                Case eSensorType.CPUCoreTemperatureF
+                    If IsNumeric(_sensorParam) Then
+                        _val = myParentForm.cpuSensor.RawCoreTemperatureF(_sensorParam)
+                        _min = 0
+                        _max = 120
+                        dynaMax = False
+                    Else
+                        _val = myParentForm.cpuSensor.RawCoreTemperatureF
+                        _min = 0
+                        _max = 120
+                        dynaMax = False
+                    End If
             End Select
 
             If dynaMax Then

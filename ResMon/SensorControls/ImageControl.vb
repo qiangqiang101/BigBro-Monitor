@@ -371,6 +371,14 @@ Public Class ImageControl
                         Else
                             _val = CInt(Math.Round((_max * myParentForm.gpuSensor.RawBusInterfaceLoad) / 100))
                         End If
+
+                        'Added 05/02/2022
+                    Case eSensorType.CPUCoreTemperatureC, eSensorType.CPUCoreTemperatureF
+                        If IsNumeric(_sensorParam) Then
+                            _val = CInt(Math.Round((_max * myParentForm.cpuSensor.RawCoreTemperatureC(_sensorParam)) / 100))
+                        Else
+                            _val = CInt(Math.Round((_max * myParentForm.cpuSensor.RawCoreTemperatureC) / 100))
+                        End If
                 End Select
 
                 Try

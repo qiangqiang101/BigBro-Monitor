@@ -15,6 +15,7 @@ Imports Newtonsoft.Json.Linq
 
 Module Helper
 
+    Public test As Boolean = False
     Public dateFormat As String = "dd/MMM/yyyy"
     'Public MachineName As String = Environment.MachineName
     Public ThemesDir As String = $"{My.Application.Info.DirectoryPath}\Themes"
@@ -472,6 +473,9 @@ Public Enum eSensorType
     CPUCorePower = 37
     CPUGraphicPower = 38
     CPUDRAMPower = 39
+    CPUBusSpeed = 54
+    CPUCoreTemperatureC = 55
+    CPUCoreTemperatureF = 56
 
     GPUClockSpeed = 7
     GPUTemperatureC = 8
@@ -523,7 +527,7 @@ Public Enum eSensorType
     DisplayScreenResolution = 47
     DisplayRefreshRate = 48
 
-    'Last Item SystemUptime = 53
+    'Last Item CPUCoreTemperatureF = 56
 End Enum
 
 Public Enum eCompleteSensor

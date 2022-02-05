@@ -41,9 +41,17 @@ Public Class CPUSensors
         End Try
     End Function
 
-    Public Function ClockSpeed() As String
+    Public Function ClockSpeed(Optional core As Integer = 1) As String
         Try
-            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*CPU Core*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name = $"CPU Core #{core}").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+        Catch ex As Exception
+            Return "0 MHz"
+        End Try
+    End Function
+
+    Public Function BusClockSpeed() As String
+        Try
+            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*Bus Speed*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
         Catch ex As Exception
             Return "0 MHz"
         End Try
@@ -68,6 +76,30 @@ Public Class CPUSensors
     Public Function TemperatureF() As String
         Try
             Return $"{(TemperatureLevel() * 1.8) + 32} °F"
+        Catch ex As Exception
+            Return "0 °F"
+        End Try
+    End Function
+
+    Public Function CoreTemperature(Optional core As Integer = 1) As Single
+        Try
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name = $"CPU Core #{core}").FirstOrDefault.Value.GetValueOrDefault
+        Catch ex As Exception
+            Return 0F
+        End Try
+    End Function
+
+    Public Function CoreTemperatureC(Optional core As Integer = 1) As String
+        Try
+            Return $"{CoreTemperature(core)} °C"
+        Catch ex As Exception
+            Return "0 °C"
+        End Try
+    End Function
+
+    Public Function CoreTemperatureF(Optional core As Integer = 1) As String
+        Try
+            Return $"{(CoreTemperature(core) * 1.8) + 32} °F"
         Catch ex As Exception
             Return "0 °F"
         End Try
@@ -129,6 +161,22 @@ Public Class CPUSensors
         End Try
     End Function
 
+    Public Function RawCoreTemperatureC(Optional core As Integer = 1) As Integer
+        Try
+            Return CInt(CoreTemperature(core))
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
+    Public Function RawCoreTemperatureF(Optional core As Integer = 1) As Integer
+        Try
+            Return CInt((CoreTemperature(core) * 1.8) + 32)
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
     Public Function RawLoadPercent() As Integer
         Try
             Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*CPU Total*").FirstOrDefault.Value.GetValueOrDefault))
@@ -137,9 +185,17 @@ Public Class CPUSensors
         End Try
     End Function
 
-    Public Function RawClockSpeed() As Single
+    Public Function RawClockSpeed(Optional core As Integer = 1) As Single
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*CPU Core*").FirstOrDefault.Value.GetValueOrDefault
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name = $"CPU Core #{core}").FirstOrDefault.Value.GetValueOrDefault
+        Catch ex As Exception
+            Return 0F
+        End Try
+    End Function
+
+    Public Function RawBusClockSpeed() As Single
+        Try
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*Bus Speed*").FirstOrDefault.Value.GetValueOrDefault
         Catch ex As Exception
             Return 0F
         End Try

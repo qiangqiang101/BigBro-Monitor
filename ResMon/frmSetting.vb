@@ -20,65 +20,75 @@ Public Class frmSetting
     End Sub
 
     Private Sub frmSetting_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        For Each state In States
-            cmbStates.Items.Add(state.Value)
-        Next
-        cmbStates.SelectedIndex = 0
-
-        For Each adapter In netMonitor.Adapters
-            If Not cmbNetwork.Items.Contains(adapter.Name) Then cmbNetwork.Items.Add(adapter.Name)
-        Next
-
-        For Each langFile As String In Directory.GetFiles(LangsDir, "*.xml")
-            Dim fileName As String = Path.GetFileNameWithoutExtension(langFile)
-            If Not cmbLanguage.Items.Contains(fileName) Then
-                cmbLanguage.Items.Add(fileName)
-            End If
-        Next
-
-        cmbLanguage.SelectedItem = UserSettings.Language
         Try
-            cmbNetwork.SelectedIndex = UserSettings.NetworkAdapterIndex
+            For Each state In States
+                cmbStates.Items.Add(state.Value)
+            Next
+            cmbStates.SelectedIndex = 0
+
+            For Each adapter In netMonitor.Adapters
+                If Not cmbNetwork.Items.Contains(adapter.Name) Then cmbNetwork.Items.Add(adapter.Name)
+            Next
+
+            For Each langFile As String In Directory.GetFiles(LangsDir, "*.xml")
+                Dim fileName As String = Path.GetFileNameWithoutExtension(langFile)
+                If Not cmbLanguage.Items.Contains(fileName) Then
+                    cmbLanguage.Items.Add(fileName)
+                End If
+            Next
+
+            cmbLanguage.SelectedItem = UserSettings.Language
+            Try
+                cmbNetwork.SelectedIndex = UserSettings.NetworkAdapterIndex
+            Catch ex As Exception
+                MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+                Logger.Log(ex)
+            End Try
+            cbAuto.Checked = UserSettings.AutoStart 'File.Exists(startupFile)
+            cbBroadcast.Checked = UserSettings.EnableBroadcast
+            txtPort.Text = UserSettings.BroadcastPort
+            cmbStates.SelectedItem = UserSettings.State
+            If cmbTown.Items.Count <> 0 Then
+                cmbTown.SelectedItem = UserSettings.Town
+            End If
+            cbTopMost.Checked = UserSettings.TopMost
+            If IsActivated Then
+                btnActivate.Hide()
+                lblLicense.Text = $"{ProgramLanguage.Registered} ({If(RemainingDays = 1, ProgramLanguage.DayRemain.Replace("%dr%", RemainingDays), ProgramLanguage.DaysRemain.Replace("%dr%", RemainingDays))})"
+                lblKey.Text = UserSettings.LicenseKey
+            Else
+                lblLicense.Text = ProgramLanguage.Unregistered
+                lblKey.Text = Nothing
+            End If
+            lblName.Text = UserSettings.Email
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
             Logger.Log(ex)
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
-        cbAuto.Checked = UserSettings.AutoStart 'File.Exists(startupFile)
-        cbBroadcast.Checked = UserSettings.EnableBroadcast
-        txtPort.Text = UserSettings.BroadcastPort
-        cmbStates.SelectedItem = UserSettings.State
-        If cmbTown.Items.Count <> 0 Then
-            cmbTown.SelectedItem = UserSettings.Town
-        End If
-        cbTopMost.Checked = UserSettings.TopMost
-        If IsActivated Then
-            btnActivate.Hide()
-            lblLicense.Text = $"{ProgramLanguage.Registered} ({If(RemainingDays = 1, ProgramLanguage.DayRemain.Replace("%dr%", RemainingDays), ProgramLanguage.DaysRemain.Replace("%dr%", RemainingDays))})"
-            lblKey.Text = UserSettings.LicenseKey
-        Else
-            lblLicense.Text = ProgramLanguage.Unregistered
-            lblKey.Text = Nothing
-        End If
-        lblName.Text = UserSettings.Email
 
         'Translate
-        Text = ProgramLanguage.SettingTitle
-        lblNetworkAdapter.Text = ProgramLanguage.lblNetworkAdapter
-        lblBroadcastPort.Text = ProgramLanguage.lblBroadcastPort
-        cbBroadcast.Text = ProgramLanguage.cbBroadcast
-        gbWeather.Text = ProgramLanguage.gbWeather
-        lblState.Text = ProgramLanguage.lblState
-        lblTown.Text = ProgramLanguage.lblTown
-        cbAuto.Text = ProgramLanguage.cbAuto
-        cbTopMost.Text = ProgramLanguage.cbTopMost
-        lblLanguage.Text = ProgramLanguage.lblLanguage
-        gbLicense.Text = ProgramLanguage.gbLicense
-        btnActivate.Text = ProgramLanguage.btnActivate
-        btnCredits.Text = ProgramLanguage.btnCredits
-        btnSave.Text = ProgramLanguage.btnSave
-        cbResetSPanel.Text = ProgramLanguage.cbResetSPanel
-        cbHQRgb.Text = ProgramLanguage.cbHQRgb
-        cbHQAE.Text = ProgramLanguage.cbHQAE
+        Try
+            Text = ProgramLanguage.SettingTitle
+            lblNetworkAdapter.Text = ProgramLanguage.lblNetworkAdapter
+            lblBroadcastPort.Text = ProgramLanguage.lblBroadcastPort
+            cbBroadcast.Text = ProgramLanguage.cbBroadcast
+            gbWeather.Text = ProgramLanguage.gbWeather
+            lblState.Text = ProgramLanguage.lblState
+            lblTown.Text = ProgramLanguage.lblTown
+            cbAuto.Text = ProgramLanguage.cbAuto
+            cbTopMost.Text = ProgramLanguage.cbTopMost
+            lblLanguage.Text = ProgramLanguage.lblLanguage
+            gbLicense.Text = ProgramLanguage.gbLicense
+            btnActivate.Text = ProgramLanguage.btnActivate
+            btnCredits.Text = ProgramLanguage.btnCredits
+            btnSave.Text = ProgramLanguage.btnSave
+            cbResetSPanel.Text = ProgramLanguage.cbResetSPanel
+            cbHQRgb.Text = ProgramLanguage.cbHQRgb
+            cbHQAE.Text = ProgramLanguage.cbHQAE
+        Catch ex As Exception
+            Logger.Log(ex)
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        End Try
     End Sub
 
     Public Sub ReloadInfo()
@@ -122,37 +132,46 @@ Public Class frmSetting
             DeleteShortcutInStartup()
         End If
 
-        Dim newUserSettings As New UserSettingData(UserSettingFile)
-        With newUserSettings
-            .CurrentTheme = UserSettings.CurrentTheme
-            .AutoStart = cbAuto.Checked
-            If cbResetSPanel.Checked Then
-                .Location = Point.Empty
-            Else
-                .Location = UserSettings.Location
-            End If
-            .NetworkAdapterIndex = cmbNetwork.SelectedIndex
-            .EnableBroadcast = cbBroadcast.Checked
-            .BroadcastPort = txtPort.Text
-            .State = cmbStates.SelectedItem.ToString
-            .Town = cmbTown.SelectedItem.ToString
-            .TopMost = cbTopMost.Checked
-            .LicenseKey = UserSettings.LicenseKey
-            .Email = UserSettings.Email
-            .HWID = UserSettings.HWID
-            .Language = cmbLanguage.SelectedItem.ToString
-            .RgbEffectHighQuality = cbHQRgb.Checked
-            .AudioEffectHighQuality = cbHQAE.Checked
-            .Save()
-        End With
-        UserSettings = New UserSettingData(UserSettingFile).Instance
-        ProgramLanguage = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance
+        Try
+            Dim newUserSettings As New UserSettingData(UserSettingFile)
+            With newUserSettings
+                .CurrentTheme = UserSettings.CurrentTheme
+                .AutoStart = cbAuto.Checked
+                If cbResetSPanel.Checked Then
+                    .Location = Point.Empty
+                Else
+                    .Location = UserSettings.Location
+                End If
+                .NetworkAdapterIndex = cmbNetwork.SelectedIndex
+                .EnableBroadcast = cbBroadcast.Checked
+                .BroadcastPort = txtPort.Text
+                .State = cmbStates.SelectedItem.ToString
+                .Town = cmbTown.SelectedItem.ToString
+                .TopMost = cbTopMost.Checked
+                .LicenseKey = UserSettings.LicenseKey
+                .Email = UserSettings.Email
+                .HWID = UserSettings.HWID
+                .Language = cmbLanguage.SelectedItem.ToString
+                .RgbEffectHighQuality = cbHQRgb.Checked
+                .AudioEffectHighQuality = cbHQAE.Checked
+                .Save()
+            End With
+            UserSettings = New UserSettingData(UserSettingFile).Instance
+            ProgramLanguage = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance
+        Catch ex As Exception
+            Logger.Log(ex)
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        End Try
     End Sub
 
     Private Sub CreateShortcutInStartUp()
         Try
             Dim regKey = My.Computer.Registry.LocalMachine.OpenSubKey("SOFTWARE\Microsoft\Windows\CurrentVersion\Run", True)
-            regKey.SetValue(Application.ProductName, $"{Application.ExecutablePath} -auto")
+            If test Then
+                regKey.SetValue(Application.ProductName, $"{Application.ExecutablePath} -test -auto")
+            Else
+                regKey.SetValue(Application.ProductName, $"{Application.ExecutablePath} -auto")
+            End If
             regKey.Close()
         Catch ex As Exception
         End Try

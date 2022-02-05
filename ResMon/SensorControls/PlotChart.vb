@@ -425,8 +425,15 @@ Public Class PlotChart
                     AddValue(myParentForm.cpuSensor.RawTemperatureF, "°F")
                 Case eSensorType.CPULoadPercent
                     AddValue(myParentForm.cpuSensor.RawLoadPercent, "%")
+
+                    'Modified 05/02/2022
                 Case eSensorType.CPUClockSpeed
-                    AddValue(myParentForm.cpuSensor.RawClockSpeed, " MHz")
+                    If IsNumeric(_sensorParam) Then
+                        AddValue(myParentForm.cpuSensor.RawClockSpeed(_sensorParam), " MHz")
+                    Else
+                        AddValue(myParentForm.cpuSensor.RawClockSpeed, " MHz")
+                    End If
+
                 Case eSensorType.CPUPowerWattage
                     AddValue(myParentForm.cpuSensor.RawPowerWattage, " W")
 
@@ -589,6 +596,22 @@ Public Class PlotChart
                     AddValue(myParentForm.ramSensor.VirtualMemoryAvailable, " GB")
                 Case eSensorType.RAMVirtualTotal
                     AddValue(myParentForm.ramSensor.VirtualMemoryTotal, " GB")
+
+                    'Added 05/02/2022
+                Case eSensorType.CPUBusSpeed
+                    AddValue(myParentForm.cpuSensor.BusClockSpeed, " MHz")
+                Case eSensorType.CPUCoreTemperatureC
+                    If IsNumeric(_sensorParam) Then
+                        AddValue(myParentForm.cpuSensor.CoreTemperatureC(_sensorParam), "°C")
+                    Else
+                        AddValue(myParentForm.cpuSensor.CoreTemperatureC, "°C")
+                    End If
+                Case eSensorType.CPUCoreTemperatureF
+                    If IsNumeric(_sensorParam) Then
+                        AddValue(myParentForm.cpuSensor.CoreTemperatureF(_sensorParam), "°F")
+                    Else
+                        AddValue(myParentForm.cpuSensor.CoreTemperatureF, "°F")
+                    End If
             End Select
         Catch ex As Exception
             Logger.Log(ex)

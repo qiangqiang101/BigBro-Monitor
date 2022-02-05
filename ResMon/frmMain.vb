@@ -5,6 +5,7 @@ Public Class frmMain
 
     Private silent As Boolean = False
 
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -20,35 +21,86 @@ Public Class frmMain
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If Not File.Exists(UserSettingFile) Then
-            If Not Directory.Exists($"{My.Computer.FileSystem.SpecialDirectories.MyDocuments}\BigBro Monitor") Then Directory.CreateDirectory($"{My.Computer.FileSystem.SpecialDirectories.MyDocuments}\BigBro Monitor")
-
-            If File.Exists(OldUserSettingFile) Then
-                File.Move(OldUserSettingFile, UserSettingFile)
+        Dim args As String() = Environment.GetCommandLineArgs()
+        For Each arg As String In args
+            If arg.Contains("-test") Then
+                test = True
+                UserSettingFile = $"{My.Application.Info.DirectoryPath}\UserSettingsTest.bin"
                 UserSettings = New UserSettingData(UserSettingFile).Instance
                 ProgramLanguage = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance
+            End If
+        Next
+
+        If Not File.Exists(UserSettingFile) Then
+            If test Then
+                Try
+                    Dim tempUserSetting As New UserSettingData(UserSettingFile)
+                    With tempUserSetting
+                        .AudioEffectHighQuality = False
+                        .AutoStart = False
+                        .BroadcastPort = 8080
+                        .CurrentTheme = "Project Cyan 5inch.xml"
+                        .Email = Nothing
+                        .EnableBroadcast = False
+                        .HWID = Nothing
+                        .Language = "English"
+                        .LicenseKey = Nothing
+                        .Location = Point.Empty
+                        .NetworkAdapterIndex = 0
+                        .RgbEffectHighQuality = False
+                        .State = "KUALA LUMPUR"
+                        .Town = "KUALA LUMPUR"
+                        .TopMost = True
+                    End With
+                    tempUserSetting.SaveSilent()
+                    UserSettings = tempUserSetting
+                    ProgramLanguage = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance
+                Catch ex As Exception
+                    Logger.Log(ex)
+                    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+                End Try
             Else
-                Dim tempUserSetting As New UserSettingData(UserSettingFile)
-                With tempUserSetting
-                    .AudioEffectHighQuality = False
-                    .AutoStart = False
-                    .BroadcastPort = 8080
-                    .CurrentTheme = "Project Cyan 5inch.xml"
-                    .Email = Nothing
-                    .EnableBroadcast = False
-                    .HWID = Nothing
-                    .Language = "English"
-                    .LicenseKey = Nothing
-                    .Location = Point.Empty
-                    .NetworkAdapterIndex = 0
-                    .RgbEffectHighQuality = False
-                    .State = "KUALA LUMPUR"
-                    .Town = "KUALA LUMPUR"
-                    .TopMost = True
-                End With
-                tempUserSetting.SaveSilent()
-                UserSettings = tempUserSetting
-                ProgramLanguage = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance
+                If Not Directory.Exists($"{My.Computer.FileSystem.SpecialDirectories.MyDocuments}\BigBro Monitor") Then
+                    Try
+                        Directory.CreateDirectory($"{My.Computer.FileSystem.SpecialDirectories.MyDocuments}\BigBro Monitor")
+                    Catch ex As Exception
+                        Logger.Log(ex)
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+                    End Try
+                End If
+
+                If File.Exists(OldUserSettingFile) Then
+                    File.Move(OldUserSettingFile, UserSettingFile)
+                    UserSettings = New UserSettingData(UserSettingFile).Instance
+                    ProgramLanguage = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance
+                Else
+                    Try
+                        Dim tempUserSetting As New UserSettingData(UserSettingFile)
+                        With tempUserSetting
+                            .AudioEffectHighQuality = False
+                            .AutoStart = False
+                            .BroadcastPort = 8080
+                            .CurrentTheme = "Project Cyan 5inch.xml"
+                            .Email = Nothing
+                            .EnableBroadcast = False
+                            .HWID = Nothing
+                            .Language = "English"
+                            .LicenseKey = Nothing
+                            .Location = Point.Empty
+                            .NetworkAdapterIndex = 0
+                            .RgbEffectHighQuality = False
+                            .State = "KUALA LUMPUR"
+                            .Town = "KUALA LUMPUR"
+                            .TopMost = True
+                        End With
+                        tempUserSetting.SaveSilent()
+                        UserSettings = tempUserSetting
+                        ProgramLanguage = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance
+                    Catch ex As Exception
+                        Logger.Log(ex)
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+                    End Try
+                End If
             End If
         End If
 
@@ -61,13 +113,17 @@ Public Class frmMain
         IsActivated = activationTuple.Item1
         RemainingDays = activationTuple.Item2
 
-        If Not Directory.Exists(ThemesDir) Then Directory.CreateDirectory(ThemesDir)
-        If Not Directory.Exists(PresetDataDir) Then Directory.CreateDirectory(PresetDataDir)
-        If Not Directory.Exists(FontsDir) Then Directory.CreateDirectory(FontsDir)
-        If Not Directory.Exists(LogsDir) Then Directory.CreateDirectory(LogsDir)
-        If Not Directory.Exists(LangsDir) Then Directory.CreateDirectory(LangsDir)
+        Try
+            If Not Directory.Exists(ThemesDir) Then Directory.CreateDirectory(ThemesDir)
+            If Not Directory.Exists(PresetDataDir) Then Directory.CreateDirectory(PresetDataDir)
+            If Not Directory.Exists(FontsDir) Then Directory.CreateDirectory(FontsDir)
+            If Not Directory.Exists(LogsDir) Then Directory.CreateDirectory(LogsDir)
+            If Not Directory.Exists(LangsDir) Then Directory.CreateDirectory(LangsDir)
+        Catch ex As Exception
+            Logger.Log(ex)
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        End Try
 
-        Dim args As String() = Environment.GetCommandLineArgs()
         For Each arg As String In args
             If arg.Contains("-auto") Then
                 If Not IsAdministrator() Then
@@ -98,17 +154,23 @@ Public Class frmMain
         Text = $"BigBro Monitor v{Application.ProductVersion} Build {GetBuildDateTime.ToShortDateString} {If(IsAdministrator(), "(Administrator)", "")}"
 
         'Translate
-        btnResetFilter.Text = ProgramLanguage.btnResetFilter
-        btnSearch.Text = ProgramLanguage.btnSearch
-        gbSettings.Text = ProgramLanguage.gbSettings
-        btnApply.Text = ProgramLanguage.btnApply
-        btnDelete.Text = ProgramLanguage.btnDelete
-        btnThemeEditor.Text = ProgramLanguage.btnThemeEditor
-        btnSettings.Text = ProgramLanguage.btnSettings
-        btnOK.Text = ProgramLanguage.btnOK
-        btnCancel.Text = ProgramLanguage.btnCancel
-        niTray.BalloonTipText = ProgramLanguage.niTray
-        btnDownloadTheme.Text = ProgramLanguage.btnDownloadTheme
+        Try
+            btnResetFilter.Text = ProgramLanguage.btnResetFilter
+            btnSearch.Text = ProgramLanguage.btnSearch
+            gbSettings.Text = ProgramLanguage.gbSettings
+            btnApply.Text = ProgramLanguage.btnApply
+            btnDelete.Text = ProgramLanguage.btnDelete
+            btnThemeEditor.Text = ProgramLanguage.btnThemeEditor
+            btnSettings.Text = ProgramLanguage.btnSettings
+            btnOK.Text = ProgramLanguage.btnOK
+            btnCancel.Text = ProgramLanguage.btnCancel
+            niTray.BalloonTipText = ProgramLanguage.niTray
+            btnDownloadTheme.Text = ProgramLanguage.btnDownloadTheme
+        Catch ex As Exception
+            Logger.Log(ex)
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        End Try
+
     End Sub
 
     Private Sub LoadPrivateFonts()

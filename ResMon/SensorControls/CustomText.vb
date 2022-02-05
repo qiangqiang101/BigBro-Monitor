@@ -467,8 +467,15 @@ Public Class CustomText
             Select Case _sensor
                 Case eSensorType.CPUCoreCount
                     Value = myParentForm.cpuSensor.CoreCount
+
+                    'Modified 05/02/2022
                 Case eSensorType.CPUClockSpeed
-                    Value = Math.Ceiling(myParentForm.cpuSensor.RawClockSpeed)
+                    If IsNumeric(_sensorParam) Then
+                        Value = Math.Ceiling(myParentForm.cpuSensor.RawClockSpeed(_sensorParam))
+                    Else
+                        Value = Math.Ceiling(myParentForm.cpuSensor.RawClockSpeed)
+                    End If
+
                 Case eSensorType.CPUTemperatureC
                     Value = myParentForm.cpuSensor.RawTemperatureC
                 Case eSensorType.CPUTemperatureF
@@ -686,6 +693,22 @@ Public Class CustomText
                         Value = GetSystemUpTime.ToString("d\.h\:mm\:ss")
                     Else
                         Value = GetSystemUpTime.ToString(_sensorParam)
+                    End If
+
+                    'Added 05/02/2022
+                Case eSensorType.CPUBusSpeed
+                    Value = myParentForm.cpuSensor.RawBusClockSpeed
+                Case eSensorType.CPUCoreTemperatureC
+                    If IsNumeric(_sensorParam) Then
+                        Value = myParentForm.cpuSensor.CoreTemperatureC(_sensorParam)
+                    Else
+                        Value = myParentForm.cpuSensor.CoreTemperatureC
+                    End If
+                Case eSensorType.CPUCoreTemperatureF
+                    If IsNumeric(_sensorParam) Then
+                        Value = myParentForm.cpuSensor.CoreTemperatureF(_sensorParam)
+                    Else
+                        Value = myParentForm.cpuSensor.CoreTemperatureF
                     End If
             End Select
         Catch ex As Exception

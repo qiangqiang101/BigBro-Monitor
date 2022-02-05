@@ -241,8 +241,15 @@ Public Class TextLabel
             Select Case _sensor
                 Case eSensorType.CPUCoreCount
                     Text = _b4Text & myParentForm.cpuSensor.CoreCount
+
+                    'Modified 05/02/2022
                 Case eSensorType.CPUClockSpeed
-                    Text = _b4Text & myParentForm.cpuSensor.ClockSpeed
+                    If IsNumeric(_sensorParam) Then
+                        Text = _b4Text & myParentForm.cpuSensor.ClockSpeed(_sensorParam)
+                    Else
+                        Text = _b4Text & myParentForm.cpuSensor.ClockSpeed
+                    End If
+
                 Case eSensorType.CPUTemperatureC
                     Text = _b4Text & myParentForm.cpuSensor.TemperatureC
                 Case eSensorType.CPUTemperatureF
@@ -458,6 +465,22 @@ Public Class TextLabel
                         Text = _b4Text & GetSystemUpTime.ToString("d\.h\:mm\:ss")
                     Else
                         Text = _b4Text & GetSystemUpTime.ToString(_sensorParam)
+                    End If
+
+                    'Added 05/02/2022
+                Case eSensorType.CPUBusSpeed
+                    Text = _b4Text & myParentForm.cpuSensor.BusClockSpeed
+                Case eSensorType.CPUCoreTemperatureC
+                    If IsNumeric(_sensorParam) Then
+                        Text = _b4Text & myParentForm.cpuSensor.CoreTemperatureC(_sensorParam)
+                    Else
+                        Text = _b4Text & myParentForm.cpuSensor.CoreTemperatureC
+                    End If
+                Case eSensorType.CPUCoreTemperatureF
+                    If IsNumeric(_sensorParam) Then
+                        Text = _b4Text & myParentForm.cpuSensor.CoreTemperatureF(_sensorParam)
+                    Else
+                        Text = _b4Text & myParentForm.cpuSensor.CoreTemperatureF
                     End If
             End Select
         Catch ex As Exception
