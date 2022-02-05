@@ -409,10 +409,13 @@ Public Class CircularStatusBar
         formGraphics.CompositingQuality = CompositingQuality.HighQuality
         formGraphics.PixelOffsetMode = PixelOffsetMode.HighQuality
 
+        Dim maxDontFail As Integer = _max
+        If maxDontFail < 1 Then maxDontFail = 1
+
         Select Case _csbstyle
             Case csbStyle.Style1
                 Using sbrush As New SolidBrush(ForeColor)
-                    Dim progressAngle = CSng(360 / _max * _val)
+                    Dim progressAngle = CSng(360 / maxDontFail * _val)
                     Dim remainderAngle = 360 '- progressAngle
 
                     Dim rect As New Rectangle(ClientRectangle.X + _thickness, ClientRectangle.Y + _thickness, ClientRectangle.Width - (_thickness * 2), ClientRectangle.Height - (_thickness * 2))
@@ -465,7 +468,7 @@ Public Class CircularStatusBar
                 End Using
             Case csbStyle.Style2
                 Using sbrush As New SolidBrush(ForeColor)
-                    Dim progressAngle = CSng(270 / _max * _val)
+                    Dim progressAngle = CSng(270 / maxDontFail * _val)
                     Dim remainderAngle = 270 '- progressAngle
                     Dim startAngle2 = -135
 
@@ -524,7 +527,7 @@ Public Class CircularStatusBar
                 End Using
             Case csbStyle.Style3
                 Using sbrush As New SolidBrush(ForeColor)
-                    Dim progressAngle = CSng(_barWidth / _max * _val)
+                    Dim progressAngle = CSng(_barWidth / maxDontFail * _val)
                     Dim remainderAngle = _barWidth '- progressAngle
 
                     Dim rect As New Rectangle(ClientRectangle.X + _thickness, ClientRectangle.Y + _thickness, ClientRectangle.Width - (_thickness * 2), ClientRectangle.Height - (_thickness * 2))

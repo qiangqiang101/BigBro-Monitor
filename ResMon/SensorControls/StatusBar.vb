@@ -353,7 +353,9 @@ Public Class StatusBar
         Using txtbrush As New SolidBrush(ForeColor)
             Dim textSize = If(_showValue, formGraphics.MeasureString(Text & _val & _unit, Font), formGraphics.MeasureString(Text, Font))
             Dim textPoint As Point
-            Dim percent As Decimal = (_val - _min) / (_max - _min)
+            Dim maxDontFail As Integer = _max
+            If maxDontFail < 1 Then maxDontFail = 1
+            Dim percent As Decimal = (_val - _min) / (maxDontFail - _min)
             Dim rect As Rectangle = ClientRectangle
             Dim sFormat As New StringFormat
 
