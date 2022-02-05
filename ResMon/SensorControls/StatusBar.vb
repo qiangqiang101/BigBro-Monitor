@@ -553,24 +553,24 @@ Public Class StatusBar
                 Case eSensorType.HDDUsage
                     If String.IsNullOrEmpty(_sensorParam) Then
                         _val = myParentForm.hddSensor.RawDiskUsage()
-                        _min = 0L
+                        _min = 0
                         _max = myParentForm.hddSensor.RawDiskTotalSize()
                         dynaMax = False
                     Else
                         _val = myParentForm.hddSensor.RawDiskUsage(CStr(_sensorParam))
-                        _min = 0L
+                        _min = 0
                         _max = myParentForm.hddSensor.RawDiskTotalSize(CStr(_sensorParam))
                         dynaMax = False
                     End If
                 Case eSensorType.HDDTotalFreeSpace
                     If String.IsNullOrEmpty(_sensorParam) Then
                         _val = myParentForm.hddSensor.RawDiskTotalFreeSpace()
-                        _min = 0L
+                        _min = 0
                         _max = myParentForm.hddSensor.RawDiskTotalSize()
                         dynaMax = False
                     Else
                         _val = myParentForm.hddSensor.RawDiskTotalFreeSpace(CStr(_sensorParam))
-                        _min = 0L
+                        _min = 0
                         _max = myParentForm.hddSensor.RawDiskTotalSize(CStr(_sensorParam))
                         dynaMax = False
                     End If
