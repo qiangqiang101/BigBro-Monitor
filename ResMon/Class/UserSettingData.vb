@@ -29,6 +29,10 @@ Public Structure UserSettingData
     Public Language As String
     Public AudioEffectHighQuality As Boolean
     Public RgbEffectHighQuality As Boolean
+    Public SecondScreen As Boolean
+    Public SecondScreenLocation As Point
+    Public SecondScreenYT As String
+    Public SecondScreenSize As Size
 
     Public Sub New(filename As String)
         Me.FileName = filename

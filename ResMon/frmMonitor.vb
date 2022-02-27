@@ -424,6 +424,10 @@ Public Class frmMonitor
                     .Language = UserSettings.Language
                     .AudioEffectHighQuality = UserSettings.AudioEffectHighQuality
                     .RgbEffectHighQuality = UserSettings.RgbEffectHighQuality
+                    .SecondScreen = UserSettings.SecondScreen
+                    .SecondScreenYT = UserSettings.SecondScreenYT
+                    .SecondScreenLocation = UserSettings.SecondScreenLocation
+                    .SecondScreenSize = UserSettings.SecondScreenSize
                     .SaveSilent()
                 End With
                 UserSettings = New UserSettingData(UserSettingFile).Instance

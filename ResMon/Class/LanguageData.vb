@@ -50,6 +50,11 @@ Public Structure LanguageData
     Public lblTemperature As String
     Public cbHQRgb As String
     Public cbHQAE As String
+    Public gbSecondScreen As String
+    Public cbSSEnable As String
+    Public cbSSPosReset As String
+    Public lblSSYTID As String
+    Public lblSSSize As String
 
     Public Sub New(filename As String)
         Me.FileName = filename

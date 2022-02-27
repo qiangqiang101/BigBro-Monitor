@@ -151,6 +151,12 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Class\Spectrum.vb" />
+    <Compile Include="frmMonitor2.Designer.vb">
+      <DependentUpon>frmMonitor2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMonitor2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SensorControls\AudioVisualizer.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -288,6 +294,9 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMonitor2.resx">
+      <DependentUpon>frmMonitor2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSandbox.resx">
       <DependentUpon>frmSandbox.vb</DependentUpon>

@@ -52,6 +52,8 @@ Public Class frmSetting
                 cmbTown.SelectedItem = UserSettings.Town
             End If
             cbTopMost.Checked = UserSettings.TopMost
+            cbHQRgb.Checked = UserSettings.RgbEffectHighQuality
+            cbHQAE.Checked = UserSettings.AudioEffectHighQuality
             If IsActivated Then
                 btnActivate.Hide()
                 lblLicense.Text = $"{ProgramLanguage.Registered} ({If(RemainingDays = 1, ProgramLanguage.DayRemain.Replace("%dr%", RemainingDays), ProgramLanguage.DaysRemain.Replace("%dr%", RemainingDays))})"
@@ -61,6 +63,10 @@ Public Class frmSetting
                 lblKey.Text = Nothing
             End If
             lblName.Text = UserSettings.Email
+            cbSSEnable.Checked = UserSettings.SecondScreen
+            txtSSTYID.Text = UserSettings.SecondScreenYT
+            txtSSWidth.Text = UserSettings.SecondScreenSize.Width
+            txtSSHeight.Text = UserSettings.SecondScreenSize.Height
         Catch ex As Exception
             Logger.Log(ex)
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
@@ -85,6 +91,11 @@ Public Class frmSetting
             cbResetSPanel.Text = ProgramLanguage.cbResetSPanel
             cbHQRgb.Text = ProgramLanguage.cbHQRgb
             cbHQAE.Text = ProgramLanguage.cbHQAE
+            gbSecondScreen.Text = ProgramLanguage.gbSecondScreen
+            cbSSEnable.Text = ProgramLanguage.cbSSEnable
+            cbSSPosReset.Text = ProgramLanguage.cbSSPosReset
+            lblSSYTID.Text = ProgramLanguage.lblSSYTID
+            lblSSSize.Text = ProgramLanguage.lblSSSize
         Catch ex As Exception
             Logger.Log(ex)
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
@@ -118,6 +129,10 @@ Public Class frmSetting
             lblKey.Text = UserSettings.LicenseKey
         End If
         lblName.Text = UserSettings.Email
+        cbSSEnable.Checked = UserSettings.SecondScreen
+        txtSSTYID.Text = UserSettings.SecondScreenYT
+        txtSSWidth.Text = UserSettings.SecondScreenSize.Width
+        txtSSHeight.Text = UserSettings.SecondScreenSize.Height
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -154,6 +169,14 @@ Public Class frmSetting
                 .Language = cmbLanguage.SelectedItem.ToString
                 .RgbEffectHighQuality = cbHQRgb.Checked
                 .AudioEffectHighQuality = cbHQAE.Checked
+                .SecondScreen = cbSSEnable.Checked
+                .SecondScreenYT = txtSSTYID.Text
+                If cbSSPosReset.Checked Then
+                    .SecondScreenLocation = Point.Empty
+                Else
+                    .SecondScreenLocation = UserSettings.SecondScreenLocation
+                End If
+                .SecondScreenSize = New Size(CInt(txtSSWidth.Text), CInt(txtSSHeight.Text))
                 .Save()
             End With
             UserSettings = New UserSettingData(UserSettingFile).Instance

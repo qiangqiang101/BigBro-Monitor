@@ -51,6 +51,10 @@ Public Class frmMain
                         .State = "KUALA LUMPUR"
                         .Town = "KUALA LUMPUR"
                         .TopMost = True
+                        .SecondScreen = False
+                        .SecondScreenYT = "VKNRNeRDs0Q"
+                        .SecondScreenLocation = Point.Empty
+                        .SecondScreenSize = New Size(1024, 600)
                     End With
                     tempUserSetting.SaveSilent()
                     UserSettings = tempUserSetting
@@ -92,6 +96,10 @@ Public Class frmMain
                             .State = "KUALA LUMPUR"
                             .Town = "KUALA LUMPUR"
                             .TopMost = True
+                            .SecondScreen = False
+                            .SecondScreenYT = "VKNRNeRDs0Q"
+                            .SecondScreenLocation = Point.Empty
+                            .SecondScreenSize = New Size(1024, 600)
                         End With
                         tempUserSetting.SaveSilent()
                         UserSettings = tempUserSetting
@@ -135,6 +143,7 @@ Public Class frmMain
                     silent = True
                     frmMonitor.Show()
                     RefreshMonitor()
+                    If UserSettings.SecondScreen Then frmMonitor2.Show()
                     Me.WindowState = FormWindowState.Minimized
                     niTray.Visible = True
                     Me.Hide()
@@ -573,6 +582,10 @@ Public Class frmMain
             .Language = UserSettings.Language
             .AudioEffectHighQuality = UserSettings.AudioEffectHighQuality
             .RgbEffectHighQuality = UserSettings.RgbEffectHighQuality
+            .SecondScreen = UserSettings.SecondScreen
+            .SecondScreenYT = UserSettings.SecondScreenYT
+            .SecondScreenLocation = UserSettings.SecondScreenLocation
+            .SecondScreenSize = UserSettings.SecondScreenSize
             .SaveSilent()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance
@@ -637,6 +650,10 @@ Public Class frmMain
             .Language = UserSettings.Language
             .AudioEffectHighQuality = UserSettings.AudioEffectHighQuality
             .RgbEffectHighQuality = UserSettings.RgbEffectHighQuality
+            .SecondScreen = UserSettings.SecondScreen
+            .SecondScreenYT = UserSettings.SecondScreenYT
+            .SecondScreenLocation = UserSettings.SecondScreenLocation
+            .SecondScreenSize = UserSettings.SecondScreenSize
             .SaveSilent()
         End With
         UserSettings = New UserSettingData(UserSettingFile).Instance
@@ -662,8 +679,14 @@ Public Class frmMain
                     frmMonitor.Show()
                     RefreshMonitor()
                 End If
+
+                If UserSettings.SecondScreen Then
+                    If Not frmMonitor2.Visible Then
+                        frmMonitor2.Show()
+                    End If
+                End If
             End If
-        Else
+            Else
             frmActivateLicense.Show()
         End If
     End Sub
@@ -1171,6 +1194,12 @@ Public Class frmMain
             frmMonitor.Controls.Clear()
             frmMonitor.Close()
         End If
+
+        If UserSettings.SecondScreen Then
+            If frmMonitor2.Visible Then
+                frmMonitor2.Close()
+            End If
+        End If
     End Sub
 
     Private Sub frmMain_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -1195,6 +1224,7 @@ Public Class frmMain
 
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
         If frmMonitor.Visible Then frmMonitor.Close()
+        If frmMonitor2.Visible Then frmMonitor2.Close()
         Me.Hide()
         frmSetting.Show()
     End Sub

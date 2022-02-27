@@ -49,8 +49,17 @@ Partial Class frmSetting
         Me.cbResetSPanel = New MaterialSkin.Controls.MaterialCheckbox()
         Me.cbHQAE = New MaterialSkin.Controls.MaterialCheckbox()
         Me.cbHQRgb = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.gbSecondScreen = New System.Windows.Forms.GroupBox()
+        Me.cbSSPosReset = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.lblSSYTID = New MaterialSkin.Controls.MaterialLabel()
+        Me.txtSSTYID = New MaterialSkin.Controls.MaterialTextBox()
+        Me.cbSSEnable = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.lblSSSize = New MaterialSkin.Controls.MaterialLabel()
+        Me.txtSSWidth = New MaterialSkin.Controls.MaterialTextBox()
+        Me.txtSSHeight = New MaterialSkin.Controls.MaterialTextBox()
         Me.gbWeather.SuspendLayout()
         Me.gbLicense.SuspendLayout()
+        Me.gbSecondScreen.SuspendLayout()
         Me.SuspendLayout()
         '
         'cbTopMost
@@ -136,7 +145,7 @@ Partial Class frmSetting
         Me.btnActivate.ForeColor = System.Drawing.Color.White
         Me.btnActivate.HighEmphasis = True
         Me.btnActivate.Icon = Nothing
-        Me.btnActivate.Location = New System.Drawing.Point(345, 40)
+        Me.btnActivate.Location = New System.Drawing.Point(345, 45)
         Me.btnActivate.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnActivate.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnActivate.Name = "btnActivate"
@@ -187,7 +196,7 @@ Partial Class frmSetting
         Me.btnCredits.ForeColor = System.Drawing.Color.White
         Me.btnCredits.HighEmphasis = True
         Me.btnCredits.Icon = Nothing
-        Me.btnCredits.Location = New System.Drawing.Point(9, 542)
+        Me.btnCredits.Location = New System.Drawing.Point(9, 705)
         Me.btnCredits.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnCredits.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnCredits.Name = "btnCredits"
@@ -288,7 +297,7 @@ Partial Class frmSetting
         Me.btnSave.ForeColor = System.Drawing.Color.White
         Me.btnSave.HighEmphasis = True
         Me.btnSave.Icon = Nothing
-        Me.btnSave.Location = New System.Drawing.Point(357, 542)
+        Me.btnSave.Location = New System.Drawing.Point(357, 705)
         Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnSave.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnSave.Name = "btnSave"
@@ -431,10 +440,10 @@ Partial Class frmSetting
         Me.gbLicense.Controls.Add(Me.lblKey)
         Me.gbLicense.Controls.Add(Me.lblName)
         Me.gbLicense.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.gbLicense.Location = New System.Drawing.Point(6, 450)
+        Me.gbLicense.Location = New System.Drawing.Point(6, 606)
         Me.gbLicense.Name = "gbLicense"
-        Me.gbLicense.Size = New System.Drawing.Size(472, 85)
-        Me.gbLicense.TabIndex = 11
+        Me.gbLicense.Size = New System.Drawing.Size(472, 90)
+        Me.gbLicense.TabIndex = 12
         Me.gbLicense.TabStop = False
         Me.gbLicense.Text = "License"
         '
@@ -492,10 +501,158 @@ Partial Class frmSetting
         Me.cbHQRgb.Text = "HQ RGB Effects"
         Me.cbHQRgb.UseVisualStyleBackColor = False
         '
+        'gbSecondScreen
+        '
+        Me.gbSecondScreen.Controls.Add(Me.txtSSHeight)
+        Me.gbSecondScreen.Controls.Add(Me.lblSSSize)
+        Me.gbSecondScreen.Controls.Add(Me.txtSSWidth)
+        Me.gbSecondScreen.Controls.Add(Me.cbSSPosReset)
+        Me.gbSecondScreen.Controls.Add(Me.lblSSYTID)
+        Me.gbSecondScreen.Controls.Add(Me.txtSSTYID)
+        Me.gbSecondScreen.Controls.Add(Me.cbSSEnable)
+        Me.gbSecondScreen.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.gbSecondScreen.Location = New System.Drawing.Point(6, 450)
+        Me.gbSecondScreen.Name = "gbSecondScreen"
+        Me.gbSecondScreen.Size = New System.Drawing.Size(472, 150)
+        Me.gbSecondScreen.TabIndex = 11
+        Me.gbSecondScreen.TabStop = False
+        Me.gbSecondScreen.Text = "Second Screen"
+        '
+        'cbSSPosReset
+        '
+        Me.cbSSPosReset.AutoSize = True
+        Me.cbSSPosReset.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.cbSSPosReset.Depth = 0
+        Me.cbSSPosReset.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.cbSSPosReset.ForeColor = System.Drawing.Color.White
+        Me.cbSSPosReset.Location = New System.Drawing.Point(244, 18)
+        Me.cbSSPosReset.Margin = New System.Windows.Forms.Padding(0)
+        Me.cbSSPosReset.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.cbSSPosReset.MouseState = MaterialSkin.MouseState.HOVER
+        Me.cbSSPosReset.Name = "cbSSPosReset"
+        Me.cbSSPosReset.Ripple = True
+        Me.cbSSPosReset.Size = New System.Drawing.Size(219, 37)
+        Me.cbSSPosReset.TabIndex = 1
+        Me.cbSSPosReset.Text = "Reset 2nd Screen Position"
+        Me.cbSSPosReset.UseVisualStyleBackColor = False
+        '
+        'lblSSYTID
+        '
+        Me.lblSSYTID.AutoSize = True
+        Me.lblSSYTID.BackColor = System.Drawing.Color.Transparent
+        Me.lblSSYTID.Depth = 0
+        Me.lblSSYTID.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.lblSSYTID.ForeColor = System.Drawing.Color.White
+        Me.lblSSYTID.Location = New System.Drawing.Point(6, 61)
+        Me.lblSSYTID.MouseState = MaterialSkin.MouseState.HOVER
+        Me.lblSSYTID.Name = "lblSSYTID"
+        Me.lblSSYTID.Size = New System.Drawing.Size(106, 19)
+        Me.lblSSYTID.TabIndex = 7
+        Me.lblSSYTID.Text = "Youtube Vid ID"
+        '
+        'txtSSTYID
+        '
+        Me.txtSSTYID.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSSTYID.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.txtSSTYID.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtSSTYID.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSSTYID.Depth = 0
+        Me.txtSSTYID.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.txtSSTYID.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.txtSSTYID.LeadingIcon = Nothing
+        Me.txtSSTYID.Location = New System.Drawing.Point(121, 58)
+        Me.txtSSTYID.MaxLength = 32767
+        Me.txtSSTYID.MouseState = MaterialSkin.MouseState.OUT
+        Me.txtSSTYID.Multiline = False
+        Me.txtSSTYID.Name = "txtSSTYID"
+        Me.txtSSTYID.Size = New System.Drawing.Size(345, 36)
+        Me.txtSSTYID.TabIndex = 2
+        Me.txtSSTYID.Text = "VKNRNeRDs0Q"
+        Me.txtSSTYID.TrailingIcon = Nothing
+        Me.txtSSTYID.UseTallSize = False
+        '
+        'cbSSEnable
+        '
+        Me.cbSSEnable.AutoSize = True
+        Me.cbSSEnable.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.cbSSEnable.Depth = 0
+        Me.cbSSEnable.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.cbSSEnable.ForeColor = System.Drawing.Color.White
+        Me.cbSSEnable.Location = New System.Drawing.Point(3, 18)
+        Me.cbSSEnable.Margin = New System.Windows.Forms.Padding(0)
+        Me.cbSSEnable.MouseLocation = New System.Drawing.Point(-1, -1)
+        Me.cbSSEnable.MouseState = MaterialSkin.MouseState.HOVER
+        Me.cbSSEnable.Name = "cbSSEnable"
+        Me.cbSSEnable.Ripple = True
+        Me.cbSSEnable.Size = New System.Drawing.Size(192, 37)
+        Me.cbSSEnable.TabIndex = 0
+        Me.cbSSEnable.Text = "Enable Second Screen"
+        Me.cbSSEnable.UseVisualStyleBackColor = False
+        '
+        'lblSSSize
+        '
+        Me.lblSSSize.AutoSize = True
+        Me.lblSSSize.BackColor = System.Drawing.Color.Transparent
+        Me.lblSSSize.Depth = 0
+        Me.lblSSSize.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.lblSSSize.ForeColor = System.Drawing.Color.White
+        Me.lblSSSize.Location = New System.Drawing.Point(6, 103)
+        Me.lblSSSize.MouseState = MaterialSkin.MouseState.HOVER
+        Me.lblSSSize.Name = "lblSSSize"
+        Me.lblSSSize.Size = New System.Drawing.Size(83, 19)
+        Me.lblSSSize.TabIndex = 9
+        Me.lblSSSize.Text = "Screen Size"
+        '
+        'txtSSWidth
+        '
+        Me.txtSSWidth.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSSWidth.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.txtSSWidth.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtSSWidth.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSSWidth.Depth = 0
+        Me.txtSSWidth.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.txtSSWidth.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.txtSSWidth.LeadingIcon = Nothing
+        Me.txtSSWidth.Location = New System.Drawing.Point(121, 100)
+        Me.txtSSWidth.MaxLength = 32767
+        Me.txtSSWidth.MouseState = MaterialSkin.MouseState.OUT
+        Me.txtSSWidth.Multiline = False
+        Me.txtSSWidth.Name = "txtSSWidth"
+        Me.txtSSWidth.Size = New System.Drawing.Size(169, 36)
+        Me.txtSSWidth.TabIndex = 3
+        Me.txtSSWidth.Text = "1024"
+        Me.txtSSWidth.TrailingIcon = Nothing
+        Me.txtSSWidth.UseTallSize = False
+        '
+        'txtSSHeight
+        '
+        Me.txtSSHeight.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSSHeight.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.txtSSHeight.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtSSHeight.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSSHeight.Depth = 0
+        Me.txtSSHeight.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.txtSSHeight.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.txtSSHeight.LeadingIcon = Nothing
+        Me.txtSSHeight.Location = New System.Drawing.Point(297, 100)
+        Me.txtSSHeight.MaxLength = 32767
+        Me.txtSSHeight.MouseState = MaterialSkin.MouseState.OUT
+        Me.txtSSHeight.Multiline = False
+        Me.txtSSHeight.Name = "txtSSHeight"
+        Me.txtSSHeight.Size = New System.Drawing.Size(169, 36)
+        Me.txtSSHeight.TabIndex = 4
+        Me.txtSSHeight.Text = "600"
+        Me.txtSSHeight.TrailingIcon = Nothing
+        Me.txtSSHeight.UseTallSize = False
+        '
         'frmSetting
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(484, 587)
+        Me.ClientSize = New System.Drawing.Size(484, 750)
+        Me.Controls.Add(Me.gbSecondScreen)
         Me.Controls.Add(Me.cbHQAE)
         Me.Controls.Add(Me.cbHQRgb)
         Me.Controls.Add(Me.cbResetSPanel)
@@ -524,6 +681,8 @@ Partial Class frmSetting
         Me.gbWeather.PerformLayout()
         Me.gbLicense.ResumeLayout(False)
         Me.gbLicense.PerformLayout()
+        Me.gbSecondScreen.ResumeLayout(False)
+        Me.gbSecondScreen.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -553,4 +712,12 @@ Partial Class frmSetting
     Friend WithEvents cbResetSPanel As MaterialCheckbox
     Friend WithEvents cbHQAE As MaterialCheckbox
     Friend WithEvents cbHQRgb As MaterialCheckbox
+    Friend WithEvents gbSecondScreen As GroupBox
+    Friend WithEvents lblSSYTID As MaterialLabel
+    Friend WithEvents txtSSTYID As MaterialTextBox
+    Friend WithEvents cbSSEnable As MaterialCheckbox
+    Friend WithEvents cbSSPosReset As MaterialCheckbox
+    Friend WithEvents txtSSHeight As MaterialTextBox
+    Friend WithEvents lblSSSize As MaterialLabel
+    Friend WithEvents txtSSWidth As MaterialTextBox
 End Class
