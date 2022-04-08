@@ -526,6 +526,8 @@ Public Enum eSensorType
 
     DisplayScreenResolution = 47
     DisplayRefreshRate = 48
+    DisplayFramerate = 57
+    DisplayFrametime
 
     'Last Item CPUCoreTemperatureF = 56
 End Enum

@@ -111,6 +111,14 @@
       <HintPath>..\packages\Microsoft.Web.WebView2.1.0.902.49\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MSIAfterburnerNET.Common, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSIAfterburnerNET.Common.1.0.2\lib\net462\MSIAfterburnerNET.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MSIAfterburnerNET.HM, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSIAfterburnerNET.HM.1.0.7\lib\net462\MSIAfterburnerNET.HM.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NetworkMonitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NetworkMonitor.dll</HintPath>

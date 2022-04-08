@@ -798,6 +798,16 @@ Public Class StatusBar
                         _max = 120
                         dynaMax = False
                     End If
+
+                    'Added 08/04/2022
+                Case eSensorType.DisplayFramerate
+                    _val = myParentForm.displaySensor.RawFramerate()
+                    _min = 0
+                    dynaMax = True
+                Case eSensorType.DisplayFrametime
+                    _val = myParentForm.displaySensor.RawFrametime()
+                    _min = 0
+                    dynaMax = True
             End Select
 
             If dynaMax Then

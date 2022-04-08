@@ -488,7 +488,9 @@ Namespace My.Resources
         '''© leocb &amp; orapps44
         '''
         '''CSCore - .NET Audio Library
-        '''© Florian.
+        '''© Florian
+        '''
+        '''MSIAfterburner.NET        ''' [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property ThirdParty() As String
             Get

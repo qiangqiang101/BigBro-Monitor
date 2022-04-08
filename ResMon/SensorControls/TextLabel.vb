@@ -482,6 +482,12 @@ Public Class TextLabel
                     Else
                         Text = _b4Text & myParentForm.cpuSensor.CoreTemperatureF
                     End If
+
+                    'Added 08/04/2022
+                Case eSensorType.DisplayFramerate
+                    Text = _b4Text & myParentForm.displaySensor.Framerate()
+                Case eSensorType.DisplayFrametime
+                    Text = _b4Text & myParentForm.displaySensor.Frametime()
             End Select
         Catch ex As Exception
             Logger.Log(ex)

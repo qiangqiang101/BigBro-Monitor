@@ -612,6 +612,12 @@ Public Class PlotChart
                     Else
                         AddValue(myParentForm.cpuSensor.CoreTemperatureF, "°F")
                     End If
+
+                    'Added 08/04/2022
+                Case eSensorType.DisplayFramerate
+                    AddValue(myParentForm.displaySensor.RawFramerate(), " FPS")
+                Case eSensorType.DisplayFrametime
+                    AddValue(myParentForm.displaySensor.RawFrametime(), " ms")
             End Select
         Catch ex As Exception
             Logger.Log(ex)

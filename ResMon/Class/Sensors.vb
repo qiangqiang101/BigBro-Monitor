@@ -5,6 +5,8 @@ Imports System.Text
 Imports System.Text.RegularExpressions
 Imports System.Threading
 Imports Echevil
+Imports MSIAfterburnerNET.HM
+Imports MSIAfterburnerNET.HM.Interop
 Imports OpenHardwareMonitor.Hardware
 
 Public Class CPUSensors
@@ -1023,6 +1025,42 @@ Public Class DisplaySensor
         End Try
     End Function
 
+    Public Function Framerate() As String
+        Dim returnFps As String = "0 FPS"
+        Try
+            Using mahm = New HardwareMonitor()
+                Dim fps As HardwareMonitorEntry = mahm.GetEntry(MONITORING_SOURCE_ID.FRAMERATE, HardwareMonitor.GLOBAL_INDEX)
+                If fps IsNot Nothing Then
+                    For i As Integer = 0 To 10
+                        returnFps = $"{CInt(fps.Data)} FPS"
+                        mahm.RefreshEntry(fps)
+                    Next
+                End If
+            End Using
+        Catch ex As Exception
+            returnFps = "0 FPS"
+        End Try
+        Return returnFps
+    End Function
+
+    Public Function Frametime() As String
+        Dim returnFt As String = "0 ms"
+        Try
+            Using mahm = New HardwareMonitor()
+                Dim ft As HardwareMonitorEntry = mahm.GetEntry(MONITORING_SOURCE_ID.FRAMETIME, HardwareMonitor.GLOBAL_INDEX)
+                If ft IsNot Nothing Then
+                    For i As Integer = 0 To 10
+                        returnFt = $"{CInt(ft.Data)} ms"
+                        mahm.RefreshEntry(ft)
+                    Next
+                End If
+            End Using
+        Catch ex As Exception
+            returnFt = "0 ms"
+        End Try
+        Return returnFt
+    End Function
+
     Public Function RawRefreshRate() As Integer
         Dim query As New Management.SelectQuery("Win32_VideoController")
         Dim refresh As Integer = 0
@@ -1040,6 +1078,42 @@ Public Class DisplaySensor
 
     Public Function RawScreenResolution() As String
         Return ScreenResolution()
+    End Function
+
+    Public Function RawFramerate() As Integer
+        Dim returnFps As Integer = 0
+        Try
+            Using mahm = New HardwareMonitor()
+                Dim fps As HardwareMonitorEntry = mahm.GetEntry(MONITORING_SOURCE_ID.FRAMERATE, HardwareMonitor.GLOBAL_INDEX)
+                If fps IsNot Nothing Then
+                    For i As Integer = 0 To 10
+                        returnFps = CInt(fps.Data)
+                        mahm.RefreshEntry(fps)
+                    Next
+                End If
+            End Using
+        Catch ex As Exception
+            returnFps = 0
+        End Try
+        Return returnFps
+    End Function
+
+    Public Function RawFrametime() As Integer
+        Dim returnFt As Integer = 0
+        Try
+            Using mahm = New HardwareMonitor()
+                Dim ft As HardwareMonitorEntry = mahm.GetEntry(MONITORING_SOURCE_ID.FRAMERATE, HardwareMonitor.GLOBAL_INDEX)
+                If ft IsNot Nothing Then
+                    For i As Integer = 0 To 10
+                        returnFt = CInt(ft.Data)
+                        mahm.RefreshEntry(ft)
+                    Next
+                End If
+            End Using
+        Catch ex As Exception
+            returnFt = 0
+        End Try
+        Return returnFt
     End Function
 
 End Class

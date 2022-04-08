@@ -700,16 +700,22 @@ Public Class CustomText
                     Value = myParentForm.cpuSensor.RawBusClockSpeed
                 Case eSensorType.CPUCoreTemperatureC
                     If IsNumeric(_sensorParam) Then
-                        Value = myParentForm.cpuSensor.CoreTemperatureC(_sensorParam)
+                        Value = myParentForm.cpuSensor.RawCoreTemperatureC(_sensorParam)
                     Else
-                        Value = myParentForm.cpuSensor.CoreTemperatureC
+                        Value = myParentForm.cpuSensor.RawCoreTemperatureC
                     End If
                 Case eSensorType.CPUCoreTemperatureF
                     If IsNumeric(_sensorParam) Then
-                        Value = myParentForm.cpuSensor.CoreTemperatureF(_sensorParam)
+                        Value = myParentForm.cpuSensor.RawCoreTemperatureF(_sensorParam)
                     Else
-                        Value = myParentForm.cpuSensor.CoreTemperatureF
+                        Value = myParentForm.cpuSensor.RawCoreTemperatureF
                     End If
+
+                    'Added 08/04/2022
+                Case eSensorType.DisplayFramerate
+                    Value = myParentForm.displaySensor.RawFramerate()
+                Case eSensorType.DisplayFrametime
+                    Value = myParentForm.displaySensor.RawFrametime()
             End Select
         Catch ex As Exception
             Logger.Log(ex)
