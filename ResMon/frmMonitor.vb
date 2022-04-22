@@ -75,6 +75,10 @@ Public Class frmMonitor
     End Property
 
     Private Sub Updater_Tick(sender As Object, e As EventArgs) Handles Updater.Tick
+        If Not bwUpdater.IsBusy Then bwUpdater.RunWorkerAsync()
+    End Sub
+
+    Private Sub bwUpdater_DoWork(sender As Object, e As DoWorkEventArgs) Handles bwUpdater.DoWork
         rs.FindAllControls(Me)
 
         Monitor()
@@ -304,6 +308,11 @@ Public Class frmMonitor
     End Sub
 
     Private Sub RGBTicker_Tick(sender As Object, e As EventArgs) Handles RGBTicker.Tick
+        If Not bwRGBTicker.IsBusy Then bwRGBTicker.RunWorkerAsync()
+    End Sub
+
+
+    Private Sub bwRGBTicker_DoWork(sender As Object, e As DoWorkEventArgs) Handles bwRGBTicker.DoWork
         If Not Me.Editing Then
             Invalidate()
 
@@ -382,7 +391,7 @@ Public Class frmMonitor
 
     Private Sub OnFrameChanged(ByVal o As Object, ByVal e As EventArgs)
         Invalidate()
-        Threading.Thread.Sleep(20)
+        Task.Delay(20)
     End Sub
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)

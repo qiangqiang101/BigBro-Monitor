@@ -8,6 +8,7 @@ Imports Echevil
 Imports MSIAfterburnerNET.HM
 Imports MSIAfterburnerNET.HM.Interop
 Imports OpenHardwareMonitor.Hardware
+Imports sm = System.Management
 
 Public Class CPUSensors
 
@@ -994,12 +995,13 @@ End Class
 Public Class DisplaySensor
 
     Public Function RefreshRate() As String
-        Dim query As New Management.SelectQuery("Win32_VideoController")
+        Dim query As New sm.SelectQuery("Win32_VideoController")
         Dim refresh As String = "0 Hz"
 
         Try
-            For Each mo As Management.ManagementObject In New Management.ManagementObjectSearcher(query).Get
-                refresh = If(mo("CurrentRefreshRate") IsNot Nothing, $"{mo("CurrentRefreshRate").ToString} Hz", "0 Hz")
+            For Each mo As sm.ManagementObject In New sm.ManagementObjectSearcher(query).Get
+                Dim CurrentRefreshRate As Object = mo("CurrentRefreshRate")
+                If CurrentRefreshRate IsNot Nothing Then refresh = $"{CurrentRefreshRate.ToString} Hz"
             Next
 
             Return refresh
@@ -1009,20 +1011,8 @@ Public Class DisplaySensor
     End Function
 
     Public Function ScreenResolution() As String
-        Dim query As New Management.SelectQuery("Win32_VideoController")
-        Dim horizon As String = 0
-        Dim vertical As String = 0
-
-        Try
-            For Each mo As Management.ManagementObject In New Management.ManagementObjectSearcher(query).Get
-                horizon = If(mo("CurrentHorizontalResolution") IsNot Nothing, $"{mo("CurrentHorizontalResolution").ToString}", "0")
-                vertical = If(mo("CurrentVerticalResolution") IsNot Nothing, $"{mo("CurrentVerticalResolution").ToString}", "0")
-            Next
-
-            Return $"{horizon}x{vertical}"
-        Catch ex As Exception
-            Return "0x0"
-        End Try
+        Dim scr = Screen.PrimaryScreen.Bounds
+        Return $"{scr.Width}x{scr.Height}"
     End Function
 
     Public Function Framerate() As String
@@ -1062,12 +1052,13 @@ Public Class DisplaySensor
     End Function
 
     Public Function RawRefreshRate() As Integer
-        Dim query As New Management.SelectQuery("Win32_VideoController")
+        Dim query As New sm.SelectQuery("Win32_VideoController")
         Dim refresh As Integer = 0
 
         Try
-            For Each mo As Management.ManagementObject In New Management.ManagementObjectSearcher(query).Get
-                refresh = If(mo("CurrentRefreshRate") IsNot Nothing, CInt(mo("CurrentRefreshRate").ToString), 0)
+            For Each mo As sm.ManagementObject In New sm.ManagementObjectSearcher(query).Get
+                Dim CurrentRefreshRate As Object = mo("CurrentRefreshRate")
+                If CurrentRefreshRate IsNot Nothing Then refresh = CInt(CurrentRefreshRate.ToString)
             Next
 
             Return refresh
@@ -1102,7 +1093,7 @@ Public Class DisplaySensor
         Dim returnFt As Integer = 0
         Try
             Using mahm = New HardwareMonitor()
-                Dim ft As HardwareMonitorEntry = mahm.GetEntry(MONITORING_SOURCE_ID.FRAMERATE, HardwareMonitor.GLOBAL_INDEX)
+                Dim ft As HardwareMonitorEntry = mahm.GetEntry(MONITORING_SOURCE_ID.FRAMETIME, HardwareMonitor.GLOBAL_INDEX)
                 If ft IsNot Nothing Then
                     For i As Integer = 0 To 10
                         returnFt = CInt(ft.Data)

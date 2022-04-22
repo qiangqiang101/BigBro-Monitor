@@ -672,7 +672,7 @@ Public Class frmMain
                     Next
 
                     frmMonitor.Close()
-                    Threading.Thread.Sleep(500)
+                    Task.Delay(500)
                     frmMonitor.Show()
                     RefreshMonitor()
                 Else

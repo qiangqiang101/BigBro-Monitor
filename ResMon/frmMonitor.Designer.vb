@@ -26,6 +26,8 @@ Partial Class frmMonitor
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMonitor))
         Me.Updater = New System.Windows.Forms.Timer(Me.components)
         Me.RGBTicker = New System.Windows.Forms.Timer(Me.components)
+        Me.bwUpdater = New System.ComponentModel.BackgroundWorker()
+        Me.bwRGBTicker = New System.ComponentModel.BackgroundWorker()
         Me.SuspendLayout()
         '
         'Updater
@@ -35,6 +37,12 @@ Partial Class frmMonitor
         'RGBTicker
         '
         Me.RGBTicker.Interval = 60
+        '
+        'bwUpdater
+        '
+        '
+        'bwRGBTicker
+        '
         '
         'frmMonitor
         '
@@ -61,4 +69,6 @@ Partial Class frmMonitor
     End Sub
     Friend WithEvents Updater As Timer
     Friend WithEvents RGBTicker As Timer
+    Friend WithEvents bwUpdater As System.ComponentModel.BackgroundWorker
+    Friend WithEvents bwRGBTicker As System.ComponentModel.BackgroundWorker
 End Class

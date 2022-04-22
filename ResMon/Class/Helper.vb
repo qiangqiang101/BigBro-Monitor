@@ -36,6 +36,7 @@ Module Helper
 
     Public snapshots As String
 
+
     Public Function GetUserName() As String
         If TypeOf My.User.CurrentPrincipal Is WindowsPrincipal Then
             Dim parts() As String = Split(My.User.Name, "\")
