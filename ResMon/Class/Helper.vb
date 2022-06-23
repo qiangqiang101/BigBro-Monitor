@@ -180,6 +180,27 @@ Module Helper
     End Function
 
     <Extension>
+    Public Function ToBase64(text As String) As String
+        If text = Nothing Then Return text
+
+        Dim plainTextBytes = System.Text.Encoding.UTF8.GetBytes(text)
+        Return Convert.ToBase64String(plainTextBytes)
+    End Function
+
+    <Extension>
+    Public Function Base64ToString(base64 As String) As String
+        If base64 = Nothing Then Return base64
+
+        Try
+            Dim base64Bytes = Convert.FromBase64String(base64)
+            Return Text.Encoding.UTF8.GetString(base64Bytes)
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
+
+    <Extension>
     Public Function TakeScreenShot(ByVal form As Form) As Bitmap
         Dim Screenshot As New Bitmap(form.Width, form.Height)
         form.DrawToBitmap(Screenshot, New Rectangle(0, 0, form.Width, form.Height))
