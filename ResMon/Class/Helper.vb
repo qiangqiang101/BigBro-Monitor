@@ -336,8 +336,8 @@ Module Helper
                     result = False
                 End If
             Catch ex As Exception
-                Return CheckActivation(hwid, email, retry + 1)
                 Logger.Log(ex)
+                Return CheckActivation(hwid, email, retry + 1)
             End Try
         End If
 

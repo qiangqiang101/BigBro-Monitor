@@ -2,12 +2,14 @@
 
 	function mysqlconnect() {
 		global $config;
-		mysql_connect($config['mysql']['host'], $config['mysql']['user'], $config['mysql']['pass']) or die("MySql: Can not connect."); 
-		mysql_select_db($config['mysql']['datb']) or die("MySql: Can not select database.");
+		$con = mysqli_connect($config['mysql']['host'], $config['mysql']['user'], $config['mysql']['pass'], $config['mysql']['datb']);
+		mysqli_select_db($con, $config['mysql']['datb']) or die("MySql: Can not select database.");
 	}
 	
 	function mysqlclose() {
-		mysql_close();
+		global $config;
+		$con = mysqli_connect($config['mysql']['host'], $config['mysql']['user'], $config['mysql']['pass'], $config['mysql']['datb']);
+		mysqli_close($con);
 	}
 
 ?>

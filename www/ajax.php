@@ -6,6 +6,11 @@
 | See licenses for more information about the use of the software.
 \======================================================================*/
 
+header("Content-Type: application/json");
+header("Acess-Control-Allow-Origin: *");
+header("Acess-Control-Allow-Methods: POST");
+header("Acess-Control-Allow-Headers: Acess-Control-Allow-Headers,Content-Type,Acess-Control-Allow-Methods, Authorization");
+
 // core functions
 include_once "core.php";
 

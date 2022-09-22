@@ -1,14 +1,14 @@
 <?php
 	
 	// Main
-	$config['page']['title'] = "Easy License System";
-	$config['page']['version'] = "version 1.0.1";
+	$config['page']['title'] = "Easy License System PHP 7.x";
+	$config['page']['version'] = "version 1.1.0";
 	
 	// MySql
 	$config['mysql']['host'] = "localhost";
-	$config['mysql']['user'] = "bigbro88_els";
-	$config['mysql']['pass'] = "FbU20B0xft";
-	$config['mysql']['datb'] = "bigbro88_els";
+	$config['mysql']['user'] = "root";
+	$config['mysql']['pass'] = "1234";
+	$config['mysql']['datb'] = "els";
 	
 	// Login Data
 	$config['account']['user'] = "choisan";
