@@ -52,76 +52,50 @@
 	}
 	
 	function getUsers() {
-		global $config;
-		$con = mysqli_connect($config['mysql']['host'], $config['mysql']['user'], $config['mysql']['pass'], $config['mysql']['datb']);
-		$result = mysqli_query($con, "SELECT * FROM `keys` WHERE NOT hwid='' ORDER BY created DESC");
-		echo mysqli_error($con);
+		$result = mysql_query("SELECT * FROM `keys` WHERE NOT hwid='' ORDER BY created DESC");
+		echo mysql_error();
 		$return = array("id", "key", "hwid", "created", "registered", "expiredate", "product");
 		$arr = array();
-		
-		for($i=0; $i<mysqli_num_rows($result); $i++) {
+		for($i=0; $i<mysql_num_rows($result); $i++) {
 			foreach($return as $k=>$v) {
-				$arr[$i][$v] = mysqli_result($result, $i, $v);
+				$arr[$i][$v] = mysql_result($result, $i, $v);
 			}
 		}
 		return $arr;
 	}
 	
 	function getKeys() {
-		global $config;
-		$con = mysqli_connect($config['mysql']['host'], $config['mysql']['user'], $config['mysql']['pass'], $config['mysql']['datb']);
-		$result = mysqli_query($con, "SELECT * FROM `keys` WHERE hwid='' ORDER BY created DESC");
-		echo mysqli_error($con);
+		$result = mysql_query("SELECT * FROM `keys` WHERE hwid='' ORDER BY created DESC");
+		echo mysql_error();
         
 		$return = array("id", "key", "created", "date");
 		$arr = array();
-		for($i=0; $i<mysqli_num_rows($result); $i++) {
+		for($i=0; $i<mysql_num_rows($result); $i++) {
 			foreach($return as $k=>$v) {
-				$arr[$i][$v] = mysqli_result($result, $i, $v);
+				$arr[$i][$v] = mysql_result($result, $i, $v);
 			}
 		}
 		return $arr;
 	}
-	
-	function mysqli_result($res,$row=0,$col=0)
-	{ 
-		$numrows = mysqli_num_rows($res); 
-		if ($numrows && $row <= ($numrows-1) && $row >=0){
-			mysqli_data_seek($res,$row);
-			$resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
-			if (isset($resrow[$col])){
-				return $resrow[$col];
-			}
-		}	
-		return false;
-	}
 
 	function addKey() {
-		global $config;
-		$con = mysqli_connect($config['mysql']['host'], $config['mysql']['user'], $config['mysql']['pass'], $config['mysql']['datb']);
-		mysqli_query($con, "INSERT INTO `keys` (`key`, `date`) VALUES ('".generateKey()."', '".$_POST['txtDate']."')");
+		mysql_query("INSERT INTO `keys` (`key`, `date`) VALUES ('".generateKey()."', '".$_POST['txtDate']."')");
 		
 	}
 	
 	function deleteKey($id) {
-		global $config;
-		$con = mysqli_connect($config['mysql']['host'], $config['mysql']['user'], $config['mysql']['pass'], $config['mysql']['datb']);
-		mysqli_query($con, "DELETE FROM `keys` WHERE id = ".$id);
+		mysql_query("DELETE FROM `keys` WHERE id = ".$id);
 	}
 
 	function resetKey($id) {
-		global $config;
-		$con = mysqli_connect($config['mysql']['host'], $config['mysql']['user'], $config['mysql']['pass'], $config['mysql']['datb']);
-		mysqli_query($con, "UPDATE `keys` SET hwid = '' WHERE id = ".$id);
+		mysql_query("UPDATE `keys` SET hwid = '' WHERE id = ".$id);
 	}
 
 	/* API */
 	function canUse($hwid, $product) { 
 		if(!$hwid) { return false; }
-		global $config;
-		$con = mysqli_connect($config['mysql']['host'], $config['mysql']['user'], $config['mysql']['pass'], $config['mysql']['datb']);
-		$result = mysqli_query($con, "SELECT * FROM `keys` WHERE `hwid` = '".$hwid."' AND product = '".$product."'"); 
-		return mysqli_num_rows($result)>0;
+		$result = mysql_query("SELECT * FROM `keys` WHERE `hwid` = '".$hwid."' AND product = '".$product."'"); 
+		return mysql_num_rows($result)>0;
 	}
 
     function dateCheck($hwid, $config) {
@@ -146,15 +120,13 @@
     
 	function isFree($key) {
 		if(!$key) { return false; }
-		global $config;
-		$con = mysqli_connect($config['mysql']['host'], $config['mysql']['user'], $config['mysql']['pass'], $config['mysql']['datb']);
-		$result = mysqli_query($con, "SELECT * FROM `keys` WHERE `key` = '".$key."' AND `hwid` = ''");
-		return mysqli_num_rows($result)>0;
+		$result = mysql_query("SELECT * FROM `keys` WHERE `key` = '".$key."' AND `hwid` = ''");
+		return mysql_num_rows($result)>0;
 	}
 	
 	function isKey($key) {
-		$result = mysqli_query("SELECT * FROM `keys` WHERE `key` = '".$key."'");
-		return mysqli_num_rows($result)>0;
+		$result = mysql_query("SELECT * FROM `keys` WHERE `key` = '".$key."'");
+		return mysql_num_rows($result)>0;
 	}
 	
 	function registerKey($key, $hwid, $product, $config) {
@@ -176,7 +148,7 @@
         } else {
         echo "Database returned null";
         }  
-		mysqli_query("UPDATE `keys` SET `hwid` = '".$hwid."',  `expiredate` = '".date("Y-m-d", $timestamp)."', `product` = '".$product."', `registered` = '".date("Y-m-d H:i:s", time())."' WHERE `key` = '".$key."'");
+		mysql_query("UPDATE `keys` SET `hwid` = '".$hwid."',  `expiredate` = '".date("Y-m-d", $timestamp)."', `product` = '".$product."', `registered` = '".date("Y-m-d H:i:s", time())."' WHERE `key` = '".$key."'");
 		return canUse($hwid);
 	}
 

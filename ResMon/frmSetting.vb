@@ -233,4 +233,11 @@ Public Class frmSetting
     Private Sub btnActivate_Click(sender As Object, e As EventArgs) Handles btnActivate.Click
         frmActivateLicense.Show()
     End Sub
+
+    Private Sub lblName_MouseClick(sender As Object, e As MouseEventArgs) Handles lblName.MouseClick
+        If e.Button = MouseButtons.Middle Then
+            MsgBox($"Your HWID is {HWID}.", MsgBoxStyle.Information, "HWID")
+            Clipboard.SetText(HWID)
+        End If
+    End Sub
 End Class

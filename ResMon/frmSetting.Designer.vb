@@ -50,13 +50,13 @@ Partial Class frmSetting
         Me.cbHQAE = New MaterialSkin.Controls.MaterialCheckbox()
         Me.cbHQRgb = New MaterialSkin.Controls.MaterialCheckbox()
         Me.gbSecondScreen = New System.Windows.Forms.GroupBox()
+        Me.txtSSHeight = New MaterialSkin.Controls.MaterialTextBox()
+        Me.lblSSSize = New MaterialSkin.Controls.MaterialLabel()
+        Me.txtSSWidth = New MaterialSkin.Controls.MaterialTextBox()
         Me.cbSSPosReset = New MaterialSkin.Controls.MaterialCheckbox()
         Me.lblSSYTID = New MaterialSkin.Controls.MaterialLabel()
         Me.txtSSTYID = New MaterialSkin.Controls.MaterialTextBox()
         Me.cbSSEnable = New MaterialSkin.Controls.MaterialCheckbox()
-        Me.lblSSSize = New MaterialSkin.Controls.MaterialLabel()
-        Me.txtSSWidth = New MaterialSkin.Controls.MaterialTextBox()
-        Me.txtSSHeight = New MaterialSkin.Controls.MaterialTextBox()
         Me.gbWeather.SuspendLayout()
         Me.gbLicense.SuspendLayout()
         Me.gbSecondScreen.SuspendLayout()
@@ -518,6 +518,64 @@ Partial Class frmSetting
         Me.gbSecondScreen.TabStop = False
         Me.gbSecondScreen.Text = "Second Screen"
         '
+        'txtSSHeight
+        '
+        Me.txtSSHeight.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSSHeight.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.txtSSHeight.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtSSHeight.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSSHeight.Depth = 0
+        Me.txtSSHeight.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.txtSSHeight.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.txtSSHeight.LeadingIcon = Nothing
+        Me.txtSSHeight.Location = New System.Drawing.Point(297, 100)
+        Me.txtSSHeight.MaxLength = 32767
+        Me.txtSSHeight.MouseState = MaterialSkin.MouseState.OUT
+        Me.txtSSHeight.Multiline = False
+        Me.txtSSHeight.Name = "txtSSHeight"
+        Me.txtSSHeight.Size = New System.Drawing.Size(169, 36)
+        Me.txtSSHeight.TabIndex = 4
+        Me.txtSSHeight.Text = "600"
+        Me.txtSSHeight.TrailingIcon = Nothing
+        Me.txtSSHeight.UseTallSize = False
+        '
+        'lblSSSize
+        '
+        Me.lblSSSize.AutoSize = True
+        Me.lblSSSize.BackColor = System.Drawing.Color.Transparent
+        Me.lblSSSize.Depth = 0
+        Me.lblSSSize.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.lblSSSize.ForeColor = System.Drawing.Color.White
+        Me.lblSSSize.Location = New System.Drawing.Point(6, 103)
+        Me.lblSSSize.MouseState = MaterialSkin.MouseState.HOVER
+        Me.lblSSSize.Name = "lblSSSize"
+        Me.lblSSSize.Size = New System.Drawing.Size(83, 19)
+        Me.lblSSSize.TabIndex = 9
+        Me.lblSSSize.Text = "Screen Size"
+        '
+        'txtSSWidth
+        '
+        Me.txtSSWidth.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSSWidth.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.txtSSWidth.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtSSWidth.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSSWidth.Depth = 0
+        Me.txtSSWidth.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.txtSSWidth.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.txtSSWidth.LeadingIcon = Nothing
+        Me.txtSSWidth.Location = New System.Drawing.Point(121, 100)
+        Me.txtSSWidth.MaxLength = 32767
+        Me.txtSSWidth.MouseState = MaterialSkin.MouseState.OUT
+        Me.txtSSWidth.Multiline = False
+        Me.txtSSWidth.Name = "txtSSWidth"
+        Me.txtSSWidth.Size = New System.Drawing.Size(169, 36)
+        Me.txtSSWidth.TabIndex = 3
+        Me.txtSSWidth.Text = "1024"
+        Me.txtSSWidth.TrailingIcon = Nothing
+        Me.txtSSWidth.UseTallSize = False
+        '
         'cbSSPosReset
         '
         Me.cbSSPosReset.AutoSize = True
@@ -589,64 +647,6 @@ Partial Class frmSetting
         Me.cbSSEnable.TabIndex = 0
         Me.cbSSEnable.Text = "Enable Second Screen"
         Me.cbSSEnable.UseVisualStyleBackColor = False
-        '
-        'lblSSSize
-        '
-        Me.lblSSSize.AutoSize = True
-        Me.lblSSSize.BackColor = System.Drawing.Color.Transparent
-        Me.lblSSSize.Depth = 0
-        Me.lblSSSize.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.lblSSSize.ForeColor = System.Drawing.Color.White
-        Me.lblSSSize.Location = New System.Drawing.Point(6, 103)
-        Me.lblSSSize.MouseState = MaterialSkin.MouseState.HOVER
-        Me.lblSSSize.Name = "lblSSSize"
-        Me.lblSSSize.Size = New System.Drawing.Size(83, 19)
-        Me.lblSSSize.TabIndex = 9
-        Me.lblSSSize.Text = "Screen Size"
-        '
-        'txtSSWidth
-        '
-        Me.txtSSWidth.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSSWidth.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.txtSSWidth.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtSSWidth.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtSSWidth.Depth = 0
-        Me.txtSSWidth.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.txtSSWidth.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
-        Me.txtSSWidth.LeadingIcon = Nothing
-        Me.txtSSWidth.Location = New System.Drawing.Point(121, 100)
-        Me.txtSSWidth.MaxLength = 32767
-        Me.txtSSWidth.MouseState = MaterialSkin.MouseState.OUT
-        Me.txtSSWidth.Multiline = False
-        Me.txtSSWidth.Name = "txtSSWidth"
-        Me.txtSSWidth.Size = New System.Drawing.Size(169, 36)
-        Me.txtSSWidth.TabIndex = 3
-        Me.txtSSWidth.Text = "1024"
-        Me.txtSSWidth.TrailingIcon = Nothing
-        Me.txtSSWidth.UseTallSize = False
-        '
-        'txtSSHeight
-        '
-        Me.txtSSHeight.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSSHeight.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.txtSSHeight.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtSSHeight.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtSSHeight.Depth = 0
-        Me.txtSSHeight.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.txtSSHeight.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
-        Me.txtSSHeight.LeadingIcon = Nothing
-        Me.txtSSHeight.Location = New System.Drawing.Point(297, 100)
-        Me.txtSSHeight.MaxLength = 32767
-        Me.txtSSHeight.MouseState = MaterialSkin.MouseState.OUT
-        Me.txtSSHeight.Multiline = False
-        Me.txtSSHeight.Name = "txtSSHeight"
-        Me.txtSSHeight.Size = New System.Drawing.Size(169, 36)
-        Me.txtSSHeight.TabIndex = 4
-        Me.txtSSHeight.Text = "600"
-        Me.txtSSHeight.TrailingIcon = Nothing
-        Me.txtSSHeight.UseTallSize = False
         '
         'frmSetting
         '
