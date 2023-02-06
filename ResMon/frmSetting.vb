@@ -54,15 +54,6 @@ Public Class frmSetting
             cbTopMost.Checked = UserSettings.TopMost
             cbHQRgb.Checked = UserSettings.RgbEffectHighQuality
             cbHQAE.Checked = UserSettings.AudioEffectHighQuality
-            If IsActivated Then
-                btnActivate.Hide()
-                lblLicense.Text = $"{ProgramLanguage.Registered} ({If(RemainingDays = 1, ProgramLanguage.DayRemain.Replace("%dr%", RemainingDays), ProgramLanguage.DaysRemain.Replace("%dr%", RemainingDays))})"
-                lblKey.Text = UserSettings.LicenseKey
-            Else
-                lblLicense.Text = ProgramLanguage.Unregistered
-                lblKey.Text = Nothing
-            End If
-            lblName.Text = UserSettings.Email
             cbSSEnable.Checked = UserSettings.SecondScreen
             txtSSTYID.Text = UserSettings.SecondScreenYT
             txtSSWidth.Text = UserSettings.SecondScreenSize.Width
@@ -84,8 +75,6 @@ Public Class frmSetting
             cbAuto.Text = ProgramLanguage.cbAuto
             cbTopMost.Text = ProgramLanguage.cbTopMost
             lblLanguage.Text = ProgramLanguage.lblLanguage
-            gbLicense.Text = ProgramLanguage.gbLicense
-            btnActivate.Text = ProgramLanguage.btnActivate
             btnCredits.Text = ProgramLanguage.btnCredits
             btnSave.Text = ProgramLanguage.btnSave
             cbResetSPanel.Text = ProgramLanguage.cbResetSPanel
@@ -120,15 +109,7 @@ Public Class frmSetting
             cmbTown.SelectedItem = UserSettings.Town
         End If
         cbTopMost.Checked = UserSettings.TopMost
-        If UserSettings.LicenseKey = Nothing Then
-            lblLicense.Text = ProgramLanguage.Unregistered
-            lblKey.Text = Nothing
-        Else
-            btnActivate.Hide()
-            lblLicense.Text = $"{ProgramLanguage.Registered} ({If(RemainingDays = 1, ProgramLanguage.DayRemain.Replace("%dr%", RemainingDays), ProgramLanguage.DaysRemain.Replace("%dr%", RemainingDays))})"
-            lblKey.Text = UserSettings.LicenseKey
-        End If
-        lblName.Text = UserSettings.Email
+
         cbSSEnable.Checked = UserSettings.SecondScreen
         txtSSTYID.Text = UserSettings.SecondScreenYT
         txtSSWidth.Text = UserSettings.SecondScreenSize.Width
@@ -230,14 +211,4 @@ Public Class frmSetting
         frmAbout.Show()
     End Sub
 
-    Private Sub btnActivate_Click(sender As Object, e As EventArgs) Handles btnActivate.Click
-        frmActivateLicense.Show()
-    End Sub
-
-    Private Sub lblName_MouseClick(sender As Object, e As MouseEventArgs) Handles lblName.MouseClick
-        If e.Button = MouseButtons.Middle Then
-            MsgBox($"Your HWID is {HWID}.", MsgBoxStyle.Information, "HWID")
-            Clipboard.SetText(HWID)
-        End If
-    End Sub
 End Class

@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("A Resource Monitor to monitoring System Load, Temperature, Usage and more.")>
 <Assembly: AssemblyCompany("Zettabyte Technology")>
 <Assembly: AssemblyProduct("BigBro Monitor")>
-<Assembly: AssemblyCopyright("Copyright © 2021 Zettabyte Technology")>
+<Assembly: AssemblyCopyright("Copyright © 2021-2023 Zettabyte Technology")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.12.422.2")>
-<Assembly: AssemblyFileVersion("0.12.422.2")>
+<Assembly: AssemblyVersion("0.13.206.0")>
+<Assembly: AssemblyFileVersion("0.13.206.0")>

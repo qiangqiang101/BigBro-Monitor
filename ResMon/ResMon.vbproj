@@ -157,7 +157,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Class\Spectrum.vb" />
     <Compile Include="Class\WebThemeData.vb" />
     <Compile Include="frmMonitor2.Designer.vb">
@@ -176,7 +175,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Class\FancyStringEditor.vb" />
-    <Compile Include="Class\HardwareID.vb" />
     <Compile Include="Class\HttpServer.vb" />
     <Compile Include="Class\LanguageData.vb" />
     <Compile Include="Class\Logger.vb" />
@@ -188,12 +186,6 @@
       <DependentUpon>frmAbout.vb</DependentUpon>
     </Compile>
     <Compile Include="frmAbout.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmActivateLicense.Designer.vb">
-      <DependentUpon>frmActivateLicense.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmActivateLicense.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSandbox.Designer.vb">
@@ -299,9 +291,6 @@
   <ItemGroup>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmActivateLicense.resx">
-      <DependentUpon>frmActivateLicense.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMonitor.resx">
       <DependentUpon>frmMonitor.vb</DependentUpon>
@@ -451,9 +440,9 @@
     <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.902.49\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.902.49\build\Microsoft.Web.WebView2.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>COPY "$(TargetDir)$(TargetFileName)" "F:\Resource Monitor"
-COPY "$(TargetDir)$(TargetName).pdb" "F:\Resource Monitor"
-COPY "$(TargetDir)$(TargetName).xml" "F:\Resource Monitor"</PostBuildEvent>
+    <PostBuildEvent>COPY "$(TargetDir)$(TargetFileName)" "D:\Resource Monitor"
+COPY "$(TargetDir)$(TargetName).pdb" "D:\Resource Monitor"
+COPY "$(TargetDir)$(TargetName).xml" "D:\Resource Monitor"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

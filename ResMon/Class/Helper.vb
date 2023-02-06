@@ -17,7 +17,6 @@ Module Helper
 
     Public test As Boolean = False
     Public dateFormat As String = "dd/MMM/yyyy"
-    'Public MachineName As String = Environment.MachineName
     Public ThemesDir As String = $"{My.Application.Info.DirectoryPath}\Themes"
     Public PresetDataDir As String = $"{My.Application.Info.DirectoryPath}\Presets"
     Public FontsDir As String = $"{My.Application.Info.DirectoryPath}\Fonts"
@@ -29,9 +28,6 @@ Module Helper
     Public ProgramLanguage As LanguageData = New LanguageData(Path.Combine(LangsDir, $"{UserSettings.Language}.xml")).Instance
     Public key As New DESCryptoServiceProvider()
     Public PrivateFonts As New PrivateFontCollection()
-    Public HWID As String = New HardwareID().Generate
-    Public IsActivated As Boolean = False
-    Public RemainingDays As Integer = 0
     Public SkinManager As MaterialSkinManager = MaterialSkinManager.Instance
 
     Public snapshots As String
@@ -295,137 +291,6 @@ Module Helper
         g.SmoothingMode = mode
         g.InterpolationMode = iMode
     End Sub
-
-    Public Function CheckActivation(hwid As String, email As String, Optional retry As Integer = 0) As Tuple(Of Boolean, Integer)
-        Dim result As Boolean = False
-        Dim [date] As Date = Now
-        Dim date2 As Date = Now
-        Dim remainDays As Integer = 0
-        Dim canLogin As Boolean = False
-
-        Dim query As String = $"https://the.bigbromonitor.com/index.php?a=canuse&hwid={hwid}&product={email}"
-        Dim query2 As String = $"https://the.bigbromonitor.com/index.php?a=checkdate&hwid={hwid}"
-
-        If retry > 4 Then
-            MsgBox("Unable to connect to License Server after 5 attempts.", MsgBoxStyle.Critical, "Error")
-            result = True
-        Else
-            Try
-                Dim wc As New WebClient
-                Dim strSource As String = wc.DownloadString(query)
-                If strSource.Contains("TRUE") Then
-                    strSource = wc.DownloadString(query2)
-
-                    If strSource.Contains(email) Then
-                        ' Check the date
-                        Dim start As Integer = strSource.IndexOf(email) + email.Length
-                        Dim [end] As Integer = strSource.IndexOf(":" + email)
-                        Dim datestring = strSource.Substring(start, [end] - start)
-                        [date] = DateTime.ParseExact(datestring, "yyyy-MM-dd", Nothing)
-                        strSource = wc.DownloadString("http://weltzeit4u.com/Datum/index.php")
-
-                        Dim start2 As Integer = strSource.IndexOf("<span id='gross_fett_blau'>") + 27
-                        Dim end2 As Integer = strSource.IndexOf("</span> (arabische")
-                        Dim dateToday As String = strSource.Substring(start2, end2 - start2)
-                        date2 = DateTime.ParseExact(dateToday, "dd.MM.yyyy", Nothing)
-                        If [date] < date2 Then result = True Else canLogin = True
-                        If canLogin Then result = True
-                        remainDays = [date].Subtract(date2).Days
-                    End If
-                Else
-                    result = False
-                End If
-            Catch ex As Exception
-                Logger.Log(ex)
-                Return CheckActivation(hwid, email, retry + 1)
-            End Try
-        End If
-
-        Return New Tuple(Of Boolean, Integer)(result, remainDays)
-    End Function
-
-    Public Function ELSActivateLicense(key As String, hwid As String, email As String, Optional retry As Integer = 0) As Boolean
-        Dim query As String = $"https://the.bigbromonitor.com/index.php?a=register&key={key}&hwid={hwid}&product={email}"
-
-        If retry > 4 Then
-            MsgBox("Unable to connect to License Server after 5 attempts.", MsgBoxStyle.Critical, "Error")
-            Return False
-        Else
-            Try
-                Dim wc As New WebClient
-                Dim strSource As String = wc.DownloadString(query)
-                If strSource.Contains("wrong key") Then
-                    MsgBox("The product key you entered is invalid or not exists, please try again or contact our support team.", MsgBoxStyle.Exclamation, "Invalid")
-                    Return False
-                ElseIf strSource.Contains("wrong hwid") Then
-                    MsgBox("Your HWID is invalid, please try again or contact our support team.", MsgBoxStyle.Exclamation, "Invalid")
-                    Return False
-                ElseIf strSource.Contains("key is already in use") Then
-                    If KeyInUseButCanStillUse(hwid, email) Then
-                        MsgBox("Product registration was successful!, Thank you for using our product, We will be happy if you spread the word and tell your friends about this product.", MsgBoxStyle.Information, "Successful")
-                        Return True
-                    Else
-                        MsgBox("The product key you entered is already in use, please try again or contact our support team.", MsgBoxStyle.Exclamation, "Invalid")
-                        Return False
-                    End If
-                Else
-                    MsgBox("Product registration was successful!, Thank you for using our product, We will be happy if you spread the word and tell your friends about this product.", MsgBoxStyle.Information, "Successful")
-                    Return True
-                End If
-            Catch ex As Exception
-                Return ELSActivateLicense(key, hwid, email, retry + 1)
-            End Try
-        End If
-
-        Return False
-    End Function
-
-    Public Function KeyInUseButCanStillUse(hwid As String, email As String, Optional retry As Integer = 0) As Boolean
-        Dim query As String = $"https://the.bigbromonitor.com/index.php?a=checkdate&hwid={hwid}"
-
-        Dim result As Boolean = False
-        Dim [date] As Date = Now
-        Dim date2 As Date = Now
-        Dim canLogin As Boolean = False
-
-        If retry > 4 Then
-            MsgBox("Unable to connect to License Server after 5 attempts.", MsgBoxStyle.Critical, "Error")
-            Return False
-        Else
-            Try
-                Dim wc As New WebClient
-                Dim strSource As String = wc.DownloadString(query)
-
-                If strSource.Contains(email) Then
-                    ' Check the date
-                    Dim start As Integer = strSource.IndexOf(email) + email.Length
-                    Dim [end] As Integer = strSource.IndexOf(":" + email)
-                    Dim datestring = strSource.Substring(start, [end] - start)
-                    [date] = DateTime.ParseExact(datestring, "yyyy-MM-dd", Nothing)
-                    strSource = wc.DownloadString("http://weltzeit4u.com/Datum/index.php")
-
-                    Dim start2 As Integer = strSource.IndexOf("<span id='gross_fett_blau'>") + 27
-                    Dim end2 As Integer = strSource.IndexOf("</span> (arabische")
-                    Dim dateToday As String = strSource.Substring(start2, end2 - start2)
-                    date2 = DateTime.ParseExact(dateToday, "dd.MM.yyyy", Nothing)
-                    If [date] < date2 Then result = True Else canLogin = True
-                    If canLogin Then result = True
-                End If
-            Catch ex As Exception
-                Return KeyInUseButCanStillUse(hwid, email, retry + 1)
-                Logger.Log(ex)
-            End Try
-        End If
-
-        Return result
-    End Function
-
-    <Extension>
-    Public Function IsEmailValid(email As String) As Boolean
-        Dim pattern As String = "^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$"
-        Dim match As Match = Regex.Match(email, pattern, RegexOptions.IgnoreCase)
-        Return match.Success
-    End Function
 
     Public Function GetSystemUpTime() As TimeSpan
         Try

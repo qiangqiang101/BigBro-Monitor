@@ -117,10 +117,6 @@ Public Class frmMain
         msm.Theme = MaterialSkinManager.Themes.DARK
         msm.ColorScheme = New ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE)
 
-        Dim activationTuple = CheckActivation(HWID, UserSettings.Email)
-        IsActivated = activationTuple.Item1
-        RemainingDays = activationTuple.Item2
-
         Try
             If Not Directory.Exists(ThemesDir) Then Directory.CreateDirectory(ThemesDir)
             If Not Directory.Exists(PresetDataDir) Then Directory.CreateDirectory(PresetDataDir)
@@ -139,15 +135,13 @@ Public Class frmMain
                     End
                 End If
 
-                If IsActivated Then
-                    silent = True
-                    frmMonitor.Show()
-                    RefreshMonitor()
-                    If UserSettings.SecondScreen Then frmMonitor2.Show()
-                    Me.WindowState = FormWindowState.Minimized
-                    niTray.Visible = True
-                    Me.Hide()
-                End If
+                silent = True
+                frmMonitor.Show()
+                RefreshMonitor()
+                If UserSettings.SecondScreen Then frmMonitor2.Show()
+                Me.WindowState = FormWindowState.Minimized
+                niTray.Visible = True
+                Me.Hide()
             Else
                 If Not Debugger.IsAttached Then
                     If Not IsAdministrator() Then
@@ -664,30 +658,26 @@ Public Class frmMain
     End Sub
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
-        If IsActivated Then
-            If Not lblThemeName.Text = Nothing Then
-                If frmMonitor.Visible Then
-                    For Each control As Control In frmMonitor.Controls
-                        control.Dispose()
-                    Next
+        If Not lblThemeName.Text = Nothing Then
+            If frmMonitor.Visible Then
+                For Each control As Control In frmMonitor.Controls
+                    control.Dispose()
+                Next
 
-                    frmMonitor.Close()
-                    Task.Delay(500)
-                    frmMonitor.Show()
-                    RefreshMonitor()
-                Else
-                    frmMonitor.Show()
-                    RefreshMonitor()
-                End If
+                frmMonitor.Close()
+                Task.Delay(500)
+                frmMonitor.Show()
+                RefreshMonitor()
+            Else
+                frmMonitor.Show()
+                RefreshMonitor()
+            End If
 
-                If UserSettings.SecondScreen Then
-                    If Not frmMonitor2.Visible Then
-                        frmMonitor2.Show()
-                    End If
+            If UserSettings.SecondScreen Then
+                If Not frmMonitor2.Visible Then
+                    frmMonitor2.Show()
                 End If
             End If
-            Else
-            frmActivateLicense.Show()
         End If
     End Sub
 

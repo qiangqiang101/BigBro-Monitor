@@ -28,10 +28,6 @@ Partial Class frmSetting
         Me.cbTopMost = New MaterialSkin.Controls.MaterialCheckbox()
         Me.cmbLanguage = New MaterialSkin.Controls.MaterialComboBox()
         Me.lblLanguage = New MaterialSkin.Controls.MaterialLabel()
-        Me.lblKey = New MaterialSkin.Controls.MaterialLabel()
-        Me.btnActivate = New MaterialSkin.Controls.MaterialButton()
-        Me.lblName = New MaterialSkin.Controls.MaterialLabel()
-        Me.lblLicense = New MaterialSkin.Controls.MaterialLabel()
         Me.btnCredits = New MaterialSkin.Controls.MaterialButton()
         Me.lblTown = New MaterialSkin.Controls.MaterialLabel()
         Me.cmbTown = New MaterialSkin.Controls.MaterialComboBox()
@@ -45,7 +41,6 @@ Partial Class frmSetting
         Me.cmbNetwork = New MaterialSkin.Controls.MaterialComboBox()
         Me.lblNetworkAdapter = New MaterialSkin.Controls.MaterialLabel()
         Me.gbWeather = New System.Windows.Forms.GroupBox()
-        Me.gbLicense = New System.Windows.Forms.GroupBox()
         Me.cbResetSPanel = New MaterialSkin.Controls.MaterialCheckbox()
         Me.cbHQAE = New MaterialSkin.Controls.MaterialCheckbox()
         Me.cbHQRgb = New MaterialSkin.Controls.MaterialCheckbox()
@@ -58,7 +53,6 @@ Partial Class frmSetting
         Me.txtSSTYID = New MaterialSkin.Controls.MaterialTextBox()
         Me.cbSSEnable = New MaterialSkin.Controls.MaterialCheckbox()
         Me.gbWeather.SuspendLayout()
-        Me.gbLicense.SuspendLayout()
         Me.gbSecondScreen.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -119,71 +113,6 @@ Partial Class frmSetting
         Me.lblLanguage.TabIndex = 15
         Me.lblLanguage.Text = "Language"
         '
-        'lblKey
-        '
-        Me.lblKey.AutoSize = True
-        Me.lblKey.BackColor = System.Drawing.Color.Transparent
-        Me.lblKey.Depth = 0
-        Me.lblKey.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.lblKey.ForeColor = System.Drawing.Color.White
-        Me.lblKey.Location = New System.Drawing.Point(6, 37)
-        Me.lblKey.MouseState = MaterialSkin.MouseState.HOVER
-        Me.lblKey.Name = "lblKey"
-        Me.lblKey.Size = New System.Drawing.Size(36, 19)
-        Me.lblKey.TabIndex = 10
-        Me.lblKey.Text = "_____"
-        '
-        'btnActivate
-        '
-        Me.btnActivate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnActivate.AutoSize = False
-        Me.btnActivate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.btnActivate.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.btnActivate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
-        Me.btnActivate.Depth = 0
-        Me.btnActivate.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.btnActivate.ForeColor = System.Drawing.Color.White
-        Me.btnActivate.HighEmphasis = True
-        Me.btnActivate.Icon = Nothing
-        Me.btnActivate.Location = New System.Drawing.Point(345, 45)
-        Me.btnActivate.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-        Me.btnActivate.MouseState = MaterialSkin.MouseState.HOVER
-        Me.btnActivate.Name = "btnActivate"
-        Me.btnActivate.Size = New System.Drawing.Size(120, 36)
-        Me.btnActivate.TabIndex = 0
-        Me.btnActivate.Text = "Activate"
-        Me.btnActivate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
-        Me.btnActivate.UseAccentColor = False
-        Me.btnActivate.UseVisualStyleBackColor = False
-        '
-        'lblName
-        '
-        Me.lblName.AutoSize = True
-        Me.lblName.BackColor = System.Drawing.Color.Transparent
-        Me.lblName.Depth = 0
-        Me.lblName.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.lblName.ForeColor = System.Drawing.Color.White
-        Me.lblName.Location = New System.Drawing.Point(6, 56)
-        Me.lblName.MouseState = MaterialSkin.MouseState.HOVER
-        Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(67, 19)
-        Me.lblName.TabIndex = 3
-        Me.lblName.Text = "PC Name"
-        '
-        'lblLicense
-        '
-        Me.lblLicense.AutoSize = True
-        Me.lblLicense.BackColor = System.Drawing.Color.Transparent
-        Me.lblLicense.Depth = 0
-        Me.lblLicense.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.lblLicense.ForeColor = System.Drawing.Color.White
-        Me.lblLicense.Location = New System.Drawing.Point(6, 18)
-        Me.lblLicense.MouseState = MaterialSkin.MouseState.HOVER
-        Me.lblLicense.Name = "lblLicense"
-        Me.lblLicense.Size = New System.Drawing.Size(89, 19)
-        Me.lblLicense.TabIndex = 2
-        Me.lblLicense.Text = "Unregistered"
-        '
         'btnCredits
         '
         Me.btnCredits.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -196,7 +125,7 @@ Partial Class frmSetting
         Me.btnCredits.ForeColor = System.Drawing.Color.White
         Me.btnCredits.HighEmphasis = True
         Me.btnCredits.Icon = Nothing
-        Me.btnCredits.Location = New System.Drawing.Point(9, 705)
+        Me.btnCredits.Location = New System.Drawing.Point(9, 607)
         Me.btnCredits.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnCredits.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnCredits.Name = "btnCredits"
@@ -297,7 +226,7 @@ Partial Class frmSetting
         Me.btnSave.ForeColor = System.Drawing.Color.White
         Me.btnSave.HighEmphasis = True
         Me.btnSave.Icon = Nothing
-        Me.btnSave.Location = New System.Drawing.Point(357, 705)
+        Me.btnSave.Location = New System.Drawing.Point(357, 607)
         Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnSave.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnSave.Name = "btnSave"
@@ -432,20 +361,6 @@ Partial Class frmSetting
         Me.gbWeather.TabIndex = 6
         Me.gbWeather.TabStop = False
         Me.gbWeather.Text = "Weather Forecast Settings"
-        '
-        'gbLicense
-        '
-        Me.gbLicense.Controls.Add(Me.btnActivate)
-        Me.gbLicense.Controls.Add(Me.lblLicense)
-        Me.gbLicense.Controls.Add(Me.lblKey)
-        Me.gbLicense.Controls.Add(Me.lblName)
-        Me.gbLicense.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.gbLicense.Location = New System.Drawing.Point(6, 606)
-        Me.gbLicense.Name = "gbLicense"
-        Me.gbLicense.Size = New System.Drawing.Size(472, 90)
-        Me.gbLicense.TabIndex = 12
-        Me.gbLicense.TabStop = False
-        Me.gbLicense.Text = "License"
         '
         'cbResetSPanel
         '
@@ -651,12 +566,11 @@ Partial Class frmSetting
         'frmSetting
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(484, 750)
+        Me.ClientSize = New System.Drawing.Size(484, 652)
         Me.Controls.Add(Me.gbSecondScreen)
         Me.Controls.Add(Me.cbHQAE)
         Me.Controls.Add(Me.cbHQRgb)
         Me.Controls.Add(Me.cbResetSPanel)
-        Me.Controls.Add(Me.gbLicense)
         Me.Controls.Add(Me.gbWeather)
         Me.Controls.Add(Me.lblBroadcastPort)
         Me.Controls.Add(Me.cbTopMost)
@@ -679,8 +593,6 @@ Partial Class frmSetting
         Me.Text = "Settings"
         Me.gbWeather.ResumeLayout(False)
         Me.gbWeather.PerformLayout()
-        Me.gbLicense.ResumeLayout(False)
-        Me.gbLicense.PerformLayout()
         Me.gbSecondScreen.ResumeLayout(False)
         Me.gbSecondScreen.PerformLayout()
         Me.ResumeLayout(False)
@@ -701,14 +613,9 @@ Partial Class frmSetting
     Friend WithEvents cmbTown As MaterialComboBox
     Friend WithEvents cbTopMost As MaterialCheckbox
     Friend WithEvents btnCredits As MaterialButton
-    Friend WithEvents lblName As MaterialLabel
-    Friend WithEvents lblLicense As MaterialLabel
-    Friend WithEvents btnActivate As MaterialButton
-    Friend WithEvents lblKey As MaterialLabel
     Friend WithEvents cmbLanguage As MaterialComboBox
     Friend WithEvents lblLanguage As MaterialLabel
     Friend WithEvents gbWeather As GroupBox
-    Friend WithEvents gbLicense As GroupBox
     Friend WithEvents cbResetSPanel As MaterialCheckbox
     Friend WithEvents cbHQAE As MaterialCheckbox
     Friend WithEvents cbHQRgb As MaterialCheckbox
