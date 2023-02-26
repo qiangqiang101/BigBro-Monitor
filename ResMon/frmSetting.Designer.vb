@@ -29,10 +29,7 @@ Partial Class frmSetting
         Me.cmbLanguage = New MaterialSkin.Controls.MaterialComboBox()
         Me.lblLanguage = New MaterialSkin.Controls.MaterialLabel()
         Me.btnCredits = New MaterialSkin.Controls.MaterialButton()
-        Me.lblTown = New MaterialSkin.Controls.MaterialLabel()
-        Me.cmbTown = New MaterialSkin.Controls.MaterialComboBox()
-        Me.cmbStates = New MaterialSkin.Controls.MaterialComboBox()
-        Me.lblState = New MaterialSkin.Controls.MaterialLabel()
+        Me.lblLatLong = New MaterialSkin.Controls.MaterialLabel()
         Me.btnSave = New MaterialSkin.Controls.MaterialButton()
         Me.lblBroadcastPort = New MaterialSkin.Controls.MaterialLabel()
         Me.cbBroadcast = New MaterialSkin.Controls.MaterialCheckbox()
@@ -52,6 +49,9 @@ Partial Class frmSetting
         Me.lblSSYTID = New MaterialSkin.Controls.MaterialLabel()
         Me.txtSSTYID = New MaterialSkin.Controls.MaterialTextBox()
         Me.cbSSEnable = New MaterialSkin.Controls.MaterialCheckbox()
+        Me.txtLongitude = New MaterialSkin.Controls.MaterialTextBox()
+        Me.txtLatitude = New MaterialSkin.Controls.MaterialTextBox()
+        Me.btnLatLong = New MaterialSkin.Controls.MaterialButton()
         Me.gbWeather.SuspendLayout()
         Me.gbSecondScreen.SuspendLayout()
         Me.SuspendLayout()
@@ -63,7 +63,7 @@ Partial Class frmSetting
         Me.cbTopMost.Depth = 0
         Me.cbTopMost.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cbTopMost.ForeColor = System.Drawing.Color.White
-        Me.cbTopMost.Location = New System.Drawing.Point(250, 332)
+        Me.cbTopMost.Location = New System.Drawing.Point(253, 339)
         Me.cbTopMost.Margin = New System.Windows.Forms.Padding(0)
         Me.cbTopMost.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.cbTopMost.MouseState = MaterialSkin.MouseState.HOVER
@@ -90,7 +90,7 @@ Partial Class frmSetting
         Me.cmbLanguage.FormattingEnabled = True
         Me.cmbLanguage.IntegralHeight = False
         Me.cmbLanguage.ItemHeight = 29
-        Me.cmbLanguage.Location = New System.Drawing.Point(133, 409)
+        Me.cmbLanguage.Location = New System.Drawing.Point(136, 416)
         Me.cmbLanguage.MaxDropDownItems = 4
         Me.cmbLanguage.MouseState = MaterialSkin.MouseState.OUT
         Me.cmbLanguage.Name = "cmbLanguage"
@@ -106,7 +106,7 @@ Partial Class frmSetting
         Me.lblLanguage.Depth = 0
         Me.lblLanguage.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
         Me.lblLanguage.ForeColor = System.Drawing.Color.White
-        Me.lblLanguage.Location = New System.Drawing.Point(6, 411)
+        Me.lblLanguage.Location = New System.Drawing.Point(9, 418)
         Me.lblLanguage.MouseState = MaterialSkin.MouseState.HOVER
         Me.lblLanguage.Name = "lblLanguage"
         Me.lblLanguage.Size = New System.Drawing.Size(72, 19)
@@ -125,7 +125,7 @@ Partial Class frmSetting
         Me.btnCredits.ForeColor = System.Drawing.Color.White
         Me.btnCredits.HighEmphasis = True
         Me.btnCredits.Icon = Nothing
-        Me.btnCredits.Location = New System.Drawing.Point(9, 607)
+        Me.btnCredits.Location = New System.Drawing.Point(9, 620)
         Me.btnCredits.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnCredits.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnCredits.Name = "btnCredits"
@@ -136,83 +136,19 @@ Partial Class frmSetting
         Me.btnCredits.UseAccentColor = False
         Me.btnCredits.UseVisualStyleBackColor = False
         '
-        'lblTown
+        'lblLatLong
         '
-        Me.lblTown.AutoSize = True
-        Me.lblTown.BackColor = System.Drawing.Color.Transparent
-        Me.lblTown.Depth = 0
-        Me.lblTown.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.lblTown.ForeColor = System.Drawing.Color.White
-        Me.lblTown.Location = New System.Drawing.Point(6, 64)
-        Me.lblTown.MouseState = MaterialSkin.MouseState.HOVER
-        Me.lblTown.Name = "lblTown"
-        Me.lblTown.Size = New System.Drawing.Size(41, 19)
-        Me.lblTown.TabIndex = 18
-        Me.lblTown.Text = "Town"
-        '
-        'cmbTown
-        '
-        Me.cmbTown.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmbTown.AutoResize = False
-        Me.cmbTown.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.cmbTown.Depth = 0
-        Me.cmbTown.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
-        Me.cmbTown.DropDownHeight = 118
-        Me.cmbTown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbTown.DropDownWidth = 121
-        Me.cmbTown.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.cmbTown.ForeColor = System.Drawing.Color.White
-        Me.cmbTown.FormattingEnabled = True
-        Me.cmbTown.IntegralHeight = False
-        Me.cmbTown.ItemHeight = 29
-        Me.cmbTown.Location = New System.Drawing.Point(121, 62)
-        Me.cmbTown.MaxDropDownItems = 4
-        Me.cmbTown.MouseState = MaterialSkin.MouseState.OUT
-        Me.cmbTown.Name = "cmbTown"
-        Me.cmbTown.Size = New System.Drawing.Size(345, 35)
-        Me.cmbTown.StartIndex = 0
-        Me.cmbTown.TabIndex = 1
-        Me.cmbTown.UseTallSize = False
-        '
-        'cmbStates
-        '
-        Me.cmbStates.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmbStates.AutoResize = False
-        Me.cmbStates.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.cmbStates.Depth = 0
-        Me.cmbStates.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
-        Me.cmbStates.DropDownHeight = 118
-        Me.cmbStates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbStates.DropDownWidth = 121
-        Me.cmbStates.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.cmbStates.ForeColor = System.Drawing.Color.White
-        Me.cmbStates.FormattingEnabled = True
-        Me.cmbStates.IntegralHeight = False
-        Me.cmbStates.ItemHeight = 29
-        Me.cmbStates.Location = New System.Drawing.Point(121, 21)
-        Me.cmbStates.MaxDropDownItems = 4
-        Me.cmbStates.MouseState = MaterialSkin.MouseState.OUT
-        Me.cmbStates.Name = "cmbStates"
-        Me.cmbStates.Size = New System.Drawing.Size(345, 35)
-        Me.cmbStates.StartIndex = 0
-        Me.cmbStates.TabIndex = 0
-        Me.cmbStates.UseTallSize = False
-        '
-        'lblState
-        '
-        Me.lblState.AutoSize = True
-        Me.lblState.BackColor = System.Drawing.Color.Transparent
-        Me.lblState.Depth = 0
-        Me.lblState.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
-        Me.lblState.ForeColor = System.Drawing.Color.White
-        Me.lblState.Location = New System.Drawing.Point(6, 23)
-        Me.lblState.MouseState = MaterialSkin.MouseState.HOVER
-        Me.lblState.Name = "lblState"
-        Me.lblState.Size = New System.Drawing.Size(46, 19)
-        Me.lblState.TabIndex = 14
-        Me.lblState.Text = "States"
+        Me.lblLatLong.AutoSize = True
+        Me.lblLatLong.BackColor = System.Drawing.Color.Transparent
+        Me.lblLatLong.Depth = 0
+        Me.lblLatLong.Font = New System.Drawing.Font("Roboto", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.lblLatLong.ForeColor = System.Drawing.Color.White
+        Me.lblLatLong.Location = New System.Drawing.Point(6, 23)
+        Me.lblLatLong.MouseState = MaterialSkin.MouseState.HOVER
+        Me.lblLatLong.Name = "lblLatLong"
+        Me.lblLatLong.Size = New System.Drawing.Size(88, 19)
+        Me.lblLatLong.TabIndex = 14
+        Me.lblLatLong.Text = "Lat && Long"
         '
         'btnSave
         '
@@ -226,7 +162,7 @@ Partial Class frmSetting
         Me.btnSave.ForeColor = System.Drawing.Color.White
         Me.btnSave.HighEmphasis = True
         Me.btnSave.Icon = Nothing
-        Me.btnSave.Location = New System.Drawing.Point(357, 607)
+        Me.btnSave.Location = New System.Drawing.Point(357, 620)
         Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
         Me.btnSave.MouseState = MaterialSkin.MouseState.HOVER
         Me.btnSave.Name = "btnSave"
@@ -298,7 +234,7 @@ Partial Class frmSetting
         Me.cbAuto.Depth = 0
         Me.cbAuto.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cbAuto.ForeColor = System.Drawing.Color.White
-        Me.cbAuto.Location = New System.Drawing.Point(3, 332)
+        Me.cbAuto.Location = New System.Drawing.Point(6, 339)
         Me.cbAuto.Margin = New System.Windows.Forms.Padding(0)
         Me.cbAuto.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.cbAuto.MouseState = MaterialSkin.MouseState.HOVER
@@ -350,14 +286,14 @@ Partial Class frmSetting
         '
         'gbWeather
         '
-        Me.gbWeather.Controls.Add(Me.cmbStates)
-        Me.gbWeather.Controls.Add(Me.lblState)
-        Me.gbWeather.Controls.Add(Me.lblTown)
-        Me.gbWeather.Controls.Add(Me.cmbTown)
+        Me.gbWeather.Controls.Add(Me.btnLatLong)
+        Me.gbWeather.Controls.Add(Me.txtLongitude)
+        Me.gbWeather.Controls.Add(Me.txtLatitude)
+        Me.gbWeather.Controls.Add(Me.lblLatLong)
         Me.gbWeather.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.gbWeather.Location = New System.Drawing.Point(6, 224)
         Me.gbWeather.Name = "gbWeather"
-        Me.gbWeather.Size = New System.Drawing.Size(472, 105)
+        Me.gbWeather.Size = New System.Drawing.Size(472, 112)
         Me.gbWeather.TabIndex = 6
         Me.gbWeather.TabStop = False
         Me.gbWeather.Text = "Weather Forecast Settings"
@@ -369,7 +305,7 @@ Partial Class frmSetting
         Me.cbResetSPanel.Depth = 0
         Me.cbResetSPanel.Font = New System.Drawing.Font("Verdana", 9.0!)
         Me.cbResetSPanel.ForeColor = System.Drawing.Color.White
-        Me.cbResetSPanel.Location = New System.Drawing.Point(3, 369)
+        Me.cbResetSPanel.Location = New System.Drawing.Point(6, 376)
         Me.cbResetSPanel.Margin = New System.Windows.Forms.Padding(0)
         Me.cbResetSPanel.MouseLocation = New System.Drawing.Point(-1, -1)
         Me.cbResetSPanel.MouseState = MaterialSkin.MouseState.HOVER
@@ -426,7 +362,7 @@ Partial Class frmSetting
         Me.gbSecondScreen.Controls.Add(Me.txtSSTYID)
         Me.gbSecondScreen.Controls.Add(Me.cbSSEnable)
         Me.gbSecondScreen.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.gbSecondScreen.Location = New System.Drawing.Point(6, 450)
+        Me.gbSecondScreen.Location = New System.Drawing.Point(9, 457)
         Me.gbSecondScreen.Name = "gbSecondScreen"
         Me.gbSecondScreen.Size = New System.Drawing.Size(472, 150)
         Me.gbSecondScreen.TabIndex = 11
@@ -563,10 +499,77 @@ Partial Class frmSetting
         Me.cbSSEnable.Text = "Enable Second Screen"
         Me.cbSSEnable.UseVisualStyleBackColor = False
         '
+        'txtLongitude
+        '
+        Me.txtLongitude.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtLongitude.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.txtLongitude.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtLongitude.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtLongitude.Depth = 0
+        Me.txtLongitude.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.txtLongitude.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.txtLongitude.LeadingIcon = Nothing
+        Me.txtLongitude.Location = New System.Drawing.Point(297, 21)
+        Me.txtLongitude.MaxLength = 32767
+        Me.txtLongitude.MouseState = MaterialSkin.MouseState.OUT
+        Me.txtLongitude.Multiline = False
+        Me.txtLongitude.Name = "txtLongitude"
+        Me.txtLongitude.Size = New System.Drawing.Size(169, 36)
+        Me.txtLongitude.TabIndex = 1
+        Me.txtLongitude.Text = ""
+        Me.txtLongitude.TrailingIcon = Nothing
+        Me.txtLongitude.UseTallSize = False
+        '
+        'txtLatitude
+        '
+        Me.txtLatitude.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtLatitude.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.txtLatitude.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtLatitude.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtLatitude.Depth = 0
+        Me.txtLatitude.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.txtLatitude.ForeColor = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.txtLatitude.LeadingIcon = Nothing
+        Me.txtLatitude.Location = New System.Drawing.Point(121, 21)
+        Me.txtLatitude.MaxLength = 32767
+        Me.txtLatitude.MouseState = MaterialSkin.MouseState.OUT
+        Me.txtLatitude.Multiline = False
+        Me.txtLatitude.Name = "txtLatitude"
+        Me.txtLatitude.Size = New System.Drawing.Size(169, 36)
+        Me.txtLatitude.TabIndex = 0
+        Me.txtLatitude.Text = ""
+        Me.txtLatitude.TrailingIcon = Nothing
+        Me.txtLatitude.UseTallSize = False
+        '
+        'btnLatLong
+        '
+        Me.btnLatLong.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnLatLong.AutoSize = False
+        Me.btnLatLong.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnLatLong.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.btnLatLong.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.[Default]
+        Me.btnLatLong.Depth = 0
+        Me.btnLatLong.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.btnLatLong.ForeColor = System.Drawing.Color.White
+        Me.btnLatLong.HighEmphasis = True
+        Me.btnLatLong.Icon = Nothing
+        Me.btnLatLong.Location = New System.Drawing.Point(121, 66)
+        Me.btnLatLong.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.btnLatLong.MouseState = MaterialSkin.MouseState.HOVER
+        Me.btnLatLong.Name = "btnLatLong"
+        Me.btnLatLong.Size = New System.Drawing.Size(342, 36)
+        Me.btnLatLong.TabIndex = 2
+        Me.btnLatLong.Text = "Get Latitude && Longitude"
+        Me.btnLatLong.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        Me.btnLatLong.UseAccentColor = False
+        Me.btnLatLong.UseVisualStyleBackColor = False
+        '
         'frmSetting
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(484, 652)
+        Me.ClientSize = New System.Drawing.Size(484, 665)
         Me.Controls.Add(Me.gbSecondScreen)
         Me.Controls.Add(Me.cbHQAE)
         Me.Controls.Add(Me.cbHQRgb)
@@ -607,10 +610,7 @@ Partial Class frmSetting
     Friend WithEvents cbBroadcast As MaterialCheckbox
     Friend WithEvents lblBroadcastPort As MaterialLabel
     Friend WithEvents txtPort As MaterialTextBox
-    Friend WithEvents cmbStates As MaterialComboBox
-    Friend WithEvents lblState As MaterialLabel
-    Friend WithEvents lblTown As MaterialLabel
-    Friend WithEvents cmbTown As MaterialComboBox
+    Friend WithEvents lblLatLong As MaterialLabel
     Friend WithEvents cbTopMost As MaterialCheckbox
     Friend WithEvents btnCredits As MaterialButton
     Friend WithEvents cmbLanguage As MaterialComboBox
@@ -627,4 +627,7 @@ Partial Class frmSetting
     Friend WithEvents txtSSHeight As MaterialTextBox
     Friend WithEvents lblSSSize As MaterialLabel
     Friend WithEvents txtSSWidth As MaterialTextBox
+    Friend WithEvents btnLatLong As MaterialButton
+    Friend WithEvents txtLongitude As MaterialTextBox
+    Friend WithEvents txtLatitude As MaterialTextBox
 End Class

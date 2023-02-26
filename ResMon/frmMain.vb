@@ -40,16 +40,13 @@ Public Class frmMain
                         .AutoStart = False
                         .BroadcastPort = 8080
                         .CurrentTheme = "Project Cyan 5inch.xml"
-                        .Email = Nothing
                         .EnableBroadcast = False
-                        .HWID = Nothing
                         .Language = "English"
-                        .LicenseKey = Nothing
                         .Location = Point.Empty
                         .NetworkAdapterIndex = 0
                         .RgbEffectHighQuality = False
-                        .State = "KUALA LUMPUR"
-                        .Town = "KUALA LUMPUR"
+                        .Latitude = Nothing
+                        .Longitude = Nothing
                         .TopMost = True
                         .SecondScreen = False
                         .SecondScreenYT = "VKNRNeRDs0Q"
@@ -85,16 +82,13 @@ Public Class frmMain
                             .AutoStart = False
                             .BroadcastPort = 8080
                             .CurrentTheme = "Project Cyan 5inch.xml"
-                            .Email = Nothing
                             .EnableBroadcast = False
-                            .HWID = Nothing
                             .Language = "English"
-                            .LicenseKey = Nothing
                             .Location = Point.Empty
                             .NetworkAdapterIndex = 0
                             .RgbEffectHighQuality = False
-                            .State = "KUALA LUMPUR"
-                            .Town = "KUALA LUMPUR"
+                            .Latitude = Nothing
+                            .Longitude = Nothing
                             .TopMost = True
                             .SecondScreen = False
                             .SecondScreenYT = "VKNRNeRDs0Q"
@@ -128,6 +122,8 @@ Public Class frmMain
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
 
+        LoadPrivateFonts()
+
         For Each arg As String In args
             If arg.Contains("-auto") Then
                 If Not IsAdministrator() Then
@@ -152,7 +148,6 @@ Public Class frmMain
             End If
         Next
 
-        LoadPrivateFonts()
         PopulateFlp()
         Text = $"BigBro Monitor v{Application.ProductVersion} Build {GetBuildDateTime.ToShortDateString} {If(IsAdministrator(), "(Administrator)", "")}"
 
@@ -567,12 +562,9 @@ Public Class frmMain
             .NetworkAdapterIndex = UserSettings.NetworkAdapterIndex
             .EnableBroadcast = UserSettings.EnableBroadcast
             .BroadcastPort = UserSettings.BroadcastPort
-            .State = UserSettings.State
-            .Town = UserSettings.Town
+            .Latitude = UserSettings.Latitude
+            .Longitude = UserSettings.Longitude
             .TopMost = UserSettings.TopMost
-            .LicenseKey = UserSettings.LicenseKey
-            .Email = UserSettings.Email
-            .HWID = UserSettings.HWID
             .Language = UserSettings.Language
             .AudioEffectHighQuality = UserSettings.AudioEffectHighQuality
             .RgbEffectHighQuality = UserSettings.RgbEffectHighQuality
@@ -635,12 +627,9 @@ Public Class frmMain
             .NetworkAdapterIndex = UserSettings.NetworkAdapterIndex
             .EnableBroadcast = UserSettings.EnableBroadcast
             .BroadcastPort = UserSettings.BroadcastPort
-            .State = UserSettings.State
-            .Town = UserSettings.Town
+            .Latitude = UserSettings.Latitude
+            .Longitude = UserSettings.Longitude
             .TopMost = UserSettings.TopMost
-            .LicenseKey = UserSettings.LicenseKey
-            .Email = UserSettings.Email
-            .HWID = UserSettings.HWID
             .Language = UserSettings.Language
             .AudioEffectHighQuality = UserSettings.AudioEffectHighQuality
             .RgbEffectHighQuality = UserSettings.RgbEffectHighQuality
@@ -1086,32 +1075,6 @@ Public Class frmMain
             frmMonitor.Controls.Add(utube)
         Next
 
-        For Each ww As MyWeatherWidget In currentTheme.WeatherWidgets
-            Dim weawid As New WeatherWidget(False)
-            With weawid
-                .myParentForm = frmMonitor
-                .BackColor = ww.BackColor.ToColor
-                .Font = ww.Font.ToFont
-                .ForeColor = ww.ForeColor.ToColor
-                .RightToLeft = ww.RightToLeft
-                .Text = ww.Text
-                .Enabled = ww.Enabled
-                .Visible = ww.Visible
-                .Tag = "ThemeControl"
-                .Name = ww.Name
-                .Anchor = ww.Anchor
-                .Dock = ww.Dock
-                .Location = ww.Location
-                .Margin = ww.Margin
-                .Padding = ww.Padding
-                .Size = ww.Size
-                .Sensor = ww.Sensor
-                .WeatherStyle = ww.WeatherStyle
-                .IconStyle = ww.IconStyle
-            End With
-            frmMonitor.Controls.Add(weawid)
-        Next
-
         For Each av As MyAudioVisualizer In currentTheme.AudioVisualizers
             Dim audio As New AudioVisualizer(False)
             With audio
@@ -1162,7 +1125,6 @@ Public Class frmMain
         currentTheme.PlotCharts.ForEach(Sub(x) SetParentName(x.Name, x.ParentName))
         currentTheme.DetailSensors.ForEach(Sub(x) SetParentName(x.Name, x.ParentName))
         currentTheme.YoutubeVideos.ForEach(Sub(x) SetParentName(x.Name, x.ParentName))
-        currentTheme.WeatherWidgets.ForEach(Sub(x) SetParentName(x.Name, x.ParentName))
         currentTheme.AudioVisualizers.ForEach(Sub(x) SetParentName(x.Name, x.ParentName))
     End Sub
 

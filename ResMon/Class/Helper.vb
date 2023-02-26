@@ -29,9 +29,9 @@ Module Helper
     Public key As New DESCryptoServiceProvider()
     Public PrivateFonts As New PrivateFontCollection()
     Public SkinManager As MaterialSkinManager = MaterialSkinManager.Instance
+    Public openMeteo As OpenMeteo
 
     Public snapshots As String
-
 
     Public Function GetUserName() As String
         If TypeOf My.User.CurrentPrincipal Is WindowsPrincipal Then
@@ -416,7 +416,15 @@ Public Enum eSensorType
     DisplayFramerate = 57
     DisplayFrametime
 
-    'Last Item CPUCoreTemperatureF = 56
+    WeatherTempC
+    WeatherTempF
+    WeatherName
+    WeatherCode
+    WeatherWindSpeedKmh
+    WeatherWindSpeedMph
+    WeatherWindDirection
+
+    'Last Item WeatherWindDirection = 64
 End Enum
 
 Public Enum eCompleteSensor

@@ -157,6 +157,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\OpenMeteo.vb" />
     <Compile Include="Class\Spectrum.vb" />
     <Compile Include="Class\WebThemeData.vb" />
     <Compile Include="frmMonitor2.Designer.vb">
@@ -181,7 +182,6 @@
     <Compile Include="Class\Resizer.vb" />
     <Compile Include="Class\RoundRectCorners.vb" />
     <Compile Include="Class\UserPresetData.vb" />
-    <Compile Include="Class\WeatherInfo.vb" />
     <Compile Include="frmAbout.Designer.vb">
       <DependentUpon>frmAbout.vb</DependentUpon>
     </Compile>
@@ -263,9 +263,6 @@
     <Compile Include="SensorControls\TextLabel.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SensorControls\WeatherWidget.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="SensorControls\Youtube.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -341,12 +338,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\razer_theme.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\landscape_razer_theme.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\text.png" />
   </ItemGroup>
   <ItemGroup>
@@ -378,51 +369,6 @@
     <None Include="Resources\key-solid.png" />
     <None Include="Resources\dashboard.png" />
     <None Include="Resources\chart_column.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\kk-wind-rain_512.png" />
-    <None Include="Resources\kk-wind-moon_512.png" />
-    <None Include="Resources\kk-wind_512.png" />
-    <None Include="Resources\kk-thunder-wind_512.png" />
-    <None Include="Resources\kk-thunderstorm-rain_512.png" />
-    <None Include="Resources\kk-thunderstorm_512.png" />
-    <None Include="Resources\kk-sun-windy_512.png" />
-    <None Include="Resources\kk-sun_512.png" />
-    <None Include="Resources\kk-snow-rain_512.png" />
-    <None Include="Resources\kk-snowflake-sun_512.png" />
-    <None Include="Resources\kk-snowflake_512.png" />
-    <None Include="Resources\kk-snow_512.png" />
-    <None Include="Resources\kk-rain-snow_512.png" />
-    <None Include="Resources\kk-rainbow_512.png" />
-    <None Include="Resources\kk-moon_512.png" />
-    <None Include="Resources\kk-cloudy_512.png" />
-    <None Include="Resources\kk-cloud-wind_512.png" />
-    <None Include="Resources\kk-cloud-sun_512.png" />
-    <None Include="Resources\kk-cloud-rain_512.png" />
-    <None Include="Resources\kk-cloud-moon-rain_512.png" />
-    <None Include="Resources\kk-cloud-moon_512.png" />
-    <None Include="Resources\kk-cloud_512.png" />
-    <None Include="Resources\weather_sun.png" />
-    <None Include="Resources\cc_sun_rain_snow.png" />
-    <None Include="Resources\cc_sun_rain.png" />
-    <None Include="Resources\cc_sun_lighting.png" />
-    <None Include="Resources\cc_sun_fog.png" />
-    <None Include="Resources\cc_sun_clouds.png" />
-    <None Include="Resources\cc_sun_blizzard.png" />
-    <None Include="Resources\cc_sun.png" />
-    <None Include="Resources\cc_NA_rain_snow.png" />
-    <None Include="Resources\cc_NA_rain.png" />
-    <None Include="Resources\cc_NA_lighting.png" />
-    <None Include="Resources\cc_NA_fog.png" />
-    <None Include="Resources\cc_NA_clouds.png" />
-    <None Include="Resources\cc_NA_blizzard.png" />
-    <None Include="Resources\cc_moon_rain_snow.png" />
-    <None Include="Resources\cc_moon_rain.png" />
-    <None Include="Resources\cc_moon_lighting.png" />
-    <None Include="Resources\cc_moon_fog.png" />
-    <None Include="Resources\cc_moon_clouds.png" />
-    <None Include="Resources\cc_moon_blizzard.png" />
-    <None Include="Resources\cc_moon.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

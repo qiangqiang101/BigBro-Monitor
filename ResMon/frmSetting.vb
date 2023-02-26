@@ -21,11 +21,6 @@ Public Class frmSetting
 
     Private Sub frmSetting_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            For Each state In States
-                cmbStates.Items.Add(state.Value)
-            Next
-            cmbStates.SelectedIndex = 0
-
             For Each adapter In netMonitor.Adapters
                 If Not cmbNetwork.Items.Contains(adapter.Name) Then cmbNetwork.Items.Add(adapter.Name)
             Next
@@ -47,10 +42,8 @@ Public Class frmSetting
             cbAuto.Checked = UserSettings.AutoStart 'File.Exists(startupFile)
             cbBroadcast.Checked = UserSettings.EnableBroadcast
             txtPort.Text = UserSettings.BroadcastPort
-            cmbStates.SelectedItem = UserSettings.State
-            If cmbTown.Items.Count <> 0 Then
-                cmbTown.SelectedItem = UserSettings.Town
-            End If
+            txtLatitude.Text = UserSettings.Latitude
+            txtLongitude.Text = UserSettings.Longitude
             cbTopMost.Checked = UserSettings.TopMost
             cbHQRgb.Checked = UserSettings.RgbEffectHighQuality
             cbHQAE.Checked = UserSettings.AudioEffectHighQuality
@@ -70,8 +63,8 @@ Public Class frmSetting
             lblBroadcastPort.Text = ProgramLanguage.lblBroadcastPort
             cbBroadcast.Text = ProgramLanguage.cbBroadcast
             gbWeather.Text = ProgramLanguage.gbWeather
-            lblState.Text = ProgramLanguage.lblState
-            lblTown.Text = ProgramLanguage.lblTown
+            lblLatLong.Text = ProgramLanguage.lblLatLong
+            btnLatLong.Text = ProgramLanguage.btnLatLong
             cbAuto.Text = ProgramLanguage.cbAuto
             cbTopMost.Text = ProgramLanguage.cbTopMost
             lblLanguage.Text = ProgramLanguage.lblLanguage
@@ -104,10 +97,8 @@ Public Class frmSetting
         txtPort.Text = UserSettings.BroadcastPort
         cbHQRgb.Checked = UserSettings.RgbEffectHighQuality
         cbHQAE.Checked = UserSettings.AudioEffectHighQuality
-        cmbStates.SelectedItem = UserSettings.State
-        If cmbTown.Items.Count <> 0 Then
-            cmbTown.SelectedItem = UserSettings.Town
-        End If
+        txtLatitude.Text = UserSettings.Latitude
+        txtLongitude.Text = UserSettings.Longitude
         cbTopMost.Checked = UserSettings.TopMost
 
         cbSSEnable.Checked = UserSettings.SecondScreen
@@ -141,12 +132,9 @@ Public Class frmSetting
                 .NetworkAdapterIndex = cmbNetwork.SelectedIndex
                 .EnableBroadcast = cbBroadcast.Checked
                 .BroadcastPort = txtPort.Text
-                .State = cmbStates.SelectedItem.ToString
-                .Town = cmbTown.SelectedItem.ToString
+                .Latitude = txtLatitude.Text
+                .Longitude = txtLongitude.Text
                 .TopMost = cbTopMost.Checked
-                .LicenseKey = UserSettings.LicenseKey
-                .Email = UserSettings.Email
-                .HWID = UserSettings.HWID
                 .Language = cmbLanguage.SelectedItem.ToString
                 .RgbEffectHighQuality = cbHQRgb.Checked
                 .AudioEffectHighQuality = cbHQAE.Checked
@@ -194,21 +182,11 @@ Public Class frmSetting
         frmMain.Show()
     End Sub
 
-    Private Sub cmbStates_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbStates.SelectedIndexChanged
-        Try
-            If Not cmbStates.SelectedItem = Nothing Then
-                cmbTown.Items.Clear()
-                For Each town In GetTowns(GetStateID(cmbStates.SelectedItem.ToString))
-                    cmbTown.Items.Add(town.Name)
-                Next
-                cmbTown.SelectedIndex = 0
-            End If
-        Catch ex As Exception
-        End Try
-    End Sub
-
     Private Sub btnCredits_Click(sender As Object, e As EventArgs) Handles btnCredits.Click
         frmAbout.Show()
     End Sub
 
+    Private Sub btnLatLong_Click(sender As Object, e As EventArgs) Handles btnLatLong.Click
+        Process.Start("https://www.latlong.net")
+    End Sub
 End Class

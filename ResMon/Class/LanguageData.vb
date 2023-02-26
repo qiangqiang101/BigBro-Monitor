@@ -25,8 +25,8 @@ Public Structure LanguageData
     Public lblBroadcastPort As String
     Public cbBroadcast As String
     Public gbWeather As String
-    Public lblState As String
-    Public lblTown As String
+    Public lblLatLong As String
+    Public btnLatLong As String
     Public cbAuto As String
     Public cbTopMost As String
     Public lblLanguage As String

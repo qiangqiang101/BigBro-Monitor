@@ -716,6 +716,22 @@ Public Class CustomText
                     Value = myParentForm.displaySensor.RawFramerate()
                 Case eSensorType.DisplayFrametime
                     Value = myParentForm.displaySensor.RawFrametime()
+
+                    'Added 26/02/2023
+                Case eSensorType.WeatherTempC
+                    Value = Helper.openMeteo.Temperature
+                Case eSensorType.WeatherTempF
+                    Value = ((Helper.openMeteo.Temperature * 1.8) + 32)
+                Case eSensorType.WeatherName
+                    Value = Helper.openMeteo.WeatherName
+                Case eSensorType.WeatherCode
+                    Value = Helper.openMeteo.WeatherCode
+                Case eSensorType.WeatherWindSpeedKmh
+                    Value = Helper.openMeteo.WindSpeed
+                Case eSensorType.WeatherWindSpeedMph
+                    Value = Helper.openMeteo.WindSpeed / 1.609
+                Case eSensorType.WeatherWindDirection
+                    Value = Helper.openMeteo.WindDirection
             End Select
         Catch ex As Exception
             Logger.Log(ex)

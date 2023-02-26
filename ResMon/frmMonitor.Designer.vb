@@ -28,6 +28,7 @@ Partial Class frmMonitor
         Me.RGBTicker = New System.Windows.Forms.Timer(Me.components)
         Me.bwUpdater = New System.ComponentModel.BackgroundWorker()
         Me.bwRGBTicker = New System.ComponentModel.BackgroundWorker()
+        Me.MeteoUpdater = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'Updater
@@ -43,6 +44,11 @@ Partial Class frmMonitor
         '
         'bwRGBTicker
         '
+        '
+        'MeteoUpdater
+        '
+        Me.MeteoUpdater.Enabled = True
+        Me.MeteoUpdater.Interval = 600000
         '
         'frmMonitor
         '
@@ -71,4 +77,5 @@ Partial Class frmMonitor
     Friend WithEvents RGBTicker As Timer
     Friend WithEvents bwUpdater As System.ComponentModel.BackgroundWorker
     Friend WithEvents bwRGBTicker As System.ComponentModel.BackgroundWorker
+    Friend WithEvents MeteoUpdater As Timer
 End Class

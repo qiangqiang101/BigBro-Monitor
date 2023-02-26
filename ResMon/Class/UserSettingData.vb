@@ -20,12 +20,11 @@ Public Structure UserSettingData
     Public Location As Point
     Public EnableBroadcast As Boolean
     Public BroadcastPort As Integer
-    Public State As String
-    Public Town As String
+    'Public State As String
+    'Public Town As String
+    Public Latitude As String
+    Public Longitude As String
     Public TopMost As Boolean
-    Public LicenseKey As String
-    Public Email As String
-    Public HWID As String
     Public Language As String
     Public AudioEffectHighQuality As Boolean
     Public RgbEffectHighQuality As Boolean

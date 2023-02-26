@@ -40,7 +40,6 @@ Public Structure ThemeData
     Public PlotCharts As List(Of MyPlotChart)
     Public DetailSensors As List(Of MyDetailSensor)
     Public YoutubeVideos As List(Of MyYoutube)
-    Public WeatherWidgets As List(Of MyWeatherWidget)
     Public AudioVisualizers As List(Of MyAudioVisualizer)
     Public Snapshot As String
     Public UpdateInterval As Integer
@@ -672,54 +671,6 @@ Public Structure MyYoutube
         Size = control.Size
         Sensor = control.Sensor
         Play = control.Play
-        ParentName = control.ParentName
-    End Sub
-
-End Structure
-
-<Serializable>
-Public Structure MyWeatherWidget
-
-    Public BackColor As MyColor
-    Public Font As MyFont
-    Public ForeColor As MyColor
-    Public RightToLeft As Boolean
-    Public Text As String
-    Public Enabled As Boolean
-    Public Visible As Boolean
-    Public Tag As Object
-    Public Name As String
-    Public Anchor As AnchorStyles
-    Public Dock As DockStyle
-    Public Location As Point
-    Public Margin As Padding
-    Public Padding As Padding
-    Public Size As Size
-
-    Public Sensor As eSensorType
-    Public WeatherStyle As WeatherStyle
-    Public IconStyle As IconStyle
-    Public ParentName As String
-
-    Public Sub New(control As WeatherWidget)
-        BackColor = New MyColor(control.BackColor)
-        Font = New MyFont(control.Font)
-        ForeColor = New MyColor(control.ForeColor)
-        RightToLeft = control.RightToLeft
-        Text = control.Text
-        Enabled = control.Enabled
-        Visible = control.Visible
-        Tag = control.Tag
-        Name = control.Name
-        Anchor = control.Anchor
-        Dock = control.Dock
-        Location = control.Location
-        Margin = control.Margin
-        Padding = control.Padding
-        Size = control.Size
-        Sensor = control.Sensor
-        WeatherStyle = control.WeatherStyle
-        IconStyle = control.IconStyle
         ParentName = control.ParentName
     End Sub
 

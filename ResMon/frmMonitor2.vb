@@ -108,12 +108,9 @@ body {
                 .NetworkAdapterIndex = UserSettings.NetworkAdapterIndex
                 .EnableBroadcast = UserSettings.EnableBroadcast
                 .BroadcastPort = UserSettings.BroadcastPort
-                .State = UserSettings.State
-                .Town = UserSettings.Town
+                .Latitude = UserSettings.Latitude
+                .Longitude = UserSettings.Longitude
                 .TopMost = UserSettings.TopMost
-                .LicenseKey = UserSettings.LicenseKey
-                .Email = UserSettings.Email
-                .HWID = UserSettings.HWID
                 .Language = UserSettings.Language
                 .AudioEffectHighQuality = UserSettings.AudioEffectHighQuality
                 .RgbEffectHighQuality = UserSettings.RgbEffectHighQuality

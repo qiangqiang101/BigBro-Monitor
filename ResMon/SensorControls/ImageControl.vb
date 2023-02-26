@@ -379,6 +379,10 @@ Public Class ImageControl
                         Else
                             _val = CInt(Math.Round((_max * myParentForm.cpuSensor.RawCoreTemperatureC) / 100))
                         End If
+
+                        'Added 26/02/2023
+                    Case eSensorType.WeatherCode
+                        _val = CInt(Helper.openMeteo.WeatherCode)
                 End Select
 
                 Try

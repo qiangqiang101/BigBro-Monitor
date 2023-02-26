@@ -215,6 +215,10 @@ Public Class frmMonitor
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         netMonitor.StartMonitoring()
         Updater.Start()
+        If Not UserSettings.Latitude = Nothing AndAlso Not UserSettings.Longitude = Nothing Then
+            Helper.openMeteo = GetData(UserSettings.Latitude, UserSettings.Longitude)
+        End If
+        MeteoUpdater.Start()
 
         If Not Me.Editing Then
             Location = UserSettings.Location
@@ -375,6 +379,12 @@ Public Class frmMonitor
         End Using
     End Sub
 
+    Private Sub MeteoUpdater_Tick(sender As Object, e As EventArgs) Handles MeteoUpdater.Tick
+        If Not UserSettings.Latitude = Nothing AndAlso Not UserSettings.Longitude = Nothing Then
+            Helper.openMeteo = GetData(UserSettings.Latitude, UserSettings.Longitude)
+        End If
+    End Sub
+
     Private Sub PrepareGraphics(graphics As Graphics, highQuality As Boolean)
         If highQuality Then
             graphics.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
@@ -424,12 +434,9 @@ Public Class frmMonitor
                     .NetworkAdapterIndex = UserSettings.NetworkAdapterIndex
                     .EnableBroadcast = UserSettings.EnableBroadcast
                     .BroadcastPort = UserSettings.BroadcastPort
-                    .State = UserSettings.State
-                    .Town = UserSettings.Town
+                    .Latitude = UserSettings.Latitude
+                    .Longitude = UserSettings.Longitude
                     .TopMost = UserSettings.TopMost
-                    .LicenseKey = UserSettings.LicenseKey
-                    .Email = UserSettings.Email
-                    .HWID = UserSettings.HWID
                     .Language = UserSettings.Language
                     .AudioEffectHighQuality = UserSettings.AudioEffectHighQuality
                     .RgbEffectHighQuality = UserSettings.RgbEffectHighQuality

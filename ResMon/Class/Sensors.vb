@@ -19,6 +19,8 @@ Public Class CPUSensors
 
     Public Computer As Computer
 
+    Private pcCpuUsage As New PerformanceCounter("Processor", "% Processor Time", "_Total")
+
     Public Sub New(computer As Computer)
         Clock = New SensorGroup("Clocks", " MHz")
         Temperature = New SensorGroup("Temperatures", " °C")
@@ -111,6 +113,7 @@ Public Class CPUSensors
     Public Function LoadPercent() As String
         Try
             Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*CPU Total*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            'Return $"{CInt(Math.Ceiling(pcCpuUsage.NextValue))} %"
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -183,6 +186,7 @@ Public Class CPUSensors
     Public Function RawLoadPercent() As Integer
         Try
             Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*CPU Total*").FirstOrDefault.Value.GetValueOrDefault))
+            'Return CInt(Math.Ceiling(pcCpuUsage.NextValue))
         Catch ex As Exception
             Return 0
         End Try

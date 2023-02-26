@@ -440,38 +440,6 @@ Public Class frmThemeEditor
             AddHandler utube.MouseClick, AddressOf Control_MouseClick
         Next
 
-        For Each ww As MyWeatherWidget In currentTheme.WeatherWidgets
-            Dim wwidget As New WeatherWidget(True)
-            With wwidget
-                .myParentForm = monForm
-                .BackColor = ww.BackColor.ToColor
-                .Font = ww.Font.ToFont
-                .ForeColor = ww.ForeColor.ToColor
-                .RightToLeft = ww.RightToLeft
-                .Text = ww.Text
-                .Enabled = ww.Enabled
-                .Visible = ww.Visible
-                .Tag = "ThemeControl"
-                .Name = ww.Name
-                .Anchor = ww.Anchor
-                .Dock = ww.Dock
-                .Location = ww.Location
-                .Margin = ww.Margin
-                .Padding = ww.Padding
-                .Size = ww.Size
-                .Sensor = ww.Sensor
-                .WeatherStyle = ww.WeatherStyle
-                .IconStyle = ww.IconStyle
-                '.ParentName = ww.ParentName
-            End With
-            monForm.Controls.Add(wwidget)
-
-            Dim node As New TreeNode($"{wwidget.Name} ({wwidget.Sensor.ToString})") With {.Tag = wwidget, .Name = wwidget.Name}
-            root.Nodes.Add(node)
-
-            AddHandler wwidget.MouseClick, AddressOf Control_MouseClick
-        Next
-
         For Each av As MyAudioVisualizer In currentTheme.AudioVisualizers
             Dim audio As New AudioVisualizer(True)
             With audio
@@ -530,7 +498,6 @@ Public Class frmThemeEditor
         currentTheme.PlotCharts.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, PlotChart).ParentName = x.ParentName)
         currentTheme.DetailSensors.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, DetailSensor).ParentName = x.ParentName)
         currentTheme.YoutubeVideos.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, Youtube).ParentName = x.ParentName)
-        currentTheme.WeatherWidgets.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, WeatherWidget).ParentName = x.ParentName)
         currentTheme.AudioVisualizers.ForEach(Sub(x) CType(monForm.Controls.Find(x.Name, False).FirstOrDefault, AudioVisualizer).ParentName = x.ParentName)
     End Sub
 
@@ -561,7 +528,6 @@ Public Class frmThemeEditor
                 Dim pcList As New List(Of MyPlotChart)
                 Dim dsList As New List(Of MyDetailSensor)
                 Dim ytList As New List(Of MyYoutube)
-                Dim wwList As New List(Of MyWeatherWidget)
                 Dim avList As New List(Of MyAudioVisualizer)
                 For Each control As Control In monForm.Controls
                     Select Case control.GetType
@@ -581,8 +547,6 @@ Public Class frmThemeEditor
                             dsList.Add(New MyDetailSensor(control))
                         Case GetType(Youtube)
                             ytList.Add(New MyYoutube(control))
-                        Case GetType(WeatherWidget)
-                            wwList.Add(New MyWeatherWidget(control))
                         Case GetType(AudioVisualizer)
                             avList.Add(New MyAudioVisualizer(control))
                     End Select
@@ -595,7 +559,6 @@ Public Class frmThemeEditor
                 .PlotCharts = pcList
                 .DetailSensors = dsList
                 .YoutubeVideos = ytList
-                .WeatherWidgets = wwList
                 .AudioVisualizers = avList
                 .Snapshot = monForm.TakeScreenShot.ImageToBase64(ImageFormat.Png)
                 .CustomPreview = themeConfig.CustomPreview.ImageToBase64
@@ -633,7 +596,6 @@ Public Class frmThemeEditor
                 Dim pcList As New List(Of MyPlotChart)
                 Dim dsList As New List(Of MyDetailSensor)
                 Dim ytList As New List(Of MyYoutube)
-                Dim wwList As New List(Of MyWeatherWidget)
                 Dim avList As New List(Of MyAudioVisualizer)
                 For Each control As Control In monForm.Controls
                     Select Case control.GetType
@@ -653,8 +615,6 @@ Public Class frmThemeEditor
                             dsList.Add(New MyDetailSensor(control))
                         Case GetType(Youtube)
                             ytList.Add(New MyYoutube(control))
-                        Case GetType(WeatherWidget)
-                            wwList.Add(New MyWeatherWidget(control))
                         Case GetType(AudioVisualizer)
                             avList.Add(New MyAudioVisualizer(control))
                     End Select
@@ -667,7 +627,6 @@ Public Class frmThemeEditor
                 .PlotCharts = pcList
                 .DetailSensors = dsList
                 .YoutubeVideos = ytList
-                .WeatherWidgets = wwList
                 .AudioVisualizers = avList
                 .Snapshot = monForm.TakeScreenShot.ImageToBase64(ImageFormat.Png)
                 .CustomPreview = themeConfig.CustomPreview.ImageToBase64
@@ -849,17 +808,6 @@ Public Class frmThemeEditor
         AddHandler utube.MouseClick, AddressOf Control_MouseClick
     End Sub
 
-    Private Sub tsbWeather_Click(sender As Object, e As EventArgs) Handles tsbWeather.Click, tsmiWeather.Click
-        Dim wWidget As New WeatherWidget(True) With {.Name = $"WeatherWidget{GetControlCount("WeatherWidget")}", .Location = CalculateCenter(monForm.Size, New Size(150, 150)), .Size = New Size(150, 150),
-            .myParentForm = monForm, .ForeColor = themeConfig.TextColor, .Tag = "ThemeControl"}
-        monForm.Controls.Add(wWidget)
-
-        Dim node As New TreeNode($"{wWidget.Name} ({wWidget.Sensor.ToString})") With {.Tag = wWidget, .Name = wWidget.Name}
-        root.Nodes.Add(node)
-
-        AddHandler wWidget.MouseClick, AddressOf Control_MouseClick
-    End Sub
-
     Private Sub tsbVisualizer_Click(sender As Object, e As EventArgs) Handles tsbVisualizer.Click, tsmiVisualizer.Click
         Dim aVisualizer As New AudioVisualizer(True) With {.Name = $"AudioVisualizer{GetControlCount("AudioVisualizer")}", .Location = CalculateCenter(monForm.Size, New Size(150, 50)), .Size = New Size(150, 50),
             .myParentForm = monForm, .ForeColor = themeConfig.TextColor, .Tag = "ThemeControl"}
@@ -929,7 +877,6 @@ Public Class frmThemeEditor
                 Dim pcList As New List(Of MyPlotChart)
                 Dim dsList As New List(Of MyDetailSensor)
                 Dim ytList As New List(Of MyYoutube)
-                Dim wwList As New List(Of MyWeatherWidget)
                 Dim avList As New List(Of MyAudioVisualizer)
                 For Each control As Control In monForm.Controls
                     Select Case control.GetType
@@ -949,8 +896,6 @@ Public Class frmThemeEditor
                             dsList.Add(New MyDetailSensor(control))
                         Case GetType(Youtube)
                             ytList.Add(New MyYoutube(control))
-                        Case GetType(WeatherWidget)
-                            wwList.Add(New MyWeatherWidget(control))
                         Case GetType(AudioVisualizer)
                             avList.Add(New MyAudioVisualizer(control))
                     End Select
@@ -963,7 +908,6 @@ Public Class frmThemeEditor
                 .PlotCharts = pcList
                 .DetailSensors = dsList
                 .YoutubeVideos = ytList
-                .WeatherWidgets = wwList
                 .AudioVisualizers = avList
                 .Snapshot = monForm.TakeScreenShot.ImageToBase64(ImageFormat.Png)
                 .CustomPreview = themeConfig.CustomPreview.ImageToBase64
@@ -997,7 +941,6 @@ Public Class frmThemeEditor
                     Dim pcList As New List(Of MyPlotChart)
                     Dim dsList As New List(Of MyDetailSensor)
                     Dim ytList As New List(Of MyYoutube)
-                    Dim wwList As New List(Of MyWeatherWidget)
                     Dim avList As New List(Of MyAudioVisualizer)
                     For Each control As Control In monForm.Controls
                         Select Case control.GetType
@@ -1017,8 +960,6 @@ Public Class frmThemeEditor
                                 dsList.Add(New MyDetailSensor(control))
                             Case GetType(Youtube)
                                 ytList.Add(New MyYoutube(control))
-                            Case GetType(WeatherWidget)
-                                wwList.Add(New MyWeatherWidget(control))
                             Case GetType(AudioVisualizer)
                                 avList.Add(New MyAudioVisualizer(control))
                         End Select
@@ -1031,7 +972,6 @@ Public Class frmThemeEditor
                     .PlotCharts = pcList
                     .DetailSensors = dsList
                     .YoutubeVideos = ytList
-                    .WeatherWidgets = wwList
                     .AudioVisualizers = avList
                     .Snapshot = monForm.TakeScreenShot.ImageToBase64(ImageFormat.Png)
                     .CustomPreview = themeConfig.CustomPreview.ImageToBase64
@@ -1372,36 +1312,6 @@ Public Class frmThemeEditor
                 root.Nodes.Add(node)
 
                 AddHandler youtube.MouseClick, AddressOf Control_MouseClick
-            Case GetType(WeatherWidget)
-                Dim source = CType(ctrl, WeatherWidget)
-                Dim weatherWidget As New WeatherWidget(True)
-                With weatherWidget
-                    .myParentForm = monForm
-                    .BackColor = source.BackColor
-                    .Font = source.Font
-                    .ForeColor = source.ForeColor
-                    .RightToLeft = source.RightToLeft
-                    .Text = source.Text
-                    .Enabled = source.Enabled
-                    .Visible = source.Visible
-                    .Tag = "ThemeControl"
-                    .Name = $"WeatherWidget{GetControlCount("WeatherWidget")}"
-                    .Anchor = source.Anchor
-                    .Dock = source.Dock
-                    .Location = source.Location
-                    .Margin = source.Margin
-                    .Padding = source.Padding
-                    .Size = source.Size
-                    .Sensor = source.Sensor
-                    .WeatherStyle = source.WeatherStyle
-                    .IconStyle = source.IconStyle
-                End With
-                monForm.Controls.Add(weatherWidget)
-
-                Dim node As New TreeNode($"{weatherWidget.Name} ({weatherWidget.Sensor.ToString})") With {.Tag = weatherWidget, .Name = weatherWidget.Name}
-                root.Nodes.Add(node)
-
-                AddHandler weatherWidget.MouseClick, AddressOf Control_MouseClick
             Case GetType(AudioVisualizer)
                 Dim source = CType(ctrl, AudioVisualizer)
                 Dim audioVisualizer As New AudioVisualizer(True)

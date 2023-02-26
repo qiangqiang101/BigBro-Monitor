@@ -488,6 +488,22 @@ Public Class TextLabel
                     Text = _b4Text & myParentForm.displaySensor.Framerate()
                 Case eSensorType.DisplayFrametime
                     Text = _b4Text & myParentForm.displaySensor.Frametime()
+
+                    'Added 26/02/2023
+                Case eSensorType.WeatherTempC
+                    Text = $"{Helper.openMeteo.Temperature} °C"
+                Case eSensorType.WeatherTempF
+                    Text = $"{((Helper.openMeteo.Temperature * 1.8) + 32)} °F"
+                Case eSensorType.WeatherName
+                    Text = Helper.openMeteo.WeatherName
+                Case eSensorType.WeatherCode
+                    Text = Helper.openMeteo.WeatherCode
+                Case eSensorType.WeatherWindSpeedKmh
+                    Text = $"{Helper.openMeteo.WindSpeed} Km/h"
+                Case eSensorType.WeatherWindSpeedMph
+                    Text = $"{Helper.openMeteo.WindSpeed / 1.609} Mph"
+                Case eSensorType.WeatherWindDirection
+                    Text = $"{Helper.openMeteo.WindDirection} °"
             End Select
         Catch ex As Exception
             Logger.Log(ex)
