@@ -30,5 +30,7 @@ Note: you can find us on our discord server if you need additional help https://
 
 # Prerequisite
 [Webview2 Runtime (Evergreen Standalone Installer)](https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section)
+
 [.NET Framework 4.8](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net48-web-installer)
+
 [MSI Afterburner & RTSS](https://www.msi.com/Landing/afterburner/graphics-cards)
