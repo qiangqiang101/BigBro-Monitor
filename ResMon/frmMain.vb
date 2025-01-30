@@ -1326,6 +1326,6 @@ Public Class frmMain
     End Sub
 
     Private Sub btnDownloadTheme_Click(sender As Object, e As EventArgs) Handles btnDownloadTheme.Click
-        Process.Start("https://www.bigbromonitor.com")
+        Process.Start("https://discord.gg/akHABReu5U")
     End Sub
 End Class
