@@ -1,11 +1,11 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing.Imaging
 Imports Echevil
-Imports OpenHardwareMonitor.Hardware
+Imports LibreHardwareMonitor.Hardware
 
 Public Class frmMonitor3
 
-    Private ReadOnly computer As New Computer() With {.CPUEnabled = True, .GPUEnabled = True, .HDDEnabled = True, .FanControllerEnabled = True, .MainboardEnabled = True, .RAMEnabled = True}
+    Private ReadOnly computer As New Computer() With {.IsCpuEnabled = True, .IsGpuEnabled = True, .IsStorageEnabled = True, .IsControllerEnabled = True, .IsMotherboardEnabled = True, .IsMemoryEnabled = True}
     Dim running As Boolean = False
     Public cpuSensor As New CPUSensors(computer), gpuSensor As New GPUSensors(computer), ramSensor As New RAMSensors(computer), hddSensor As New HDDSensors(computer), moboSensor As New MainboardSensor(computer)
     Private ReadOnly netMonitor As New NetworkMonitor
@@ -335,7 +335,7 @@ Public Class frmMonitor3
 
             For Each hardware In computer.Hardware
                 Select Case hardware.HardwareType
-                    Case HardwareType.CPU
+                    Case HardwareType.Cpu
                         hardware.Update()
                         For Each sensor In hardware.Sensors
                             Select Case sensor.SensorType
@@ -350,7 +350,7 @@ Public Class frmMonitor3
                             End Select
                         Next
 
-                    Case HardwareType.GpuNvidia, HardwareType.GpuAti
+                    Case HardwareType.GpuNvidia, HardwareType.GpuAmd, HardwareType.GpuIntel
                         hardware.Update()
                         For Each sensor In hardware.Sensors
                             Select Case sensor.SensorType
@@ -372,7 +372,7 @@ Public Class frmMonitor3
                                     gpuSensor.Throughput.Add(sensor)
                             End Select
                         Next
-                    Case HardwareType.RAM
+                    Case HardwareType.Memory
                         hardware.Update()
                         For Each sensor In hardware.Sensors
                             Select Case sensor.SensorType
@@ -382,7 +382,7 @@ Public Class frmMonitor3
                                     ramSensor.Load.Add(sensor)
                             End Select
                         Next
-                    Case HardwareType.HDD
+                    Case HardwareType.Storage
                         hardware.Update()
                         For Each sensor In hardware.Sensors
                             Select Case sensor.SensorType
@@ -396,7 +396,7 @@ Public Class frmMonitor3
                             End Select
                         Next
 
-                    Case HardwareType.Mainboard
+                    Case HardwareType.Motherboard
                         Try
                             hardware.Update()
                             If hardware.SubHardware.Count <> 0 Then

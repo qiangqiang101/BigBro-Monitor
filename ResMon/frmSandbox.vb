@@ -1,8 +1,8 @@
-﻿Imports OpenHardwareMonitor.Hardware
+﻿Imports LibreHardwareMonitor.Hardware
 
 Public Class frmSandbox
 
-    Private ReadOnly computer As New Computer() With {.CPUEnabled = True, .FanControllerEnabled = True, .GPUEnabled = True, .HDDEnabled = True, .MainboardEnabled = True, .RAMEnabled = True}
+    Private ReadOnly computer As New Computer() With {.IsCpuEnabled = True, .IsGpuEnabled = True, .IsStorageEnabled = True, .IsControllerEnabled = True, .IsMotherboardEnabled = True, .IsMemoryEnabled = True}
 
     Private Sub frmSandbox_Load(sender As Object, e As EventArgs) Handles Me.Load
         computer.Open()

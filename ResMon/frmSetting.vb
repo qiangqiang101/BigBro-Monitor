@@ -1,7 +1,6 @@
 ﻿Imports System.IO
 Imports Echevil
 Imports MaterialSkin
-Imports OpenHardwareMonitor.Hardware
 
 Public Class frmSetting
 

@@ -1,4 +1,5 @@
-﻿Imports OpenHardwareMonitor.Hardware
+﻿Imports LibreHardwareMonitor.Hardware
+
 Public Class SensorGroup
 
     Public Name As String

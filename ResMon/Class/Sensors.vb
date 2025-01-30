@@ -5,9 +5,9 @@ Imports System.Text
 Imports System.Text.RegularExpressions
 Imports System.Threading
 Imports Echevil
+Imports LibreHardwareMonitor.Hardware
 Imports MSIAfterburnerNET.HM
 Imports MSIAfterburnerNET.HM.Interop
-Imports OpenHardwareMonitor.Hardware
 Imports sm = System.Management
 
 Public Class CPUSensors
@@ -32,7 +32,7 @@ Public Class CPUSensors
 
     Public Function Name() As String
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Name
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Name
         Catch ex As Exception
             Return Nothing
         End Try
@@ -40,7 +40,7 @@ Public Class CPUSensors
 
     Public Function CoreCount() As Integer
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name.Contains("Core")).Count
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name.Contains("Core")).Count
         Catch ex As Exception
             Return 0
         End Try
@@ -48,7 +48,7 @@ Public Class CPUSensors
 
     Public Function ClockSpeed(Optional core As Integer = 1) As String
         Try
-            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name = $"CPU Core #{core}").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name = $"CPU Core #{core}").FirstOrDefault.Value.GetValueOrDefault)} MHz"
         Catch ex As Exception
             Return "0 MHz"
         End Try
@@ -56,7 +56,7 @@ Public Class CPUSensors
 
     Public Function BusClockSpeed() As String
         Try
-            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*Bus Speed*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*Bus Speed*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
         Catch ex As Exception
             Return "0 MHz"
         End Try
@@ -64,7 +64,7 @@ Public Class CPUSensors
 
     Public Function TemperatureLevel() As Single
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*CPU Package*").FirstOrDefault.Value.GetValueOrDefault
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*CPU Package*").FirstOrDefault.Value.GetValueOrDefault
         Catch ex As Exception
             Return 0F
         End Try
@@ -88,7 +88,7 @@ Public Class CPUSensors
 
     Public Function CoreTemperature(Optional core As Integer = 1) As Single
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name = $"CPU Core #{core}").FirstOrDefault.Value.GetValueOrDefault
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name = $"CPU Core #{core}").FirstOrDefault.Value.GetValueOrDefault
         Catch ex As Exception
             Return 0F
         End Try
@@ -112,7 +112,7 @@ Public Class CPUSensors
 
     Public Function LoadPercent() As String
         Try
-            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*CPU Total*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*CPU Total*").FirstOrDefault.Value.GetValueOrDefault)} %"
             'Return $"{CInt(Math.Ceiling(pcCpuUsage.NextValue))} %"
         Catch ex As Exception
             Return "0 %"
@@ -121,7 +121,7 @@ Public Class CPUSensors
 
     Public Function PowerWattage() As String
         Try
-            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Package*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
+            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Package*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
         Catch ex As Exception
             Return "0 W"
         End Try
@@ -129,7 +129,7 @@ Public Class CPUSensors
 
     Public Function CorePower() As String
         Try
-            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Cores*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
+            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Cores*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
         Catch ex As Exception
             Return "0 W"
         End Try
@@ -137,7 +137,7 @@ Public Class CPUSensors
 
     Public Function GraphicPower() As String
         Try
-            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Graphics*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
+            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Graphics*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
         Catch ex As Exception
             Return "0 W"
         End Try
@@ -145,7 +145,7 @@ Public Class CPUSensors
 
     Public Function DRAMPower() As String
         Try
-            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU DRAM*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
+            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU DRAM*").FirstOrDefault.Value.GetValueOrDefault.ToString("N")} W"
         Catch ex As Exception
             Return "0 W"
         End Try
@@ -185,7 +185,7 @@ Public Class CPUSensors
 
     Public Function RawLoadPercent() As Integer
         Try
-            Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*CPU Total*").FirstOrDefault.Value.GetValueOrDefault))
+            Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*CPU Total*").FirstOrDefault.Value.GetValueOrDefault))
             'Return CInt(Math.Ceiling(pcCpuUsage.NextValue))
         Catch ex As Exception
             Return 0
@@ -194,7 +194,7 @@ Public Class CPUSensors
 
     Public Function RawClockSpeed(Optional core As Integer = 1) As Single
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name = $"CPU Core #{core}").FirstOrDefault.Value.GetValueOrDefault
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name = $"CPU Core #{core}").FirstOrDefault.Value.GetValueOrDefault
         Catch ex As Exception
             Return 0F
         End Try
@@ -202,7 +202,7 @@ Public Class CPUSensors
 
     Public Function RawBusClockSpeed() As Single
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*Bus Speed*").FirstOrDefault.Value.GetValueOrDefault
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*Bus Speed*").FirstOrDefault.Value.GetValueOrDefault
         Catch ex As Exception
             Return 0F
         End Try
@@ -210,7 +210,7 @@ Public Class CPUSensors
 
     Public Function RawPowerWattage() As Single
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Package*").FirstOrDefault.Value.GetValueOrDefault
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Package*").FirstOrDefault.Value.GetValueOrDefault
         Catch ex As Exception
             Return 0F
         End Try
@@ -218,7 +218,7 @@ Public Class CPUSensors
 
     Public Function RawCorePower() As Single
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Cores*").FirstOrDefault.Value.GetValueOrDefault
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Cores*").FirstOrDefault.Value.GetValueOrDefault
         Catch ex As Exception
             Return 0F
         End Try
@@ -226,7 +226,7 @@ Public Class CPUSensors
 
     Public Function RawGraphicPower() As Single
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Graphics*").FirstOrDefault.Value.GetValueOrDefault
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU Graphics*").FirstOrDefault.Value.GetValueOrDefault
         Catch ex As Exception
             Return 0F
         End Try
@@ -234,7 +234,7 @@ Public Class CPUSensors
 
     Public Function RawDRAMPower() As Single
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.CPU).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU DRAM*").FirstOrDefault.Value.GetValueOrDefault
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Cpu).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*CPU DRAM*").FirstOrDefault.Value.GetValueOrDefault
         Catch ex As Exception
             Return 0F
         End Try
@@ -270,11 +270,18 @@ Public Class GPUSensors
 
     Public Function Name(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Name
-            Catch ex As Exception
-                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Name
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return try_green.Name
+                Case try_red IsNot Nothing
+                    Return try_red.Name
+                Case Else
+                    Return try_blue.Name
+            End Select
         Catch ex As Exception
             Return Nothing
         End Try
@@ -282,11 +289,18 @@ Public Class GPUSensors
 
     Public Function ClockSpeed(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
-            Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+                Case try_red IsNot Nothing
+                    Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+                Case Else
+                    Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+            End Select
         Catch ex As Exception
             Return "0 MHz"
         End Try
@@ -294,11 +308,18 @@ Public Class GPUSensors
 
     Public Function MemoryClock(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
-            Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+                Case try_red IsNot Nothing
+                    Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+                Case Else
+                    Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+            End Select
         Catch ex As Exception
             Return "0 MHz"
         End Try
@@ -306,11 +327,18 @@ Public Class GPUSensors
 
     Public Function ShaderClock(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
-            Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+                Case try_red IsNot Nothing
+                    Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+                Case Else
+                    Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
+            End Select
         Catch ex As Exception
             Return "0 MHz"
         End Try
@@ -318,11 +346,18 @@ Public Class GPUSensors
 
     Public Function TemperatureLevel(Optional GPUNo As Integer = 0) As Single
         Try
-            Try
-                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
-            Catch ex As Exception
-                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
+                Case try_red IsNot Nothing
+                    Return try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
+                Case Else
+                    Return try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
+            End Select
         Catch ex As Exception
             Return 0F
         End Try
@@ -346,11 +381,18 @@ Public Class GPUSensors
 
     Public Function LoadPercent(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} %"
-            Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} %"
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} %"
+                Case try_red IsNot Nothing
+                    Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} %"
+                Case Else
+                    Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            End Select
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -358,11 +400,18 @@ Public Class GPUSensors
 
     Public Function FrameBufferLoad(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault)} %"
-            Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault)} %"
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault)} %"
+                Case try_red IsNot Nothing
+                    Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault)} %"
+                Case Else
+                    Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            End Select
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -370,11 +419,18 @@ Public Class GPUSensors
 
     Public Function VideoEngineLoad(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault)} %"
-            Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault)} %"
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault)} %"
+                Case try_red IsNot Nothing
+                    Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault)} %"
+                Case Else
+                    Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            End Select
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -382,11 +438,18 @@ Public Class GPUSensors
 
     Public Function BusInterfaceLoad(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault)} %"
-            Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault)} %"
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault)} %"
+                Case try_red IsNot Nothing
+                    Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault)} %"
+                Case Else
+                    Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            End Select
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -394,11 +457,18 @@ Public Class GPUSensors
 
     Public Function MemoryPercent(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} %"
-            Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} %"
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} %"
+                Case try_red IsNot Nothing
+                    Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} %"
+                Case Else
+                    Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            End Select
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -406,23 +476,37 @@ Public Class GPUSensors
 
     Public Function PowerWattage(Optional GPUNo As Integer = 0) As String
         Try
-            Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU Power*").FirstOrDefault.Value.GetValueOrDefault} W"
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault} W"
+                Case try_red IsNot Nothing
+                    Return $"{try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault} W"
+                Case Else
+                    Return $"{try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault} W"
+            End Select
         Catch ex As Exception
-            Try
-                Return $"{Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU Power*").FirstOrDefault.Value.GetValueOrDefault} W"
-            Catch exc As Exception
-                Return "0 W"
-            End Try
+            Return "0 W"
         End Try
     End Function
 
     Public Function VRAMFree(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault)} MB"
-            Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault)} MB"
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+                Case try_red IsNot Nothing
+                    Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+                Case Else
+                    Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+            End Select
         Catch ex As Exception
             Return "0 MB"
         End Try
@@ -430,11 +514,18 @@ Public Class GPUSensors
 
     Public Function VRAMUsage(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault)} MB"
-            Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault)} MB"
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+                Case try_red IsNot Nothing
+                    Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+                Case Else
+                    Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+            End Select
         Catch ex As Exception
             Return "0 MB"
         End Try
@@ -442,11 +533,18 @@ Public Class GPUSensors
 
     Public Function VRAMTotal(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault)} MB"
-            Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault)} MB"
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+                Case try_red IsNot Nothing
+                    Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+                Case Else
+                    Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault)} MB"
+            End Select
         Catch ex As Exception
             Return "0 MB"
         End Try
@@ -454,11 +552,18 @@ Public Class GPUSensors
 
     Public Function FanSpeed(Optional GPUNo As Integer = 0) As String
         Try
-            Try
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
-            Catch ex As Exception
-                Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
+                Case try_red IsNot Nothing
+                    Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
+                Case Else
+                    Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
+            End Select
         Catch ex As Exception
             Return "0 RPM"
         End Try
@@ -482,11 +587,18 @@ Public Class GPUSensors
 
     Public Function RawLoadPercent(Optional GPUNo As Integer = 0) As Integer
         Try
-            Try
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault))
-            Catch ex As Exception
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault))
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault))
+                Case try_red IsNot Nothing
+                    Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault))
+                Case Else
+                    Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault))
+            End Select
         Catch ex As Exception
             Return 0
         End Try
@@ -494,11 +606,18 @@ Public Class GPUSensors
 
     Public Function RawFrameBufferLoad(Optional GPUNo As Integer = 0) As Integer
         Try
-            Try
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault))
-            Catch ex As Exception
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault))
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault))
+                Case try_red IsNot Nothing
+                    Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault))
+                Case Else
+                    Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault))
+            End Select
         Catch ex As Exception
             Return 0
         End Try
@@ -506,11 +625,18 @@ Public Class GPUSensors
 
     Public Function RawVideoEngineLoad(Optional GPUNo As Integer = 0) As Integer
         Try
-            Try
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault))
-            Catch ex As Exception
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault))
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault))
+                Case try_red IsNot Nothing
+                    Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault))
+                Case Else
+                    Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault))
+            End Select
         Catch ex As Exception
             Return 0
         End Try
@@ -518,11 +644,18 @@ Public Class GPUSensors
 
     Public Function RawBusInterfaceLoad(Optional GPUNo As Integer = 0) As Integer
         Try
-            Try
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault))
-            Catch ex As Exception
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault))
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault))
+                Case try_red IsNot Nothing
+                    Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault))
+                Case Else
+                    Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault))
+            End Select
         Catch ex As Exception
             Return 0
         End Try
@@ -530,11 +663,18 @@ Public Class GPUSensors
 
     Public Function RawMemoryPercent(Optional GPUNo As Integer = 0) As Integer
         Try
-            Try
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault))
-            Catch ex As Exception
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault))
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault))
+                Case try_red IsNot Nothing
+                    Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault))
+                Case Else
+                    Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault))
+            End Select
         Catch ex As Exception
             Return 0
         End Try
@@ -542,11 +682,18 @@ Public Class GPUSensors
 
     Public Function RawVRAMFree(Optional GPUNo As Integer = 0) As Integer
         Try
-            Try
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault))
-            Catch ex As Exception
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault))
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault))
+                Case try_red IsNot Nothing
+                    Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault))
+                Case Else
+                    Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault))
+            End Select
         Catch ex As Exception
             Return 0
         End Try
@@ -554,11 +701,18 @@ Public Class GPUSensors
 
     Public Function RawVRAMUsage(Optional GPUNo As Integer = 0) As Integer
         Try
-            Try
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault))
-            Catch ex As Exception
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault))
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault))
+                Case try_red IsNot Nothing
+                    Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault))
+                Case Else
+                    Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault))
+            End Select
         Catch ex As Exception
             Return 0
         End Try
@@ -566,11 +720,18 @@ Public Class GPUSensors
 
     Public Function RawVRAMTotal(Optional GPUNo As Integer = 0) As Integer
         Try
-            Try
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault))
-            Catch ex As Exception
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault))
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault))
+                Case try_red IsNot Nothing
+                    Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault))
+                Case Else
+                    Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault))
+            End Select
         Catch ex As Exception
             Return 0
         End Try
@@ -578,11 +739,18 @@ Public Class GPUSensors
 
     Public Function RawFanSpeed(Optional GPUNo As Integer = 0) As Integer
         Try
-            Try
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault))
-            Catch ex As Exception
-                Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault))
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault))
+                Case try_red IsNot Nothing
+                    Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault))
+                Case Else
+                    Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault))
+            End Select
         Catch ex As Exception
             Return 0
         End Try
@@ -590,11 +758,18 @@ Public Class GPUSensors
 
     Public Function RawClockSpeed(Optional GPUNo As Integer = 0) As Single
         Try
-            Try
-                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
-            Catch ex As Exception
-                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
+                Case try_red IsNot Nothing
+                    Return try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
+                Case Else
+                    Return try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
+            End Select
         Catch ex As Exception
             Return 0F
         End Try
@@ -602,11 +777,18 @@ Public Class GPUSensors
 
     Public Function RawMemoryClock(Optional GPUNo As Integer = 0) As Single
         Try
-            Try
-                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault
-            Catch ex As Exception
-                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault
+                Case try_red IsNot Nothing
+                    Return try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault
+                Case Else
+                    Return try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault
+            End Select
         Catch ex As Exception
             Return 0F
         End Try
@@ -614,11 +796,18 @@ Public Class GPUSensors
 
     Public Function RawShaderClock(Optional GPUNo As Integer = 0) As Single
         Try
-            Try
-                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault
-            Catch ex As Exception
-                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault
-            End Try
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault
+                Case try_red IsNot Nothing
+                    Return try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault
+                Case Else
+                    Return try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault
+            End Select
         Catch ex As Exception
             Return 0F
         End Try
@@ -626,13 +815,20 @@ Public Class GPUSensors
 
     Public Function RawPowerWattage(Optional GPUNo As Integer = 0) As Single
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU Power*").FirstOrDefault.Value.GetValueOrDefault
+            Dim try_green = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuNvidia)(GPUNo)
+            Dim try_red = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAmd)(GPUNo)
+            Dim try_blue = Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuIntel)(GPUNo)
+
+            Select Case True
+                Case try_green IsNot Nothing
+                    Return try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU Power*").FirstOrDefault.Value.GetValueOrDefault
+                Case try_red IsNot Nothing
+                    Return try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU Power*").FirstOrDefault.Value.GetValueOrDefault
+                Case Else
+                    Return try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU Power*").FirstOrDefault.Value.GetValueOrDefault
+            End Select
         Catch ex As Exception
-            Try
-                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.GpuAti)(GPUNo).Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU Power*").FirstOrDefault.Value.GetValueOrDefault
-            Catch exc As Exception
-                Return 0F
-            End Try
+            Return 0F
         End Try
     End Function
 
@@ -654,7 +850,7 @@ Public Class RAMSensors
 
     Public Function Name() As String
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Name
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Memory).FirstOrDefault.Name
         Catch ex As Exception
             Return Nothing
         End Try
@@ -662,7 +858,7 @@ Public Class RAMSensors
 
     Public Function LoadPercent() As String
         Try
-            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*Memory*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Memory).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*Memory*").FirstOrDefault.Value.GetValueOrDefault)} %"
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -670,7 +866,7 @@ Public Class RAMSensors
 
     Public Function RAMUsage() As String
         Try
-            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Used Memory*").FirstOrDefault.Value.GetValueOrDefault)} GB"
+            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Memory).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Used Memory*").FirstOrDefault.Value.GetValueOrDefault)} GB"
         Catch ex As Exception
             Return "0 GB"
         End Try
@@ -678,7 +874,7 @@ Public Class RAMSensors
 
     Public Function RAMAvailable() As String
         Try
-            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Available Memory*").FirstOrDefault.Value.GetValueOrDefault)} GB"
+            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Memory).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Available Memory*").FirstOrDefault.Value.GetValueOrDefault)} GB"
         Catch ex As Exception
             Return "0 GB"
         End Try
@@ -694,7 +890,7 @@ Public Class RAMSensors
 
     Public Function RawLoadPercent() As Integer
         Try
-            Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*Memory*").FirstOrDefault.Value.GetValueOrDefault))
+            Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Memory).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*Memory*").FirstOrDefault.Value.GetValueOrDefault))
         Catch ex As Exception
             Return 0
         End Try
@@ -702,7 +898,7 @@ Public Class RAMSensors
 
     Public Function RawRAMUsage() As Integer
         Try
-            Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Used Memory*").FirstOrDefault.Value.GetValueOrDefault))
+            Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Memory).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Used Memory*").FirstOrDefault.Value.GetValueOrDefault))
         Catch ex As Exception
             Return 0
         End Try
@@ -718,7 +914,7 @@ Public Class RAMSensors
 
     Public Function RawRAMAvailable() As Integer
         Try
-            Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.RAM).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Available Memory*").FirstOrDefault.Value.GetValueOrDefault))
+            Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Memory).FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Data And x.Name Like "*Available Memory*").FirstOrDefault.Value.GetValueOrDefault))
         Catch ex As Exception
             Return 0
         End Try
@@ -787,7 +983,7 @@ Public Class HDDSensors
 
     Public Function Name(Optional DiskNo As Integer = 0) As String
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.HDD)(DiskNo).Name
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Storage)(DiskNo).Name
         Catch ex As Exception
             Return Nothing
         End Try
@@ -796,7 +992,7 @@ Public Class HDDSensors
     Public Function TemperatureLevel(Optional DiskNo As Integer = 0) As Single
         Try
             Try
-                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.HDD)(DiskNo).Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*Temperature*").FirstOrDefault.Value.GetValueOrDefault
+                Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Storage)(DiskNo).Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*Temperature*").FirstOrDefault.Value.GetValueOrDefault
             Catch ex As Exception
                 Return 0F
             End Try
@@ -823,7 +1019,7 @@ Public Class HDDSensors
 
     Public Function LoadPercent(Optional DiskNo As Integer = 0) As String
         Try
-            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.HDD)(DiskNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*Used Space*").FirstOrDefault.Value.GetValueOrDefault)} %"
+            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Storage)(DiskNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*Used Space*").FirstOrDefault.Value.GetValueOrDefault)} %"
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -847,7 +1043,7 @@ Public Class HDDSensors
 
     Public Function RawLoadPercent(Optional DiskNo As Integer = 0) As Integer
         Try
-            Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.HDD)(DiskNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*Used Space*").FirstOrDefault.Value.GetValueOrDefault))
+            Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Storage)(DiskNo).Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*Used Space*").FirstOrDefault.Value.GetValueOrDefault))
         Catch ex As Exception
             Return 0
         End Try
@@ -924,7 +1120,7 @@ Public Class MainboardSensor
 
     Public Function Name() As String
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.Name
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Motherboard).FirstOrDefault.Name
         Catch ex As Exception
             Return Nothing
         End Try
@@ -932,7 +1128,7 @@ Public Class MainboardSensor
 
     Public Function Name2() As String
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Name
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Motherboard).FirstOrDefault.SubHardware.FirstOrDefault.Name
         Catch ex As Exception
             Return Nothing
         End Try
@@ -940,7 +1136,7 @@ Public Class MainboardSensor
 
     Public Function TemperatureLevel() As Single
         Try
-            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature AndAlso x.Name Like "*CPU Core*").FirstOrDefault.Value.GetValueOrDefault
+            Return Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Motherboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature AndAlso x.Name Like "*CPU Core*").FirstOrDefault.Value.GetValueOrDefault
         Catch ex As Exception
             Return 0F
         End Try
@@ -964,7 +1160,7 @@ Public Class MainboardSensor
 
     Public Function FanSpeed(Optional fan As Integer = 1) As String
         Try
-            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Fan AndAlso x.Name = $"Fan #{fan}").FirstOrDefault.Value.GetValueOrDefault)} RPM"
+            Return $"{Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Motherboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Fan AndAlso x.Name = $"Fan #{fan}").FirstOrDefault.Value.GetValueOrDefault)} RPM"
         Catch ex As Exception
             Return "0 RPM"
         End Try
@@ -988,7 +1184,7 @@ Public Class MainboardSensor
 
     Public Function RawFanSpeed(Optional fan As Integer = 1) As Integer
         Try
-            Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Mainboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Fan AndAlso x.Name = $"Fan #{fan}").FirstOrDefault.Value.GetValueOrDefault))
+            Return CInt(Math.Ceiling(Computer.Hardware.Where(Function(x) x.HardwareType = HardwareType.Motherboard).FirstOrDefault.SubHardware.FirstOrDefault.Sensors.Where(Function(x) x.SensorType = SensorType.Fan AndAlso x.Name = $"Fan #{fan}").FirstOrDefault.Value.GetValueOrDefault))
         Catch ex As Exception
             Return 0
         End Try
