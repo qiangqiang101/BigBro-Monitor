@@ -22,7 +22,7 @@ https://github.com/user-attachments/assets/db0ff71d-2fb6-4c77-a01c-e5ef95bd4076
 # Installation Instructions
 1. Right click on the archive you just downloaded and select 'Properties', tick the box 'Unblock' and click OK. 
 2. Extract the archive to your Secondary Drive like D Drive (D:\) or E Drive (E:\), Please avoid C Drive (C:\), Documents folder, Desktop, Program Files folder or Program Files (x86).
-3. Download & Install 'Webview2 Runtime', '.NET Framework 4.8' & 'MSI Afterburner', Links can be found below. You may skip this step if you are using Windows 11.
+3. Download & Install 'Webview2 Runtime', '.NET Framework 4.8' & 'MSI Afterburner', Links can be found below.
 4. Run 'BigBroMonitor.exe' to start.
 5. Click 'Run anyway' if you see Windows protected your PC. Because we are unknown publisher.
 
