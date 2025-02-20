@@ -34,3 +34,6 @@ Note: you can find us on our discord server if you need additional help https://
 [.NET Framework 4.8](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net48-web-installer)
 
 [MSI Afterburner & RTSS](https://www.msi.com/Landing/afterburner/graphics-cards)
+
+
+Made in Malaysia
