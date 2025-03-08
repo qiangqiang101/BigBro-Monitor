@@ -28,6 +28,9 @@ https://github.com/user-attachments/assets/db0ff71d-2fb6-4c77-a01c-e5ef95bd4076
 
 Note: you can find us on our discord server if you need additional help https://discord.gg/SMwjGND3pV
 
+# Themes
+[Browse theme made by the community](https://github.com/qiangqiang101/BigBro-Monitor/discussions/categories/themes)
+
 # Prerequisite
 [Webview2 Runtime (Evergreen Standalone Installer)](https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section)
 
