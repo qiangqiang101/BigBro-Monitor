@@ -298,9 +298,11 @@ Public Class GPUSensors
                     Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
                 Case try_red IsNot Nothing
                     Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
             End Select
+
+            Return "0 MHz"
         Catch ex As Exception
             Return "0 MHz"
         End Try
@@ -317,9 +319,11 @@ Public Class GPUSensors
                     Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
                 Case try_red IsNot Nothing
                     Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
             End Select
+
+            Return "0 MHz"
         Catch ex As Exception
             Return "0 MHz"
         End Try
@@ -336,9 +340,11 @@ Public Class GPUSensors
                     Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
                 Case try_red IsNot Nothing
                     Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault)} MHz"
             End Select
+
+            Return "0 MHz"
         Catch ex As Exception
             Return "0 MHz"
         End Try
@@ -355,9 +361,11 @@ Public Class GPUSensors
                     Return try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
                 Case try_red IsNot Nothing
                     Return try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
-                Case Else
+                Case try_blue IsNot Nothing
                     Return try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Temperature And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
             End Select
+
+            Return 0F
         Catch ex As Exception
             Return 0F
         End Try
@@ -390,9 +398,11 @@ Public Class GPUSensors
                     Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} %"
                 Case try_red IsNot Nothing
                     Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} %"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault)} %"
             End Select
+
+            Return "0 %"
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -409,9 +419,11 @@ Public Class GPUSensors
                     Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault)} %"
                 Case try_red IsNot Nothing
                     Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault)} %"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault)} %"
             End Select
+
+            Return "0 %"
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -428,9 +440,11 @@ Public Class GPUSensors
                     Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault)} %"
                 Case try_red IsNot Nothing
                     Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault)} %"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault)} %"
             End Select
+
+            Return "0 %"
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -447,9 +461,11 @@ Public Class GPUSensors
                     Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault)} %"
                 Case try_red IsNot Nothing
                     Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault)} %"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault)} %"
             End Select
+
+            Return "0 %"
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -466,9 +482,11 @@ Public Class GPUSensors
                     Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} %"
                 Case try_red IsNot Nothing
                     Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} %"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault)} %"
             End Select
+
+            Return "0 %"
         Catch ex As Exception
             Return "0 %"
         End Try
@@ -485,9 +503,11 @@ Public Class GPUSensors
                     Return $"{try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault} W"
                 Case try_red IsNot Nothing
                     Return $"{try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault} W"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault} W"
             End Select
+
+            Return "0 W"
         Catch ex As Exception
             Return "0 W"
         End Try
@@ -504,9 +524,11 @@ Public Class GPUSensors
                     Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault)} MB"
                 Case try_red IsNot Nothing
                     Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault)} MB"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault)} MB"
             End Select
+
+            Return "0 MB"
         Catch ex As Exception
             Return "0 MB"
         End Try
@@ -523,9 +545,11 @@ Public Class GPUSensors
                     Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault)} MB"
                 Case try_red IsNot Nothing
                     Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault)} MB"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault)} MB"
             End Select
+
+            Return "0 MB"
         Catch ex As Exception
             Return "0 MB"
         End Try
@@ -542,9 +566,11 @@ Public Class GPUSensors
                     Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault)} MB"
                 Case try_red IsNot Nothing
                     Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault)} MB"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault)} MB"
             End Select
+
+            Return "0 MB"
         Catch ex As Exception
             Return "0 MB"
         End Try
@@ -561,9 +587,11 @@ Public Class GPUSensors
                     Return $"{Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
                 Case try_red IsNot Nothing
                     Return $"{Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
-                Case Else
+                Case try_blue IsNot Nothing
                     Return $"{Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault)} RPM"
             End Select
+
+            Return "0 RPM"
         Catch ex As Exception
             Return "0 RPM"
         End Try
@@ -596,9 +624,11 @@ Public Class GPUSensors
                     Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault))
                 Case try_red IsNot Nothing
                     Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault))
-                Case Else
+                Case try_blue IsNot Nothing
                     Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault))
             End Select
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try
@@ -615,9 +645,11 @@ Public Class GPUSensors
                     Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault))
                 Case try_red IsNot Nothing
                     Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault))
-                Case Else
+                Case try_blue IsNot Nothing
                     Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Frame Buffer*").FirstOrDefault.Value.GetValueOrDefault))
             End Select
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try
@@ -634,9 +666,11 @@ Public Class GPUSensors
                     Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault))
                 Case try_red IsNot Nothing
                     Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault))
-                Case Else
+                Case try_blue IsNot Nothing
                     Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Video Engine*").FirstOrDefault.Value.GetValueOrDefault))
             End Select
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try
@@ -653,9 +687,11 @@ Public Class GPUSensors
                     Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault))
                 Case try_red IsNot Nothing
                     Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault))
-                Case Else
+                Case try_blue IsNot Nothing
                     Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Bus Interface*").FirstOrDefault.Value.GetValueOrDefault))
             End Select
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try
@@ -672,9 +708,11 @@ Public Class GPUSensors
                     Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault))
                 Case try_red IsNot Nothing
                     Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault))
-                Case Else
+                Case try_blue IsNot Nothing
                     Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Load And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault))
             End Select
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try
@@ -691,9 +729,11 @@ Public Class GPUSensors
                     Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault))
                 Case try_red IsNot Nothing
                     Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault))
-                Case Else
+                Case try_blue IsNot Nothing
                     Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Free*").FirstOrDefault.Value.GetValueOrDefault))
             End Select
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try
@@ -710,9 +750,11 @@ Public Class GPUSensors
                     Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault))
                 Case try_red IsNot Nothing
                     Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault))
-                Case Else
+                Case try_blue IsNot Nothing
                     Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Used*").FirstOrDefault.Value.GetValueOrDefault))
             End Select
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try
@@ -729,9 +771,11 @@ Public Class GPUSensors
                     Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault))
                 Case try_red IsNot Nothing
                     Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault))
-                Case Else
+                Case try_blue IsNot Nothing
                     Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.SmallData And x.Name Like "*GPU Memory Total*").FirstOrDefault.Value.GetValueOrDefault))
             End Select
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try
@@ -748,9 +792,11 @@ Public Class GPUSensors
                     Return CInt(Math.Ceiling(try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault))
                 Case try_red IsNot Nothing
                     Return CInt(Math.Ceiling(try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault))
-                Case Else
+                Case try_blue IsNot Nothing
                     Return CInt(Math.Ceiling(try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Fan And x.Name Like "*GPU*").FirstOrDefault.Value.GetValueOrDefault))
             End Select
+
+            Return 0
         Catch ex As Exception
             Return 0
         End Try
@@ -767,9 +813,11 @@ Public Class GPUSensors
                     Return try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
                 Case try_red IsNot Nothing
                     Return try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
-                Case Else
+                Case try_blue IsNot Nothing
                     Return try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Core*").FirstOrDefault.Value.GetValueOrDefault
             End Select
+
+            Return 0F
         Catch ex As Exception
             Return 0F
         End Try
@@ -786,9 +834,11 @@ Public Class GPUSensors
                     Return try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault
                 Case try_red IsNot Nothing
                     Return try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault
-                Case Else
+                Case try_blue IsNot Nothing
                     Return try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Memory*").FirstOrDefault.Value.GetValueOrDefault
             End Select
+
+            Return 0F
         Catch ex As Exception
             Return 0F
         End Try
@@ -805,9 +855,11 @@ Public Class GPUSensors
                     Return try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault
                 Case try_red IsNot Nothing
                     Return try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault
-                Case Else
+                Case try_blue IsNot Nothing
                     Return try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Clock And x.Name Like "*GPU Shader*").FirstOrDefault.Value.GetValueOrDefault
             End Select
+
+            Return 0F
         Catch ex As Exception
             Return 0F
         End Try
@@ -824,9 +876,11 @@ Public Class GPUSensors
                     Return try_green.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU Power*").FirstOrDefault.Value.GetValueOrDefault
                 Case try_red IsNot Nothing
                     Return try_red.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU Power*").FirstOrDefault.Value.GetValueOrDefault
-                Case Else
+                Case try_blue IsNot Nothing
                     Return try_blue.Sensors.Where(Function(x) x.SensorType = SensorType.Power And x.Name Like "*GPU Power*").FirstOrDefault.Value.GetValueOrDefault
             End Select
+
+            Return 0F
         Catch ex As Exception
             Return 0F
         End Try
